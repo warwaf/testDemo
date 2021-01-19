@@ -1,0 +1,4 @@
+<!--components/test-a/index.wxml-->
+<view>
+    <view>test-a: {{type}}</view>
+</view>

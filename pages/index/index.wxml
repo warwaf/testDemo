@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<!-- <import src="../../templates/test-a/index.wxml"/> -->
+<view class="container">
+  <!-- <template is="test-a"></template> -->
+  <v-page>
+    <test-a id="test-a"></test-a>
+    <test-b id="test-b"></test-b>
+  </v-page>
+  <view class="userinfo">
+    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
+    <!-- <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block> -->
+  </view>
+  <!-- <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+</view>

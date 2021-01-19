@@ -1,0 +1,5 @@
+<!--components/v-page/index.wxml-->
+<view>
+    <view>parent:</view>
+    <slot></slot>
+</view>

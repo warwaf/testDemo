@@ -1,0 +1,4 @@
+<template name="test-a">
+  <v-test></v-test>
+  <view class="v-test">123 {{test}}</view>
+</template>
