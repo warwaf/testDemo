@@ -1,0 +1,43 @@
+/* pages/mine/wallet/result/result.wxss */
+page{
+    background-color: #F9FAFC;
+}
+.body{
+    width: 90%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #eee;
+    margin: 30px auto;
+}
+.body .top{
+    border-bottom: 1px dashed #D1D9E8;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+.body .top image{
+    width: 94px;
+    height: 94px;
+}
+.body .bottom{
+    color: #999999;
+    padding: 10px 0;
+    font-size: 12px;
+}
+.body .bottom view{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+}
+.btn{
+    width: 90%;
+    height: 44px;
+    border-radius: 22px;
+    background: linear-gradient(#FFE74F,#FFE227);
+    text-align: center;
+    line-height: 44px;
+    margin: 0 auto;
+}

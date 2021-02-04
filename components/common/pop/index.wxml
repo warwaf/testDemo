@@ -1,0 +1,13 @@
+<!--components/common/pop/index.wxml-->
+<view class="v-layout" wx:if="{{visibile}}">
+   <view class="v-panel {{!showTitle ? 'radius' : ''}}" >
+       <view class="v-title" wx:if="{{showTitle}}">
+            {{title}}
+            <view class="v-cancel" bind:tap="tapCancel">取消</view>
+            <view class="v-comfirm" bind:tap="tapComfirm">确认</view>
+       </view>
+       <view class="v-body">
+           <slot></slot>
+       </view>
+   </view>
+</view>

@@ -1,0 +1,19 @@
+<block wx:if="{{data.length > 0}}">
+    <view  wx:for="{{data}}" wx:key="id" class="item" catchtap="toEvaluate" data-id="{{item.jobId}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/logo.png" mode="aspectFill" />
+        <view>
+            <view>场景：{{item.sceneName}}</view>
+            <view class="gray">摄影师：{{item.cameraMen}}</view>
+            <view class="gray">拍摄时间：{{item.cameraStartTime}}</view>
+        </view>
+        <view class="submit-btn" catchtap='submit'>确定</view>
+    </view>
+</block>
+<block wx:else>
+    <view class="empty">
+        <image mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/exmper@2x.png"></image>
+        <view style="padding-top:30px;">
+            哎，空空如也……
+        </view>
+    </view>
+</block>

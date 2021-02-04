@@ -1,0 +1,5 @@
+<view class="layout">
+    <view class="back-btn" catchtap="back">返回</view>
+    <image mode="widthFix" src="http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/2e78251934fa43ccaab600f3606c86d6.jpg" />
+    <button class="btn" hover-class="active-btn" catchtap="toHome">创建相册留住回忆</button>
+</view>

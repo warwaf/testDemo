@@ -1,0 +1,66 @@
+/* pages/album/beauty/evaluate/evaluate.wxss */
+.banner{
+    background-color: #FFEE44;
+    height: 103px;
+    widows: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #3B0C0C;
+    font-weight: bold;
+    font-size: 14px;
+}
+.banner image{
+    width: 63px;
+    height: 63px;
+}
+.score image{
+    width: 22px;
+    height: 22px;
+    margin-left: 10px;
+}
+.score view{
+    color: #222222;
+    display: flex;
+    margin: 20px;
+}
+.score view text{
+    color: #999;
+    font-size: 13px;
+    margin-left: 20px;
+}
+.input-area{
+    margin: 30px 15px;
+}
+textarea{
+    height: 102px;
+}
+.placeholder{
+    color:#BDBDBD;
+    font-size: 15px;
+}
+.prompt{
+    text-align: right;
+    color: #999999;
+}
+.image-area{
+    display: flex;
+    flex-flow: wrap;
+}
+.image-area image{
+    width: 60px;
+    height: 60px;
+    margin: 10px 8px 0 0;
+}
+.submit-btn{
+    width: calc(100vw - 30px);
+    position: fixed;
+    left: 15px;
+    bottom: 15px;
+    background: linear-gradient(#FFE74F,#FFE227);
+    height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 40px;
+    color: #240101;
+}

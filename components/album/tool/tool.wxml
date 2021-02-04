@@ -1,0 +1,92 @@
+<view class="tool {{guidance ? 'tool-guidance' : ''}} {{visiable ? 'tool-class-visiable' : 'tool-class-hidden'}}">
+    <view class="tool-item" catchtap='toLive' wx:if="{{showLive}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon9.png" style="width: 41px; height: 56px;" class="img"></image>
+    </view>
+
+    <view class="tool-item" catchtap='toInvitation' wx:if="{{type == 9 && isAuthor}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.7/icon1.png" style="width: 46px; height: 44px;" ></image>
+    </view>
+    <!-- <view class="tool-item" catchtap='toInvitation'>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon4.png"></image>
+    </view> -->
+    <!-- <view class="tool-item" catchtap='toCheckIn'>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon13.png" style="width: 62px; height: 62px;"></image>
+    </view> -->
+    <!-- <view style="width:97px;height:52px;margin-left: -35px;" class="tool-item" catchtap='thirty' wx:if="{{!special}}">
+        <image style="width:97px;height:52px;" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/30.png"></image>
+    </view> -->
+    <!-- <view class="tool-item" catchtap='toLottery' wx:if="{{activityInfo.activityPrize && activityInfo.activityPrize.state != -1}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon16.png"></image>
+    </view>
+    <view class="tool-item" catchtap='divide' wx:if="{{special}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/divide.png"></image>
+    </view>
+    <view class="tool-item" catchtap='scrollToTop' wx:if="{{topIcon}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/back-top.png"></image>
+    </view> -->
+
+    <button class="tool-item contact" open-type="contact" wx:if="{{type == 8}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon4.png" class="img"></image>
+    </button>
+
+     <view  class="tool-item" 
+            catchtap='tapTools' 
+            wx:for="{{toolsConfig.commonFuntions}}"
+            wx:for-item="item"
+            wx:key="index"
+            wx:if="{{ (item.name == 'top' && topIcon) || item.name !== 'top' }}"
+            data-info="{{item}}">
+        <image src="{{item.icon}}" class="img"></image>
+    </view>
+
+    <!-- <view   wx:if="{{ isAuthor === true}}" 
+            class="tool-item" 
+            catchtap='toSubscribe'>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/subscribe-logo@2x.png"></image>
+    </view>
+    
+    <view class="tool-item senior" catchtap='toSenior' wx:if="{{type == 9}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/senior@2x.png"></image>
+    </view>
+
+    <view class="tool-item senior" catchtap='to_724_activity' wx:if="{{type == 8}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/senior1@2x.png"></image>
+    </view>
+
+    <view class="tool-item" catchtap='toSeek'>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/face@2x.png"></image>
+    </view>
+    <view class="tool-item" catchtap='startPuzzle'>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/puzzle.png"></image>
+    </view>
+    <view class="tool-item {{guidance == 1 ? 'light-icon' : ''}}" catchtap='todiy'>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/diy-icon.png"></image>
+    </view>
+    <view class="tool-item" catchtap='toAr'>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/ar@2x.png"></image>
+    </view>
+    <view class="tool-item {{guidance == 2 ? 'light-icon' : ''}}" catchtap='toShare'>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/share.png"></image>
+    </view> -->
+</view>
+<!-- <view class="upload {{guidance == 2 ? 'upload-mask' : ''}}" catchtap='toUpload' wx:if="{{btnStatus.allowUpload && btnStatus.upload == 1}}">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/upload.png"></image>
+</view> -->
+
+<!-- 选择单张还是多张上传 -->
+<view class='select-box' wx:if="{{puzzle}}">
+    <view class="title" catchtap='cancleSelect'>取消</view>
+    <view class="body">
+        <view catchtap='toPuzzle' data-type="1">
+            <image class="img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon5.png"></image>
+            <view class="text">长图</view>
+        </view>
+        <view catchtap='toPuzzle' data-type="0">
+            <image class="img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon6.png"></image>
+            <view class="text">九宫格</view>
+        </view>
+    </view>
+</view>
+
+<view class="layout" wx:if="{{puzzle}}" catchtap="null"></view>
+

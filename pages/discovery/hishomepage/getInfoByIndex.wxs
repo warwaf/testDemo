@@ -1,0 +1,24 @@
+var infoByIndex = function(arr,i,k){
+    var temp = {};
+    for(var j=0; j< arr.length; j++){
+      if(arr[j].name == i+'-'+k) temp = arr[j];
+    }
+    //console.log(temp.name)
+    return temp;
+}
+//截取后两位
+var subStrNext = function (str) {
+    return str.substring(str.length - 2);
+}
+//截取前几位
+var subStrPreve = function (str,len) {
+    return str.substring(0,len);
+}
+/*
+ * 导出
+ */
+module.exports = {
+   infoByIndex: infoByIndex,
+    subNext: subStrNext,
+    subPreve: subStrPreve
+}

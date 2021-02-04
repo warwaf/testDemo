@@ -1,0 +1,1 @@
+.barrage-container{width:100%;height:100%;position:relative}.barrage-container .item{position:absolute;margin:5px;padding:0 10px;border:1px solid #a7abaf;height:25px;line-height:25px;font-size:13px;color:#231815;border-radius:12px;white-space:nowrap;animation-timing-function:linear;animation-fill-mode:none}@keyframes first{from{left:100%}to{left:-100%}}

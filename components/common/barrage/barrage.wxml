@@ -1,0 +1,10 @@
+<view class="barrage-container" id="barrage">
+    <view 
+    wx:for="{{list}}" 
+    wx:key="index" 
+    style="animation: first 5s linear forwards;top:{{item.top}}px;"
+    class="item">
+        {{item.nickName}}
+    </view>
+</view>
+

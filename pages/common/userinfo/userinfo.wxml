@@ -1,0 +1,13 @@
+<!--pages/userinfo/userinfo.wxml-->
+<view class="container">
+  <view class="page-body infobox">
+  <view class="imgbox">
+   <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/logo.jpg" mode="aspectFill"> </image>
+   </view>
+    <view class="text textlarg">檬太奇</view> 
+    <view class="hr"></view>
+    <view class="text textmid">请确认授权以下信息</view>
+    <view class="text textsml">获得你的公开信息（昵称，头像等）</view>  
+  <button class="control_btn hc-button" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> 确认登录</button>
+ </view> 
+</view>

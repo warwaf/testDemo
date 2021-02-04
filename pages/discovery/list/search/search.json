@@ -1,0 +1,12 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "搜索",
+    "backgroundColor":"#efeff4",
+    "onReachBottomDistance": 300,
+    "usingComponents": {
+        "banner": "/pages/album/home/banner/banner",
+        "water": "/components/discovery/waterFall/waterFall",
+        "loading": "/components/common/loading/loading"
+    }
+}

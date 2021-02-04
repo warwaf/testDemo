@@ -1,0 +1,12 @@
+<map 
+    wx:if="{{showMap}}"
+    id="map" 
+    longitude="{{longitude}}" 
+    latitude="{{latitude}}" 
+    scale="14" 
+    markers="{{markers}}" 
+    bindmarkertap="markertap" 
+    bindregionchange="regionchange" 
+    show-location 
+    style="width: 100vw; height: 100vh;">
+</map>

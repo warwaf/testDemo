@@ -1,0 +1,11 @@
+<!-- mine/member/components/tabBar.wxml -->
+<view class="tab-case">
+  <view class="gold" catch:tap="clikTab" data-code="gold">
+    <text class="{{actCode == 'gold' ? 'text-act' : ''}}">金卡会员</text>
+    <text class="underline" wx:if="{{actCode == 'gold'}}"></text>
+  </view>
+  <view class="silver" catch:tap="clikTab" data-code="silver">
+    <text class="{{actCode == 'silver' ? 'text-act' : ''}}">银卡会员</text>
+    <text class="underline" wx:if="{{actCode == 'silver'}}"></text>
+  </view>
+</view>

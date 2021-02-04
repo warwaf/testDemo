@@ -1,0 +1,46 @@
+/* mine/member/components/tabBar.wxss */
+.tab-case {
+  width: 100%;
+  height: 88rpx;
+  background: #FFF;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.tab-case .gold {
+  margin-right: 255rpx;
+}
+
+.tab-case .gold,
+.tab-case .silver {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.tab-case .gold text,
+.tab-case .silver text {
+  color: #666;
+  font-size: 15px;
+}
+
+.tab-case .gold .text-act,
+.tab-case .silver .text-act {
+  color: #333;
+}
+
+.tab-case .gold .underline,
+.tab-case .silver .underline {
+  width: 72rpx;
+  height: 8rpx;
+  margin-top: 12rpx;
+  border-radius: 2px;
+  background: #FFE329;
+}

@@ -1,0 +1,5 @@
+/* components/common/action/index.wxss */
+.v-action> image{
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,75 @@
+<view class="box" wx:if="{{anonymous}}">
+    <userInfo 
+        text1="相册是每个人的隐私哦"
+        text2="为了保护主人的隐私" 
+        text3="敢问大侠是何人"
+        icon="1"
+        bind:confirmEvent="userInfoEvent">
+    </userInfo>
+</view>
+
+<view class="box" wx:if="{{unregistered}}" >
+    <userPhone bind:confirmEvent="userPhoneEvent"></userPhone>
+</view>
+
+<view class="e-commerce"  wx:if="{{isDiff}}">
+    <view class="p2" style="height: 61px;">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/e-commerce-5.png" />
+    </view>
+    <view class="p3">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/e-commerce-3.png" />
+        <view>
+            <view class="title">私人AR视频</view>
+            <text class="content">获取作品图生成专属 \n 定制AR视频送给您！</text>
+        </view>
+    </view>
+    <view class="p3">
+        <view>
+            <view class="title">私人云相册</view>
+            <text class="content">您的作品DIY图片同步到 \n 该云相册，可以互动、\n 并永久保存</text>
+        </view>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/e-commerce-4.png" />
+    </view>
+
+    <view class="protocol">
+        <button class="hc-button" catchtap="modify">修改授权手机号</button>
+    </view>
+</view>
+
+<view class="layout" wx:if="{{phoneStat}}" catchtap='editPhone'>
+    <view class="edit-view" catchtap="stop">
+        <view class="header" wx:if="{{phoneStat === 1}}">手机号</view>
+        <view class="header" wx:if="{{phoneStat === 2}}">验证码</view>
+        <view class="header" wx:if="{{phoneStat === 3}}">绑定手机号</view>
+        <view class="comfirm" catchtap='getVerifyCode' wx:if="{{phoneStat === 1}}">获取验证码</view>
+        <view class="comfirm" catchtap='bindPhone' wx:if="{{phoneStat === 2}}">下一步</view>
+        <view class="comfirm" catchtap='editPhone' wx:if="{{phoneStat === 3}}">完成</view>
+        <view class="text-body" wx:if="{{phoneStat === 1}}">
+            <input type="number" placeholder='请输入手机号' bindinput='bindPhoneInput'></input>
+        </view>
+
+        
+        <view class="digital-body" wx:if="{{phoneStat === 2}}">
+            <view class="tips">已发送验证码到 <text>{{partPhone}}</text></view>
+            <view class='blocks'>
+                <view class="block">
+                    <view wx:if="{{!numList.length}}" class="cursor"></view>
+                    <text wx:if="{{numList.length}}">{{numList[0]}}</text>
+                </view>
+                <view class="block">
+                    <view wx:if="{{numList.length===1}}" class="cursor"></view>
+                    <text wx:if="{{numList.length>=2}}">{{numList[1]}}</text>
+                </view>
+                <view class="block">
+                    <view wx:if="{{numList.length===2}}" class="cursor"></view>
+                    <text wx:if="{{numList.length>=3}}">{{numList[2]}}</text>
+                </view>
+                <view class="block">
+                    <view wx:if="{{numList.length===3}}" class="cursor"></view>
+                    <text wx:if="{{numList.length>=4}}">{{numList[3]}}</text>
+                </view>
+                <input type='number' maxlength='4' focus='true' auto-focus='true' bindinput='bindCodeInput' wx:if="{{!disableInput}}"></input>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,13 @@
+<wxs module="filter" src="../../../../utils/util.wxs"></wxs>
+<view class="tab-header">
+    <view class="info">
+        <view class="name">{{data.name}}</view>
+        <view class="date">{{data.createTime}}</view>
+    </view>
+</view>
+<beauty data="{{data.pics}}" index="{{index}}" bind:clickEvent="toDetail" praiseArr="{{praiseArr}}"></beauty>
+<view class="empty" wx:if="{{data.pics.length == 0}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/album_search_none.png" mode="widthFix"></image>
+    <view>Oops，空空如也......</view>
+    <view>要不换个条件再试一次？</view>
+</view>

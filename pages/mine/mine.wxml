@@ -1,0 +1,203 @@
+<!--pages/mine/mine.wxml-->
+<container selected="2">
+    <view>
+        <view class="bg">
+            <image mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/bg.png"></image>
+        </view>
+        <!-- 个人信息 -->
+        <view class='tab1'>
+            <view class='topBox'>
+                <image catch:tap="toMember" class="icon-vip" src="{{vipIcon}}" wx:if="{{openingStatus != 0}}"/>
+                <view class='mine'>
+                    <button wx:if="{{anonymous && !alreadyTry}}" class="userinfo-btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">
+                        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/default_img.png"></image>
+                    </button>
+                    <button wx:else class="userinfo-btn"  catchtap='toPersonal'>
+                        <image src="{{userInfo.avatarUrl}}" wx:if="{{userInfo.avatarUrl}}"></image>
+                        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/default_img.png" wx:else></image>
+
+                    </button>
+
+                    <view class='name'>
+                        {{ !anonymous ? userInfo.nickName : '头号檬粉' }}
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/male-icon.png" wx:if="{{ !anonymous && userInfo.gender == 1}}"></image>
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/female-icon.png" wx:elif="{{!anonymous}}"></image>
+                    </view>
+                    <view class='detail'>{{ anonymous ? '我是檬粉我快乐' : userInfo.autograph ? userInfo.autograph : '个性签名'}}</view>
+
+                    <button wx:if="{{ anonymous }}" class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">登录</button>
+                </view>
+                <view class='msgBox'>
+                    <view class='msgTab' catchtap='follow' data-id="0">
+                        <!-- <view class='msgTabNum'>{{fans}}</view> -->
+                        <turntable number="{{anonymous? 0 :fans}}" scale="{{0.4}}"></turntable>
+                        <view class='msgTabWord'>粉丝</view>
+                    </view>
+                    <view class='msgTab' catchtap='follow' data-id="1">
+                        <!-- <view class='msgTabNum'>{{follow}}</view> -->
+                        <turntable number="{{anonymous? 0 :follow}}" scale="{{0.4}}"></turntable>
+                        <view class='msgTabWord'>关注</view>
+                    </view>
+                    <view class='msgTab' catchtap='message'>
+                        <!-- <view class='msgTabNum'>{{info}}</view> -->
+                        <view class="v-tip" wx:if="{{ !anonymous && newsAddCount && newsAddCount > 0}}"></view>
+                        <turntable number="{{anonymous? 0 :newsAddCount}}" scale="{{0.4}}"></turntable>
+                        <view class='msgTabWord'>信息</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 第二部分 -->
+        <view class='tab2'>
+            <view class='tab2Box' bindtap='photoUrl'>
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/owner_pic1.png" ></image>
+                <view>照片</view>
+            </view>
+            <view class='tab2Box'bindtap='albumUrl'>
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/owner_pic2.png"></image>
+                <view>相册</view>
+            </view>
+            <view class='tab2Box' bindtap='dynamicUrl'>
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/owner_pic3.png"></image>
+                <view>动态</view>
+            </view>
+        </view>
+
+        <!-- 第三部分 -->
+        <view class='tab3'>
+            <!-- <view class='tab3Box' catchtap='wallet'>
+                <image class="ml3Img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/owner_pic4.png" mode='widthFix'></image>
+                <view class='ml3Word'>钱包</view>
+                <view class='showMoney'>余额： {{ anonymous ? '0.00' :amount}}</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </view> -->
+            <view class='tab3Box' bindtap='toMember'>
+                <image class="ml3Img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/owner_vip.png" mode='widthFix'></image>
+                <view class='ml3Word'>会员权益</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </view>
+            <view class='tab3Box' bindtap='order'>
+                <image class="ml3Img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/owner_pic6.png" mode='widthFix'></image>
+                <view class='ml3Word'>订单</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </view>
+            <view class='tab3Box' bindtap='diy'>
+                <image class="ml3Img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/owner_pic9.png" mode='widthFix'></image>
+                <view class='ml3Word'>DIY作品</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </view>
+            <view class='tab3Box' bind:tap="toCoupon">
+                <image class="ml3Img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/coupon.png" mode='widthFix'></image>
+                <view class='ml3Word'>优惠券</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </view>
+            
+
+            <!-- <view class='tab3Box'>
+                <image class="ml3Img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic7.png" mode='widthFix'></image>
+                <view class='ml3Word'>我的美照</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </view>
+            
+
+            <view class='tab3Box'>
+                <image class="ml3Img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic10.png" mode='widthFix'></image>
+                <view class='ml3Word'>客服</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </view> -->
+
+            <!-- <view class='tab3Box' catchtap="toActivity">
+                <image class="ml3Img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon7.png" mode='widthFix'></image>
+                <view class='ml3Word'>活动历史记录</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </view> -->
+                       
+            <view class='tab3Box' catchtap="toQa">
+                <image class="ml3Img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon2.png" mode='widthFix'></image>
+                <view class='ml3Word'>答疑解惑</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </view>
+
+            <button class='tab3Box contact_btn' open-type="contact" bindcontact="handleContact">
+                <image class="ml3Img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon3.png" mode='widthFix'></image>
+                <view class='ml3Word'>联系客服</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </button>
+
+            <view class='tab3Box' catchtap="showProtocol">
+                <image class="ml3Img" style="width:17px;margin-right:3px;" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/record.png" mode='widthFix'></image>
+                <view class='ml3Word'>用户隐私协议</view>
+                <view class='ml3Icon'>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png" mode='widthFix'></image>
+                </view>
+            </view>
+
+        </view>
+    </view>
+</container>
+
+<view class="v-signin" wx:if="{{isSignIn}}">
+    <view class="v-signin-mask"></view>
+    <view class="v-signin-content" bind:tap="colseRed" data-mask="1">
+        <view class="v-signin-date" wx:if="{{signInState == 0}}">
+            <image class="v-signin-date-top" mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/signin-top.png"></image>
+            <view>颜值抗打的你</view>
+            <view>累计签到 <view class="txt">{{signInInfo.total}}</view> 天啦</view>
+            <view class="v-date" >
+                <view class="v-date-item" wx:for="{{signInInfo.date}}" wx:key="index">
+                    <view class="items {{item == 1 ? 'signin' : ''}}">
+                        <view style="padding: 2px 0;"> {{index+1}}</view>
+                        <image wx:if="{{item == 2}}" style="width:14px;height:15px;" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/signin-red.png"></image>
+                        <image wx:if="{{item == 1}}" style="width:14px;height:11px;" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/signin-right.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="v-signin-date-btn" bind:tap="tapSignIn">{{signInInfo.signInState == 0 ? '马上签到':'已签到'}}</view>
+        </view> 
+        <view class="v-signin-red" wx:elif="{{signInState == 1}}">
+            <image style="height:344px;width:276px;" bind:tap="openRed" mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/signin-ok.png"></image>
+            <view style="text-align:center;" bind:tap="colseRed" data-mask="1">
+                <image style="height:48px;width:48px;" mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/popup_close@2x.png"></image>
+            </view>
+        </view>
+        <view class="v-signin-result" wx:else>
+            <view class="v-signin-result-title">Woo！明天记得再来签到哦</view>
+            <view class="v-signin-result-price">¥{{prize}}</view>
+            <image style="height:308px;width:298px;" bind:tap="colseRed" data-mask="1" mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/signin-show.png"></image>
+        </view>
+    </view>
+</view>
+
+<view class="session-mask" wx:if="{{authorityTips}}" catchtouchmove="stop">
+    <view class="authority-session {{isInit == 1 ? 'is-init' : ''}}">
+        <view>温馨提示</view>
+        <view>亲，授权了用户信息才可以操作哦～</view>
+        <view>快来告诉小檬你是谁吧~</view>
+        <view>
+            <button class="userinfo-btn btn" bindtap="hideAuthority"> 拒绝</button>
+            <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> 确定</button>
+        </view>
+        <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" wx:if="{{isInit == 0}}"/>
+    </view>
+</view>

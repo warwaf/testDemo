@@ -1,0 +1,22 @@
+<!--components/common/dateRange/dateRange.wxml-->
+<view>
+  <pop title="活动时间" bind:comfirm="tapComfirm" visibile="{{visibile}}">
+    <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" bindchange="bindChange">
+      <picker-view-column>
+        <view wx:for="{{years}}" wx:key='index' class="v-range-item" >{{item}}年</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{months}}" wx:key='index' class="v-range-item" >{{item}}月</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{days}}" wx:key='index' class="v-range-item" >{{item}}日</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{startTimes}}" wx:key='index' class="v-range-item" >{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{endTimes}}" wx:key='index' class="v-range-item" >{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </pop>
+</view>

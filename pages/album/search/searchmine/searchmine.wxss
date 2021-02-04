@@ -1,0 +1,220 @@
+/* pages/album/search/searchmine/searchmine.wxss */
+.box{
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    flex-flow: row wrap; 
+    margin: 20rpx 0;
+
+}
+.imgBox{
+    width: 25%;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    margin-bottom:30rpx;
+    overflow: hidden;
+}
+.img{
+    width: 136rpx;
+}
+canvas{
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 10rpx auto;
+    text-align: center
+}
+.dot{
+    position:absolute;
+    top:5px;
+    right:5px;
+    bottom:0;
+    left:0px;
+    text-align:right;
+}
+.titleBox{
+    font-size:30rpx;
+    font-weight:500;
+    text-align: center;
+    height: 50px;
+    color:rgba(34,34,34,1);
+    border-top:1rpx solid rgba(237,237,237,1);
+    border-bottom:1rpx solid rgba(237,237,237,1);
+}
+.btnBox{
+    margin-top: 50px;
+    width: 100%;
+    margin-bottom:60rpx;
+    left: 0;
+    text-align: center;
+    position:fixed;
+    bottom:10px;
+}
+.btn{
+    width: 69.3%;
+    margin-left:15.35%;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    background:#FFF7C0;
+    box-shadow:0px 0px 13px 0px rgba(255,226,39,0.71);
+    border-radius:50rpx;
+    font-size: 34rpx;
+    color: #BEB4B4;
+}
+.selectBtn{
+    background:linear-gradient(104deg,rgba(255,231,79,1) 0%,rgba(255,226,39,1) 100%)!important;
+    color:#fff!important;
+}
+
+.text{
+    font-size: 28rpx;
+    color: #222222;
+    float: left;
+    margin-left:20rpx;
+    height: 50px;
+    line-height: 50px;
+}
+.upImg{
+    float: right;
+    margin-right: 20rpx;
+    font-size:14px;
+    font-weight:400;
+    width: 102px;
+    color:rgba(36,1,1,1);
+    position: relative;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+.upImg image{
+    position: absolute;
+    width: 102px;
+    height: 32px;
+    top:9.5px;
+    right: 0;
+}
+.hc-newImgBox{
+    margin: 0 20rpx;
+    border-bottom: 1px solid #e8e8e8;
+}
+.hc-selectbox{
+    margin: 0 20rpx;
+}
+.hc-change{
+    border-top: 1px solid #e8e8e8;
+    padding: 0 20rpx;
+}
+ canvas{
+    overflow: hidden;
+    border-radius: 50%;
+    text-align: center
+}
+.column_box{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    /* margin:30rpx 0 0 0 ; */
+    font-size:28rpx;
+    font-weight:500;
+    color:rgba(34,34,34,1);
+    flex-flow: row wrap; 
+    position: relative;
+     /* border-bottom: 1rpx solid #e8e8e8; */
+}
+.hc-column_box{
+    margin:0 20rpx;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    font-size:28rpx;
+    font-weight:500;
+    color:rgba(34,34,34,1);
+    flex-flow: row wrap; 
+    position: relative;
+    line-height: 110rpx;
+}
+.color{
+    width: 8rpx;
+    margin: 20px 20rpx 20rpx 0rpx;
+}
+.column_box1 view{
+    height: 50px;
+    line-height: 50px;
+}
+.secondImg{
+    font-size:14px;
+    font-weight:400;
+    width: 102px;
+    color:rgba(36,1,1,1);
+    position: absolute;
+    text-align: center;
+    height: 0px;
+    right: 0rpx;
+    line-height: 50px;
+}
+.secondImg image{
+    position: absolute;
+    width: 102px;
+    height: 30px;
+    top:9px;
+    right: 0;
+}
+.selectBox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.selectBox canvas {
+    width: 25%;
+}
+.searching-box{
+    
+    text-align: center;
+    border-top: 1px solid #e8e8e8;
+}
+.searching-box image{
+    margin-top: 200rpx;
+    width: 33%;
+}
+.intercept{
+    border-radius: 100%;
+    overflow: hidden;
+    max-height:136rpx;
+max-width:136rpx;
+vertical-align:middle;
+
+}
+
+
+.line{
+    /* border-bottom:1px solid #e8e8e8; */
+}
+/*  重写 radio 样式  */
+/* 未选中的 背景样式 */
+radio .wx-radio-input{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx;
+   height: 40rpx;
+   border:1px solid rgba(237,237,237,1);
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked{
+   border: none;
+   background: #fff; 
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 40rpx;
+   text-align: center;
+   font-size:30rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}

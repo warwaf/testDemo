@@ -1,0 +1,1 @@
+.v-scene{position:relative;width:100vw;height:100vh}.v-scene image{width:100vw}.v-scene-btn{position:fixed;bottom:15px;left:15px;right:15px;height:40px;line-height:40px;background:linear-gradient(104deg,#ffe74f 0,#ffe227 100%);border-radius:20px;text-align:center;color:#240101;font-size:15px;font-weight:400}

@@ -1,0 +1,73 @@
+<swiper style="height:{{height}};transition: height .5s;" bindchange="intervalChange" current="{{currentIndex}}">
+    <swiper-item wx:for="{{data}}" wx:key="index">
+        <image 
+            src="{{imgSrc + '?x-oss-process=image/resize,l_1600/watermark,image_' + waterMark + ',t_80,g_se,x_10,y_10' }}" 
+            mode="widthFix"
+            style="height:{{height + 'px'}}; background-color: #F1F3F5; background-image: url('http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;"></image>
+
+        <view class="btns">
+            <!-- <view catchtap='praise'>
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/thumb.png" wx:if="{{!praised}}"></image>
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/thumb_1.png" wx:else></image>
+            </view> -->
+            <!-- <view catchtap='magnify'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-magnify.png"></image></view> -->
+        </view>
+
+        <view class="indicator" wx:if="{{item.type == 2}}">
+            <view class="{{showFine ? 'activity' : ''}}" catchtap="switchType" data-type="1">精修</view>
+            <view class="{{!showFine ? 'activity' : ''}}" catchtap="switchType" data-type="0">简修</view>
+        </view>
+    </swiper-item>
+</swiper>
+<!-- 点赞 -->
+<view class="turntable-box"><turntable number="{{praiseArr.length}}" scale="{{0.4}}" style="margin-right: 10px;margin-top:1px;"></turntable> 点赞</view>
+<view class="avatar">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-detail-1.png" />
+    <view wx:for="{{praiseArr}}" wx:key="index" catchtap='toPersonal' data-id="{{item.unionId}}">{{item.nickName}} ,</view>
+</view>
+<!-- 吐槽 -->
+<view class="turntable-box"><turntable number="{{total}}" scale="{{0.4}}" style="margin-right: 10px;margin-top:1px;"></turntable> 吐槽</view>
+<view class="comment">
+    <view class="comment-item" wx:for="{{comment}}" wx:key="commentText">{{item.commentText}} +{{item.countNum}}</view>
+</view>
+<!-- 底部输入栏 -->
+<view class="bottom-tab">
+    <view catchtap="showSession" catchtap="switchSession">想吐槽照片？来！</view>
+    <view catchtap='praise'>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/thumb_1.png" wx:if="{{!praised}}"/>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/thumb_3.png" wx:else/>
+        <text>点赞</text>
+    </view>
+    <view catchtap='toSelect' class="{{selected ? 'selected' : 'unselect'}}" wx:if="{{showFine}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon24.png" wx:if="{{!selected}}"/>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" wx:else/>
+        <text wx:if="{{!selected}}">马上选片</text>
+        <text wx:else>取消选片</text>
+    </view>
+</view>
+<!-- 会话层 -->
+<view class="mask" wx:if="{{sessionStat}}" catchtap="switchSession" catchtouchmove="nothing">
+    <view class="session" catchtap="nothing">
+        <view>
+            <text>我要吐槽</text>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/xx.png" class="icon" catchtap="switchSession"/>
+        </view>
+        <scroll-view class="tag-container" scroll-x="{{false}}" scroll-y="{{true}}" >
+            <view class="comment-item-default {{item.selected ? 'tag-selected' : ''}}" wx:for="{{tags}}" wx:key="*this" catchtap="selectTag" data-index="{{index}}">{{item.commentText}}</view>
+        </scroll-view>
+        <textarea catchtouchmove="nothing" value="{{content}}" placeholder="嘿，隔屏吐槽一下？" maxlength="15" bindinput="inputEventHandle" show-confirm-bar="{{false}}"></textarea>
+        <view class="btn" catchtap="submitComment">提交</view>
+    </view>
+</view>
+
+<view class='tipBox' wx:if="{{commentError}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>内容包含敏感词汇，请修改后重新提交</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>

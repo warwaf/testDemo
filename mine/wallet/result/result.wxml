@@ -1,0 +1,18 @@
+<view class="body">
+    <view class="top">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/success1.png"></image>
+        <text>提现成功</text>
+    </view>
+    <view class="bottom">
+        <view>
+            <text>收款账号：</text>
+            <text>{{account}}</text>
+        </view>
+        <view>
+            <text>提现金额：</text>
+            <text>￥{{amount}}</text>
+        </view>
+    </view>
+</view>
+
+<view class="btn" bindtap='goBack'>返回</view>

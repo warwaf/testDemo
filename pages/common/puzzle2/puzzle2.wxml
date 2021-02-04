@@ -1,0 +1,67 @@
+<view class="page-bg" style="background: linear-gradient({{bgColor.from}}, {{bgColor.to}});">
+    <view 
+        id="container"
+        style="background-image:url('https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/98261c15dc6f45e0bf1c0132414f364d.png');"
+        class="bg {{sessionStat ? 'pd200' : ''}}" >
+        <view class="title">{{activityInfo.activityName}}</view>
+        <view class="puzzle-container">
+            <view wx:for="{{processedData}}" wx:for-index="idx" wx:key="idx" wx:for-item="row" class="{{row.type ? 'long' : 'short'}} row {{row.right.length == 0 ? 'engross': ''}}">
+                <view class="left {{row.left.length > 1 ? 'combine' : ''}} {{row.right.length == 0 ? 'engross': ''}}">
+                    <image wx:for="{{row.left}}"  wx:key="index" src="{{item.thumbnailUrl}}" mode="aspectFill" />
+                </view>
+                <view class="right {{row.right.length > 1 ? 'combine' : ''}}" wx:if="{{row.right.length > 0}}">
+                    <image wx:for="{{row.right}}"  wx:key="index" src="{{item.thumbnailUrl}}" mode="aspectFill" />
+                </view>
+            </view>
+        </view>
+        <!-- <view class="footer">
+            <image src="{{activityInfo.qrcodeImg}}" />
+            <view>长按识别查看全部{{total}}张照片</view>
+        </view> -->
+    </view>
+</view>
+
+<view class="mask" catchtap="fold">
+    <view class="setting" catchtap="stop">
+        <view class="setting-header">
+            <text catchtap="back">取消</text>
+            <text>{{sessionStat == 1 ? '拼图设置' : '下载/分享'}}</text>
+            <text catchtap="nextStep">{{sessionStat == 1 ? '预览' : ''}}</text>
+            <!-- <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon1.png" mode="widthFix" catchtap="nextStep"/> -->
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon8.png" mode="widthFix" catchtap="fold" wx:if="{{sessionStat}}"/>
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon9.png" mode="widthFix" catchtap="fold" wx:else/>
+        </view>
+
+        <block wx:if="{{sessionStat == 1}}">
+            <view class="setting-body">
+                <block wx:if="{{settingStat}}">
+                    <view catchtap="changeBgColor" data-index="{{index}}" class="color-block {{item.selected ? 'active' : ''}}" wx:for="{{colorArr}}" style="background: linear-gradient({{item.value.from}}, {{item.value.to}});" wx:key="index"></view>
+                </block>
+                <block wx:if="{{!settingStat}}">
+                    <input type="text" bindinput="inputHandker" value="{{activityInfo.activityName}}" maxlength="20"/>
+                </block>
+            </view>
+            <view class="setting-footer">
+                <view class="{{settingStat ? 'active' : ''}}" catchtap="switchTab">背景颜色</view>
+                <view class="{{settingStat ? '' : 'active'}}" catchtap="switchTab">标题设计</view>
+            </view>
+        </block>
+
+        <view wx:if="{{sessionStat == 2}}" class="content">
+            <view catchtap="download">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon2.png" mode="widthFix" />
+                <view>下载</view>
+            </view>
+            <view>
+                <button open-type="share" class="share-btn" plain='true'>
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon3.png" mode="widthFix" />
+                    <view>分享</view>
+                </button>
+            </view>
+        </view>
+
+    </view>
+</view>
+
+
+<canvas canvas-id="puzzle-canvas" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"></canvas>

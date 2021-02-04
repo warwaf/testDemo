@@ -1,0 +1,145 @@
+page{
+    width: 100%;
+    height: 100%;
+}
+.bg{
+    margin: 0 auto 0;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    
+}
+.hc-title{
+    text-align: left;
+    font-size: 15px;
+    line-height: 40px;
+    text-indent: 40px;
+    margin: 20px 0 20px 0px;
+}
+.wrapper{
+  height: calc(100% - 70px);
+  /* height: 100%; */
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column
+}
+.wrapper-canvas{
+    position: absolute;
+    left: -800px;
+}
+.imgwrapp { 
+  margin:15px;
+  position: relative
+    
+}
+.hc-btn{
+    position: relative;
+    width: 56px!important;
+    height: 56px!important;
+    display: inline-block;
+     border:0!important;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: contain;
+
+}
+.hc-img button{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.active{
+    height:calc(100% - 0px)
+}
+.active .imgwrapp{
+    margin: 0px!important;
+}
+.active .hc-ewm{
+    margin:10px auto;
+}
+.imgwrapp{
+    height: 670px;
+}
+.hc-img {
+	width: 85%
+
+}
+.hc-box{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+}
+.hc-ewm{
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+}
+.footer_box{
+  position: fixed;
+  bottom: 0;
+  width: 85%;
+  padding: 0 7.5%;
+  height:64px;
+  line-height: 64px;
+  background:rgba(255,255,255,1);
+ 
+}
+.footer_left{
+  float: left;
+  width:75%;
+  height:40px;
+  
+  /* padding:10px 2%; */
+}
+.footer_left button{
+  background:linear-gradient(104deg,rgba(255,231,79,1) 0%,rgba(255,226,39,1) 100%);
+  box-shadow:0px 0px 9px 0px rgba(255,226,39,0.71);
+  border-radius:20px;
+  font-size:21px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  line-height: 44px;
+  color:rgba(36,1,1,1);
+}
+
+.footer_right{
+  width: 15%;
+  float: right;
+  text-align: center;
+  padding:6px;
+}
+.footer_left{
+    width: 24%;
+    height: 100%;
+    float: left;
+    display: inline-block;
+}
+.footer_left image{
+    width: 62px;
+    height: 62px;
+    /* margin-left: 45px; */
+}
+.footer_right{
+    width: 70%;
+    float: left;
+    display: inline-block;
+    flex-direction: row;
+    justify-content: center;
+    text-align: right
+}
+.footer_right image{
+    width: 56px;
+    height: 56px;
+    display: inline-block;
+    margin-left: 20px;
+}
+ 

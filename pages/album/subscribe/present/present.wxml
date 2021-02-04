@@ -1,0 +1,7 @@
+<!--pages/album/subscribe/present/present.wxml-->
+<view class="v-present">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/subscribe/subscribe-index.png"></image>
+    <view class="btn" bind:tap="jump">
+        立即预约
+    </view>
+</view>

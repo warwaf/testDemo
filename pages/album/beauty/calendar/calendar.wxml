@@ -1,0 +1,15 @@
+<nav title="预约到店时间"></nav>
+<view>
+    <image mode="widthFix" style="width:100vw;" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/banner@2x.png"></image>
+</view>
+<calendar
+    bind:onDayTap="onCalendarDayTap" 
+    dateStatus="{{dateStatus}}"
+    is-show="{{isCalendarShow}}">
+</calendar>
+<view style="height:55px;"></view>
+<view class="v-btn" bind:tap="jump">
+    预约 
+    <view class="v-btn-txt">{{showDate ? showDate: 'xx月xx号'}}</view> 
+     到店
+</view>

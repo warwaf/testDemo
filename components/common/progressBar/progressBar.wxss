@@ -1,0 +1,13 @@
+/* components/common/progressBar/progressBar.wxss */
+.progress-bar-outer{
+    background-color: #EEEEEE;
+    height: 4px;
+    border-radius: 3px;
+    width: 100%;
+}
+.progress-bar-inner{
+    background-color: #0BD47D;
+    height: 4px;
+    border-radius: 3px;
+    transition: width 1s;
+}

@@ -1,0 +1,13 @@
+
+<view class="v-friends">
+    <image class="v-friends-left" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.7/mtq@2x.png" />
+    <image class="v-friends-right" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.7/mtq@2x.png" />
+    <view class="v-friends-body">
+        <image class="v-friends-img" src="{{url}}" mode="widthFix" />
+    </view>
+    <view class="v-friends-txt">图片已为您保存到手机相册</view>
+    <view class="v-friends-sub">快去朋友圈分享吧</view>
+    <view class="v-friends-btn" bind:tap="downImage">
+        好的，收下了
+    </view>
+</view>

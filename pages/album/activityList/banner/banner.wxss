@@ -1,0 +1,32 @@
+/* pages/home/banner/banner.wxss */
+.banner{
+    width: 100vw;
+    height: 200px; 
+}
+.banner image{
+    width: 100%;
+    height: 100%;
+}
+.mask{
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-repeat: no-repeat;
+}
+.btn{
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    width: 120px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 30px;
+    color: #D23793;
+    border: 1px solid #D23793;
+    transform: translateX(-50%);
+    background-color: #fff;
+}

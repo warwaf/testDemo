@@ -1,0 +1,6 @@
+<view class="v-scene">
+    <image wx:for="{{urls}}" wx:key="index" wx:for-item="item" mode="widthFix" src="{{item.url}}"></image>
+    <view class="v-scene-btn" bind:tap="goBack">
+        返回
+    </view>
+</view>

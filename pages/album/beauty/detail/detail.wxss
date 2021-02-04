@@ -1,0 +1,213 @@
+/* pages/album/beauty/detail/detail.wxss */
+swiper-item{
+    position: relative;
+}
+swiper-item image{
+    width: 100%;
+}
+.avatar{
+    display: flex;
+    flex-flow:wrap;
+    padding: 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid  #EDEDED ;
+}
+.avatar image{
+    width:14px;
+    height:14px;
+    margin-top:7px;
+    
+}
+.avatar view{
+    margin: 5px;
+    color: 13px;
+    color: #576B95;
+}
+.turntable-box{
+    display: flex;
+    height: 50px;
+    align-items: center;
+    padding: 0 15px;
+}
+.btns{
+    position: absolute;
+    right: 0;
+    top: 20px;
+    display: flex;
+}
+.btns view{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,.5);
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.btns view:nth-child(1) image{
+    width: 16px;
+    height: 16px;
+}
+.btns view:nth-child(2) image{
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: -2px;
+}
+.indicator{
+    position: absolute;
+    left: calc(50% - 60px);
+    bottom: 20px;
+    display: flex;
+}
+.indicator view{
+    width: 60px;
+    height: 28px;
+    line-height: 29px;
+    text-align: center;
+    margin-right: 5px;
+    color: #240101;
+    font-size: 12px;
+    background-color: #FFF;
+    border-radius: 14px;
+    font-weight: bolder;
+}
+.indicator .activity{
+    background-color: #FFE74F;
+}
+.comment{
+    padding: 0 10px 60px 10px;
+}
+.comment-item{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 25px;
+    background-color: #EFEFEF;
+    border-radius: 15px;
+    display: inline-block;
+    margin: 5px;
+}
+.comment-item-default{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 25px;
+    border: 1px solid #FFDD00;
+    border-radius: 15px;
+    display: inline-block;
+    margin: 5px;
+}
+.bottom-tab{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: calc(100% - 30px);
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 -1px 5px #eee;
+}
+.bottom-tab>view:nth-child(1){
+    width: 175px;
+    height: 34px;
+    line-height: 34px;
+    padding: 0 15px;
+    background-color: #F2F2F2;
+    color:  #999999 ;
+    font-size: 14px;
+    border-radius: 17px;
+}
+.bottom-tab>view:nth-child(2){
+    height: 34px;
+    display: flex;
+    align-items: center; 
+    margin-right: 5px;
+    font-size: 12px;
+    color: #999999;
+}
+.bottom-tab>view:nth-child(2) image{
+    width:25px;
+    height:22px;
+}
+.bottom-tab .unselect, .selected{
+    height: 34px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #999999;
+}
+.unselect image{
+    width:12px;
+    height:9px;
+    padding: 5px 3px;
+    border: 1px solid #ccc;
+    border-radius: 11px;
+    margin-right: 5px;
+}
+.selected image{
+    width:12px;
+    height:9px;
+    padding: 5px 3px;
+    border: none;
+    background-color: #FFE227;
+    border-radius: 11px;
+    margin-right: 5px;
+}
+.mask{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+}
+.session{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 15px;
+    width: calc(100vw - 30px);
+    background-color: #fff;
+}
+.session>view:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    color:  #240101 ;
+    font-weight: 600;
+    padding: 0 5px 10px 5px;
+}
+.session textarea{
+    padding: 15px;
+    height: 90px;
+    margin: 15px 0;
+    width: calc(100vw - 60px);
+    background-color: #F2F2F2;
+    border-radius: 10px;
+}
+.session .btn{
+    width: calc(100vw - 30px);
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #240101;
+    background: linear-gradient( #FFE74F , #FFE227);
+    box-shadow: 0 0 5px #FFE227;
+    border-radius: 20px;
+}
+.session .icon{
+    width: 15px;
+    height: 15px;
+}
+.session .comment-item{
+    margin: 5px 10px 5px 0;
+}
+.session .tag-selected{
+    background: #FFE329;
+}
+.tag-container{
+    width: calc(100vw - 30px);
+    height: 50vh;
+}

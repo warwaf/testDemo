@@ -1,0 +1,7 @@
+<!--components/common/tabbar/tabbar.wxml-->
+<view class='tabbar {{move}}'  style="bottom:{{move == 'down' ? (scrollTop <50? 0 : 0) : (scrollTop <50? -110 : -110)}}rpx" >
+    <view wx:for="{{menu_list}}" wx:key="index" wx-item="item" class='tabbar_item' bindtap='activeTab' data-index="{{index}}" data-item="{{item}}">
+        <view class='tabbar_img'><image src="{{item.menu_img}}" class="img" mode="widthFix"></image></view>
+        <view class='tabbar_name'>{{item.menu_name}}</view>
+    </view>
+</view>

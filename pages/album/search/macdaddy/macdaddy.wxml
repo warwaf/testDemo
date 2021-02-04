@@ -1,0 +1,7 @@
+<!--pages/album/search/macdaddy/macdaddy.wxml-->
+<view class='fixed'>
+    <view class='imgBox'>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/no-macdaddy.png"></image>
+    </view>
+    <view class='word'>不好意思，服务器开小差了</view>
+</view>

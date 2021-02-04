@@ -1,0 +1,18 @@
+<!--pages/activity/scheduling/components/step/step.wxml-->
+<view class="content_bzt">
+      <view>预约</view>
+      <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/schedule/step_bright.png" style="width:120rpx;height:24rpx;"></image>
+      <view>
+        <view>
+            <view>确定</view>
+            <view>排期</view>
+        </view>
+      </view>
+      <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/schedule/step_grey.png" style="width:120rpx;height:24rpx;"></image>
+      <view>
+        <view>
+          <view>到店</view>
+          <view>拍摄</view>
+        </view>
+      </view>
+    </view>

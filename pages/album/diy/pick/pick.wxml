@@ -1,0 +1,145 @@
+<view class="outer" hidden="{{showAll}}">
+
+    <view class="banner" bindtap="findMe" wx:if="{{!isRegister}}">
+        <image class="bg" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/diy-banner.png" />
+        <image class="avatar" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/diy-avatar.png" />
+        <view class="btn">人脸识别查找我的照片</view>   
+    </view>
+
+    <view wx:if="{{isRegister}}">
+        <view wx:if="{{myPhotos.length == 0}}" class="empty">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-empty.png" />
+            <view>抱歉，暂时没有找到您的照片</view>
+            <view class="btn" bindtap="findMe">重新识别</view>
+        </view>
+
+        <view wx:if="{{recognizeData}}">
+            <view class="title" wx:if="{{recognizeData.length > 0}}">
+                <view><text></text> 我挑的 ({{recognizeData.length}})</view>
+                <view></view>
+            </view>
+            <water 
+                data="{{recognizeData}}" 
+                water-class="waterfall" 
+                column="3" 
+                isDiy="{{true}}" 
+                class="waterfall"
+                activited="{{true}}" 
+                remainSelectableNum="{{remainPcs}}"
+                bind:clickEvent="selectImg" >
+            </water>
+        </view>
+
+        <block wx:if="{{myPhotos.length != 0}}">
+            <view class="title">
+                <view><text></text> 关于我 ({{myPhotos.length}})</view>
+                <view  bindtap="findMe"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/refresh.png"/> <text >重新识别</text></view>
+            </view>
+            <water  
+                data="{{myPhotos}}" 
+                water-class="waterfall" 
+                column="3" 
+                isDiy="{{true}}" 
+                class="waterfall"
+                activited="{{true}}" 
+                remainSelectableNum="{{remainPcs}}"
+                bind:clickEvent="selectImg" > 
+            </water>
+        </block>
+    </view>
+
+
+    <view class="{{isRegister ? '' : 'moveTop'}}">
+    
+        <view wx:if="{{recognizeData && !isRegister}}">
+            <view class="title" wx:if="{{recognizeData.length > 0}}">
+                <view><text></text> 我挑的 ({{recognizeData.length}})</view>
+                <view></view>
+            </view>
+            <water 
+                data="{{recognizeData}}" 
+                water-class="waterfall" 
+                column="3" 
+                isDiy="{{true}}" 
+                class="waterfall"
+                activited="{{true}}" 
+                remainSelectableNum="{{remainPcs}}"
+                bind:clickEvent="selectImg" >
+            </water>
+        </view>
+
+        <view wx:if="{{myCollection}}">
+            <view class="title">
+                <view><text></text> 我宣的 ({{myCollection.length}})</view>
+                <view></view>
+            </view>
+            <water 
+                data="{{myCollection}}" 
+                water-class="waterfall" 
+                column="3" 
+                isDiy="{{true}}" 
+                class="waterfall"
+                activited="{{true}}" 
+                remainSelectableNum="{{remainPcs}}"
+                bind:clickEvent="selectImg" >
+            </water>
+        </view>
+
+        <view wx:if="{{myUpload}}">
+            <view class="title" wx:if="{{myUpload.length > 0}}">
+                <view><text></text> 来自我 ({{myUpload.length}})</view>
+                <view></view>
+            </view>
+            <water 
+                data="{{myUpload}}" 
+                water-class="waterfall" 
+                column="3" 
+                isDiy="{{true}}" 
+                class="waterfall"
+                activited="{{true}}" 
+                remainSelectableNum="{{remainPcs}}"
+                bind:clickEvent="selectImg" >
+            </water>
+        </view>
+
+        <view class="more" catchtap="checkAll">查看全部照片</view>
+
+    </view>
+</view>
+
+<view hidden="{{!showAll}}">
+    <view class="more" catchtap="checkAll">查看我的照片</view>
+    <water  
+        data="{{allPhotos}}" 
+        water-class="waterfall" 
+        column="3" 
+        isDiy="{{true}}" 
+        class="waterfall"
+        activited="{{true}}" 
+        remainSelectableNum="{{remainPcs}}"
+        bind:clickEvent="selectImg" >
+    </water>
+</view>
+
+<view class="mask" wx:if="{{cartStat}}" catchtap="showCart">
+    <view class="cart" catchtap="nothing">
+        <view>
+            <text>已选图片</text>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/arrow-down.png" style="width: 15px" mode="widthFix" catchtap="showCart"/>
+        </view>
+        <view class="img-container">
+            <view class="img-item" wx:for="{{selectArr}}" wx:key="picId" catchtap="remove" data-index="{{index}}">
+                <image src="{{item.picUrl}}?x-oss-process=image/resize,w_120" mode="aspectFill" />
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload-delete.png" />
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="bottom-tab">
+    <view class="desc">至少选择 {{minPuzzleNum}} 张照片，最多也只能选择 {{maxPuzzleNum}} 张</view>
+    <view class="btns">
+        <view catchtap="showCart">已选 {{selectArr.length}} 张</view>
+        <view bindtap="next">下一步</view>
+    </view>
+</view>

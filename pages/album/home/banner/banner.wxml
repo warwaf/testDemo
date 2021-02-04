@@ -1,0 +1,7 @@
+<!--pages/home/banner/banner.wxml-->
+<view class="banner">
+    <image src="{{data.bannerImg}}" bindtap='showMask'></image>
+</view>
+<view class="mask" wx:if="{{showMask}}" style="background: url({{bannerUrl}}) rgba(255,255,255,0.5);background-size: 100% 100%;" catchtap='' catchtouchmove='' catchtouchstart=''>
+    <view class="btn" catchtap='backHome'>返回</view>
+</view>

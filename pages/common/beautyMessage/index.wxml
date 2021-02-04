@@ -1,0 +1,111 @@
+<view class="v-content">
+   <view class="v-message" wx:if="{{message.hotel}}">
+        <view class="v-message-date">订单</view>
+        <view class="v-message-body">
+            <view class="v-message-title">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon2.png" class="icon"  mode="widthFix"/> {{message.hotel.orderNo}}
+            </view>
+            <view class="v-message-content">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon1.png" class="icon"  mode="widthFix"/> {{message.hotel.reservationsName}} 
+                <text class="tag" wx:if="{{message.hotel.gender!=0}}">{{message.hotel.gender == 1? '男神': "女神" }}</text>
+            </view>
+            <view class="v-message-content">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon11.png" class="icon"  mode="widthFix"/> {{message.hotel.mobileNo}}
+            </view>
+             <!-- <view class="v-message-detail" bind:tap="updataMessage" data-item="{{item}}">
+                详情
+                <view class="v-message-detail-arrow">
+                    <i class="right-arrow1"></i>
+                    <i class="right-arrow2"></i>
+                </view>
+            </view> -->
+        </view>
+    </view>
+    <view class="v-message" wx:if="{{message.hotel}}">
+            <view class="v-message-date">酒店</view>
+            <view class="v-message-body">
+                <view class="v-message-title">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon10.png" class="icon"  mode="widthFix"/> {{message.hotel.hotelName}}
+                    <text class="tag">{{message.hotel.type == 0 ? '内含':'自费' }}</text>
+                </view>
+                <view class="v-message-content">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon9.png" class="icon"  mode="widthFix"/> 
+                    <view class="v-message-content-date"> {{message.hotel.startDate}} </view>  至 
+                    <view class="v-message-content-date"> {{message.hotel.endDate}} </view>
+                </view>
+                <view class="v-message-content">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon8.png" class="icon"  mode="widthFix"/> {{message.hotel.roomNo}} 房间
+                </view>
+                <view class="v-message-content" wx:if="{{message.hotel.remarks}}">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon3.png" class="icon"  mode="widthFix"/> <text style="font-weight:500;">P.S：</text>  {{message.hotel.remarks}}
+                </view>
+            </view>
+    </view>
+     <view class="v-message" wx:if="{{message.traffic}}">
+            <view class="v-message-date">接驾</view>
+            <view class="v-message-body">
+                <view class="v-message-title">
+                   <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon7.png" class="icon"  mode="widthFix"/> {{message.traffic.address}}
+                </view>
+                <view class="v-message-content">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon9.png" class="icon"  mode="widthFix"/> 
+                    <view class="v-message-content-date"> {{message.traffic.arriveTime}} </view>
+                </view>
+                <view class="v-message-content">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon1.png" class="icon"  mode="widthFix"/> {{message.traffic.message}} 
+                </view>
+                <view class="v-message-content" wx:if="{{message.traffic.remarks}}">
+                    <text style="font-weight:500;">P.S：</text>  {{message.traffic.remarks}}
+                </view>
+            </view>
+    </view>
+   <view wx:if="{{message.tasks.length > 0}}" class="v-message" >
+        <view class="v-message-date">拍摄</view>
+        <view class="v-message-body" wx:for="{{message.tasks}}" wx:for-item="item" wx:key="index">
+            <view class="v-message-title">
+               <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon6.png" class="icon"  mode="widthFix"/> {{item.sceneName}}
+            </view>
+            <view class="divider"></view>
+            <view class="v-message-content">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon5.png" class="icon"  mode="widthFix"/> 化妆  
+            </view>
+            <view class="v-message-content">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon9.png" class="icon"  mode="widthFix"/> 
+                <view class="v-message-content-date"> {{item.dresserStartTime}} </view>
+            </view>
+            <view class="v-message-content">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon1.png" class="icon"  mode="widthFix"/> BY {{item.dresser}}
+            </view>
+             <view class="v-message-content">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon7.png" class="icon"  mode="widthFix"/> 化妆地址：
+                <view class="v-message-address">{{item.cosmeticsAddress}} </view>  
+            </view>
+            <view class="divider"></view>
+            <view class="v-message-content">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon4.png" class="icon"  mode="widthFix"/> 摄影   
+                <!-- <view class="v-message-content-extend">BY {{item.cameraMen}}</view> -->
+            </view>
+            <view class="v-message-content">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon2.png" class="icon"  mode="widthFix"/>
+                <view class="v-message-content-date"> {{item.cameraStartTime}} </view>
+            </view>
+            <view class="v-message-content">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon1.png" class="icon"  mode="widthFix"/> BY {{item.cameraMen}}
+            </view>
+            <view class="v-message-content">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon9.png" class="icon"  mode="widthFix"/> 摄影地址：
+                <view class="v-message-address">{{item.photographAddress}} </view>  
+            </view>
+             <view class="v-message-content" wx:if="{{item.remarks}}">
+                <text style="font-weight:500;">P.S：</text>  {{item.remarks}}
+            </view>
+        </view>
+    </view>
+    <loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+    <view class="btn" catchtap="back" wx:if="{{!isEmpty}}">回到相册</view>
+    <view class="empty" wx:if="{{isEmpty && !isLoading}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-empty.png" />
+        <view>哎，还没有安排耶～</view>
+    </view>
+</view>
+

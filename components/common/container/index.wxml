@@ -1,0 +1,4 @@
+<!--components/common/container/index.wxml-->
+<view class="hc-container">
+  <slot></slot>
+</view>

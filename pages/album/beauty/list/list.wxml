@@ -1,0 +1,17 @@
+<view class="bg">
+    <view class="order-item" wx:for="{{orderList}}" wx:key="index">
+        <image src="{{item.img}}" mode="aspectFill"></image>
+        <view>
+            <view>场景：{{item.scene}}</view>
+            <view>摄影师：{{item.photographer}}</view>
+            <view>化妆师：{{item.maker}}</view>
+            <view class="score" wx:if="{{!item.isscore}}">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/smile.png" wx:for="{{item.isscore}}"></image>
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/sad.png" wx:for="{{5 - item.isscore}}"></image>
+            </view>
+            <view class="score-btn" wx:else catchtap='toEvaluate' data-index="{{index}}">
+                评分
+            </view>
+        </view>
+    </view>
+</view>

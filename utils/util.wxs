@@ -1,0 +1,131 @@
+//公共过滤器
+
+/**
+ * 从 HC-F-房间号 中取得房间号
+ */
+var splitActivityId = function(activityId, separator = '-', where = 2) {
+    return activityId.split(separator)[where]
+}
+
+
+var sliceArr = function(arr, start, end) {
+    if (arr) {
+        console.log(arr.slice(start, end));
+        
+        return arr.slice(start, end)
+    }
+}
+
+var split = function(str, symbol) {
+    return str.split(symbol)
+}
+
+var getRound = function(num) {
+    return Math.round(num)
+}
+
+var getFloor = function(num) {
+    return Math.floor(num)
+}
+
+var getMax = function(arr){
+    var max = 0
+    arr.map(function(item){
+        if(item > max){
+            max = item
+        }
+    })
+    return max
+}
+
+var toLocaleLowerCase = function(str) {
+    return str.toLocaleLowerCase()
+}
+
+var toLocaleUpperCase = function(str) {
+    if (str) {
+        return str.toLocaleUpperCase()
+    }
+}
+
+var replaceHost = function(url) {
+    return url.replace('http://', 'https://')
+}
+var toPercentage = function(n1, n2) {
+    return Math.floor((n1 / n2) * 100)
+}
+var formatDate = function(str) {
+    str = str.toString()
+    return str.slice(0, 4) + '-' + str.slice(4, 6) + '-' + str.slice(6)
+}
+var isPickAll = function(arr) {
+    var res = arr.every(function(item) {
+        return item.picked
+    })
+    return res
+}
+var privacyMobileNumber = function(mobileNo) {
+    if (mobileNo) {
+        return mobileNo.slice(0, 3) + '****' + mobileNo.slice(-4)
+    }
+
+}
+var formatMoney = function(num) {
+    var val = num > 0 ? num * 1 : num + ''
+    if (val) {
+        val = val > 0 ? val.toFixed(2) : val
+        if (val == '0') val = val + ".00"
+        return val.toString().split('.')
+    }
+}
+
+var meterTokilometer = function(val){
+    return Math.floor(val * 100) / 100
+}
+
+var codeToPrizeLevel = function(code){
+    switch (code) {
+        case 1:
+            return '一等奖'
+        case 2:
+            return '二等奖'
+        case 3:
+            return '三等奖'
+        default:
+            return '安慰奖'
+    }
+}
+var formatViews = function(count){
+    if(count < 1000) return count
+    return parseInt(count/1000)*1000 + '+'
+}
+var formatSize = function(value){
+    if(value > 100000){
+        return Number(value / 1000000).toFixed(2) + 'M'
+    }
+    if(value > 100){
+        return Number(value / 1000).toFixed(2) + 'K'
+    }
+    return value
+}
+
+module.exports = {
+    splitActivityId: splitActivityId,
+    sliceArr: sliceArr,
+    getRound: getRound,
+    toLocaleLowerCase: toLocaleLowerCase,
+    replaceHost: replaceHost,
+    getFloor: getFloor,
+    toPercentage: toPercentage,
+    formatDate: formatDate,
+    isPickAll: isPickAll,
+    privacyMobileNumber: privacyMobileNumber,
+    formatMoney: formatMoney,
+    split: split,
+    meterTokilometer: meterTokilometer,
+    codeToPrizeLevel: codeToPrizeLevel,
+    getMax: getMax,
+    formatViews: formatViews,
+    formatSize: formatSize,
+    toLocaleUpperCase: toLocaleUpperCase
+}

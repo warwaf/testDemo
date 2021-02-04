@@ -1,0 +1,107 @@
+<wxs module="util">
+    var  filterToBe = function(str){
+       return str.split(' ')[0];
+    }
+    var filterNum = function(str){
+        return str.indexOf('元') > -1 ? '￥' + Number(str.replace('元','')).toFixed(2) : str
+    }
+    module.exports = {
+        formart: filterToBe,
+        filterNum: filterNum
+    }
+</wxs>
+<view class="v-coupons">
+    <view class="v-tabs">
+        <view class="v-tab {{tabIndex == 0 ? 'active': ''}}" data-index="0" bind:tap="tabChange">
+            <view>未使用</view>
+        </view>
+        <view class="v-tab {{tabIndex == 1 ? 'active': ''}}" data-index="1" bind:tap="tabChange">
+            <view>已使用</view>
+        </view>
+    </view>
+    <view wx:if="{{coupons.length > 0}}">
+        <view wx:for="{{coupons}}" wx:key="index">
+            <view class="v-coupon {{tabIndex == 1 ? 'used' : ''}}">
+                <view class="v-left">
+                    <view class="v-coupon-title">{{item.CouponTitle}}</view>
+                    <view class="v-coupon-date">{{item.UseTime}}</view>
+                    <view class="v-coupon-sub">{{item.Describes}}</view>
+                    <text class="circle t"></text>
+                    <text class="circle b"></text>
+                </view>
+                <view class="v-right">
+                    <view>
+                        <view class="v-coupon-money">{{util.filterNum(item.CouponUnit)}}</view>
+                        <view wx:if="{{ tabIndex == 0}}" data-type="{{item.CouponPartListInfo[0].CatalogType}}" data-val="{{item.CouponUnit}}" data-item="{{item}}" bind:tap="useCoupon" class="v-coupon-btn">立即使用</view>
+                        <image wx:else style="width:68px;" mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/used.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="v-explain">
+                <image style="width:15px;height:15px;" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/explain.png"></image>
+                {{item.Condition}}
+            </view>
+        </view>
+    </view>
+    <view class="empty" wx:if="{{!isLoading && coupons.length <= 0}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-empty.png" mode="widthFix" />
+        <view>空空如也～</view>
+        <view style="color:#999999;font-size:14px;">有没有考虑优惠券的感受</view>
+        <view class="empty-btn" bind:tap="employ">去领取</view>
+    </view>
+</view>
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+<view class="session-mask" wx:if="{{showTips}}">
+    <view class="dialog">
+        <view style="font-size: 18px;">温馨提示</view>
+        <text decode="{{true}}">创建or进入已有相册，点击DIY，\n 选择产品即可使用优惠券</text>
+        <view class="btn" catchtap="toHome">知道了</view>
+    </view>
+</view>
+
+  
+<view class="check-mask" wx:if="{{showTypeDialog}}">
+    <view class='check-inner' wx:if="{{popupProcess}}">
+        <view class='get-order-list'>
+            <image class="prize-img-title" src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/xiutu/getorderliucheng.png" mode="widthFix" lazy-load="false" />
+            <view class='order-swiper-item'>
+                <swiper indicator-dots="{{indicatorDots}}" style='height:100%' bindchange='changeItem'>
+                    <block wx:for="{{stepList}}" wx:key="*this">
+                        <swiper-item style='margin-left: 2rpx; margin-right: 2rpx;'>
+                           <image class="prize-img-title" src="{{item.url}}" mode="widthFix" lazy-load="false" />
+                           <view class='step-user'>
+                               {{item.text}}
+                           </view>
+                           <view class='step-text2'>
+                               {{item.text2}}
+                           </view>
+                        </swiper-item>
+                    </block>
+                </swiper>
+                <view class='step-circle'>
+                    <view wx:for='{{6}}' wx:key='index' class='circle-item {{index+1==currentStep ? "active-item" : ""}}'>
+                        <view wx:if='{{index+1==currentStep}}'>
+                            {{index+1}}
+                        </view>
+                    </view>
+                </view>
+                <view class='to-booking-order' bind:tap="employ" wx:if='{{currentStep == 6}}'>
+                    马上使用
+                </view>
+            </view>
+        </view>
+        <view class='prize-detail-close'>
+            <image class="prize-img-title" catchtap='closePrizeDetail' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/popupclose%403x.png" mode="widthFix" lazy-load="false" />
+        </view>
+    </view>
+    <view class="check-mask-item" wx:if="{{popupStore}}">
+        <view class="item_model" bindtap="closePopup"></view>
+        <view class="item_content">
+            <view class="item_content_title">温馨提示</view>
+            <view class="item_content_text">请到鲜檬摄影线下门店使用，点击查看可使用的门店列表及预约拍摄</view>
+            <view class="item_button">
+                <button class="seeTheStore" bindtap="getStore">查看门店</button>
+            </view>
+        </view>
+    </view>
+</view>

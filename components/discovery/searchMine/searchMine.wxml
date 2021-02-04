@@ -1,0 +1,21 @@
+<!--components/discovery/searchMine/searchMine.wxml-->
+<view>
+    <view class='title'>请确认本人</view>
+    <view >
+        <radio-group   bindchange="radioChange" class='box'>
+            <view wx:for="{{mineImg}}" wx:key="index" class='imgBox'>
+            <view><image class="img" src="{{item}}" mode="widthFix"></image></view>
+            <radio class=" dot" value="{{index}}" color="#FFE22D"></radio>
+            </view>
+        </radio-group> 
+
+        <view class='imgBox'>
+            <view><image class="img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search_add.png" mode="widthFix"></image></view>
+        </view>
+    </view>
+    <!-- 提交按钮 -->
+    <view class='btnBox'>
+        <view class="btn {{selectBtn == true? 'selectBtn':''}}">确认</view>
+    </view>
+
+</view>

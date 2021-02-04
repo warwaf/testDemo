@@ -1,0 +1,86 @@
+<!--pages/discovery/create-dynamics/create-dynamics.wxml-->
+<wxs module="filter" src="../../../utils/util.wxs"></wxs>
+
+<view class='hc-conmentbox'>
+    <view class='hc-textarea'>
+        <textarea class="textarea" bindinput='watchMsg' value='{{message}}' placeholder='{{fromH5 ? "建议作品在A3尺寸或以上的画纸作画，手机拍摄原图上传会更佳哦" : "请填写作品名称，创造背景"}}' placeholder-style='font-size:15px;color:#d9d9d9;' maxlength="-1"  bindconfirm='result' maxlength="300"></textarea>
+        <view class='hc-textarea-word'>{{textareaNum}}/300</view>
+    </view>
+    <view class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></view>
+    <view class='hc-img' >
+        <view class='hc-imglist' wx:for="{{newImg}}" wx:key="index" style="left: {{item.left}}px; top: {{item.top}}px">
+            <view class='hc-imgBox'>
+                <image
+                    mode='aspectFill'
+                    src="{{item.path}}"
+                    class='hc-itemImg'
+                    catchtouchstart='startDrag'
+                    catchtouchmove='draging'
+                    catchtouchend='endDrag'
+                    data-index="{{index}}">
+                </image>
+                <view class="cover" wx:if="{{index == 0}}">
+                    封面
+                </view>
+                <view class="cover-warning" wx:if="{{item.isIllegal}}">
+                    内容不符合
+                </view>
+                <view class="progress" wx:if="{{(!item.OssPath || item.isSize) && !item.isIllegal}}">
+                    <image wx:if="{{!item.OssPath && !item.isSize }}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/jiazai.gif"></image>
+                    <span wx:if="{{item.isSize}}" class="progress-txt">尺寸不符</span>
+                </view>
+                <view class='hc-close' wx:if="{{item.OssPath || item.isSize || item.isIllegal}}" catchtap='deleteImg' data-img="{{item}}" data-index="{{index}}">
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_close.png"></image>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{newImg.length<9}}" class="hc-imglist" bindtap='chooseImg'
+            style="left: {{(newImg.length % 5) * 70}}px; top: {{filter.getFloor(newImg.length / 5) * 70}}px">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_add.png"></image>
+        </view>
+    </view>
+    <!-- <view class='hc-title'>
+        <view class='title-word'># 添加话题 </view>
+        <view  class='hc-selectBox'>
+            <view wx:for="{{items}}" wx:key="index" class='hc-selectlist  ' bindtap='selectTitle' data-index="{{item.id}}">
+                <view class='single-title {{ items.selected ? "selectTitle": "noSelect"}}'># {{item.theValue}}</view>
+                <view class='hc-closeImg {{ items.selected  == "true"? "selectClose": "noClose"}}' catchtap='delete'  data-index="{{item.id}}">x</view>
+            </view>
+        </view>
+    </view> -->
+    <view class='hc-contact'>
+        <view class='hc-dot' bindtap='agree'>
+            <view class="dotBox">
+                <view class='{{ agree == true ? "hc-agree" : "hc-noagree"}}'></view>
+            </view>
+        </view>本人已阅读并同意<text catchtap='onShowProtocol'>《用户隐私协议》</text>
+    </view>
+    <view class='hc-btnBox'>
+        <view class='hc-btn {{ !isIllegal && isUploaded && agree && !isIssue ? "hc-noactive" : "hc-active"}}' data-index="{{index}}" bindtap='hcBtn'>发布</view>
+    </view>
+</view>
+<view class='tipBox' wx:if="{{error}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>{{msgText}}</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>
+<view class='tipBox' wx:if="{{success}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-top-dot'>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/dynamics-success.png"></image>
+        </view>
+        <view class='hc-word-success'>发布成功</view>
+        <view class='hc-tipBtn' bindtap='successBtn' >确定</view>
+   </view>
+</view>
+<protocol bind:clickEvent="signProtocol" wx:if="{{showProtocol}}"></protocol>
+
+<canvas class="v-compress"  canvas-id="compress"></canvas>
+

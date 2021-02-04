@@ -1,0 +1,35 @@
+<view class="title">
+    <view>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png" />
+        <text>海报</text>
+    </view>
+    <view>*必填</view>
+</view>
+<view class="content">
+    <image src="{{url ? url : 'http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/plus.png'}}" catchtap="chooseImage" mode="widthFix"/>
+    <view>建议分辨率：480*680</view>
+</view>
+<view class="title">
+    <view>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png" />
+        <text>活动信息</text>
+    </view>
+</view>
+<view class="form">
+    <view class="row">
+        <text decode="{{true}}">时&ensp;&ensp;间 :</text>
+        <picker mode="date" bindchange="bindDateChange">
+            <view class="input-style">{{startTime ? startTime : '请选择时间'}}</view>
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/calendar.png" class="icon" />
+        </picker>
+    </view>
+    <view class="row">
+        <text decode="{{true}}">地&ensp;&ensp;址 :</text>
+        <input placeholder="请输入地址" placeholder-class="input-style" bindinput="addressInputHandler"/>
+    </view>
+    <view class="row">
+        <text>主办方 :</text>
+        <input placeholder="请填写主办方" placeholder-class="input-style" bindinput="organizeInputHandler"/>
+    </view>
+</view>
+<view class="btn" catchtap="savePoster">完成</view>

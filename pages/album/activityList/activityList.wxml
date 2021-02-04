@@ -1,0 +1,334 @@
+<wxs module="filter" src="../../../utils/util.wxs"></wxs>
+
+<view catchtap="goback" class="home" wx:if="{{fromShare}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/home@2x.png"/>
+</view>
+
+<!-- 分组菜单栏 -->
+<view class="group-container" wx:if="{{groupArr.length > 1}}">
+    <scroll-view scroll-x="true" class="scroll-container">
+        <view style="width: {{groupArr.length * 76}}px;">
+            <view class="group-item {{item.classification == curGroupName ? ('active-' + index % 4) : ''}}"  wx:for="{{groupArr}}" wx:key="classification" bindtap="groupItemClickHandler" data-index="{{index}}">{{item.classification}}</view>
+        </view>
+    </scroll-view>
+    <view class="icon" bindtap="showGroupListHandler">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/v2.0/icon6.png" />
+    </view>
+</view>
+<!-- 分组查看 -->
+<view class="group-layout" wx:if="{{showGroupList}}">
+    <view class="group-item {{'active-' + index % 4}}" wx:for="{{groupArr}}" wx:key="*this" bindtap="groupItemClickHandler" data-index="{{index}}">
+        <view class="p1">{{item.classification}}</view><view class="p2">( {{item.classificationCount}} 张 )</view>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/v2.0/group-bg.png" class="img"/>
+    </view>
+</view>
+
+<!-- 菜单栏 -->
+<view class="menu-container" wx:if="{{!isEmpty}}" style="top: {{groupArr.length > 1 ? '32px' : 0}}">
+    <!-- <view>
+        <view class="activited" bindtap='reflesh' >
+            最新 
+            <view wx:if="{{ photoTotal !== 0 }}" class="view" style="font-weight:500;font-size:14px;color:#999;letter-spacing: 1px;"> <turntable number="{{currentTotal}}" scale="{{0.3}}" style="margin-left:5px;position: relative;top: -3px;"></turntable> /{{photoTotal}}</view>
+        </view>
+        <view bindtap='toPriseRank'>最热</view>
+    </view> -->
+    <view class="tab-btn">
+       <view class="box" style="width: {{secnsList.length*120}}px">
+        <view  wx:for="{{secnsList}}" wx:key="index" class="item {{scenes == item.scenes ? 'active' : ''}}" bindtap="changeScenes" data-scenes="{{item.scenes}}">{{item.scenes}}</view>
+       </view>
+    </view>
+    <view class="icons">
+        <!-- <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/refresh@2x.png" bindtap='reflesh'></image> -->
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-menu-1.png" wx:if="{{calendar}}" bindtap="switchStat" />
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-menu-3.png" wx:if="{{!calendar}}" bindtap="switchStat"/>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-menu-2.png" bindtap='toSetting'/>
+    </view>
+</view>
+
+<image class="menu-setting-btn" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-menu-2.png" wx:if="{{isEmpty}}" bindtap='toSetting'/>
+
+<!-- 普通展示 -->   
+<view hidden="{{calendar}}">
+    <water wx:if="{{!isEmpty && showWaterFall}}" 
+        data="{{photo}}" 
+        column="2" 
+        activited="{{puzzling}}"  
+        maxSelectableNum="{{maxPuzzleNum}}" 
+        bind:clickEvent="showDetail" 
+        bind:cancleEvent="showTool" >
+        <loading wx:if="{{isLoading}}" type="1"></loading>
+    </water>
+</view>
+
+<!-- class="tool-class {{!calendar && showTools ? 'tool-class-visiable' : 'tool-class-hidden'}}" -->
+<tool 
+    wx:if="{{toolStatus && !isEmpty}}" 
+    bind:backTop="backTop" 
+    bind:puzzle="startPuzzle" 
+    bind:delete="startDelete" 
+    bind:share="showShare" 
+    bind:diy="showDiy"
+    bind:subscribe="subscribe" 
+    guidance="{{guidance}}" 
+    isAuthor="{{isAuthor}}" 
+    special="{{activityInfo.type == 2}}" 
+    topIcon="{{!menuStat}}"
+    btnStatus="{{btnStatus}}"
+    type="{{activityInfo.type}}"
+    activityInfo = "{{activityInfo}}"
+    toolsConfig="{{toolsConfig}}"
+    visiable="{{!calendar && showTools}}"
+>
+</tool>
+
+
+<!-- 时间轴展示 -->
+<view hidden="{{!calendar}}">
+    <view wx:for="{{datePhotoArr}}" class="calendar-item" wx:key="date">
+        <view class="date">
+            <view class="t" wx:if="{{filter.split(filter.split(item.date, '-')[2], ' ')[1]}}">{{filter.split(filter.split(item.date, '-')[2], ' ')[1]}} : 00</view>
+            <view class="d" style="color:{{filter.split(filter.split(item.date, '-')[2], ' ')[1] ? '' : '#231815'}}">{{filter.split(item.date, '-')[0]}}-{{filter.split(item.date, '-')[1]}}-{{filter.split(filter.split(item.date, '-')[2], ' ')[0]}}</view>
+        </view>
+        <view class="photos">
+                <!-- bindtap="showDetail"   
+                data-index="{{photo.index}}"  -->
+            <image 
+                bindtap="toCalendar" 
+                data-index="{{index}}" 
+                wx:for="{{item.data}}" 
+                mode="aspectFill" 
+                wx:for-index="idx" 
+                wx:for-item="photo" 
+                wx:key="jobId" 
+                src="{{photo.thumbnailUrl}}?x-oss-process=image/resize,w_400" />
+        </view>
+        <view>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/arrow-right-1.png" bindtap="toCalendar" data-index="{{index}}" wx:if="{{item.data.length == 3}}"/>
+        </view>
+    </view>
+</view>
+
+<!-- 新活动 空状态 -->
+<view class="new-activity-null" wx:if="{{!imgListLeng}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-empty.png" mode="widthFix"></image>
+    <view class="new-activity-title">相册饿扁了</view>
+    <text style="padding-top: 10px;">年会、活动、团建、聚会、发布会......</text>
+    <text>云端存储，空间不限，永不过期</text>
+</view>
+
+
+<!-- 空状态 -->
+<!--
+<view class="empty-container" wx:if="{{isEmpty}}" style='margin-top:{{navigationHeight}}px'>
+    <view wx:if="{{!(uploadTotal > 0 && uploadSelectGroupName == curGroupName) || uploadBtn == 4}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-empty.png" mode="widthFix"></image>
+        <view>相册饿扁了</view>
+        <text wx:if="{{activityInfo.activityStyle == 10}}">年会、活动、团建、聚会、发布会......</text>
+        <text wx:else>宝宝、家人、情侣、同学….. </text>
+        <text>云端存储，空间不限，永不过期</text>
+    </view>
+  
+    <view class="progress" wx:else>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/uploading.png"></image>
+        <view class="progress-text">图片上传中请勿退出（{{filter.toPercentage(uploadAlready, uploadTotal)}}%）</view>
+        <progress class="progress-bar" value="{{filter.toPercentage(uploadAlready, uploadTotal)}}"></progress>
+    </view>
+
+    <view class="btn-group">
+        <view class="row"  wx:if="{{activityInfo.activityStyle == 10}}">
+            <view>摄影师上门，专业拍摄</view>
+            <view class="btn-item" catchtap='arrange'>预约</view>
+        </view>
+        <view class="row" wx:if="{{activityInfo.activityStyle == 10}}">
+            <view>相册弹窗，风采展示</view>
+            <view class="btn-item" catchtap='setPoster'>设置</view>
+        </view>
+        <view class="row" wx:if="{{activityInfo.activityStyle == 0}}">
+            <view>隐私保护，设置密码</view>
+            <view class="btn-item" catchtap='setPassword'>设置</view>
+        </view>
+        <view class="row">
+            <view>一键分享，轻松共享</view>
+            <view class="btn-item" catchtap='showShare'>分享</view>
+        </view>
+        <view class="btn-upload" catchtap='uploadButtonClick' wx:if="{{allowUpload &&  !uploadBtn}}">上传图片</view>
+        <view class="btn-upload" catchtap='uploadButtonClick' wx:if="{{uploadBtn == 4}}">图片内容不符合，点击查看</view>
+    </view>
+</view>
+-->
+
+<!-- 订阅通知 -->
+<view class="subscribe" wx:if="{{showSubscribe}}">
+    <view><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/v2.0/icon5.png" /> 新增照片、新朋友进入，相册动态第一时间知晓</view>
+    <view>
+        <button catchtap="hideSubscribe">下次吧</button>
+        <button catchtap="subscribe">订阅</button>
+    </view>
+</view>
+
+<!-- 上传按钮进度显示 -->
+<view wx:if="{{uploadBtn === 1 && !isEmpty}}">
+    <view class="dial" >
+        <wave value="{{uploadAlready / uploadTotal}}"></wave>
+    </view>
+</view>
+
+<!--
+<view class="upload {{guidance == 2 ? 'upload-guidance' : ''}}" catchtap='uploadButtonClick' wx:if="{{allowUpload && uploadBtn != 1 && toolStatus && !isEmpty}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/upload.png"></image>
+    <view class="upload-btn-animation" wx:if="{{uploadBtn === 1}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/v1.9/icon14.png" class="icon-1" />
+        <view class="coin-box"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/v1.9/icon15.png" class="icon" /></view>
+        <view class="coin-box-1"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/v1.9/icon15.png" class="icon" /></view>
+    </view>
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/v1.9/icon1.png" class="result-icon" wx:if="{{uploadBtn == 2}}"></image>
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/v1.9/icon2.png" class="result-icon" wx:if="{{uploadBtn == 4}}"></image>
+</view>
+-->
+ 
+<view class="upload-group-mask" catchtouchmove="nothing" catchtap="cancleUpload" wx:if="{{groupSelector}}">
+    <view class="inner">
+        <view class="header">
+            <text catchtap="cancleUpload">取消</text>
+            <text>请选择照片分组</text>
+            <text catchtap="toUpload">确定</text>
+        </view>
+        <scroll-view class="body" scroll-y="true" >
+            <view wx:for="{{groupArr}}" wx:key="classification" class="{{uploadSelectGroupName == item.classification ? 'active' : ''}}" catchtap="selectGroupForUpload" data-name="{{item.classification}}">{{item.classification}}</view>
+        </scroll-view>
+    </view>
+</view>
+
+<!-- 冲印券 -->
+<!-- <view class="share-mask" wx:if="{{showCyCoupon}}" catchtap='hideCyCoupon'>
+    <view class="share-inner cy" catchtap="toCyCoupon">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/cy.png" mode="widthFix"/>
+        <view class="header">已瓜分 <text>9000</text> 张优惠券 </view>
+        <view class="barrage">
+            <view>
+                <view wx:for="{{cyCoupon}}" wx:key="index">
+                    <text style="color:#999">{{item.name}}</text>
+                    <view>已领取 <text style="color:#FF2050">{{item.value}}</text> 冲印券</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <image class="close-btn" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png"></image>
+</view> -->
+
+<!-- 合成二维码图 -->
+<canvas canvas-id="qrcode" class="canvas" style="width: 750px; height: 750px;"></canvas>
+
+<canvas canvas-id="banner" class="canvas" style="width: 336px; height: 168px;"></canvas>
+
+<!-- 密钥输入弹层 -->
+<view class="password-mask" wx:if="{{passwordSession}}">
+    <view>
+        <view class="session-header">
+            <text catchtap='setPassword'>取消</text>
+            <text wx:if="{{isEdit}}">设置相册密钥</text>
+            <text wx:if="{{!isEdit}}">请输入密钥</text>
+            <text catchtap='completeChange'>完成</text>
+        </view>
+        <view class="session-body">
+            <input focus="{{false}}" maxlength="6" type="text" placeholder="请输入6位（数字或字母）" bindinput="bindKeyInput"/>
+        </view>
+    </view>
+</view>
+
+<!-- 分享弹层 -->
+<view class="share-mask" catchtap='hideMask' wx:if="{{shareStat}}">
+    <view class="share-inner">
+        <view class="activityinfo">
+            <view>{{activityInfo.activityName}}</view>
+            <view style="font-size: 18px">{{filter.sliceArr(activityInfo.activityId,5)}}</view>
+            <view style="font-size: 18px">({{activityInfo.roomBrowseCount}}人)</view>
+        </view>
+
+        <view class="content">
+            <image src="{{filter.replaceHost(activityInfo.publicityImg ? activityInfo.publicityImg : activityInfo.bannerImg)}}" class="qrcode" mode="aspectFill"></image>
+            <view class="btns">
+                <button open-type="share" class="btn" plain='true'>分享好友</button>
+                <view class="circle-btn" catchtap='downloadQrcode'>海报下载</view>
+            </view>
+        </view>
+    </view>
+    <image class="close-btn" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png" catchtap='hideMask'></image>
+</view>
+
+<!-- 优惠券弹层 -->
+<view class="share-mask coupon" wx:if="{{showCoupon === 1}}" catchtap="reciveCoupon" style="z-index:6;">
+    <!-- <image src="https://hcmtq.oss-accelerate.aliyuncs.com/DIY/daijj.png" mode="widthFix"/> -->
+    <image mode="widthFix" src="{{couponInfo.picUrl}}" />
+    <image class="close-btn" style="width:48px; height: 48px;" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png"></image>
+</view>
+<view class="share-mask coupon" wx:if="{{showCoupon === 2}}" catchtap="reciveCoupon">
+    <view>
+        <image src="{{couponInfo.redirectUrl}}" mode="widthFix"/>
+        <text>￥{{couponVal}}</text>
+    </view>
+</view>
+
+<!-- 新手指引 -->
+<view class="share-mask" wx:if="{{guidance}}" catchtap="nextStep" style="z-index:5;"></view>
+<view wx:if="{{guidance}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/guidance-home-1.png" class="guidance-icon-1" mode="widthFix" wx:if="{{guidance == 1}}"/>
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/guidance-home-2.png" class="guidance-icon-2" mode="widthFix" wx:if="{{guidance == 1}}"/>
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/guidance-home-3.png" class="guidance-icon-3" mode="widthFix" wx:if="{{guidance == 2}}"/>
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/guidance-home-4.png" class="guidance-icon-4" mode="widthFix" wx:if="{{guidance == 2}}"/>
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-menu-2.png" class="guidance-icon-5"  wx:if="{{guidance == 2}}"/>
+    <image src="https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/1014fd3e56a248a8b976eb20b85e555f.png" class="guidance-icon-6" mode="widthFix" wx:if="{{guidance == 3}}" catchtap="nextStep"/>
+</view>
+
+<!-- 抽奖弹层 -->
+<view class="share-mask" wx:if="{{lotteryStat}}" catchtap="hideLottery" style="z-index:4;">
+    <view class="lottery">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/v1.5/icon20.png" class="icon"/>
+        <view class="h1">小檬发现有大奖在派送！</view>
+        <view class="h2">只要在照片下评价本次活动就OK啦</view>
+        <!-- <view>新郎帅新娘美ヾ(◍°∇°◍)ﾉﾞ</view>
+        <view>你忍心不送祝福吗？</view> -->
+        <view class="btn" catchtap="toLottery">马上去评论</view>
+        <image class="close-btn" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png" catchtap="hideLottery"></image>
+    </view>
+</view>
+
+<!-- 海报弹层 -->
+<view class="share-mask" wx:if="{{posterStat}}" catchtap="hidePoster" style="z-index: 6;display: flex;align-items: center;">
+    <view class="poster">
+        <image src="{{activityInfo.activityPosterDetail.posterUrl}}" mode="widthFix" />
+        <view class="row"><text decode="{{true}}">时&ensp;&ensp;间 : &ensp;{{activityInfo.activityPosterDetail.startTime}}</text></view>
+        <view class="row"><text decode="{{true}}">地&ensp;&ensp;址 : &ensp;{{activityInfo.activityPosterDetail.activityAddress}}</text></view>
+        <view class="row"><text decode="{{true}}">主办方 : &ensp;{{activityInfo.activityPosterDetail.activitySponsor}}</text></view>
+        <image class="close-btn" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png" catchtap="hidePoster"></image>
+    </view>
+</view>
+
+<!-- 密码输入弹层 -->
+<view class="new" wx:if="{{anonymous}}" catchtouchmove="stop" style="z-index: 10;">
+    <userInfo 
+        text1="相册是每个人的隐私哦"
+        text2="为了保护主人的隐私"
+        text3="敢问大侠是何人"
+        icon="1"
+        bind:confirmEvent="userInfoEvent">
+    </userInfo>
+    <view catchtap="goback" class="home" wx:if="{{fromShare}}"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/home@2x.png"/></view>
+</view>
+
+<!-- 上传完成后领取红包 -->
+<view class="vouchers" wx:if="{{showVouchers}}">
+    <image catchtap="openPackage" wx:if="{{showVouchers === 1}}" src="https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/5564185f13f642afb1948174ae9ef4d5.png" style="width: 276px;height: 353px;" />
+    <image catchtap="openPackage" wx:if="{{showVouchers === 2 && voucherValue > 0}}" src="https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/7edb823123bc41e09ac54fc114687e3f.png" style="width: 276px;height: 308px;" />
+    <image catchtap="openPackage" wx:if="{{showVouchers === 2 && voucherValue == 0}}" src="http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20191018/C0350010420191018/origin/09da98f6838243b3ac267e3d653491a1.png" style="width: 276px;height: 353px;" />
+    <text wx:if="{{showVouchers === 2 && voucherValue > 0}}">￥{{voucherValue}}</text>
+    <image catchtap="openPackage" class="close-btn" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png"></image>
+</view>
+
+
+<view class="share-mask" wx:if="" style="z-index: 6;display: flex;align-items: center;justify-content: center;" wx:if="{{showVoucher1}}" catchtap="hideVoucher1">
+    <image catchtap="showDiy" src="https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/5564185f13f642afb1948174ae9ef4d5.png" style="width: 276px;height: 353px;" />
+</view>
+
+
+

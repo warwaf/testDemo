@@ -1,0 +1,39 @@
+<view class="header">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/bg-1.png" mode="aspectFit" />
+    <view class="top">
+        <view> <text class="icon"></text>  活动基本信息</view>
+        <view><text class="gray">活动地址：</text> {{activityInfo.address}}</view>
+        <view><text class="gray">活动时间：</text> {{activityInfo.createDate}}</view>
+        <view><text class="gray">联系人：</text> {{activityInfo.userName}}</view>
+        <view><text class="gray">联系电话：</text> {{activityInfo.mobileNo}}</view>
+        <view><text class="gray">活动人数：</text> {{activityInfo.number}}</view>
+    </view>
+    <view class="bottom">
+        <view>摄影师服务价格</view>
+        <view>￥<text>500</text> <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/discount.png" mode="widthFix" /></view>
+    </view>
+</view>
+
+<view class="list">
+    <view>
+        <text>摄影师选择</text>
+        <text class="gray">换一换</text>
+    </view>
+    <view class="item" wx:for="{{photographers}}" wx:key="UserCode">
+        <view>
+            <image class="avatar" src="{{item.HeadImgUrl}}" mode="aspectFit" />
+            <view>
+                <view class="name">
+                    {{item.UserName}}                            
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/male-icon.png" wx:if="{{item.Sex == '男'}}"></image>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/female-icon.png" wx:else></image> 
+                </view>
+                <view class="stars">
+                    <image wx:for="{{item.Score}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/smile.png" wx:key="index"></image>
+                    <image wx:for="{{5 - item.Score}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/sad.png" wx:key="index"></image>
+                </view>
+            </view>
+        </view>
+        <view class="btn">预约</view>
+    </view>
+</view>

@@ -1,0 +1,29 @@
+<view class="container pd200">
+    <image src="{{src}}" mode="widthFix" />
+</view>
+
+<view catchtap="goback" class="home"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/home@2x.png"/></view>
+
+<view class="mask" catchtap="fold">
+    <view class="setting" catchtap="stop">
+        <view class="setting-header">
+            下载/分享
+            <!-- <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon1.png" mode="widthFix" catchtap="nextStep"/> -->
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon8.png" mode="widthFix" catchtap="fold" wx:if="{{sessionStat}}"/>
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon9.png" mode="widthFix" catchtap="fold" wx:else/>
+        </view>
+
+        <view class="content" wx:if="{{sessionStat}}">
+            <view catchtap="download">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon2.png" mode="widthFix" />
+                <view>下载</view>
+            </view>
+            <view>
+                <button open-type="share" class="share-btn" plain='true'>
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon3.png" mode="widthFix" />
+                    <view>分享</view>
+                </button>
+            </view>
+        </view>
+    </view>
+</view>

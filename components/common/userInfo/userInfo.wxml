@@ -1,0 +1,8 @@
+<view class="container">
+    <image class="img" wx:if="{{icon == 1}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon4.png" mode="widthFix"></image>
+    <image class="img" wx:if="{{icon == 2}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon1.png" mode="widthFix"></image>
+    <view class="box">{{text1}}</view>
+    <view class="box">{{text2}}</view>
+    <view class="box" wx:if="{{text3}}">{{text3}}</view>
+    <button class="btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">告诉小檬</button>
+</view>

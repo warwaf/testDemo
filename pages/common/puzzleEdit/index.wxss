@@ -1,0 +1,341 @@
+/* pages/common/puzzleEdit/index.wxss */
+page{
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+}
+.hc-box{
+    width: 100%;
+    height: calc(100% - 186px);
+    border-top:1px solid rgba(237,237,237,1);
+}
+
+.hc-puzzleEdit {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center
+}
+.hc-puzzleEdit .wrapper-canvas{
+    position: absolute;
+    left: -800px;
+}
+.hc-puzzleEdit.hc-style {
+   flex-direction:inherit;
+}
+.hc-puzzleEdit.hc-style canvas{
+  left: -800px !important;
+}
+.hc-puzzleEdit.hc-style .hc-compound {
+  width: 375px;
+  height: 100%;
+  display: inline-block;
+}
+.hc-puzzleEdit.hc-style .hc-compound image{
+  height: 100%;
+}
+.hc-puzzleEdit.hc-style .hc-compound canvas{
+  /* left: 0px !important; */
+  width: 375px;
+  height: 498px;
+}
+.hc-puzzleEdit .hc-compound{
+  display: none;
+}
+/* .hc-puzzleEdit.hc-style .hc-compound image{
+  display: block;
+} */
+.hc-puzzleEdit .canvas-compound{
+  left: -800px !important;
+  width: 375px;
+  height: 498px;
+  position: absolute;
+}
+
+.hc-puzzleEdit.hc-style .puzzle-edit view{
+   display: none !important;
+}
+.hc-puzzle {
+  height: 184px;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 0px 7px 0px rgba(126,151,168,0.24);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.hc-puzzle-tools{
+  height: 50px;
+  line-height: 40px;
+  display: flex;
+}
+.hc-puzzle-tools .tools-item{
+  flex: 1;
+  padding: 0 15px;
+  font-size:15px;
+  font-family:PingFang-SC-Medium;
+}
+.hc-puzzle-tools .tools-item.item-right{
+  text-align: right;
+  color:rgba(255,184,0,1);
+} 
+.hc-puzzle-tab{
+  display: flex;
+}
+.hc-puzzle-tab .tab-item{
+  flex: 1;
+  height: 50px;
+  line-height: 50px;
+  font-size:16px;
+  padding: 0 15px;
+  font-family:PingFang-SC-Medium;
+}
+.hc-puzzle-tab .tab-item.item-left{
+  text-align: right;
+}
+.tab-item>view{
+  display: inline-block;
+}
+.tab-item>view.active{
+  border-bottom: 2px solid rgba(255,231,79,1);
+}
+.hc-puzzle-content{
+  height: 81px;
+  white-space:nowrap;
+  overflow-x:scroll;
+}
+.hc-puzzle-content .hc-puzzle-image{
+  width: 60px;
+  height: 80px;
+  margin: 0 10px;
+  display:inline-block;
+  background-repeat: no-repeat;
+  background-size: 484px 1998px;
+}
+.one_1_0{
+  background-position: 87.264% 91.032%;
+}
+.one_1_1{
+  background-position: 87.264% 97.132%;
+}
+.two_1_0{
+  background-position: 8.962% 1.721%;
+}
+.two_2_0{
+  background-position: 31.368% 1.721%;
+}
+.two_3_0{
+  background-position: 51.887% 1.825%;
+}
+.two_4_0{
+  background-position: 71.698% 1.825%;
+}
+.two_5_0{
+  background-position: 92.217% 1.825%;
+}
+.two_1_1{
+  background-position: 8.962% 7.925%;
+}
+.two_2_1{
+  background-position: 31.368% 7.925%;
+}
+.two_3_1{
+  background-position: 51.887% 7.925%;
+}
+.two_4_1{
+  background-position: 71.698% 7.925%;
+}
+.two_5_1{
+  background-position: 92.217% 7.925%;
+}
+
+.three_1_0{
+  background-position: 8.962% 14.599%;
+}
+.three_2_0{
+  background-position: 31.368% 14.651%;
+}
+.three_3_0{
+  background-position: 51.887% 14.651%;
+}
+.three_4_0{
+  background-position: 71.698% 14.651%;
+}
+
+.three_1_1{
+  background-position: 8.962% 20.594%;
+}
+.three_2_1{
+  background-position: 31.368% 20.647%;
+}
+.three_3_1{
+  background-position: 51.887% 20.647%;
+}
+.three_4_1{
+  background-position: 71.698% 20.647%;
+}
+
+.four_1_0{
+  background-position: 8.962% 27.894%;
+}
+.four_2_0{
+  background-position: 31.368% 27.946%;
+}
+.four_3_0{
+  background-position: 51.887% 27.894%;
+}
+
+
+.four_1_1{
+  background-position: 8.962% 34.098%;
+}
+.four_2_1{
+  background-position: 31.368% 34.046%;
+}
+.four_3_1{
+  background-position: 51.887% 34.046%;
+}
+
+.five_1_0{
+  background-position: 8.962% 40.25%;
+}
+.five_2_0{
+  background-position: 31.368% 40.25%;
+}
+.five_3_0{
+  background-position: 51.887% 40.302%;
+}
+.five_4_0{
+  background-position: 71.698% 40.25%;
+}
+
+.five_1_1{
+  background-position: 8.962% 46.038%;
+}
+.five_2_1{
+  background-position: 31.368% 46.038%;
+}
+.five_3_1{
+  background-position: 51.887% 46.09%;
+}
+.five_4_1{
+  background-position: 71.698% 46.09%;
+}
+
+.six_1_0{
+  background-position: 8.962% 52.868%;
+}
+.six_2_0{
+  background-position: 31.368% 52.868%;
+}
+.six_3_0{
+  background-position: 51.887% 52.92%;
+}
+
+.six_1_1{
+  background-position: 8.962% 59.072%;
+}
+.six_2_1{
+  background-position: 31.368% 59.072%;
+}
+.six_3_1{
+  background-position: 51.887% 59.072%;
+}
+
+.seven_1_0{
+  background-position: 8.962% 65.798%;
+}
+.seven_2_0{
+  background-position: 8.962% 65.85%;
+}
+.seven_3_0{
+  background-position: 8.962% 65.85%;
+}
+.seven_1_1{
+  background-position: 8.962% 71.794%;
+}
+.seven_2_1{
+  background-position: 8.962% 71.794%;
+}
+.seven_3_1{
+  background-position: 8.962% 71.794%;
+}
+
+.eight_1_0{
+  background-position: 8.962% 78.05%;
+}
+.eight_2_0{
+  background-position: 31.368% 78.102%;
+}
+.eight_3_0{
+  background-position: 51.887% 78.102%;
+}
+.eight_1_1{
+  background-position: 8.962% 84.15%;
+}
+.eight_2_1{
+  background-position: 31.368% 84.202%;
+}
+.eight_3_1{
+  background-position: 51.887% 84.202%;
+}
+
+.nine_1_0{
+  background-position: 8.962% 90.876%;
+}
+.nine_2_0{
+  background-position: 31.368% 90.928%;
+}
+.nine_3_0{
+  background-position: 51.651% 90.876%;
+}
+
+.nine_1_1{
+  background-position: 8.962% 97.08%;
+}
+.nine_2_1{
+  background-position: 31.368% 97.132%;
+}
+.nine_3_1{
+  background-position: 51.651% 97.132%;
+}
+
+.style_1_0{
+  background-position: 73.113% 52.92%;
+}
+.style_2_0{
+  background-position: 72.406% 59.192%;
+}
+.style_3_0{
+  background-position: 72.406% 65.476%;
+}
+.style_4_0{
+  background-position: 72.406% 71.76%;
+}
+.style_5_0{
+  background-position: 72.406% 78.044%;
+}
+.style_6_0{
+  background-position: 72.406% 84.329%;
+}
+
+.style_1_1{
+  background-position: 93.632% 52.972%;
+}
+.style_2_1{
+  background-position: 93.396% 59.437%;
+}
+.style_3_1{
+  background-position: 93.396% 65.433%;
+}
+.style_4_1{
+  background-position: 93.632% 71.689%;
+}
+.style_5_1{
+  background-position: 93.632% 77.946%;
+}
+.style_6_1{
+  background-position: 93.632% 84.202%;
+}

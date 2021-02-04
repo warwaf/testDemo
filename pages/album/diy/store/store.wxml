@@ -1,0 +1,9 @@
+<view wx:for="{{storeInfo}}" wx:key="index" class="store-item">
+    <view catchtap="select" data-index="{{index}}">
+        <view>{{item.store_name}}</view>
+        <view>{{item.addressInfo}}{{item.address}}</view>
+    </view>
+    <view class="phone" catchtap="call" data-index="{{index}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/phone.png" />
+    </view>
+</view>

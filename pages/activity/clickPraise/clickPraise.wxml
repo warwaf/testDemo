@@ -1,0 +1,18 @@
+<!--pages/activity/clickPraise/clickPraise.wxml-->
+<navBar page-name="三亚鲜檬0元旅拍" class="nav-bar" backType='back' mtaInfo="{{mtaInfo}}"></navBar>
+<view class="clickPraise" style="margin-top:{{navTop}}px">
+  <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200906/clickPraise_bj.png"></image>
+  <view class="clickPraise_content">
+    <view class="content_title">快来邀请好友点赞吧!</view>
+    <view class="content_title1">(每人仅可点一次赞)</view>
+    <view class="content_Show">
+      <text>已集赞</text>
+      <text><text class="totalNum">{{totalData}}</text>赞</text>
+    </view>
+  </view>
+</view>
+<view class="clickPraise_bottom">
+  <button catchtap="getClickLike">我要点赞</button>
+  <button open-type="share">邀好友点赞</button>
+</view>
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}" showMask="{{true}}"></loading>

@@ -1,0 +1,9 @@
+<!-- activity/member/presentation/presentation.wxml -->
+<tabBar tabCode="{{tabCode}}" bind:getTabCode="getTabCode"></tabBar>
+<view class="presentation" style="background-image: url({{backgroundUrl}});">
+  <image src="{{cardUrl}}" mode="aspectFit" lazy-load="true"></image>
+  <view>
+    <view class="btn buy" catch:tap="toBuy" wx:if="{{!isBuy}}">立即开通</view>
+    <view class="btn check" catch:tap="toCheck" wx:else>查看会员权益</view>
+  </view>
+</view>

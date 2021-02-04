@@ -1,0 +1,23 @@
+
+<water data="{{photo}}" 
+    water-class="waterfall" 
+    discoverId="{{discoverId}}"
+    bind:loadEvent="loadPhotos" 
+    bind:clickEvent="showDetail">
+
+    <loading wx:if="{{isLoading}}"></loading>
+</water>
+
+<view class="empty" wx:if="{{isEmpty}}">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/none.png"></image>
+    <view class="text">Oops！空空如也……</view>
+    <view class="sub">要不换个搜索条件再试试？</view>
+</view>
+
+<!-- <view class="appointment" catchtap="toArrange" wx:if="{{isSpecial}}">
+    <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/other/discover-list-1.png" mode="widthFix" />
+</view> -->
+<view class="completed" wx:if="{{ !isEmpty && !isLoading }}">已经到底了(╯▽╰)╭ </view>
+
+
+

@@ -7,7 +7,7 @@ import Event from '../libs/event';
 import { init } from './init/index';
 import { getPageId } from '../libs/utils'
 import { clearEffect } from '../reactive/effect';
-
+import { request } from "../index";
 // 发布订阅工具
 export const event = new Event();
 
@@ -29,15 +29,15 @@ export const createPage = () => {
     const load = options.onLoad || EMPTY_FN;
     options.onLoad = function (...args) {
       if (args.length > 1) return load.apply(this, args);
-
       this.id = getPageId();
       this.$store = $store;
-
+      this.fetch = request;
       event.once('load', () => load.apply(this, args));
       event.subscrible('loaded', () => {
         event.fire(this, 'load');
         event.fire(this, 'showed');
       });
+     
     }
 
     const show = options.onShow || EMPTY_FN;
@@ -55,7 +55,9 @@ export const createPage = () => {
       clearEffect(this.id);
       unload.apply(this, args);
     }
-
+    options.onPageScroll = function(...args){
+        event.fire(this, "onPageScroll", args)
+    }
     Page.call(null, options);
   }
 }

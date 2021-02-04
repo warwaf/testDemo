@@ -1,0 +1,4 @@
+<view class="v-leftTools">
+    <v-action wx:for="{{props.list}}" class="action" wx:key="index" type="{{item.type}}" actionType="{{item.actionType}}"
+            actionConfig="{{ item.actionConfig }}" config='{{item.config}}'></v-action>
+</view>

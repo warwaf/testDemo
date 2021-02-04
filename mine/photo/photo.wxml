@@ -1,0 +1,53 @@
+<view class='photoBox' style='margin-top:{{navigationHeight}}px'>
+    <view class="swiper-tab">  
+        <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" catchtap="swichNav">
+            <text class="text{{currentTab==0 ? 'on' : ''}}">上传</text>（{{uploadNum}}）
+        </view>  
+        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" catchtap="swichNav">
+            <text class="text{{currentTab==1 ? 'on' : ''}}">收藏</text>（{{collectionNum}}）
+        </view>   
+    </view>  
+ 
+    <view wx:if="{{currentTab == 0}}">
+        <scroll-view
+        scroll-y 
+        style='height:100%'
+            wx:if="{{uploadList.length > 0}}">
+            <view class='' wx:for="{{uploadList}}" wx:key="index">
+                <view class='title'>{{item.date}} {{item.activityName}}</view>
+                <view class='column_box'>
+                <view class="imgBox" wx:for="{{item.data}}" wx:for-item="img" wx:for-key="index">
+                    <image  wx:if="{{img.picUrl && img.picUrl !== 'undefined'}}" src="{{img.picUrl + '?x-oss-process=image/resize,w_200'}}" catchtap='jump'  data-item="{{img}}" mode="center" style="background-color: #F1F3F5; background-image: url('http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;"></image>
+                </view>
+                </view>
+            </view>
+        </scroll-view>  
+        <view wx:if="{{uploadList.length <= 0 && !isLoading}}" class='noneBox'>
+            <view class='noneBoxImg'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/photo_upload_none.png" mode='widthFix'></image></view>
+            <view class='noneWord'>上传一张照片试试吧，小檬要饿瘪了</view>
+            <!-- <view bindtap='uploadBtn' class='uploadBtn'>去上传</view> -->
+        </view>
+    </view>  
+    <view wx:if="{{currentTab == 1}}">
+        <scroll-view
+        scroll-y 
+        style='height:100%'
+        wx:if="{{collectionList.length > 0}}">
+            <view class='' wx:for="{{collectionList}}" wx:key="index">
+                <view class='title'>{{item.createTime}} {{item.activityName}}</view>
+                <view class='column_box'>
+                <view class="imgBox" wx:for="{{item.imgList}}" wx:for-item="img" wx:key="index">
+                    <image wx:if="{{img.picUrl}}" src="{{img.picUrl + '?x-oss-process=image/resize,w_200'}}" catchtap='toDetail' data-item="{{img}}" mode="center" style="background-color: #F1F3F5; background-image: url('http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;"></image>
+                </view>
+                </view>
+            </view>
+        </scroll-view>  
+        <view wx:if="{{ collectionList.length <= 0 && !isLoading }}" class='noneBox'>
+            <view class='noneBoxImg'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/photo_collection_none.png" mode='widthFix'></image></view>
+            <view class='noneWord'>美好的事物值得收藏</view>
+            <!-- <view bindtap='uploadBtn' class='uploadBtn'>去看看</view> -->
+        </view> 
+    </view>
+    <loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>     
+</view>
+

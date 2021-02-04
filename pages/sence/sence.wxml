@@ -1,0 +1,30 @@
+
+<!--index.wxml-->
+<view class="container">  
+  <view class="page-body" >
+   <view class="scene_box">
+    <view class="scene_boxinfo">
+    <view class="scene_namebox">      
+      <radio-group class="radio-group" bindchange="changeScene">
+        <label class="radio" wx:for="{{SceneDetails}}"  wx:key="index" wx:for-item="item">
+          <radio value="{{item.key}}" checked="{{item.checked}}"/>{{item.name}}
+        </label>
+      </radio-group>
+    </view>
+    <view class="scene_image" v-if="{{SceneDetails.length!==0}}">
+      <view class="cur_h3">当前选择的场景描述</view>
+      <view class="cur_text">{{SceneDetails[detialsIndex].explanation}}</view>
+      <view class="cur_image">
+      <image src="{{SceneDetails[detialsIndex].image}}" mode="widthFix"></image>
+      </view>
+    </view>
+    <view class="submit_btn">        
+         <button type="button" class="" formType="submit" bindtap="gotoUpload">开始上传照片</button>
+    </view>
+    </view>
+</view>
+
+
+  </view>  
+</view>
+

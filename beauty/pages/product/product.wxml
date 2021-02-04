@@ -1,0 +1,21 @@
+<view class="notification">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon20.png" /> 还有{{counter}}张没有评价哦～
+</view>
+<view class="tab">
+    <view class="tab-item {{acriveIndex == 0 ? 'active' : ''}}" bindtap="switchTap" data-status="0">全部</view>
+    <view class="tab-item {{acriveIndex == 1 ? 'active' : ''}}" bindtap="switchTap" data-status="1">有更新</view>
+    <view class="tab-item {{acriveIndex == 2 ? 'active' : ''}}" bindtap="switchTap" data-status="2">不满意</view>
+    <view class="tab-item {{acriveIndex == 3 ? 'active' : ''}}" bindtap="switchTap" data-status="3">满意</view>
+</view>
+<view class="list">
+    <view class="list-item" wx:for="{{list}}" wx:key="index" bindtap="toPhotoDetail"  data-id="{{item.id}}">
+        <image src="{{item.imageUrl}}?x-oss-process=image/resize,w_600" mode="widthFix" />
+        <image wx:if="{{item.newState}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon19.png" class="icon" mode="widthFix" />
+        <image wx:if="{{item.evaluate == statusEnum.UNSATISFACTION}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon18.png" class="icon" mode="widthFix" />
+        <image wx:if="{{item.evaluate == statusEnum.SATISFACTION}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon17.png" class="icon" mode="widthFix" />
+    </view>
+    <view class="empty" wx:if="{{!list.length}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-empty.png" mode="widthFix" />
+        <view>空空如也～</view>
+    </view>
+</view>

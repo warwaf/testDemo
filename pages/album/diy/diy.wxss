@@ -1,0 +1,113 @@
+/* pages/mine/diy/diy.wxss */
+
+page {
+    background: rgba(251, 251, 251, 1);
+}
+
+.hc-diyBox {
+    height: 139px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 10px 0px rgba(202, 217, 232, 0.35);
+    margin: 10px 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.hc-diyBoxLeft {
+    width: 108px;
+    height: 108px;
+    display: flex;
+    overflow: hidden;
+    border-radius: 5px;
+    float: left;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 15px 20px 16px 10px;
+}
+
+.hc-diyBoxLeft image {
+    width: 108px;
+    height: 108px;
+}
+
+.hc-diyBoxRight {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    float: left;
+    margin-top: 15px;
+}
+
+.coupon{
+    width: 58px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.hc-diyUnit {
+    font-size: 15px;
+    color: rgba(255, 156, 0, 1);
+}
+
+.hc-diyReal {
+    height: 30px;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(255, 156, 0, 1);
+    line-height: 30px;
+}
+
+.hc-diyAssess {
+    width: 36px;
+    height: 15px;
+    font-size: 12px;
+    font-weight: 300;
+    color: #BDBDBD;
+    margin-left: 5px;
+    text-decoration: line-through
+}
+
+.hc-diyName {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(34, 34, 34, 1);
+    line-height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    width: 180px;
+}
+
+.hc-diySize {
+    margin-top: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(153, 153, 153, 1);
+    line-height: 20px;
+}
+
+.hc-diySize {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(153, 153, 153, 1);
+    line-height: 18px;
+}
+
+.hc-diyColor {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(153, 153, 153, 1);
+    line-height: 18px;
+}
+
+.hc-diyApply {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(153, 153, 153, 1);
+    line-height: 18px;
+}

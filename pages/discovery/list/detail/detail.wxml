@@ -1,0 +1,42 @@
+<view class="pics">
+    <image wx:for="{{movementInfo.imgUrlsList}}" 
+            mode="widthFix" 
+            wx:key="picUrl" 
+            src="{{item.picUrl + '?x-oss-process=image/resize,w_600'}} ">
+    </image>
+</view>
+
+<view class="footer">
+    <button open-type="share" class="btn" plain='true'>分享给好友</button>
+    <view catchtap="toArrange">立即预约</view>
+</view>
+
+<!-- 预约弹窗 -->
+<view class="arrange_info" wx:if="{{showArrangeInfo}}" catchtap="hideArrangeInfo">
+    <view class="inner" catchtap="stop">
+        <view class="header">
+            <text>预约信息</text>
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" catchtap="hideArrangeInfo" />
+        </view>
+        <view class="body">
+            <input value="{{userInfo.nickName || ''}}" placeholder="联系人" bindblur="modifyUserInfo" data-type="nickName" />
+            <input value="{{userInfo.mobileNo || ''}}" placeholder="手机号" bindblur="modifyUserInfo" data-type="mobileNo" />
+        </view>
+        <view class="tips">商家会在24小时之内和您取得联系，请保持手机畅通</view>
+        <view class="btn" catchtap="confirmArrange">确定</view>
+    </view>
+</view>
+
+
+<view class="session-mask" wx:if="{{authorityTips}}" catchtouchmove="stop">
+    <view class="authority-session">
+        <view>温馨提示</view>
+        <view>亲，授权了用户信息才可以操作哦～</view>
+        <view>快来告诉小檬你是谁吧~</view>
+        <view>
+            <button class="userinfo-btn btn" bindgetuserinfo="hideAuthority"> 拒绝</button>
+            <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> 确定</button>
+        </view>
+        <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+    </view>
+</view>

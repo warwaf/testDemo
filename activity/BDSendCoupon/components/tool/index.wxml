@@ -1,0 +1,69 @@
+<view class="act-tool">
+  <view class="tool-btn btn-about" catch:tap="handlePop" data-type="about">
+    <text>关于</text>
+    <text>鲜檬</text>
+  </view>
+  <view class="tool-btn btn-share" catch:tap="handlePop" data-type="share" wx:if="{{false}}">
+    <image class="" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/zero-share.png" mode="aspectFit" lazy-load="{{true}}"></image>
+    <text>分享</text>
+  </view>
+  <view class="tool-btn btn-qa" catch:tap="handlePop" data-type="package">
+    <text>套餐</text>
+    <text>介绍</text>
+  </view>
+  <view class="tool-btn btn-qa" catch:tap="handlePop" data-type="QA">
+    <text>{{'Q&A'}}</text>
+    <text>答疑</text>
+  </view>
+</view>
+
+<!-- 关于鲜檬 -->
+<view class="pop-case pop-about" style="z-index: 999;" wx:if="{{showAbout}}">
+  <pop strStyle="width: 315px;height: 442px;position: relative;align-items: initial;flex-direction: initial;">
+    <image class="pop-close" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/popup_close.png" mode="aspectFit" lazy-load="{{true}}" catch:tap="handlePop" data-type="close"></image>
+    <view class="about-case">
+      <block wx:for="{{5}}" wx:key="index" style="overflow:hidden;">
+        <image class="about-img{{index+1}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/about{{index+1}}.jpg" mode="aspectFit" lazy-load="{{true}}"></image>
+      </block>
+      <!-- <cover-view class="gradual"></cover-view> -->
+    </view>
+  </pop>
+</view>
+
+<!-- Q&A答疑 -->
+<view class="pop-case pop-about" style="z-index: 999;" wx:if="{{showQA}}">
+  <pop strStyle="width: 315px;height: 442px;position: relative;align-items: initial;flex-direction: initial;">
+    <image class="pop-close" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/popup_close.png" mode="aspectFit" lazy-load="{{true}}" catch:tap="handlePop" data-type="close"></image>
+    <view class="QA-case">
+      <view class="pop-header">{{"活动问答Q&A"}}</view>
+      <block wx:for="{{QAList}}" wx:key="index">
+        <view class="Q-case">
+          <view class="label">Q</view>
+          <view class="content">{{item.q.text}}</view>
+        </view>
+        <view class="A-case">
+          <view class="label">A</view>
+          <view class="content">
+            <block wx:for="{{item.a}}" wx:for-item="el" wx:for-index="elIndex" wx:key="elIndex">
+              <view class="a-item" wx:if="{{item.a.length > 1}}">{{elIndex+1}}{{'. ' + el}}</view>
+              <view class="a-item" wx:else>{{el}}</view>
+            </block>
+          </view>
+        </view>
+      </block>
+      <view class="QA-tips">在法律允许其范围内，活动主办方保留需要取消或修改上述相关说明的权利，活动最终解释权归活动主办方所有。</view>
+    </view>
+  </pop>
+</view>
+
+<!-- 分享弹层 -->
+<view class="pop-case package-mask" wx:if="{{showPackage}}">
+  <pop strStyle="width: 630rpx;height: 884rpx;position: relative;align-items: initial;flex-direction: initial;">
+    <image class="pop-close" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/popup_close.png" mode="aspectFit" lazy-load="{{true}}" catch:tap="handlePop" data-type="close"></image>
+    <view class="package-body">
+      <block wx:for="{{9}}" wx:key="index" style="overflow:hidden;">
+        <image class="package-img{{index+1}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/bd/bd-package{{index+1}}.png" mode="aspectFit" lazy-load="{{true}}"></image>
+      </block>
+    </view>
+  </pop>
+</view>

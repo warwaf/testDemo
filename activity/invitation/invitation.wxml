@@ -1,0 +1,22 @@
+<view class="menu">
+    <view class="{{curIndex == 0 ? 'active' : ''}}" bindtap="changeMenu" data-index="0">选择模板</view>
+    <view class="{{curIndex == 1 ? 'active' : ''}}" bindtap="changeMenu" data-index="1">请柬记录</view>
+</view>
+<view class="body">
+    <block wx:if="{{curIndex == 0}}">
+        <view wx:for="{{list}}" wx:key="id" class="list-item" bindtap="toPreview" data-preview="0" data-id="{{item.invitationNo}}">
+            <image src="{{item.cover}}" mode="aspectFill" />
+            <text>已有{{item.count}}人创建</text>
+        </view>
+    </block>
+    <block wx:if="{{curIndex == 1}}">
+        <view wx:for="{{records}}" wx:key="id" class="record-item" bindtap="toPreview" data-preview="1" data-id="{{item.invitationNo}}" wx:if="{{records && records.length > 0}}">
+            <image src="{{item.cover}}" mode="aspectFill" />
+            <text>{{item.createTime}}</text>
+        </view>
+        <view class="empty" wx:if="{{!records || records.length == 0}}">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-empty.png" />
+            <view>您还没创建电子请柬</view>
+        </view>
+    </block>
+</view>

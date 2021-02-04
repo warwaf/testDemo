@@ -1,0 +1,7 @@
+<!--pages/mine/payresult/payresult.wxml-->
+<view class='hc-box'>
+    <image  src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/pay-result.png"></image>
+    <view class='hc-money'>￥{{money}}</view>
+    <view class='hc-num'>檬太奇-订单号{{num}}</view>
+    <view class='hc-btn' bindtap='payBtn'>确定支付</view>
+</view>

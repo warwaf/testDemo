@@ -1,0 +1,13 @@
+<view class="pay-area">
+    <view>￥ {{amount}}</view>
+    <view>云相册-订单号{{orderNo}}</view>
+    <view class="v-coupon-price" wx:if="{{couponPrice && couponPrice > 0}}">
+        已为亲节省
+        <view>￥{{couponPrice}} </view>
+    </view>
+    <view class="btn-container">
+        <view class="btn" catchtap="toLcgPay">{{isPay ? "支付中...":"确认支付"}}</view>
+    </view>
+    <view class="ricle-l"></view>
+    <view class="ricle-r"></view>
+</view>

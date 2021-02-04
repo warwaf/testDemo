@@ -1,0 +1,13 @@
+<!--pages/userinfo/userinfo.wxml-->
+<view class="container">
+  <view class="page-body infobox">
+  <view class="imgbox">
+   <image src="https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/224cb85891b049769b1a0371f127523d.png" mode="aspectFill"> </image>
+   </view>
+    <view class="text textlarg">鲜檬云相册</view> 
+    <view class="_hr"></view>
+    <view class="text textmid">请确认授权以下信息</view>
+    <view class="text textsml">获得你的手机号</view>  
+  <button class="control_btn hc-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 确认登录</button>
+ </view> 
+</view>

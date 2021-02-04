@@ -1,0 +1,70 @@
+<!--pages/album/search/searchmine/searchmine.wxml-->
+<view hidden="{{!putImg}}" style='border-top:1px solid #e8e8e8;'>  
+    <view class='searching-box'>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/searchFace.gif" mode='widthFix' ></image>
+    </view>
+</view>
+
+
+<view hidden="{{putImg}}" style='border-top:1px solid #e8e8e8;'>
+    <view class='titleBox' wx:if="{{upload}}">
+        <view class='text'>没有找到本人，上传找到试试</view>
+        <view class='upImg' bindtap='chooseImg'>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search_up.png" ></image>我要上传
+        </view>
+    </view>
+    <view class='hc-change' wx:else>
+        <view class='hc-column_box'>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search_color.png" class='color' mode="widthFix"></image> 
+            <view>我的上传</view>
+            <view class='secondImg' bindtap='chooseImg'>
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search_up.png" ></image>换一张
+            </view>
+        </view>
+    </view>
+    
+    <view style='margn-bottom:110px;'>
+        <radio-group   bindchange="radioChange">
+            <!-- 通过上传图片，获得图片内的全部头像 -->
+            <view wx:if="{{!upload}}" class='box hc-newImgBox'>
+                <view wx:for="{{allList}}" wx:key="index" class='imgBox'>
+                    <image  class="intercept marginBotton "
+                            wx:if="{{item.picUrl}}" 
+                            src="{{item.picUrl}}?x-oss-process=image/crop,x_{{item.left-45}},y_{{item.top-45}},w_{{item.width+90}},h_{{item.height+90}}" 
+                            data-groupFaceId='{{item.groupFaceId}}' 
+                            catchtap='radioChange' >
+                    </image>
+                    <radio class=" dot" value="{{item.groupFaceId}}" 
+                           data-select="{{item.groupFaceId}}" 
+                           color="#FFE22D" 
+                           checked="{{item.checked}}">
+                    </radio>
+                </view>
+            </view>
+            <!-- 接口查询的”我的“ 全部-->
+            <view class='box' >
+                <view wx:for="{{mineImg}}" wx:key="index" class='imgBox' data-index="{{item}}" >
+                    <image  class="intercept marginBotton " 
+                            wx:if="{{item.picUrl}}" 
+                            src="{{item.picUrl}}?x-oss-process=image/crop,x_{{item.left-45}},y_{{item.top-45}},w_{{item.width+90}},h_{{item.height+90}}"  
+                            catchtap='radioChange'  >
+                    </image>
+                    <radio class=" dot" data-aa="111" 
+                           value="{{item.groupFaceId}}" 
+                           color="#FFE22D" 
+                           checked="{{item.checked}}">
+                    </radio>
+                </view>
+            </view>
+            
+        </radio-group> 
+    </view>
+    <!-- 提交按钮 -->
+    <view class='btnBox'>
+        <view class="btn {{selectBtn == true? 'selectBtn':''}}" bindtap='btnSelect'>确认</view>
+    </view>
+      <loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+</view>
+
+
+

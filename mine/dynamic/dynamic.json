@@ -1,0 +1,10 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "动态",
+    "usingComponents": {
+        "sticky": "/components/sticky/index",
+        "sticky-item": "/components/sticky/sticky-item/index"
+    }
+}

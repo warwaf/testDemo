@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "puzzle":"../../../components/common/puzzle/index"
+  }
+}

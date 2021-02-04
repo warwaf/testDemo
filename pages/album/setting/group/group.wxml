@@ -1,0 +1,9 @@
+<view>
+    <view class="row" wx:for="{{groupArr}}" wx:key="classification">
+        <input bindblur="confirmHandler" bindfocus="focusHandler" value="{{item.classification}}" data-index="{{index}}" />
+        <image class="icon1" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/modify.png" />
+        <image class="icon2" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/trash-can.png" bindtap="romveHandler" data-index="{{index}}"/>
+    </view>
+</view>
+
+<view class="btn-fixed" bindtap="create">新增</view>

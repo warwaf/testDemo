@@ -1,0 +1,241 @@
+<wxs module="util" src="../../../utils/util.wxs"></wxs>
+<view class="banner">
+    <image class="bgImage"  src="{{storeInfo.banner}}"  style="height:188px; background-color: #F1F3F5; background-image: url('http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;"></image>
+    <view class="v-tips" wx:if="{{isShowTools}}">
+        <view class="v-tips-body">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/pic.png"></image> {{discoverInfo.competitionCount? discoverInfo.competitionCount: 0 }}张
+            <image style="height:8px;margin-left:10px;" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/eye.png"></image> {{discoverInfo.viewsCount? discoverInfo.viewsCount: 0 }}次
+            <image style="margin-left:10px;" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/great_pre@2x.png"></image>  {{discoverInfo.praiseCount? discoverInfo.praiseCount: 0 }}次
+        </view>
+    </view>
+</view>
+
+<view class="info">
+    <view class="top">
+        <view>{{storeInfo.name}}</view>
+    </view>
+    <view class="bottom">
+        <view catchtap="toMap">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon7.png" mode="aspectFit" /> 
+            <text>{{storeInfo.provinceName}}{{storeInfo.area}}{{storeInfo.countryName}}{{storeInfo.address}}</text>
+        </view>
+        <view catchtap="controlCallPop" data-code="1">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/1.6.11/phone.png"/>
+        </view>
+    </view>
+</view>
+
+<view class="pro-body">
+    <view class="item" wx:for="{{photo}}" wx:key="id">
+        <image src="{{item.mainPic}}" catchtap="toDetail" data-item="{{item}}" mode="aspectFill" style="height:160px; background-color: #F1F3F5; background-image: url('http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;" />
+        <view class="price">
+            <text>￥</text><text>{{util.formatMoney(item.listPrice)[0]}}</text><text>.{{util.formatMoney(item.listPrice)[1]}}</text>
+        </view>
+        <view class="name"><text wx:if="{{item.styleName != ''}}">{{item.styleName + '/'}}</text>{{item.productName}}</view>
+    </view>
+    <loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+</view>
+
+<!-- <view class="menu-container {{manuStat ? 'moveTop' : 'fixTop'}}">
+    <view class="activited" bindtap='toNewest'>最新</view>
+    <view bindtap='toHotest'>最热</view>
+</view> -->
+
+<!-- <water data="{{photo}}" 
+    water-class="waterfall" 
+    discoverId="{{discoverId}}"
+    bind:loadEvent="loadPhotos" 
+    bind:clickEvent="showDetail">
+
+    <loading wx:if="{{isLoading}}"></loading>
+</water> -->
+
+<!-- <view class="empty" wx:if="{{isEmpty}}">
+    <image src="hhttps://hcmtq.oss-accelerate.aliyuncs.com/resources/empty-movement.png"></image>
+    <view class="text">精彩的照片值得分享</view>
+    <view class="btn" catchtap='createDynamics' wx:if="{{!isSpecial && !isShowTools}}">发布动态</view>
+</view> -->
+
+<!-- 发布动态 -->
+<!-- <view class='createImg' wx:if="{{!isEmpty && !isSpecial && !isShowTools}}">
+    <image src="hhttps://hcmtq.oss-accelerate.aliyuncs.com/resources/create-activity.png" class="text" wx:if="{{neverCreate}}"></image>
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/add@2x.png" class="plus" bindtap='createDynamics'></image>
+</view> -->
+
+<!-- <view class="v-tools" wx:if="{{isShowTools == 'C' || isShowTools == 'DGLG'}}">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/entry.png" data-info="entry" bind:tap="tapTools"></image>
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/ranking.png" data-info="ranking" bind:tap="tapTools"></image>
+    <image wx:if="{{isShowTools == 'C'}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/prize.png" data-info="prize" bind:tap="tapTools"></image>
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/search.png" data-info="search" bind:tap="tapTools"></image>
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/share.png" data-info="share" bind:tap="tapTools"></image>
+</view> -->
+
+<!-- <view class="appointment" catchtap="toArrange" wx:if="{{isSpecial}}">
+    <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/other/discover-list-1.png" mode="widthFix" />
+</view> -->
+
+<view class="footer">
+    <button open-type="share" class="btn" plain='true'>分享给好友</button>
+    <view catchtap="toArrange">预约咨询</view>
+</view>
+
+<view class="completed clear" wx:if="{{ !isEmpty && !isLoading }}">已经到底了(╯▽╰)╭ </view>
+
+<view class="session-mask" wx:if="{{authorityTips}}" catchtouchmove="stop">
+    <view class="authority-session">
+        <view>温馨提示</view>
+        <view>亲，授权了用户信息才可以操作哦～</view>
+        <view>快来告诉小檬你是谁吧~</view>
+        <view>
+            <button class="userinfo-btn btn" bindgetuserinfo="hideAuthority"> 拒绝</button>
+            <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> 确定</button>
+        </view>
+        <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+    </view>
+</view>
+
+<view class="v-mask" wx:if="{{isShowCoupon || isCreate}}"></view>
+<!-- 临取摄影服务优惠券 -->
+<view class="v-coupon" wx:if="{{isShowCoupon}}">
+    <view class="v-coupon-card">
+        <image class="v-coupon-image" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/coupons.png"></image>
+        <view class="v-coupon-title">
+           Wow！发现  
+        </view>
+        <view class="v-coupon-title">
+            <view class="v-coupon-title-bold">摄影服务优惠券</view> 兽一只
+        </view>
+        <view class="v-coupon-btn" bind:tap="getCoupon">马上捕捉</view>
+    </view>
+    <image class="v-coupon-close" bind:tap="closeCoupon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/popup_close@2x.png"></image>
+</view>
+
+<!-- 活动参赛 -->
+<view class="v-coupon gift" wx:if="{{isCreate}}">
+    <view class="v-coupon-card">
+        <image class="v-coupon-image" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/gift.png"></image>
+        <view class="v-coupon-title">
+           参加成功啦！
+        </view>
+        <view class="v-coupon-sub">
+           为了感谢亲，小檬准备了<view class="v-coupon-title-bold">礼品</view>
+        </view>
+        <view class="v-coupon-sub">TA已在右下角“奖品”躺着啦</view>
+        <view class="v-coupon-btn" bind:tap="closeCoupon">收入奖品袋</view>
+    </view>
+    <image class="v-coupon-close" bind:tap="closeCoupon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/popup_close@2x.png"></image>
+</view>
+
+<pop title="搜索" visibile="{{isSearch}}" bind:comfirm="popComfirm">
+    <view class="v-search-pop">
+        <view class="v-tabs">
+            <view class="v-tab {{ selectTab == 1 ? 'active' : ''}}" data-index="1" bind:tap="tapTabs">参赛者编号</view>
+            <view class="v-tab {{ selectTab == 2 ? 'active' : ''}}" data-index="2" bind:tap="tapTabs">参赛者昵称</view>
+        </view>
+        <input focus type="text" bindinput="inputConfirm" cursor-spacing="50" value="{{searchInput}}" placeholder="{{ selectTab == 2 ? '请输入参赛者昵称' : '请输入参赛者编号'}}" />
+    </view>
+</pop>
+
+
+<!-- 分享弹层 -->
+<view class="share-mask" catchtap='hideMask' wx:if="{{shareStat}}">
+    <view class="share-inner">
+        <view class="activityinfo">
+            <view>{{discoverInfo.name}}</view>
+            <!-- <view style="font-size: 18px">{{filter.sliceArr(activityInfo.activityId,5)}}</view> -->
+            <!-- <view style="font-size: 18px">({{activityInfo.roomBrowseCount}}人)</view> -->
+        </view>
+        <view class="content">
+            <image src="{{isShowTools == 'DGLG' ? 'https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/333608a25de642959ec4ea9e43a667ce.png' : discoverInfo.banner}}" class="qrcode" mode="aspectFill"></image>
+            <view class="btns">
+                <button open-type="share" class="btn" plain='true'>相册分享</button>
+                <view class="circle-btn" catchtap='downloadQrcode'>二维码下载</view>
+            </view>
+        </view>
+    </view>
+    <image class="close-btn" src="hhttps://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png" catchtap='hideMask'></image>
+</view>
+
+
+<view catchtap="goHome" class="home">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/home@2x.png"/>
+</view>
+
+<view class='tipBox' wx:if="{{error}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>{{msgText}}</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>
+
+<!-- 咨询弹窗 -->
+<view class="arrange_info" wx:if="{{showArrangeInfo}}" catchtap="hideArrangeInfo">
+    <view class="inner" catchtap="stop" wx:if="{{newInfo != 0}}">
+        <view class="header">
+            <text>咨询信息</text>
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" catchtap="hideArrangeInfo" />
+        </view>
+        <view class="body">
+            <view>
+                <input value="{{userInfo.nickName || ''}}" placeholder="联系人" bindblur="modifyUserInfo" data-type="nickName" bindinput="watchName"/>
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon8.png" />
+            </view>
+            <view>
+                <input type="number" value="{{userInfo.mobileNo || ''}}" placeholder="手机号" bindblur="modifyUserInfo" bindinput="watchMobileNo" pattern="[0-9]*" data-type="mobileNo" maxlength="11"/>
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon8.png" />
+            </view>
+        </view>
+        <text class="tips">商家会在24小时之内和您取得联系\n请保持手机畅通</text>
+        <view class="btn" catchtap="confirmArrange">确定</view>
+    </view>
+    <view class="inner inner-success" catchtap="stop" wx:else>
+        <view class="header">
+            <text>咨询信息</text>
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" catchtap="hideArrangeInfo" data-code="{{0}}"/>
+        </view>
+        <view class="body">
+            <view>
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/1.6.11/wancheng.png" />
+                <text>提交成功</text>
+            </view>
+            <view>商家会安排专业顾问给您致电，提供咨询服务</view>
+        </view>
+        <view class="btn" catchtap="hideArrangeInfo" data-code="{{0}}">确定</view>
+    </view>
+</view>
+
+<!-- 咨询信息结果弹窗 -->
+<pop visibile="{{waitingTips}}" showTitle="{{false}}">
+    <view class="waiting-pop">
+        <view class="pop-header">
+            <text>温馨提示</text>
+        </view>
+        <view class="pop-body">
+            <text>您已于<text class="time">{{arrangeTime}}</text>提交信息\n请耐心等待</text>
+        </view>
+        <view class="pop-footer">
+            <button catchtap="closeWaiting">确定</button>
+        </view>
+    </view>
+</pop>
+
+<!-- 咨询热线弹窗 -->
+<pop visibile="{{isCall}}" showTitle="{{false}}">
+    <view class="call-pop">
+        <view class="pop-header">
+            <text>咨询热线</text>
+        </view>
+        <view class="pop-body">
+            <text>{{storeInfo.mobileNo}}</text>
+        </view>
+        <view class="pop-footer">
+            <button class="cancel" catchtap="controlCallPop" data-code="0">取消</button>
+            <button class="confirm" catchtap="callPhone">拨打</button>
+        </view>
+    </view>
+</pop>

@@ -1,0 +1,10 @@
+.v-leftTools{
+    position: fixed;
+    right: 10px;
+    bottom: 50px;
+}
+
+.v-leftTools .action{
+    display: flex;
+    justify-content: flex-end;
+}

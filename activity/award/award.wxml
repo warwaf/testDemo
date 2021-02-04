@@ -1,0 +1,60 @@
+<view class="bg">
+    <view class="item" wx:for="{{data}}" wx:key="CouponCode">
+        <view class="t">
+            <view>
+                <view class="title">{{item.title}}</view>
+                <view class="btn" bindtap="check" data-item="{{item}}">{{item.type == 0 ? '查看详情' : '立即使用'}}</view>
+            </view>
+            <image src="{{item.img}}" />
+        </view>
+        <view class="b">
+            <view>有效期：{{item.EndTime}}</view>
+            <view>说明：{{item.proName}}</view>
+        </view>
+    </view>
+</view>
+
+<view class="mask" wx:if="{{showMask}}" bindtap="hideMask">
+    <view class="inner">
+        <view style="font-size: 17px; ">奖品详情</view>
+        <image mode="widthFix" src="{{imgSrc}}" />
+        <view style="width: 95%;font-size: 12px;">1.将有专门客服人员电话或添加微信联系您制作定制三件套； </view>
+        <view style="width: 95%;font-size: 12px; margin-top: -15px;">2.如有疑问可联系客服400-805-2189；</view>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/popup_close@2x.png" class="btn" />
+    </view>
+</view>
+
+<view class="mask" wx:if="{{showIndictor}}">
+    <view class="content">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/img1.png" />
+        <swiper scroll-x="{{true}}" current="{{curIndex}}" bindchange="scrollEventHandler" style="width: 278px; height: 278px;">
+            <swiper-item wx:for="{{imgs}}" wx:key="*this" class="items">
+                <image src="{{item}}" />
+            </swiper-item>
+        </swiper>
+        <view class="txt" wx:if="{{curIndex == 0}}">
+            <view>第一步：选择&创建相册</view>
+        </view>
+        <view class="txt" wx:if="{{curIndex == 1}}">
+            <view>第二步：点击冲印商城</view>
+        </view>
+        <view class="txt" wx:if="{{curIndex == 2}}">
+            <view>第三步：选品下单</view>
+            <view>为您的商品挑照片吧～</view>
+        </view>
+        <view class="txt" wx:if="{{curIndex == 3}}">
+            <view>第四步：DIY制作</view>
+            <view>耐心制作您的精美的商品哦～</view>
+        </view>
+        <view class="txt" wx:if="{{curIndex == 4}}">
+            <view>第五步：付款下单成功</view>
+        </view>
+        <view class="txt" wx:if="{{curIndex == 5}}">
+            <view>第六步：一周左右就能拿到商品啦</view>
+        </view>
+        <view class="indictor">
+            <text wx:for="{{imgs}}" wx:key="*this" class="c {{index == curIndex ? 'active' : ''}}">{{index == curIndex ? curIndex + 1 : ''}}</text>
+        </view>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/popup_close@2x.png" class="btn" catchtap="closeIndictor" />
+    </view>
+</view>

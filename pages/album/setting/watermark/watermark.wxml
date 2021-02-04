@@ -1,0 +1,64 @@
+<view class="bg mask">
+    <image src="{{imgInfo.path}}" style="width: {{imgInfo.scaleWidth}}px; height: {{imgInfo.scaleHeight}}px;"/>
+</view>
+<view class="bg">
+    <movable-area wx:if="{{isAlready}}" style="width: {{imgInfo.scaleWidth}}px; height: {{imgInfo.scaleHeight}}px;">
+        <movable-view 
+            style="width: {{cropInfo.width}}px; height: {{cropInfo.height}}px;" 
+            x="{{cropInfo.x}}" 
+            y="{{cropInfo.y}}" 
+            direction="all" 
+            bindchange="changeHandler"
+        >
+        </movable-view>
+        <view wx:if="{{imgInfo.scaleWidth}}" class="cube" style="width: {{windowWidth}}px; height: {{cropInfo.y}}px; left: 0; top: 0;"></view>
+        <view wx:if="{{imgInfo.scaleWidth}}" class="cube" style="width: {{cropInfo.x}}px; height: {{cropInfo.height}}px; left: 0; top: {{cropInfo.y}}px;"></view>
+        <view wx:if="{{imgInfo.scaleWidth}}" class="cube" style="width: {{windowWidth - cropInfo.x - cropInfo.width}}px; height: {{cropInfo.height}}px; left: {{cropInfo.x + cropInfo.width}}px; top: {{cropInfo.y}}px;"></view>
+        <view wx:if="{{imgInfo.scaleWidth}}" class="cube" style="width: {{windowWidth}}px; height: {{imgInfo.scaleHeight - cropInfo.y - cropInfo.height}}px; left: 0; top: {{cropInfo.y + cropInfo.height}}px;"></view>
+    </movable-area>
+</view>
+
+
+<view class="session-mask" catchtouchmove="stop" wx:if="{{error}}">
+    <view class="authority-session">
+        <view>温馨提示</view>
+        <view>{{errorMsg1}}</view>
+        <view>{{errorMsg2}}</view>
+        <button class="userinfo-btn btn" catchtap="reSelect"> 确定</button>
+        <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+    </view>
+</view>
+
+<canvas canvas-id="crop" style="width: {{cropInfo.width * scale}}px; height: {{cropInfo.height * scale}}px;"></canvas>
+<!-- <canvas 
+    canvas-id="rotate" 
+    style="width: {{rotateInfo.width}}px; height: {{rotateInfo.height}}px;"
+>
+</canvas> -->
+
+<view class="tools">
+    <view class="options">
+        <text catchtap="changeRatio" data-index="0" class="{{selectIndex == 0 ? 'active' : ''}}">适应</text>
+        <text catchtap="changeRatio" data-index="1" class="{{selectIndex == 1 ? 'active' : ''}}">X3.0</text>
+        <text catchtap="changeRatio" data-index="2" class="{{selectIndex == 2 ? 'active' : ''}}">X2.5</text>
+        <text catchtap="changeRatio" data-index="3" class="{{selectIndex == 3 ? 'active' : ''}}">X2.0</text>
+        <text catchtap="changeRatio" data-index="4" class="{{selectIndex == 4 ? 'active' : ''}}">X1.0</text>
+    </view>
+    <view class="tab-bar">
+        <view catchtap="back">取消</view>
+        <!-- <view catchtap="rotate">旋转</view> -->
+        <view catchtap="preview">预览</view>
+        <!-- <view catchtap="confirm">确认</view> -->
+    </view>
+</view>
+
+<view class="preview" wx:if="{{preview}}">
+    <image src="{{tempPath}}" mode="widthFix" />
+    <view class="btns">
+        <view class="btn" catchtap="confirm">OK</view>
+        <view class="btn" catchtap="again">不满意，再来一遍吧</view>
+    </view>
+</view>
+
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+<canvas class="v-compress"  canvas-id="compress"></canvas>

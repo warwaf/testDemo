@@ -1,0 +1,51 @@
+<wxs module="filter" src="../../../utils/util.wxs"></wxs>
+<view wx:for="{{list}}" wx:key="index" class="activity-item" wx:if="{{list && list.length > 0}}">
+    <view class="top">
+        <view>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+            {{item.eventName}}
+        </view>
+        <switch checked="{{item.picked}}" type="switch" bindchange="enableActivity" data-index="{{index}}"></switch>
+    </view>
+    <view class="body">
+        <view>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/v1.4/icon25.png" class="icon"/>
+            {{item.startTime}}
+            至
+            {{item.endTime}}
+        </view>
+        <view class="prize-item" wx:for="{{item.signInRule.prizeRules}}" wx:for-item="ruleInfo" wx:for-index="idx" wx:key="idx">
+            <block wx:if="{{ruleInfo.prizeLevel == 1}}"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon10.png" mode="widthFix"/> </block>
+            <block wx:elif="{{ruleInfo.prizeLevel == 2}}"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon11.png" mode="widthFix"/> </block>
+            <block wx:elif="{{ruleInfo.prizeLevel == 3}}"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon12.png" mode="widthFix"/> </block>
+            <block wx:else><image class="icon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon13.png" mode="widthFix"/> </block>
+            <view class="rule-info">
+                <view>{{filter.codeToPrizeLevel(ruleInfo.prizeLevel)}}({{ruleInfo.total}})</view>
+                <view>{{ruleInfo.prizeNameList}}</view>
+            </view>
+        </view>
+        <view class="prompt">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon19.png" class="icon" /> 
+            <text>备注：</text>此为自定义活动，奖品由群主自备哦 
+        </view>
+    </view>
+    <view class="btn-fixed" catchtap="customizeActivity">自定义活动</view>
+</view>
+
+<view class="mask-layout" wx:if="{{dialogStat}}" catchtap="disagree">
+    <view class="session">
+        <view>
+            <text catchtap="disagree">朕拒绝</text>
+            <text catchtap="agree">朕同意</text>
+        </view>
+        <view>相册只能进行一个活动哦</view>
+        <view>要不要关闭当前活动吗？</view>
+    </view>
+</view>
+
+<view class="empty" wx:if="{{!list || list.length == 0}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-empty.png" />
+    <view>Oops！小檬没发现新的活动</view>
+    <view>没关系，亲可以自定义活动哦</view>
+    <view class="empty-btn" catchtap="customizeActivity">自定义活动</view>
+</view>

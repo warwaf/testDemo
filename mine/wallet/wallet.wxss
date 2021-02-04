@@ -1,0 +1,76 @@
+/* pages/mine/wallet/wallet.wxss */
+page{
+    background-color: #F9FAFC;
+}
+.header{
+    margin: 20px 0;
+    text-align: center;
+}
+.header text{
+    color: #999999;
+}
+.header view{
+    font-size: 30px;
+    color: #300202;
+    margin-top: 5px;
+}
+.body{
+    background-color: #FFF;
+    width: 295px;
+    padding: 15px;
+    margin: 20px auto;
+    box-shadow: 0 0 5px #eee;
+    border-radius: 5px;
+}
+.body .top{
+    border-bottom: 1px #D1D9E8 dashed;
+}
+.body .top text{
+    color: #222222;
+    font-size: 14px;
+}
+.body .top view{
+    font-size: 32px;
+    color: #300202;
+    height: 50px;
+    align-items: center;
+    display: flex;
+    margin: 5px 0;
+}
+.body .top input{
+    height: 40PX;
+}
+.body .top input{
+    display: inline-block;
+    font-weight: 600;
+}
+.body .bottom{
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+.body .bottom .btn{
+    width: 285px;
+    height: 44px;
+    border-radius: 22px;
+    background: linear-gradient(#FFE74F,#FFE227);
+    text-align: center;
+    line-height: 44px;
+    margin-bottom: 5px;
+}
+.body .bottom text{
+    font-size: 12px;
+    color: #999999;
+}
+.footer{
+    margin: 50px 25px;
+    color: #9B9B9B;
+    font-size: 13px;
+    line-height: 20px;
+}
+.detail{
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-25px);
+}

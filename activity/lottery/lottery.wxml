@@ -1,0 +1,124 @@
+<view class="bg" style="background-color: {{bgColor}}; background-image: url({{bgUrl}});">
+    <view class="header" style="background-color: {{bgColor}};">
+        <image src="{{headerUrl}}" mode="widthFix"/>
+    </view>
+    <scroll-view class="content-1" scroll-y="true">
+        <view class="top">
+            <view>{{lotteryInfo.hint}}</view>
+            <view>{{lotteryInfo.explain}}</view>
+        </view>
+        <view class="bottom">
+            <block wx:if="{{!lotteryInfo.lotteryList || lotteryInfo.lotteryList.length == 0}}">
+                <view class="items" wx:for="{{lotteryInfo.prizeRuleList}}" wx:key="prizeLevel" wx:if="{{item.prizeNameList}}">
+                    <image wx:if="{{item.prizeLevel == 1}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon10.png" mode="widthFix" />
+                    <image wx:if="{{item.prizeLevel == 2}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon11.png" mode="widthFix" />
+                    <image wx:if="{{item.prizeLevel == 3}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon12.png" mode="widthFix" />
+                    <image wx:if="{{item.prizeLevel == 4}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon13.png" mode="widthFix" />
+                    <view>
+                        <view wx:if="{{item.prizeLevel == 1}}">一等奖（{{item.total}}）</view>
+                        <view wx:if="{{item.prizeLevel == 2}}">二等奖（{{item.total}}）</view>
+                        <view wx:if="{{item.prizeLevel == 3}}">三等奖（{{item.total}}）</view>
+                        <view wx:if="{{item.prizeLevel == 4}}">安慰奖（{{item.total}}）</view>
+                        <view>{{item.prizeNameList}}</view>
+                    </view>
+                </view>
+            </block>
+
+            <view class="table" wx:if="{{lotteryInfo.lotteryList && lotteryInfo.lotteryList.length > 0}}">
+                <view class="row head">
+                    <text>奖项</text>
+                    <text>奖品</text>
+                    <text>昵称</text>
+                </view>
+                <view class="row" wx:for="{{lotteryInfo.lotteryList}}" wx:key="index">
+                    <view wx:if="{{item.prizeLevel == 1}}"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon10.png" mode="widthFix" /> 一等奖</view>
+                    <view wx:if="{{item.prizeLevel == 2}}"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon11.png" mode="widthFix" /> 二等奖</view>
+                    <view wx:if="{{item.prizeLevel == 3}}"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon12.png" mode="widthFix" /> 三等奖</view>
+                    <view wx:if="{{item.prizeLevel == 4}}"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon13.png" mode="widthFix" /> 安慰奖</view>
+                    <text>{{item.prizeName}}</text>
+                    <text>{{item.nickName}}</text>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="content-2">
+        <view class="top">
+            已有<text>{{partners.length}}</text>人参加 
+            <text class="block block-l"></text>
+            <text class="block block-r"></text>
+        </view>
+        <!-- <scroll-view class="bottom" scroll-y="true">
+            <text wx:for="{{partners}}" wx:key="index">{{item.nickName}}</text>
+        </scroll-view> -->
+        <view class="bottom">
+            <barrage data="{{partners}}"></barrage>
+        </view>
+    </view>
+    <view class="footer">
+        <image src="{{footerUrl}}" mode="widthFix"/>
+    </view>
+</view>
+
+<view class="btn {{lotteryInfo.prizeRuleList && partners.length > 1  ? '' : 'disable-btn'}}" wx:if="{{isOwner}}">
+    <view catchtap="toExcute">开奖</view>
+</view>
+
+<view class="mask" wx:if="{{sessionStat}}" catchtap="hideSession">
+    <view class="content" catchtap="stop">
+        <view class="top">
+            <text catchtap="toExcute">取消</text>
+            <text>开奖</text>
+            <text catchtap="excute">确认</text>
+        </view>
+        <view>
+            <view class="items">
+                <text 
+                    catchtap="switchItem" 
+                    data-index="{{index}}" 
+                    class="{{index == selectIndex ? 'active' : ''}} {{item.state == 1 || index == 3 ? 'inactive' : ''}}" 
+                    wx:for="{{lotteryInfo.prizeRuleList}}" 
+                    wx:key="index"
+                >
+                    {{['一等奖','二等奖','三等奖','安慰奖'][item.prizeLevel - 1]}}
+                </text>
+            </view>
+            <view class="desc">数量： <text>{{quantity}}</text></view>
+            <view class="desc">奖品:  <text>{{prize}}</text></view>
+        </view>
+    </view>
+</view>
+
+<view class="mask" wx:if="{{resultStat == 1}}">
+    <view class="loading">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/loading.gif"/>
+    </view>
+</view>
+
+
+<view class="mask" catchtap="hideResult" wx:elif="{{resultStat == 2}}">
+    <view class="result">
+        <view class="top">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon14.png" mode="widthFix" />
+            {{['一等奖','二等奖','三等奖','安慰奖'][selectIndex]}}({{lotteryResult.length}})
+        </view>
+
+        <scroll-view class="bottom" scroll-y="{{true}}">
+            <view class="row" wx:for="{{lotteryResult}}" wx:key="index">
+                <text>{{item.prizeName}}</text>
+                <text>{{item.nickName}}</text>
+            </view>
+        </scroll-view>
+    </view>
+    <image class="close-btn" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon15.png" />
+</view>
+
+<view class="mask-layout" wx:if="{{dialogStat}}" catchtap="disagree">
+    <view class="session">
+        <view>
+            <text catchtap="disagree">取消</text>
+            <text catchtap="agree">确定</text>
+        </view>
+        <view>亲，确定要结束这个活动吗？</view>
+        <view>目前已有{{partners.length}}人参加</view>
+    </view>
+</view>

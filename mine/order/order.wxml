@@ -1,0 +1,55 @@
+<view class="tab">
+    <view class="{{currentIndex == 0 ? 'activated' : ''}}" catchtap="switchTab" data-index="0">全部</view>
+    <view class="{{currentIndex == 1 ? 'activated' : ''}}" catchtap="switchTab" data-index="1">待付款</view>
+    <view class="{{currentIndex == 3 ? 'activated' : ''}}" catchtap="switchTab" data-index="3">进行中</view>
+    <view class="{{currentIndex == 5 ? 'activated' : ''}}" catchtap="switchTab" data-index="5">待收货</view>
+    <view class="{{currentIndex == 4 ? 'activated' : ''}}" catchtap="switchTab" data-index="4">已完成</view>
+</view>
+<scroll-view class="list-case" style="height: {{curHeight}}px;" scroll-x="false" scroll-y="{{true}}" bindscrolltolower="loadData" wx:if="{{list.length > 0}}">    
+    <view class="order-item" wx:for="{{list}}" wx:key="index">
+        <view>
+            <view>订单编号：{{item.OrderNo}}</view>
+            <view wx:if="{{item.OrderType == 1}}" class="status">待付款</view>
+            <!-- <view wx:if="{{item.status == 1}}" class="status">进行中</view> -->
+            <view wx:elif="{{item.OrderType == 3}}" class="status">进行中</view>
+            <!-- <view wx:elif="{{item.OrderType == 1 && item.order_status == 'Producted'}}" class="status">生产完成</view> -->
+            <view wx:elif="{{item.OrderType == 5 }}" class="status">待收货</view>
+            <view wx:elif="{{item.OrderType == 4}}" class="status">已完成</view>
+            <view wx:elif="{{item.OrderType == 7}}" class="status">已取消</view>
+            <!-- <view wx:else class="status">进行中</view> -->
+
+        </view>
+        <view catchtap="toDetail"  data-item="{{item}}" class="info-case">
+            <image class="goods-pic" src="{{item.GoodsList[0].PartUrl ? item.GoodsList[0].PartUrl : 'https://hcmtq.oss-accelerate.aliyuncs.com/logo.png'}}" mode="aspectFill"/>
+            <view class="info">
+                <view>{{item.GoodsList[0].GoodsName}}</view>
+                <view>{{item.GoodsList[0].Spec}}</view>
+                <view>￥{{item.GoodsList[0].SalePrice}}</view>
+            </view>
+        </view>
+        <view class="btn-group">
+            <view catchtap="jumpMessage" wx:if="{{item.OrderOfType == 'P'}}" data-order="{{item.OrderNo}}">行程</view>
+            <view catchtap="showHelp">售后</view>
+            <view wx:if="{{item.OrderType == 3 || item.OrderType == 5}}" 
+                    catchtap="toDetail" 
+                    data-item="{{item}}">查看</view>
+            <view class="appointment" wx:if="{{item.NoteText=='鲜檬云相册0元抢购活动订单'||(item.OrderOfType==='P'&&item.Status!='Created')}}" 
+                    catchtap="toAppointment" 
+                    data-item="{{item}}">预约</view>
+            <view wx:if="{{item.OrderType == 1 || item.Status == 'PartialPaid'}}" 
+                    class="bg-btn" 
+                    catchtap="toDetail" 
+                    data-item="{{item}}">付款</view>
+            <view wx:if="{{item.OrderType == 4 && item.StatusDesc == '未评分'}}" 
+                catchtap="toScore" 
+                data-no="{{item.OrderNo}}" data-type="{{item.OrderOfType}}">评分</view>
+            <!-- <view wx:if="{{item.status == 2 || item.paid_status=='Paid'}}" class="bg-btn">再次购买</view> -->
+        </view>
+    </view>
+</scroll-view>
+<view wx:if="{{ !list || list.length == 0 && !isLoading }}" class="empty">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/order-empty.png" mode="widthFix"/>
+    <view>暂无订单</view>
+</view>
+
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>

@@ -1,0 +1,10 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff",
+    "navigationBarTitleText": "发布作品",
+    "usingComponents": {
+        "protocol": "/components/common/protocol/protocol"
+    }
+}

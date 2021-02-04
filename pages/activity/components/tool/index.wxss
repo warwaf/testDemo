@@ -1,0 +1,210 @@
+.act-tool {
+  position: fixed;
+  bottom: 75px;
+  right: 12px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.act-tool .tool-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #FFF;
+  border: 1px solid#ffe329;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.act-tool .btn-share image {
+  width: 18px;
+  height: 18px;
+  margin: 0 auto;
+  display: block;
+}
+
+.act-tool .tool-btn text {
+  font-size: 12px;
+  color: #240101;
+}
+
+.act-tool .btn-about {
+  background: rgba(255, 226, 40, 1);
+  box-shadow: 0px 4px 12px 0 rgb(217, 159, 0, 0.2)
+}
+
+.act-tool .btn-service {
+  position: relative;
+}
+
+.act-tool .btn-service button {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid#ffe329;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.act-tool .btn-service image {
+  width: 34rpx;
+  height: 34rpx;
+  margin: 0 auto;
+  display: block;
+}
+
+.pop-case {
+  position: relative;
+}
+
+.pop-case .pop-close {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  top: -18rpx;
+  right: -22rpx;
+  z-index: 999;
+}
+
+.about-case,
+.QA-case {
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 15px;
+  padding: 40rpx 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 5%, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 0.5) 95%, rgba(255, 255, 255, 1) 100%);
+}
+
+.about-case .about-img1 {
+  height: 420rpx;
+}
+
+.about-case .about-img2 {
+  height: 600rpx;
+}
+
+.about-case .about-img3 {
+  height: 610rpx;
+}
+
+.about-case .about-img4 {
+  height: 438rpx;
+}
+
+.about-case .about-img5 {
+  height: 612rpx;
+}
+
+.about-case .gradual {
+  position: fixed;
+  top: 0;
+  width: 315px;
+  height: 44px;
+  border-radius: 0 0 15px 15px;
+  background: linear-gradient(rgba(255, 255, 2550, 0), rgba(255, 255, 255));
+  box-sizing: border-box;
+}
+
+.QA-case {
+  color: #231815;
+  padding: 15px 20px;
+  box-sizing: border-box;
+}
+
+.QA-case .Q-case,
+.QA-case .A-case {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  font-size: 13px;
+}
+
+.QA-case .pop-header {
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.QA-case .Q-case {
+  margin-bottom: 8px;
+}
+
+.QA-case .Q-case .label {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  line-height: 16px;
+  border-radius: 2px;
+  text-align: center;
+  background: #FFE228;
+}
+
+.QA-case .A-case {
+  margin-bottom: 20px;
+}
+
+.QA-case .A-case .label {
+  width: 15px;
+  height: 15px;
+  margin-top: 8px;
+  color: #231815;
+  line-height: 15px;
+  text-align: center;
+  background: #F2F2F2;
+  border-radius: 2px 0px 0px 2px;
+}
+
+.QA-case .A-case .content {
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: #F2F2F2;
+}
+
+.QA-case .QA-tips {
+  font-size: 12px;
+  color: #999999;
+}
+
+.share-body {
+  width: 100%;
+  height: 725rpx;
+  padding: 48rpx 85rpx 0;
+  box-sizing: border-box;
+}
+
+.share-footer {
+  margin-top: 73rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.share-footer .btn {
+  width: 120px;
+  height: 40px;
+  font-size: 15px;
+  color: #231815;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 13px 0 rgba(255, 226, 39, 0.71);
+  background: linear-gradient(rgba(255, 223, 17, 1), rgba(255, 226, 39, 1));
+}
+
+.share-footer .btn-share {
+  border: 0 none;
+  margin-right: 15px;
+}

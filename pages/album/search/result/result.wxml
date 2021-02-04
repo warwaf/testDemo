@@ -1,0 +1,37 @@
+<view class="v-result">
+    <view class="v-result-select">
+        <view class="v-result-select-left">
+            <image mode="widthFix" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/arrow.png"></image>
+        </view>
+        <view class="v-list">
+            <view class="v-avatar" wx:for="{{infoList}}" wx:key="index" wx:for-item="item">
+                <image wx:for="{{item}}" 
+                    wx:key="i"
+                    wx:for-item="items"  
+                    mode="aspectFill" 
+                    bindtap="selectItem"
+                    data-info = "{{items}}"
+                    src="{{items.picUrl}}?x-oss-process=image/crop,x_{{items.left-45}},y_{{items.top-45}},w_{{items.width+90}},h_{{items.height+90}}">
+                    <view class="v-avatar-all" wx:if="{{items.type == 'all'}}">全部</view>
+                    <view class="v-avatar-last" wx:if="{{items.type == 'last'}}"></view>
+                    <image wx:if="{{ items.selected }}" class="v-select" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/select@2x.png"></image>
+                </image>
+            </view>
+        </view>
+    </view>
+    <view class="v-result-body">
+        <water 
+            wx:if="{{isShow}}"
+            data="{{photo}}" 
+            water-class="waterfall" 
+            column="2" 
+            bind:clickEvent="showDetail">
+        </water>
+    </view>
+     
+    <loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+</view>
+
+<view class="diy" catchtap="toDiy">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/diy-icon.png"></image>
+</view>

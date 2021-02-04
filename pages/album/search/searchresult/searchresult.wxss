@@ -1,0 +1,71 @@
+/* pages/album/search/searchresult/searchresult.wxss */
+.topBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: relative
+}
+.change{
+    position: absolute;
+    top:10px;
+    right:20px;
+    color: #240101;
+    padding: 10rpx 20rpx;
+    line-height: 40px;
+    height: 40px;
+    width: 68px;
+    text-align: center
+
+}
+.topBox .change>image{
+    position: absolute;
+    right: 0;
+    width: 172rpx;
+    height:40px;
+}
+.topBox image{
+   width:136rpx;
+}
+.imgHeught{
+    width:136rpx;
+    height:136rpx;
+}
+.img{
+    width: 200px;
+}
+.box{
+    display: flex;
+    justify-content:space-between;
+}
+.water-fall-outer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.water-fall-item{
+    width: 100%;
+    position: relative;
+}
+.water-fall-item image{
+    width: 100%;
+}
+canvas{
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 0 20rpx 0;
+    text-align: center
+}
+.intercept{
+    border-radius: 100%;
+    overflow: hidden
+}
+.diy{
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+}
+.diy image{
+    width: 60px;
+    height: 60px;
+}

@@ -1,0 +1,9 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "loading": "/components/common/loading/loading",
+        "tabbar": "/components/common/tabbar/tabbar",
+        "userInfo": "/components/common/userInfo/userInfo",
+        "container": "/components/common/container/index"
+    }
+}

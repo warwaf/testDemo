@@ -1,0 +1,24 @@
+<wxs module="util">
+    module.exports = {
+        calcHeight: function(val){
+            return Math.abs(val - 0.5) * 50 + 80 + 'px'
+        },
+        calcTop: function(val){
+            return 50 - val * 60 + 'px'
+        },
+        formatPercent: function(val){
+            return Number(val).toFixed(2) * 100
+        }
+    }
+</wxs>
+<view class="wave">
+    <image 
+        class="bg"
+        src="http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/845f094058a7475593a955dd1cde28df.png" 
+        style="height: {{util.calcHeight(value)}}; top: {{util.calcTop(value)}}"
+    />
+    <view class="indicator" style="left: {{value >= 1 ? '6px' : '15px'}}">
+        <turntable number="{{util.formatPercent(value)}}" symbol="{{true}}" scale="{{0.3}}" style="margin-left:5px;position: relative;top: -3px;">%</turntable>       
+    </view>
+    <!-- <canvas canvas-id="wave"></canvas> -->
+</view>

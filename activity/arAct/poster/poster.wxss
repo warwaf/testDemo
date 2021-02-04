@@ -1,0 +1,55 @@
+/* activity/arAct/poster/poster.wxss */
+page{
+  height: 100%;
+}
+.poster{
+  background: #f2f2f2;
+  height: 100%;
+}
+.poster_button{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 64px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.poster_content{
+  display: flex;
+  justify-content: center;
+}
+.poster_content_img{
+  width: calc(100% - 26px);
+  height: 504px;
+  margin-top: 13px;
+}
+.icon-case{
+  width: 16px;
+  height: 16px;
+  color: #1A1A1A;
+}
+.poster_button_text{
+  font-size: 12px;
+  font-family: PingFangSC, PingFangSC-Regular;
+  font-weight: 400;
+  text-align: center;
+  color: #666666;
+  margin-top: 4px;
+}
+.poster_button_img{
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 100%;
+  background: #ffd527;
+}
+.qrCode{
+  position: absolute;
+  bottom: 110;
+  left: 42px;
+  width: 80px;
+  height: 80px;
+}

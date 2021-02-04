@@ -1,0 +1,21 @@
+<view class="list">
+    <image wx:for="{{list}}" wx:key="picId" src="{{item.thumbnailUrl2}}" mode="widthFix" bindtap="toDetail" data-index="{{index}}" />
+</view>
+
+<view class="mask" wx:if="{{showTips}}" catchtap="close">
+    <view class="inner" catchtap="none">
+        <view class="p" style="color: #231815;font-weight: bold;">请将<text style="color: #F34E4E;">不喜欢</text>的照片放入回收站</view>
+        <view class="p"><text class="number">1</text> 回收站的照片不会进入生产环节，也不会被分享</view>
+        <view class="p"><text class="number">2</text> 确认提交后才能进入生产环节</view>
+        <view class="btns">
+            <view catchtap="close">知道了</view>
+            <view catchtap="complete">完成确认</view>
+        </view>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon6.png" class="close" catchtap="close"/>
+    </view>
+</view>
+
+<view class="empty" wx:if="{{list.length == 0}}">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/exmper@2x.png" />
+    <view>暂时还没有图片</view>
+</view>

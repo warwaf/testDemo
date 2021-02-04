@@ -1,0 +1,9 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFE329",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "照片搜索",
+  "usingComponents": {
+    "water": "/components/album/waterFall/waterFall"
+  }
+}

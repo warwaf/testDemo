@@ -1,19 +1,10 @@
-// components/v-page/index.js
-import {
-    createComponent, 
-    useChildren,
-    useCustom
-} from "../../reactivity/index"
-
-createComponent({
-    relation: useCustom("v-page"),
+// album/components/v-page/index.js
+import { createComponent } from "../../reactivity/index"
+createComponent()({
     data: {
-        type: "parent"
-    },
-    created() { 
-        console.log("test-b");
+
     },
     methods: {
-        
+
     }
 })

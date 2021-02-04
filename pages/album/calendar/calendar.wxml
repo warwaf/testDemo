@@ -1,0 +1,6 @@
+<water 
+    data="{{photo}}" 
+    column="2" 
+    bind:clickEvent="showDetail">
+    <loading wx:if="{{isLoading}}"></loading>
+</water>

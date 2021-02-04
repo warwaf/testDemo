@@ -1,0 +1,1 @@
+.v-nav{position:fixed;top:0;left:0;right:0;height:45px;line-height:45px;color:#222;text-align:center;z-index:999999;font-size:18px;font-weight:500;display:flex;align-items:center}.v-nav-left{flex:1;text-align:left;padding-left:15px}.v-nav-center{flex:2}.v-nav-right{flex:1}.v-nav .img_wrap{display:table-cell;vertical-align:middle;text-align:center}

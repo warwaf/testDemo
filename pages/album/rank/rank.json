@@ -1,0 +1,10 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "water": "/components/album/waterFall/waterFall",
+        "loading": "/components/common/loading/loading",
+        "tool": "/components/album/tool/tool"
+    }
+}

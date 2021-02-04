@@ -1,0 +1,245 @@
+var isDate = function (date) {
+  return date && date.getMonth;
+};
+
+var isLeapYear = function (year) {
+  //传入为时间格式需要处理
+  if (isDate(year)) year = year.getFullYear()
+  if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) return true;
+  return false;
+};
+
+var getDaysOfMonth = function (date) {
+  var month = date.getMonth(); //注意此处月份要加1，所以我们要减一
+  var year = date.getFullYear();
+  return [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+}
+
+var getBeginDayOfMouth = function (date) {
+  var month = date.getMonth();
+  var year = date.getFullYear();
+  var d = getDate(year, month, 1);
+  return d.getDay();
+}
+
+var getDisplayInfo = function (date) {
+
+  if (!isDate(date)) {
+    date = getDate(date)
+  }
+  var year = date.getFullYear();
+
+  var month = date.getMonth();
+  var d = getDate(year, month);
+
+
+  //这个月一共多少天
+  var days = getDaysOfMonth(d);
+
+  //这个月是星期几开始的
+  var beginWeek = getBeginDayOfMouth(d);
+
+  return {
+    year: year,
+    month: month,
+    days: days,
+    beginWeek: beginWeek
+  }
+};
+
+//分割月之间的展示
+var monthClapFn = function (year, month) {
+  month = month + 1;
+  return year + '年' + (month) + '月';
+};
+
+var dataFormat = function (year, month, day) {
+  month = month + 1;
+  if (month < 10) month = '0' + month;
+  if (day < 10) day = '0' + day;
+  return year + '-' + (month) + '-' + day;
+};
+var getChangedDate1 = function (date, index) {
+  if (!isDate(date)) {
+    date = getDate(date)
+  }
+  var year = date.getFullYear();
+
+  var month = date.getMonth();
+  var changedMonth = month;
+  var yyy = parseInt(month / 12);
+  if (changedMonth > 11) {
+    changedMonth = changedMonth - 12 * yyy;
+  }
+  changedYear = year + yyy;
+  var day = getDate(changedYear, changedMonth);
+  return {
+    str_month: monthClapFn(changedYear, changedMonth),
+    str_date: dataFormat(changedYear, changedMonth, index + 1 - getDisplayInfo(day).beginWeek),
+    date: day,
+    year: changedYear,
+    month: changedMonth
+  };
+}
+var getChangedDate = function (date, index) {
+  if (!isDate(date)) {
+    date = getDate(date)
+  }
+  var year = date.getFullYear();
+
+  var month = date.getMonth();
+  var changedMonth = month;
+  var yyy = parseInt(month / 12);
+  if (changedMonth > 11) {
+    changedMonth = changedMonth - 12 * yyy;
+  }
+  changedYear = year + yyy;
+  var day = getDate(changedYear, changedMonth);
+  return {
+    str_month: monthClapFn(changedYear, changedMonth),
+    str_date: dataFormat(changedYear, changedMonth, index + 1 - getDisplayInfo(day).beginWeek),
+    date: day,
+    year: changedYear,
+    month: changedMonth
+  };
+};
+/**
+ * 高亮选中日期
+ * @param dateList 不可预约日期列表
+ * @param date 当月每日
+ * @param selectedTime 选中日期
+ * @param now 当前日期
+ * @param disDay 当前日期开始计算5天后不可选的最后日期，例：当前日期xxxx年xx月1日，当前值为xxxx年xx月6日，即1~6日不可选
+ * @param deadline 接口返回的截止日期
+ */
+var isSelected = function (dateList, date, selectedTime, now, disDay, deadline) {
+  if (dateList.length < 1) {
+    if (parseInt(date.replace('-', '').replace('-', '')) < parseInt(disDay.replace('-', '').replace('-', '')) || date > deadline) {
+      return ''
+    }
+    if (parseInt(date.replace('-', '').replace('-', '')) == parseInt(selectedTime.replace('-', '').replace('-', ''))) {
+      return 'active'
+    }
+    return '';
+  } else {
+    if (date.length > 0) {
+      for (var i = 0; i < dateList.length; ++i) {
+        if (dateList[i] == date) {
+          return ''
+        }
+      }
+    }
+    if (parseInt(date.replace('-', '').replace('-', '')) < parseInt(disDay.replace('-', '').replace('-', '')) || date > deadline) {
+      return ''
+    }
+    if (parseInt(date.replace('-', '').replace('-', '')) == parseInt(selectedTime.replace('-', '').replace('-', ''))) {
+      return 'active'
+    }
+    return '';
+  }
+};
+/**
+ * 控制不可选日期
+ * @param dateList 不可预约日期列表
+ * @param date 当月每日
+ * @param now 当前日期
+ * @param disDay 当前日期开始计算5天后不可选的最后日期，例：当前日期xxxx年xx月1日，当前值为xxxx年xx月6日，即1~6日不可选
+ * @param deadline 接口返回的截止日期
+ */
+var isDisable = function (dateList, date, now, disDay, deadline) {
+  if (dateList.length > 0) {
+    for (var i = 0; i < dateList.length; ++i) {
+      if (dateList[i] == date) {
+        return 'disable'
+      }
+    }
+    // 此处为disDay逻辑
+    if ((parseInt(date.replace('-', '').replace('-', '')) <= parseInt(disDay.replace('-', '').replace('-', '')) && date != now) || (deadline && date > deadline)) {
+      return 'disable'
+    }
+    if (date == now) {
+      return 'today'
+    }
+  } else {
+    if (parseInt(date.replace('-', '').replace('-', '')) <= parseInt(disDay.replace('-', '').replace('-', '')) && date != now || date > deadline) {
+      return 'disable'
+    }
+    if (parseInt(date.replace('-', '').replace('-', '')) < parseInt(now.replace('-', '').replace('-', '')) || (deadline && date > deadline)) {
+      return 'disable'
+    }
+    if (date == now) {
+      return 'today'
+    }
+    return 'enabled'
+  }
+}
+
+var formatNum = function (n) {
+  if (n < 10) return '0' + n;
+  return n;
+};
+
+var getDayName = function (dayMap, month, day) {
+  if (!dayMap) {
+    dayMap = {
+      /* '0101': '元旦节',
+       '0214': '情人节',
+       '0501': '劳动节',
+       '0601': '儿童节',
+       '0910': '教师节',
+       '1001': '国庆节',
+       '1225': '圣诞节' */
+    };
+  }
+
+  var name = formatNum(parseInt(month) + 1) + formatNum(day);
+
+  return dayMap[name] || day;
+};
+/**
+ * 当前日期状态转换
+ * @param dateList 不可预约日期列表
+ * @param type 无使用
+ * @param newDate 当月每日
+ * @param now 当前日期
+ * @param disDay 当前日期开始计算5天后不可选的最后日期，例：当前日期xxxx年xx月1日，当前值为xxxx年xx月6日，即1~6日不可选
+ * @param deadline 接口返回的截止日期
+ */
+var getStatus = function (dateList, type, newDate, now, disDay, deadline) {
+  if (dateList.length != 0) {
+    for (var i = 0; i < dateList.length; ++i) {
+      if (dateList[i] == newDate) {
+        return '约满'
+      }
+    }
+    // 此处为disDay逻辑
+    if (parseInt(newDate.replace('-', '').replace('-', '')) <= parseInt(disDay.replace('-', '').replace('-', '')) && newDate != now) {
+      return '约满'
+    }
+    if (newDate == now || (deadline && newDate > deadline)) {
+      return "约满"
+    }
+    return '可约'
+  } else {
+    // 此处为disDay逻辑
+    if (parseInt(newDate.replace('-', '').replace('-', '')) <= parseInt(disDay.replace('-', '').replace('-', '')) && newDate != now) {
+      return '约满'
+    }
+    if ((parseInt(newDate.replace('-', '').replace('-', '')) < parseInt(now.replace('-', '').replace('-', '')) && newDate != now) || (deadline && newDate > deadline)) {
+      return '约满'
+    }
+    if (newDate == now || (deadline && newDate > deadline)) {
+      return "约满"
+    }
+    return '可约'
+  }
+}
+module.exports = {
+  getChangedDate1: getChangedDate1,
+  getDipalyInfo: getDisplayInfo,
+  getChangedDate: getChangedDate,
+  isSelected: isSelected,
+  isDisable: isDisable,
+  getDayName: getDayName,
+  getStatus: getStatus
+}

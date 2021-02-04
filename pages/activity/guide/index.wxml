@@ -1,0 +1,18 @@
+<!-- pages/activity/guide/index.vue.wxml -->
+<view class="full-screen">
+	<view class="inner" wx:if="{{showTA == 1}}">
+		<!-- <image class="screen-pic" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200906/home-maskimg.png"></image> -->
+		<image class="screen-pic" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20201113/home-masking.jpg"></image>
+		<!-- <view class="btn-singup" catch:tap="toSeckillHome">去报名</view> -->
+		<image class="screen-close" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/white-close.png" catch:tap="toHome"></image>
+	</view>
+	<view class="inner parallel" wx:if="{{showTA == 2}}">
+		<image class="screen-pic" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/seckill_ta/guide_sy.jpg" catch:tap="toActivity" data-code="sy"></image>
+		<image class="screen-pic" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/seckill_ta/guide_ta.jpg" catch:tap="toActivity" data-code="ta"></image>
+		<image class="screen-close" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/white-close.png" catch:tap="toHome"></image>
+	</view>
+	<view  class="inner" wx:if="{{showTA == 3}}">
+		<image class="screen-pic" src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/dominating_screen.png" catch:tap='toNewYear'></image>
+		<image class="screen-close" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/white-close.png" catch:tap="toHome"></image>
+	</view>
+</view>

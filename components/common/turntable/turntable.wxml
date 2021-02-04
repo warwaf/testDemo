@@ -1,0 +1,15 @@
+<wxs module="util">
+    var GetScollTop = function(num,scale){
+        return -(num * 85 * scale)
+    }
+    module.exports = {
+        getScollTop:GetScollTop
+    }
+</wxs>
+
+<view class="turntable" style="height: {{scale * 44}}px">
+    <image wx:for="{{list}}" wx:for-item="item" wx:key="index" class="img"
+            src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/number.png" 
+            mode="widthFix" style="width:{{scale * 30}}px;transform: translateY({{util.getScollTop(item,scale)}}px);"></image>
+    <view wx:if="{{symbol}}" class="symbol" style="left: {{list.length * 12}}px;">%</view>
+</view>

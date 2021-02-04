@@ -1,0 +1,152 @@
+<wxs module="filter" src="../../../utils/util.wxs"></wxs>
+<view class="setting" >
+    <view class="header">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+        相册成员 ({{total}}人)
+        
+    </view>
+
+    <view class="members">
+        <button open-type="share" class="share-btn"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/setting-add.png" mode="widthFix" /></button>
+        <view class="share-btn" catchtap="toRemove" wx:if="{{isAuthor && total > 1}}"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-remove.png" mode="widthFix"/></view>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/ring.png" class="ring" style="left: {{isAuthor && total > 1 ? 'calc(35vw + 16px)' : 'calc(20vw + 16px)'}};"/>
+        <image data-id="{{item.unionId}}" catchtap='toPersonal' src="{{item.avatarUrl}}" wx:for="{{members}}" wx:key="index" style="border:{{index == 0 ? '1px solid #FFE227' : ''}}"/>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/setting-more.png" wx:if="{{total > 15}}" catchtap="showMore"/>
+    </view>
+
+    <!-- 只有当前相册拥有者才能修改以下配置 -->
+    <view wx:if="{{isAuthor}}">
+        <view class="header">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+            相册管理
+        </view>
+        <view class="row bb" wx:if="{{!fromBeauty}}">
+            所有人都可传图
+            <switch checked="{{roomInfo.powerType == 1}}" bindchange="changeUploadPermission" />
+        </view>
+        <view class="row">
+            相册密钥
+            <switch checked="{{passwordStat}}" bindchange="enablePassword" />
+        </view>
+        <view class="title" bindtap='showPassword'>
+            <text>{{roomInfo.password ? roomInfo.password : '当前未设置密码'}}</text>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/modify.png"></image>
+        </view>
+        <view class="row bb" wx:if="{{!fromBeauty && roomInfo.activityStyle == 10}}" catchtap="toActivity">
+            相册活动
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/modify.png" />
+        </view>
+        <view class="row bb" wx:if="{{roomInfo.activityStyle == 10}}" catchtap="setWatermark">
+            照片水印
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/modify.png" />
+        </view>
+        <view class="row bb" catchtap="setGroup">
+            照片分组
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/modify.png" />
+        </view>
+        <view class="header" catchtap="toPoster" wx:if="{{roomInfo.activityStyle == 10}}">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+            弹窗
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/modify.png" class="icon"></image>
+        </view>
+        <view class="header mt20">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+            相册标题
+        </view>
+        <view class="title" bindtap='showTitle'>
+            <text>{{roomInfo.activityName}}</text>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/modify.png"></image>
+        </view>
+        <view class="header mt20">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+            相册封面
+        </view>
+        <view class="banner" bindtap='toChangeBanner'>  
+            <image src="{{roomInfo.bannerImg}}" mode="widthFix"></image>
+            <view>
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/modify.png"></image> 更换封面
+            </view>
+        </view>
+    </view>
+
+    <view class="btn" bindtap='submit'>
+        保存
+    </view>
+
+    <view class="btn quit-btn" bindtap="quit">
+        删除
+    </view>
+</view>
+
+<view class="password-mask" wx:if="{{passwordSession}}" catchtap="closePasswordSession">
+    <view catchtap="stop">
+        <view class="session-header">
+            <text catchtap='closePasswordSession'>取消</text>
+            <text>设置相册密钥</text>
+            <text catchtap='completeChange'>完成</text>
+        </view>
+        <view class="session-body">
+            <input focus="{{true}}" maxlength="6" type="text" placeholder="最多输入6位（数字或字母）" bindinput="bindPasswordInput"/>
+        </view>
+    </view>
+</view>
+
+<view class="layout" wx:if="{{titleStat}}" bindtap='cancleTitle'>
+    <view class="titleStat" catchtap="stop">
+        <view class="top">
+            <text class="cancle" catchtap='cancleTitle'>取消</text>
+            <text wx:if="{{titleStat === 1 || titleStat === 3}}">相册标题</text>
+            <text wx:if="{{titleStat === 2}}">提示</text>
+            <text class="comfirm" wx:if="{{titleStat === 1}}" catchtap='changeTitle'>确定</text>
+            <text wx:if="{{titleStat === 2}}"></text>
+            <text class="comfirm" wx:if="{{titleStat === 3}}" catchtap='complete'>完成</text>
+        </view>
+        <view class="input" wx:if="{{titleStat === 1}}">
+            <input value="{{roomInfo.activityName}}" bindinput='bindKeyInput'></input>
+        </view>
+        <view class="tips" wx:if="{{titleStat === 2}}">
+            <view>内容包含敏感词汇，请修改后重新提交</view>
+            <view class="comfirm-btn" catchtap='reFill'>确认</view>
+        </view>
+        <view class="tips" wx:if="{{titleStat === 3}}">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/hook.png" mode="widthFix"></image>
+            <view>已经更换成 <text class="comfirm">{{activity_name}}</text></view>
+        </view>
+    </view>
+</view>
+
+<view class="banner-layout" wx:if="{{bannerStat}}" wx:key="index"  style='margin-top:{{navigationHeight}}px'>
+    <view class="header">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+        当前封面
+    </view>
+
+    <view class="banner">
+        <image src="{{roomInfo.bannerImg}}" mode="widthFix" ></image>
+    </view>
+
+    <view class="header">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+        选择其他系统封面
+    </view>
+
+    <view class="banner-list">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/add-album-banner.png" catchtap='selectImageFromAlbum'></image>
+        <image src="{{item}}" mode="aspectFill" wx:for="{{bannerList}}" catchtap='changeBanner' data-index="{{index}}" wx:key="index"></image>
+    </view>
+</view>
+
+<view class='tipBox' wx:if="{{error}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>图片涉及违规信息，请修改后重新提交</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+
+<canvas class="v-compress"  canvas-id="compress"></canvas>

@@ -1,0 +1,372 @@
+/* pages/activity/seckilling/index.wxss */
+.seckilling{
+    background-color: rgb(247, 247, 247);
+}
+/* 顶部公告 */
+.seckilling .seckilling_title{
+    height:40px;
+    width: 100%;
+    background:rgba(255,245,178,1);
+    line-height: 40px;
+    padding-left: 15px;
+    font-size: 26rpx;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(255,89,6,1);
+    position: fixed;
+    z-index: 99;
+}
+.seckilling_title .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+}
+.seckilling_title .scrolltxt{
+    background:#f8f8f8;
+}
+.seckilling_title .marquee_box {
+    position:relative;
+    height:80rpx;
+    display:block;
+    overflow:hidden;
+} 
+.seckilling_title .marquee_text {
+    white-space: nowrap;
+    position:absolute;
+    top:0;
+    font-size:14px;
+    height:80rpx;
+    line-height:80rpx;
+    background:rgba(255,245,178,1);
+}
+/* 秒杀----开始 */
+.seckilling_img1{
+    padding: 16px 0;
+    position: relative;
+    text-align: center;
+    background: rgb(255, 255, 255);
+}
+.seckilling_img1 .seckilling_img1_takeplace{
+    background: rgb(226, 129, 145);
+    width: calc(100% - 350rpx);
+    height: 60rpx;
+    line-height: 60rpx;
+    border-radius: 30rpx;
+    margin: 30rpx auto 0;
+}
+.seckilling_img1 .seckilling_img1_killing_second{
+    background-color: rgb(226, 129, 145);
+}
+/* 倒计时 */
+.seckilling_countdown{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 90px;
+    width: 100%;
+}
+.seckilling_countdown>view{
+    font-size:28rpx;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(83,35,22,1);
+}
+.seckilling .seckilling_countdown_text1,.seckilling .seckilling_countdown_text2{
+    line-height: 18px;
+}
+.seckilling .seckilling_countdown_text3{
+    margin-top: 4px;
+    line-height:22px;
+}
+.seckilling .seckilling_img1 image{
+    width: 690rpx;
+    height: 630rpx;
+}
+.seckilling .seckilling_img1_immediatelyKill{
+    width: calc(100% - 30px);
+    background:rgba(255,226,40,1);
+    border-radius:49px;
+    height: 49px;
+    border: none;
+    margin-top: 10px;
+}
+.seckilling_img1_immediatelyKill::after{
+    border: none;
+}
+/* 图片一 */
+.seckilling_img2{
+    /* margin-top: 15px; */
+    background: #fff;
+    height: 100%;
+}
+.seckilling_img2 .img2_swiper{
+    /* height: 612rpx; */
+    height: 670rpx;
+    text-align: center;
+    padding-bottom: 10px;
+    width: calc(100% - 60rpx);
+    margin: 0 auto;
+}
+.seckilling_img2 .img2_swiper .swiper-item{
+    width: 690rpx;
+    height: 612rpx;
+    border-radius:20rpx;
+}
+.seckilling_img2 .img2_set_meal{
+    padding: 30rpx;
+    height:67rpx;
+    font-size:48rpx;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight:500;
+    color:rgba(0,0,0,1);
+    line-height:67rpx;
+    position: relative;
+    padding-left: 20rpx;
+    margin-left: 30rpx;
+}
+.seckilling_img2 .img2_set_meal::before{
+    content: '';
+    width: 6rpx;
+    position: absolute;
+    left: 0;
+    height:48rpx;
+    top: 50%;
+    transform: translateY(-50%);
+    background:rgba(0,0,0,1);
+}
+/* 图片二 */
+.seckilling_img3{
+    margin-top: 30rpx;
+}
+.seckilling_img3 image{
+    width: 100%;
+    display: block;
+}
+.seckilling_img3 image:nth-child(1) {
+    height: 590rpx;
+}
+.seckilling_img3 image:nth-child(2) {
+    height: 1038rpx;
+}
+.seckilling_img3 image:nth-child(3) {
+    height: 522rpx;
+}
+.seckilling_img3 image:nth-child(4) {
+    height: 680rpx;
+}
+.seckilling_img3 image:nth-child(5) {
+    height: 798rpx;
+}
+/* 轮播四 */
+.seckilling_img4 .img2_swiper-item .swiper-item{
+    height: 460rpx;
+}
+.seckilling_img4 .img2_swiper{
+    height: 514rpx;
+    width: calc(100% - 60rpx);
+    margin: 0 auto;
+}
+.seckilling_position{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height:110rpx;
+    line-height: 110rpx;
+    background:rgba(255,255,255,1);
+    box-shadow:0px -4px 8px 0px rgba(0,0,0,0.04);
+}
+.seckilling_position button{
+    width: calc(100% - 30px);
+    background:rgba(255,226,40,1);
+    border-radius:49px;
+    height: 88rpx;
+    border: none;
+    margin-top: 11rpx;
+}
+.seckilling_position button::after{
+    border: none;
+}
+.placeholder{
+    height: 110rpx;
+}
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+/* 验证 */
+.verification_info{
+    position: fixed;
+    width: calc(100% - 120px);
+    height:390rpx;
+    background:rgba(255,255,255,1);
+    border-radius:20px;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 30px;
+}
+.verification{
+    display: block;
+}
+.verification_info .info_text{
+    margin: 64rpx 0 30rpx 0;
+    font-size:28rpx;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+}
+.verification_info .info_graphics{
+    margin-bottom: 60rpx;
+}
+.verification_info .info_input{
+    height:80rpx;
+    background:rgba(242,242,242,1);
+    border-radius:12rpx;
+    padding: 0 20rpx;
+    width: calc(100% - 90px);
+    margin-right: 10rpx;
+}
+.verification_info .info_img{
+    width: 44rpx;
+    height: 44rpx;
+    position: absolute;
+    right: -11rpx;
+    top: -11rpx;
+}
+.verification_model{
+    background: rgb(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 998;
+}
+.verification_info .info_graphics{
+    display: flex;
+    align-items: center;
+}
+.canvas{
+    width: 160rpx;
+    height: 70rpx;
+    text-align: center;
+    border: 1rpx solid rgba(216,216,216,0.5);
+    display: block;
+  }
+  .verificationColor{
+      display: none;
+  }
+  /* 活动还没开始按钮样式 */
+  .disabledButton{
+    background: #FFF3A9;
+    color: #BDB07B;
+  }
+  /* 验证后提交按钮 */
+  .verifyTheSubmit{
+    height:88rpx;
+    background:rgba(255,226,40,1);
+    border-radius:44rpx;
+    line-height: 88rpx;
+    font-size:32rpx;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight:500;
+    color:rgba(35,24,21,1);
+  }
+  .verifyTheSubmit::after{
+      border: none;
+  }
+  .seckilling_success{
+      margin-top: 136rpx;
+      background: #fff;
+  }
+  .seckilling_success image{
+    width: 100%;
+    height: 960rpx;
+    margin-bottom: 26rpx;
+  }
+  .seckilling_success button{
+      width: calc(100% - 60px);
+      height:88rpx;
+        background:rgba(255,226,40,1);
+        border-radius:44rpx;
+        line-height: 88rpx;
+        font-size:32rpx;
+        font-family:PingFangSC-Medium,PingFang SC;
+        font-weight:500;
+        color:rgba(36,1,1,1)
+  }
+  .seckilling_success button::after{
+      border: none;
+  }
+  .countdown_sfm{
+    width:54rpx;
+    height:50rpx;
+    background:rgba(255,255,255,1);
+    border-radius:4px;
+    font-size:28rpx;
+    line-height: 50rpx;
+    text-align: center;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight:500;
+    color:rgba(83,35,22,1);
+    display: inline-block;
+  }
+  .countdown_M{
+    font-size:28rpx;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(83,35,22,1);
+    margin:0 8rpx;
+  }
+  /* 秒杀提醒按钮 */
+  .secondsKillRemind{
+    width:220rpx;
+    height:48rpx;
+    background:rgba(255,255,255,1);
+    line-height: 48rpx;
+    border-radius:31rpx;
+    font-size:22rpx;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight:500;
+    color:rgba(255,89,6,1);
+    padding: 0;
+    margin-top: 16rpx;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+  }
+  .secondsKillRemind>image{
+      width: 40rpx !important;
+      height: 38rpx !important;
+      vertical-align: sub;
+      margin-left: 10rpx;
+  }
+  .stateInQueue_info{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .stateInQueue_info>view{
+      text-align: center;
+  }
+  .stateInQueue_info image:nth-child(2){
+      width: 117rpx;
+      height: 146rpx;
+  }
+  .stateInQueue_info .info_text{
+      margin: 0;
+      margin-top: 40rpx;
+      font-size:32rpx;
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+        color:rgba(35,24,21,1);
+  }

@@ -1,0 +1,79 @@
+<scroll-view scroll-x="{{true}}" class="scenes">
+    <view class="scene" wx:for="{{data}}" wx:key="name">
+        <image src="{{item.pics[0].thumbnailUrl}}" catchtap="switchScene" data-index="{{index}}"></image>
+        <view class="{{curIndex == index ? 'active' : ''}} name">{{item.name}}</view>
+        <view class="arrow" wx:if="{{curIndex == index}}"></view>
+    </view>
+</scroll-view>
+
+<view class="body">
+    <view class="header">
+        <view>照片数: {{data[curIndex].pics.length}}</view>
+        <view>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-menu-2.png" mode="widthFix" bindtap="toSetting"/>
+        </view>
+    </view>
+    <view class="waterfall clear">
+        <view class="waterfall-item" wx:for="{{data[curIndex].pics}}" wx:key="picId">
+            <image src="{{item.picUrl}}?x-oss-process=image/resize,w_400/auto-orient,1" mode="aspectFill" catchtap="showDetail" data-index="{{index}}" />
+            <view class="parise">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon1.png" />
+                <text>{{item.praiseCount}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="tools" wx:if="{{!fromShare && isAuthor && false}}">
+    <!-- <button class="icon" open-type="contact" bindcontact="handleContact">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon4.png" />
+    </button> -->
+    <view class="icon" catchtap="toRecycle">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon2.png" />
+    </view>
+    <view class="icon" catchtap="toAr">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/ar@2x.png" />
+    </view>
+    <view class="icon" catchtap="toShare">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/share.png"></image>
+    </view>
+    <!-- <button open-type="share" hover-class="none">
+        <view class="wechat"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/share.png" ></image></view>
+    </button> -->
+</view>
+
+<view class="btn" catchtap="toFilm">查看设计片</view>
+
+<view class="mask" wx:if="{{showShare}}" catchtap="closeMask">
+    <view class="inner" catchtap="stop">
+        <view class="h" style="color: #240101; font-size: 15px;">请选择分享内容</view>
+        <view class="option" catchtap="changOption" data-index="0">
+            <view class="c {{optionIndex == 0 ? 'active' : ''}}"> <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" wx:if="{{optionIndex == 0}}" /> </view> 分享全部照片
+        </view>
+        <view class="option" catchtap="changOption" data-index="1">
+            <view class="c {{optionIndex == 1 ? 'active' : ''}}"> <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" wx:if="{{optionIndex == 1}}"/> </view> 只分享设计片
+        </view>
+        <button open-type="share" hover-class="none" class="btn">确定</button>
+    </view>
+</view>
+
+<view class="empty" wx:if="{{isEmpty}}" catchtap="stop">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/exmper@2x.png" />
+    <view>Ahh！美照还在路上哦</view>
+    <!-- <view catchtap="appointment" class="empty_btn" style="margin-top: 25px;">预约排期</view> -->
+    <view catchtap="arrange" class="empty_btn">行程安排</view>
+    <!-- <button class="cs" open-type="contact" bindcontact="handleContact">联系客服</button> -->
+</view>
+
+
+<view class='tipBox' wx:if="{{isShow}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>你已经预约 {{reservateDate}} 日的排期</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>

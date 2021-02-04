@@ -1,46 +1,183 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"autoAudits": false,
-		"coverView": true,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.14.4",
-	"appid": "wx7dd1e65f8351cbc6",
-	"projectname": "TestDemo",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": []
-		}
-	}
+    "description": "项目配置文件",
+    "packOptions": {
+        "ignore": []
+    },
+    "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": true,
+        "coverView": true,
+        "nodeModules": false,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": false,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": false,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "bundle": false,
+        "useIsolateContext": true,
+        "useCompilerModule": false,
+        "userConfirmedUseCompilerModuleSwitch": false,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true
+    },
+    "compileType": "miniprogram",
+    "libVersion": "2.14.0",
+    "appid": "wx059f9118f045da79",
+    "projectname": "HC-MTQ-FE",
+    "debugOptions": {
+        "hidedInDevtools": []
+    },
+    "scripts": {},
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "condition": {
+        "search": {
+            "list": []
+        },
+        "conversation": {
+            "list": []
+        },
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "id": 0,
+                    "name": "home",
+                    "pathName": "pages/album/home/home",
+                    "query": "room_no=hc-f-659357&fromShare=1",
+                    "scene": 1011
+                },
+                {
+                    "id": 1,
+                    "name": "checkin",
+                    "pathName": "pages/album/checkin/checkin",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": 2,
+                    "name": "share",
+                    "pathName": "pages/album/share/share",
+                    "query": "room_no=hc-f-477324&image=3772367582724d70891c8dadf53f9b98.jpg",
+                    "scene": null
+                },
+                {
+                    "id": 3,
+                    "name": "看美照（首页）",
+                    "pathName": "pages/album/beauty/home",
+                    "query": "room_no=hc-f-937549",
+                    "scene": null
+                },
+                {
+                    "id": 4,
+                    "name": "人脸搜索结果",
+                    "pathName": "pages/album/search/searchresult/searchresult",
+                    "query": "activityId=hc-f-200930&groupFaceId=058f8970-3932-41f5-9358-b34cdcf9440c",
+                    "scene": null
+                },
+                {
+                    "id": 5,
+                    "name": "确认订单",
+                    "pathName": "pages/album/diy/order/order",
+                    "query": "job_id=W0056867920190529",
+                    "scene": null
+                },
+                {
+                    "id": 6,
+                    "name": "预约摄影师",
+                    "pathName": "pages/album/subscribe/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": 7,
+                    "name": "看美照--产品列表",
+                    "pathName": "beauty/pages/products/products",
+                    "query": "activityId=hc-f-937549",
+                    "scene": 1011
+                },
+                {
+                    "id": 8,
+                    "name": "看美照--产品详情",
+                    "pathName": "beauty/pages/product/product",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": 9,
+                    "name": "看美照--照片详情",
+                    "pathName": "beauty/pages/photo/photo",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": 10,
+                    "name": "拼图2",
+                    "pathName": "pages/common/puzzle2/puzzle2",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": 11,
+                    "name": "发现详情",
+                    "pathName": "pages/discovery/detail/detail",
+                    "query": "id=416&unionId=oYnHqs2aqkQE28GRBnTDMK-jfk7s&fromShare=1",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/album/newBeauty/newBeauty",
+                    "pathName": "pages/album/newBeauty/newBeauty",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/album/newBeauty/newBeauty",
+                    "pathName": "pages/album/newBeauty/newBeauty",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/album/home/button/button",
+                    "pathName": "pages/album/home/button/button",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "新测试",
+                    "pathName": "album/home/index",
+                    "scene": null
+                }
+            ]
+        }
+    }
 }

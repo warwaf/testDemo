@@ -1,0 +1,22 @@
+<wxs module="util" src="../../../utils/util.wxs"></wxs>
+
+<view class="title">
+    <view class="now-city">当前城市：{{currentCity}}</view>
+    <!-- <view>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png" />
+        <text>热门城市</text>
+    </view> -->
+</view>
+<view class="hot" wx:if="{{false}}">
+    <view class="item {{item.name == currentCity ? 'active' : ''}}" wx:for="{{hotList}}" wx:key="name" catchtap="selectHandler" data-city="{{item}}">
+        {{item.name}}
+    </view>
+</view>
+<view class="city-list">
+    <view class="list-item" wx:for="{{cityList}}" wx:key="name" >
+        <view class="first">{{util.toLocaleUpperCase(item.firstChar)}}</view>
+        <view class="name" wx:key="index" wx:for="{{item.areas}}" wx:key="index" wx:for-item="el" catchtap="selectHandler" data-city="{{el}}">
+            {{el}}
+        </view>
+    </view>
+</view>

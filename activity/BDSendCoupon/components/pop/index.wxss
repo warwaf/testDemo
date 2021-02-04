@@ -1,0 +1,60 @@
+.mask {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1999;
+}
+
+.mask image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mask .inner {
+  width: 90%;
+  height: 100%;
+  border-radius: 15px;
+  background-color: #fff;
+  color: #240101;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.mask .inner .header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -16px;
+  position: relative;
+}
+
+.mask .inner .body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.mask .inner .footer {
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.mask .inner .close {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  bottom: -54px;
+}

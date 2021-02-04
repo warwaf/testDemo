@@ -1,0 +1,9 @@
+<template name="waterfall">
+    <b-waterfall id="vWaterfall"></b-waterfall>
+</template>
+<template name="topTools">
+    <b-topTools id="VTopTools" props="{{props}}"></b-topTools>
+</template>
+<template name="leftTools">
+    <b-leftTools id="VTopTools" props="{{props}}"></b-leftTools>
+</template>

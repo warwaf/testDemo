@@ -1,0 +1,16 @@
+<!--album/home/index.wxml-->
+<import src="../templates/v-components.wxml" />
+<v-page id="vPage">
+    <block wx:for="{{backgroundList}}" wx:key="index">
+        <template is="{{item.type}}" data="{{ ...{ props: item.props } }}"></template>
+    </block>
+    <block wx:for="{{coreList}}" wx:key="index">
+        <template is="{{item.type}}" data="{{ ...{ props: item.props } }}"></template>
+    </block>
+    <block wx:for="{{toolList}}" wx:key="index">
+        <template is="{{item.type}}" data="{{ ...{ props: item.props } }}"></template>
+    </block>
+    <block wx:for="{{alertList}}" wx:key="index">
+        <template is="{{item.type}}" data="{{ ...{ props: item.props } }}"></template>
+    </block>
+</v-page>

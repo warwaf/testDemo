@@ -1,0 +1,18 @@
+<view class="poster">
+  <!-- <image src="http://tmp/wx5030c4b2c3c30e86.o6zAJs-KINIxzXd4-xtYEYUnC48g.7m701b09j1aT70e853ffd2ccd26221b9a008e2b70f78.png"></image> -->
+  <wxml-to-canvas class="widget" width="{{width}}" height="{{height}}"></wxml-to-canvas>
+  <!-- <view class="poster_content">
+    <image class="poster_content_img" src="../images/activityQrcode.png"></image>
+    <image class="qrCode" src="../images/circle.png"></image>
+  </view> -->
+  <view class="poster_button" bindtap="extraImage">
+    <view style="text-align: -webkit-center;">
+      <view class="poster_button_img" canvas-id='testCanvas'>
+        <image class="icon-case" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.7.3/download.png"></image>
+      </view>
+      <view class="poster_button_text">保存至本地</view>
+    </view>
+  </view>
+</view>
+
+<loading text="Yoo-hoo! 奋力加载中~~" wx:if="{{isLoading}}"></loading>

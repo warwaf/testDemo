@@ -1,0 +1,45 @@
+<wxs src="./calendar.wxs" module="util"></wxs>
+
+<view class="cm-calendar" style="display: {{isShow}};">
+	<view class="cm-month ex-class">
+		{{util.getChangedDate(displayTime).str_month }}
+		<view class="right" bind:tap="next">
+			<image class="img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/arrow-right-1.png"></image>
+		</view>
+		<view class="left" bind:tap="last" data-changedate="{{util.getChangedDate(displayTime)}}">
+			<image class="img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/arrow-right-1.png"></image>
+		</view>
+	</view>
+	<view class="cm-calendar-hd ">
+		<block wx:for="{{weekDayArr}}" wx:key="weekDayKey">
+			<view class="item">{{item}}</view>
+		</block>
+	</view>
+
+	<block wx:for="{{displayMonthNum}}" wx:for-index="i" wx:key="t">
+		<view class="cm-calendar-bd ">
+			<view class="cm-day-list">
+				<block wx:key="tt" wx:for="{{util.getDipalyInfo(util.getChangedDate(displayTime,0).date).days + util.getDipalyInfo(util.getChangedDate(displayTime,0).date).beginWeek}}" wx:for-index="index">
+					<view wx:if="{{index < util.getDipalyInfo(util.getChangedDate(displayTime,index).date).beginWeek }}" class="item "></view>
+
+					<view bindtap="onDayTap" wx:else data-date="{{util.getChangedDate1(displayTime,index).str_date}}" data-disable="{{util.isDisable(dateList, util.getChangedDate1(displayTime, index).str_date, now, disDay, deadline)}}" class="item {{util.isDisable(dateList, util.getChangedDate1(displayTime, index).str_date, now, disDay, deadline)}} {{util.isSelected(dateList, util.getChangedDate1(displayTime, index).str_date, selectedDate, now, disDay, deadline)}}">
+
+						<!-- <view class="view cm-field-top cm-field-top-full" wx:if="{{!util.getStatus(dateList,typeList,util.getChangedDate1(displayTime,index).str_date)}}">预约</view>
+						<view class="view cm-field-top" wx:else>{{util.getStatus(dateList,typeList,util.getChangedDate1(displayTime,index).str_date)}}</view> -->
+						<view class="cm-field-status">{{util.getStatus(dateList, typeList, util.getChangedDate1(displayTime,index).str_date, now, disDay, deadline)}}</view>
+						<view class="view cm-field-title">
+							{{util.getDayName(dayMap, util.getChangedDate(displayTime,index).month, index + 1 - util.getDipalyInfo(util.getChangedDate(displayTime,index).date).beginWeek) }}
+						</view>
+						<!-- <view class="cm-field-bottom">
+							<image style="width:14px;" mode="widthFix" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/right@2x.png"></image>
+						</view> -->
+					</view>
+				</block>
+				<view class="cm-item--clear ">
+				</view>
+			</view>
+		</view>
+
+	</block>
+
+</view>

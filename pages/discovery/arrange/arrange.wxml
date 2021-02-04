@@ -1,0 +1,15 @@
+<view>
+    <view class="header">
+        <view>有{{products.length}}个产品哦</view>
+        <view bindtap="toRecord">预约历史</view>
+    </view>
+    <view wx:for="{{products}}" class="pro-item" wx:key="index" bindtap="jump" data-index="{{index}}">
+        <image src="{{item.catalogUrl}}" />
+        <view class="mask"></view>
+        <view class="content">
+            <view>{{item.catalogNoName}}</view>
+            <view>￥{{item.listPrice}}</view>
+            <view><image src="/resources/discover-index-2.png" /> {{item.customerName}}</view>
+        </view>
+    </view>
+</view>

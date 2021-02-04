@@ -1,0 +1,22 @@
+<camera device-position="back"  flash="off" binderror="error" style="width: 100%; height:100vh" >
+  <cover-view class="activity-btn" wx:if='{{!isNewYearActOver}}'>
+    <cover-image bindtap='toActivityDetail' class='activity-img' mode='widthFix' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/tiyanAr.png">
+    </cover-image>
+  </cover-view>
+    
+  <cover-view animation="{{animation}}" class="recognition-area" bindtap="takePhoto">
+    <cover-image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/test1.png"></cover-image>
+  </cover-view>
+  <cover-view class="recognition-area1">
+    <cover-view wx:if="{{!status}}" class="tip">囧，小檬什么都没发现</cover-view>
+    <cover-view wx:if="{{!status}}" class="button"  bindtap="takePhoto">
+      <cover-view class="text">再来一次</cover-view>
+    </cover-view >
+    <cover-image wx:if="{{status}}" style="width:220px;display:inline-block;" mode="widthFix" src="https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/6664d9118cf8419fb2b4bbdf32f2fcaa.png"></cover-image>
+    <cover-image class="ar" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/AR@2x2.png"></cover-image>
+    <cover-view class="ar-text">AR</cover-view>
+  </cover-view>
+</camera>
+
+<canvas canvas-id="firstCanvas" hidden='hidden' class="canvas"></canvas>
+

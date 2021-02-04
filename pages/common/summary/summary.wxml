@@ -1,0 +1,3 @@
+<view class="container">
+    <image mode="widthFix" bindtap="toHome" src="http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190816/C0187910920190816/origin/6da4884d969446cabcff7108e3296aa9.jpg" />
+</view>

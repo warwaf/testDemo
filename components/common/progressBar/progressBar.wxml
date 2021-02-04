@@ -1,0 +1,3 @@
+<view class="progress-bar-outer">
+    <view class="progress-bar-inner" style="width: {{value}}%"></view>
+</view>

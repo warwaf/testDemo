@@ -1,0 +1,7 @@
+<view class="dial-bg">
+    <view wx:if="{{rightBlock}}" class="box" style="transform: rotate({{degree - 180}}deg);"></view>
+    <view wx:else class="dial-l box"></view>
+    <view class="dial-r-reverse box" wx:if="{{rightBlock}}"></view>
+    <view wx:else class="box" style="transform: rotate({{degree - 180}}deg);"></view>
+    
+</view>

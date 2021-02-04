@@ -1,0 +1,18 @@
+<!--pages/mine/diy/diy.wxml-->
+<view class='hc-diyBox' wx:for="{{products}}" wx:key="index" wx:item="{{item}}"  catchtap='detail' data-index="{{index}}">
+    <view class='hc-diyBoxLeft'>
+        <image src="{{item.catalogUrl}}" mode='aspectFill'></image>
+    </view>
+    <view class='hc-diyBoxRight'>
+        <view class='hc-diyMoney'>
+            <text class='hc-diyUnit '>￥</text>
+            <text class='hc-diyReal'>{{item.listPrice}}</text>
+            <text class='hc-diyAssess' wx:if="{{item.marketPrice && item.marketPrice > 0}}">￥{{item.marketPrice}}</text>
+        </view>
+        <view class='hc-diyName'>{{item.partNoName}}</view>
+        <view class='hc-diySize'>尺寸：{{item.pageWidth}}*{{item.pageHeight}}</view>
+        <!-- <view class='hc-diyColor'>颜色：{{item.TechList[0].PageHeight}}</view> -->
+        <!-- <view class='hc-diyApply'>适用：{{item.apply}}</view> -->
+    </view>
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon16.png" mode='widthFix' class="coupon" wx:if="{{item.hadCoupon}}"></image>
+</view>

@@ -1,0 +1,44 @@
+<wxs module="filter" src="../../../../utils/util.wxs"></wxs>
+<view style="margin-bottom: {{status? 0 : '100px'}};">
+    <view wx:for="{{address}}" class="address-item" wx:key="index" wx:if="{{!status}}" bindtap="pick" data-index="{{index}}">
+        <image wx:if="{{selectedIndex == index}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/addr-selected.png" />
+        <image wx:else src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/addr-unselect.png" />
+        <view class="info">
+            <view>{{item.ReceiverName}} {{filter.privacyMobileNumber(item.ReceiverPhone)}}</view>
+            <view>{{item.Province}}{{item.City}}{{item.District}}{{item.Address}}</view>
+        </view>
+        <view catchtap="update" data-index="{{index}}">编辑</view>
+    </view>
+</view>
+
+<view wx:if="{{status}}">
+    <view class="edit-area">
+        <view>
+            <text>收货人</text> <input value="{{editInfo.ReceiverName}}" bindinput="bindKeyInput" data-type="ReceiverName" placeholder="请输入姓名" placeholder-class="placeholder" focus="true"/>
+        </view>
+        <view>
+            <text>联系方式</text> <input value="{{editInfo.ReceiverPhone}}" bindinput="bindKeyInput" data-type="ReceiverPhone" placeholder="请输入联系方式" placeholder-class="placeholder" type="number"/>
+        </view>
+        <view>
+            <text>所在地区</text>   
+            <picker bindchange="changeArea" mode="region" style="width:70%; padding:30px 0;">
+                <view class="placeholder">
+                    <text wx:if="{{!editInfo.Province}}">请选择</text> <text wx:else>{{editInfo.Province}} {{editInfo.City}} {{editInfo.District}}</text>
+                </view>
+            </picker>
+        </view>
+        <view>
+            <text>详细地址</text> <input value="{{editInfo.Address}}" bindinput="bindKeyInput" data-type="Address" placeholder="请输入详细地址" placeholder-class="placeholder"/>
+        </view>
+    </view>
+    <view class="edit-default">
+        <text>设为默认地址</text>
+        <switch checked="{{editInfo.isDefault == 0}}" bindchange="setDefault" />
+    </view>
+    <view class="delete-btn" catchtap="delete" wx:if="{{editInfo.id}}">删除收货地址</view>
+</view>
+
+<view class="btn-container">
+    <view class="btn" catchtap="create" wx:if="{{!status}}">新增收货地址</view>
+    <view class="btn" catchtap="confirm" wx:else>确认</view>
+</view>

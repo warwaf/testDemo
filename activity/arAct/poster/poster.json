@@ -1,0 +1,10 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "鲜檬AR扫描赢好礼",
+  "component": true,
+  "usingComponents": {
+    "wxml-to-canvas": "wxml-to-canvas"
+  }
+}

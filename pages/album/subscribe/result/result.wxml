@@ -1,0 +1,36 @@
+<!--pages/album/subscribe/result/result.wxml-->
+<view class="v-result">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/subscribe/subscribe-result@2x.png"></image>
+    <view>
+        信息已提交，客服稍后联系您，请耐心等候
+    </view>
+</view>
+<view class="v-detail">
+   <view class="title">活动基本信息</view>
+   <view class="v-detail-item">
+       <text class="header">活动地址：</text>
+       <text>{{info.address}}</text>
+   </view>
+   <view class="v-detail-item">
+       <text class="header">活动时间：</text>
+       <text>{{time}}</text>
+   </view>
+   <view class="v-detail-item">
+       <text class="header">联系人：</text>
+       <text>{{info.userName}}</text>
+   </view>
+   <view class="v-detail-item">
+       <text class="header">联系电话：</text>
+       <text>{{info.mobileNo}}</text>
+   </view>
+   <view class="v-detail-item">
+       <text class="header">活动人数：</text>
+       <text>{{info.number}}</text>
+   </view>
+</view>
+
+<view class="v-present">
+    <view class="btn" bind:tap="jump">
+        返回
+    </view>
+</view>

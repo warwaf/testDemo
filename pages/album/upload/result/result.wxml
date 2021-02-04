@@ -1,0 +1,36 @@
+<!--pages/album/upload/result/result.wxml-->
+<view class="banner" style="background-image:url('https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload-result-banner.png')">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_cemera.png"></image>
+</view>
+<view wx:if="{{!allLegal}}">
+    <view class="header">本次上传存在不符合要求照片，请重新上传</view>
+    <view class="image-container">
+        <view wx:for="{{tmpPaths}}" wx:key="index" class="image-item">
+            <image src="{{item.thumbUrl}}" mode="aspectFill"></image>
+            <image wx:if="{{item.legal}}" class="icon" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_right.png"></image>
+            <image wx:else class="icon" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_no.png"></image>
+        </view>
+    </view>
+    <view class="notification">
+        <view>说明：</view>
+        <view>1、图片分辨率大于256*256</view>
+        <view>2、图片仅限 jpg / jpeg 格式</view>
+        <view>3、图片大小范围：32 Kb—13Mb</view>
+        <view>4、图片内容不能涉及色情、反动、暴力等违规信息</view>
+    </view>
+</view>
+<view wx:if="{{allLegal}}">
+    <view class="header">上传成功</view>
+    <view class="image-container">
+        <view wx:for="{{tmpPaths}}" wx:key="index" class="image-item">
+            <image src="{{item.thumbUrl}}" mode="aspectFill"></image>
+            <image class="icon" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_right.png"></image>
+        </view>
+    </view>
+</view>
+
+<view class="btn" catchtap='toUpload'>继续上传</view>
+
+<!-- <view class="vouchers">
+    <vouchers amount="{{amount}}" wx:if="{{showVouchers}}" bind:closeEvent="closeVouchers"></vouchers>
+</view> -->

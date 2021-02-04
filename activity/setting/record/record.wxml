@@ -1,0 +1,106 @@
+<wxs module="filter" src="../../../utils/util.wxs"></wxs>
+<view wx:for="{{list}}" wx:key="index">
+    <view class="header" wx:if="{{item.state != -1}}">
+        <view>
+            <text class="text">{{item.eventName}}</text>
+            <text wx:if="{{item.state == 0}}" class="status status-0">进行中</text>
+            <text wx:else class="status status-1">已结束</text>
+        </view>
+        <switch wx:if="{{item.state == 0}}" checked="{{item.state == 0}}" type="switch" data-index="{{index}}" bindchange="switchActivityState"></switch>
+        <view wx:elif="{{item.state == 2}}" class="btn" catchtap="toExcute" data-index="{{index}}">开奖</view>
+        <image catchtap="switchTab" data-index="{{index}}" wx:if="{{item.state == 1 && !item.status}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon17.png" mode="widthFix"/>
+        <image catchtap="switchTab" data-index="{{index}}" wx:if="{{item.state == 1 && item.status}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon18.png" mode="widthFix"/>
+    </view>
+    <view class="body" wx:if="{{item.status}}">
+        <view>
+            <image class="icon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon25.png" mode="widthFix"/>
+            {{filter.split(item.createTime, ' ')[0]}} 至 {{filter.split(item.endTime, ' ')[0]}}
+        </view>
+        <view class="table">
+            <view class="row">
+                <text class="item">奖项</text>
+                <text class="item">奖品</text>
+                <text class="item">微信昵称</text>
+            </view>
+            <view class="row" wx:for="{{item.activityLotteryList}}" wx:for-item="tableItem" wx:key="id">
+                <view class="item">
+                    <block wx:if="{{tableItem.prizeLevel == 1}}"><image class="icon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon10.png" mode="widthFix"/> 一等奖</block>
+                    <block wx:elif="{{tableItem.prizeLevel == 2}}"><image class="icon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon11.png" mode="widthFix"/> 二等奖</block>
+                    <block wx:elif="{{tableItem.prizeLevel == 3}}"><image class="icon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon12.png" mode="widthFix"/> 三等奖</block>
+                    <block wx:else><image class="icon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon13.png" mode="widthFix"/> 安慰奖</block>
+                </view>
+                <text class="item">{{tableItem.prizeName}}</text>
+                <text class="item">{{tableItem.nickName}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="btn-fixed" catchtap="createActivity">发现新活动</view>
+</view>
+
+<view class="empty" wx:if="{{!list || list.length == 0}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-empty.png" />
+    <view>空空如也，相册太安静啦</view>
+    <view>要不搞个活动活跃一下</view>
+    <view class="empty-btn" catchtap="createActivity">发现新活动</view>
+</view>
+
+<view class="mask" wx:if="{{resultStat == 1}}">
+    <view class="loading">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/loading.gif"/>
+    </view>
+</view>
+
+<view class="mask" catchtap="hideResult" wx:elif="{{resultStat == 2}}">
+    <view class="result">
+        <view class="top">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon14.png" mode="widthFix" />
+            {{['一等奖','二等奖','三等奖','安慰奖'][selectLevel - 1]}}({{lotteryResult.length}})
+        </view>
+
+        <scroll-view class="bottom" scroll-y="{{true}}">
+            <view class="row" wx:for="{{lotteryResult}}" wx:key="index">
+                <text>{{item.prizeName}}</text>
+                <text>{{item.nickName}}</text>
+            </view>
+        </scroll-view>
+    </view>
+    <image class="close-btn" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon15.png" />
+</view>
+
+<view class="mask" wx:if="{{sessionStat}}" catchtap="hideSession">
+    <view class="content" catchtap="stop">
+        <view class="top">
+            <text catchtap="hideSession">取消</text>
+            <text>开奖</text>
+            <text catchtap="excute">确认</text>
+        </view>
+        <view>
+            <view class="items">
+                <text 
+                catchtap="switchItem" 
+                data-index="{{index}}" 
+                class="{{index == selectIndex ? 'active' : ''}} {{item.state == 1 || item.prizeLevel == 4 ? 'inactive' : ''}}" 
+                wx:for="{{lotteryInfo.event.signInRule.prizeRules}}" 
+                wx:key="index"
+                >
+                    {{['一等奖','二等奖','三等奖','安慰奖'][item.prizeLevel - 1]}}
+                </text>
+            </view>
+            <view class="desc">数量： <text>{{quantity}}</text></view>
+            <view class="desc">奖品:  <text>{{prize}}</text></view>
+        </view>
+    </view>
+</view>
+
+<view class="mask-layout" wx:if="{{dialogStat}}" catchtap="disagree">
+    <view class="session">
+        <view>
+            <text catchtap="disagree">取消</text>
+            <text catchtap="agree">确定</text>
+        </view>
+        <view>亲，确定要结束这个活动吗？</view>
+    </view>
+</view>
+
+
+

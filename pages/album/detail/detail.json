@@ -1,0 +1,10 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "图片详情",
+    "usingComponents": {
+        "turntable": "/components/common/turntable/turntable",
+        "loading": "/components/common/loading/loading"
+    }
+}

@@ -1,0 +1,307 @@
+.list-item {
+    height: 56px;
+    width: 92%;
+    margin: 0 2%;
+    padding: 0 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+}
+
+.list-item text {
+    color: #999;
+    font-size: 12px;
+    max-width: 270px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.list-item .avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+}
+
+.list-item image {
+    width: 7px;
+    height: 13px;
+    margin-left: 20px;
+}
+
+.layout {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.edit-view {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 220px;
+    background-color: #fff;
+}
+
+.edit-view .header {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #222;
+    font-size: 18px;
+}
+
+.edit-view .comfirm {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #ffb800;
+}
+
+.edit-view .cancle {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: #666;
+}
+
+.edit-view .text-body {
+    width: 80%;
+    margin: 60px auto;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #fd0;
+}
+
+.edit-view .text-body input {
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+}
+
+.phone-number{
+    width: 100%;
+    text-align: center;
+}
+
+.edit-view .gender-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-view .gender-body image {
+    width: 100px;
+    height: 100px;
+}
+
+.edit-view .gender-body view {
+    text-align: center;
+}
+
+.textarea-body {
+    height: 244px;
+    width: 92%;
+    margin: 0 4% 18px 4%;
+    background-color: #f2f2f2;
+}
+
+.textarea-body textarea {
+    padding: 18px;
+    height: 176px;
+}
+
+.textarea-body view {
+    text-align: right;
+    padding: 0 18px;
+    color: #999;
+}
+
+.digital-body .tips {
+    margin: 20px 0;
+    text-align: center;
+    color: #666666;
+}
+
+.digital-body .tips text {
+    color: #fd0;
+}
+
+.digital-body input {
+    /* margin-left: -120%; */
+    width: 200%;
+    position: absolute;
+    left: -100%;
+    height: 50px;
+}
+
+.digital-body .blocks {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.digital-body .block {
+    width: 80rpx;
+    height: 88rpx;
+    background: #fafafa;
+    border-bottom: 1px solid #fd0;
+    text-align: center;
+    margin-left: 18rpx;
+    font-size: 30px;
+}
+
+.digital-body .cursor {
+    width: 1px;
+    height: 80rpx;
+    background-color: #000;
+    animation: focus 0.7s infinite;
+}
+
+.result-body{
+    padding: 20px 0;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.result-body image{
+    width: 35px;
+    height: 28px;
+}
+
+.result-body .tips{
+    color:#666666;
+    font-size: 16px;
+    text-align: center;
+}
+.result-body .tips text{
+    color: #fd0;
+}
+.btn-body{
+    padding: 30px 0;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.btn-body view{
+    font-size: 17px;
+}
+.btn-body .btn{
+    width: 260px;
+    height: 44px;
+    background: linear-gradient(#FFE74F,#FFE227);
+    border-radius: 22px;
+    text-align: center;
+    line-height: 44px;
+    color: #240101;
+}
+
+/* 光标动画 */
+
+@keyframes focus {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.tipBox{
+    width: 100%;
+    height:100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.3);
+    z-index: 99;
+}
+.hc-bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #888;
+    opacity: 0.6;
+    z-index: 1;
+}
+.tipContent{
+    width: 100%;
+    height:220px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #fff;
+    
+}
+.hc-topWord{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    float: left
+}
+.hc-cancle{
+    width: 20%;
+    height: 40px;
+    line-break: 40px;
+    float: left;
+    font-size: 15px;
+}
+.hc-tip{
+    width: 60%;
+    height: 40px;
+    line-break: 40px;
+    float: left;
+    text-align: center;
+    font-size: 20px;
+    color:rgba(34,34,34,1);
+}
+.hc-word{
+    font-size:17px;
+    margin:40px 0 30px 0;
+    color:rgba(34,34,34,1);
+}
+.hc-tipBtn{
+    margin: 0 auto;
+    width:220px;
+    height:44px;
+    color: #240101;
+    line-height: 44px;
+    background:linear-gradient(104deg,rgba(255,231,79,1) 0%,rgba(255,226,39,1) 100%);
+    box-shadow:0px 0px 13px 0px rgba(255,226,39,0.71);
+    border-radius:25px;
+}
+.hc-top-dot{
+    margin-top: 12px;
+}
+.hc-top-dot image{
+    width: 94px;
+    height: 94px;
+}
+.hc-word-success{
+    font-size: 18px;
+     margin:0px 0 20px 0;
+    color:rgba(34,34,34,1);
+    font-weight:400;
+}
+.hc-textarea-word{
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+}

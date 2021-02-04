@@ -1,0 +1,9 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "照片搜索",
+    "usingComponents": {
+        "searchmine": "/components/discovery/searchMine/searchMine"
+    }
+}

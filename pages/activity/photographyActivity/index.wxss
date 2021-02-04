@@ -1,0 +1,463 @@
+.act-page {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  background: #f5f5f5;
+  padding-bottom: 110rpx;
+}
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.act-body {
+  flex: 1;
+  box-sizing: border-box;
+  position: relative;
+  height: calc(100% + 262rpx);
+}
+
+image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.act-body .act-rule {
+  width: 75px;
+  height: 40px;
+  position: fixed;
+  right: -3px;
+  z-index: 50;
+}
+
+.act-body image.bg-title {
+  width: 100%;
+  height: 266px;
+  display: block;
+}
+
+.act-body image.bg {
+  width: 100%;
+  height: 561px;
+  display: block;
+}
+
+.act-body image.bg1,
+.act-body image.bg2 {
+  width: 100%;
+  height: 325px;
+  display: block;
+}
+
+.act-body .body-content {
+  margin-top: -330px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.act-body .body-content .swiper {
+  width: calc(100% - 60rpx);
+  height: 500rpx;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.act-body .body-content .swiper image {
+  height: 460rpx;
+}
+
+.act-body .body-content .swiper1 {
+  /* margin-bottom: 26px; */
+  width: 100%;
+}
+
+.act-body .act-tool {
+  z-index: 999;
+}
+
+.act-footer {
+  width: 100vw;
+  height: 55px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5.5px 15px;
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.act-footer .act-btn {
+  width: 100%;
+  height: 44px;
+  font-size: 16px;
+  color: #240101;
+  text-align: center;
+  line-height: 44px;
+  background: #ffe329;
+  border-radius: 22px;
+  word-spacing: 2px;
+  font-weight: 700;
+}
+
+.act-footer .btn-praise {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #240101;
+}
+
+.act-footer .btn-praise image {
+  width: 18px;
+  height: 22px;
+  margin-right: 7.5px;
+  margin-top: -4px;
+}
+
+.pop-case {
+  position: relative;
+}
+
+.pop-case .pop-close {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  top: -18rpx;
+  right: -22rpx;
+}
+
+.signup-pop .pop-header {
+  font-size: 15px;
+  margin: 30rpx 0 40rpx;
+  color: #231815;
+}
+
+.signup-pop .pop-body .line-case {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.signup-pop .pop-body .line-case .label {
+  width: 110rpx;
+  color: #231815;
+  font-size: 13px;
+  text-align: right;
+  margin-right: 30rpx;
+}
+
+.signup-pop .pop-body .line-case .input-name {
+  width: 416rpx;
+  height: 80rpx;
+  color: #231815;
+  padding-left: 16rpx;
+  border-radius: 6px;
+  background: #F2F2F2;
+  box-sizing: border-box;
+}
+
+.signup-pop .pop-body .line-case .identity {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.signup-pop .pop-body .line-case-phone {
+  margin-bottom: 92rpx;
+}
+
+.signup-pop .pop-body .line-case .content-case {
+  position: relative;
+  flex: 1;
+}
+
+.signup-pop .pop-body .line-case .code-case {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.signup-pop .pop-body .line-case .input-code {
+  width: 232rpx;
+  height: 80rpx;
+  padding-left: 16rpx;
+  border-radius: 6px;
+  background: #F2F2F2;
+  box-sizing: border-box;
+}
+
+.signup-pop .pop-body .line-case .tips {
+  position: absolute;
+  top: 90rpx;
+  left: 0;
+  font-size: 12px;
+  color: #666666;
+}
+
+.signup-pop .pop-body .line-case .send {
+  width: 168rpx;
+  height: 80rpx;
+  font-size: 13px;
+  color: #231815;
+  margin-left: 16rpx;
+  line-height: 80rpx;
+  border-radius: 6px;
+  text-align: center;
+  background: #FFE228;
+}
+
+.signup-pop .pop-body .line-case .is-send {
+  color: #999999;
+  background: #F2F2F2;
+}
+
+.signup-pop .pop-body .line-case .identity label {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-right: 60rpx;
+  font-size: 13px;
+  color: #231815;
+}
+
+radio .wx-radio-input {
+  width: 18px;
+  height: 18px;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  font-size: 20px;
+  color: #231815;
+}
+
+.wx-swiper-dots.wx-swiper-dots-horizontal {
+  bottom: 0rpx;
+}
+
+.signup-pop .pop-footer .btn-submit {
+  width: 550rpx;
+  height: 88rpx;
+  font-size: 16px;
+  margin-top: 60rpx;
+  color: #231815;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 22px;
+  background: #FFE228;
+}
+
+.container {
+  width: 100vw;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #240101;
+  font-size: 16px;
+  background: #FFF;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.container .img {
+  width: 97px;
+  height: 53px;
+  margin-bottom: 10px;
+}
+
+.container view:nth-child(1) {
+  color: #240101;
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.container view {
+  color: #999999;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.container .btn {
+  width: 200px;
+  height: 40px;
+  border-radius: 20px;
+  background: linear-gradient(#FFE74F, #FFE227);
+  line-height: 40px;
+  text-align: center;
+  border: none;
+  color: #240101;
+}
+
+.container .btn::after {
+  border: none;
+}
+
+.roleStyle {
+  display: block;
+}
+
+.roleStyle_info .info_text {
+  margin: 64rpx 0 30rpx 0;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+}
+
+.roleStyle_info .info_graphics {
+  margin-bottom: 60rpx;
+}
+
+.roleStyle_info .info_input {
+  height: 80rpx;
+  background: rgba(242, 242, 242, 1);
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  width: calc(100% - 90px);
+  margin-right: 10rpx;
+}
+
+.roleStyle_info .info_img {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  right: -11rpx;
+  top: -11rpx;
+}
+
+.roleStyle_model {
+  background: #000;
+  opacity: 0.7;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+.roleStyle_info .info_graphics {
+  display: flex;
+  align-items: center;
+}
+
+.roleStyle .roleStyle_content {
+  /* height: calc(100% - 262rpx); */
+  width: calc(100% - 120rpx);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10000;
+  background: #fff;
+  border-radius: 10px;
+  padding-bottom: 40rpx;
+}
+
+.roleStyle .roleStyle_content .roleStyle_content_title {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 600;
+  color: rgba(35, 24, 21, 1);
+  line-height: 42rpx;
+  padding: 30rpx 0 40rpx 0;
+  text-align: center;
+}
+
+.roleStyle .roleStyle_content .roleStyle_content_text {
+  height: 65vh;
+  padding: 0 40rpx;
+  overflow: scroll;
+}
+
+.roleStyle .roleStyle_content_img {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  right: -11rpx;
+  top: -11rpx;
+}
+
+.text_item {
+  margin-bottom: 40rpx;
+}
+
+.roleStyle .roleStyle_content .roleStyle_content_text .text_item>view {
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(35, 24, 21, 1);
+  line-height: 36rpx;
+}
+
+.roleStyle .roleStyle_content .roleStyle_content_text .text_item1>view {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(35, 24, 21, 1);
+  line-height: 36rpx;
+  margin-bottom: 12rpx;
+}
+
+.roleStyle .roleStyle_content .roleStyle_content_text .text_item>view:nth-child(1),
+.roleStyle .roleStyle_content .roleStyle_content_text .text_item1>view:nth-child(1) {
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: rgba(35, 24, 21, 1);
+  line-height: 36rpx;
+  margin-bottom: 12rpx;
+}
+
+.roleStyle .text_question {
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: rgba(35, 24, 21, 1);
+  margin-top: 12rpx;
+}
+
+.roleStyle .text_declaration {
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  margin-top: 40rpx;
+}
+
+.error-phone .pop-header {
+  font-size: 15px;
+  color: #231815;
+}
+
+.error-phone .pop-body {
+  font-size: 13px;
+  color: #231815;
+}
+
+.error-phone .pop-footer {
+  width: 275px;
+  height: 44px;
+  font-size: 16px;
+  color: #231815;
+  text-align: center;
+  line-height: 44px;
+  border-radius: 22px;
+  font-weight: bold;
+  background: #FFE228;
+}

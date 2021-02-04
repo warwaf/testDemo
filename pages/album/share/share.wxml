@@ -1,0 +1,200 @@
+<block wx:if="{{!anonymous}}">
+    <view bindtap='hideSession'>
+        <swiper style="height:{{height}};transition: height .5s;" bindchange="intervalChange" current="{{currentIndex}}"> 
+            <swiper-item wx:for="{{data}}" wx:key="jobId">
+                <view class="content">
+                    <view class="header">
+                        <image src="{{authorInfo.avatarUrl}}"></image>
+                        <view class="info">
+                            <view>{{authorInfo.nickName}}</view>
+                            <view class="date">{{authorInfo.createTime}}</view>
+                        </view>
+                        <view class="delete" wx:if="{{isAuthor && !isDelete}}" catchtap='toDelete'>
+                            删除
+                        <!-- <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/trash-can.png"></image> -->
+                        </view>
+                        <view class="btn" wx:if="{{!isAuthor}}" catchtap='toFollow'>{{btnText}}</view>
+                    </view>
+                    <view class="img">
+                        <image src="{{item.picUrl + '?x-oss-process=image/resize,l_640/watermark,image_' + waterMark + ',t_80,g_se,x_10,y_10'}}" mode="widthFix"></image>
+                        <view catchtap='showBig'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/magnify.png"></image></view>
+                    </view>         
+                </view>
+            </swiper-item>
+        </swiper>
+
+        <view class="more" wx:if="{{faceInfo !== false}}">
+            <view> <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/recognition-title.png"></image> </view>
+            <image wx:for="{{faceInfo}}" wx:if="{{item.picUrl}}" data-id="{{item.groupFaceId}}" wx:key="groupFaceId" src="{{item.picUrl}}?x-oss-process=image/crop,x_{{item.left}},y_{{item.top}},w_{{item.width}},h_{{item.height}}"  data-groupFaceId='{{item.groupFaceId}}' catchtap='searchwho'></image>
+            <view class="angle">
+                <view></view>
+                <view></view>
+                <view></view>
+                <view></view>
+            </view>
+        </view>
+
+        <view class="fllow">
+    <view class="turntable-box"><turntable number="{{praiseArr.length}}" scale="{{0.4}}" style="margin-right: 10px;margin-top:1px;"></turntable> 喜欢</view>
+            <view class="empty" wx:if="{{praiseArr.length == 0}}">期待你的点赞哟~</view>
+            <view class="list">
+                <wxs module="filter" src="../../../utils/util.wxs"></wxs>
+                <!-- <image src="{{item.avatarUrl}}" wx:key="index" wx:for="{{filter.sliceArr(praiseArr,0,7)}}" catchtap='toPersonal' data-id="{{item.unionId}}"></image> -->
+                <text  wx:for="{{filter.sliceArr(praiseArr,0,7)}}" catchtap='toPersonal' data-id="{{item.unionId}}" wx:key="unionId">{{item.nickName}}</text>
+            </view>
+        </view>
+
+        <view class="fans">
+            <image wx:for="{{follow}}" src="{{item.avatar}}" wx:key="avatar"></image>
+        </view>
+
+        <view class="comment">
+            <view class="title">{{commentArr.length}} 评论</view>
+            <view class="item" wx:for="{{commentArr}}" wx:key="id">
+                <view>
+                    <view class="info">
+                        <image src="{{item.avatarUrl}}"></image>
+                        <view class="name">
+                            <view>{{item.nickName}}</view>
+                            <view class="date">{{item.createTime}}</view>
+                        </view>
+                        <view wx:if="{{item.replyTo == 0}}" catchtap='toReply' data-nickName="{{item.nickName}}" data-id="{{item.id}}">
+                            <image class="hc-img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/reply.png"></image>
+                        </view>
+                    </view>
+                    <view class="content">{{item.content}}</view>
+                </view>
+                <view wx:for="{{item.subComments}}" wx:for-item="comment" wx:key="id" class="sub-comment">
+                    <view class="info">
+                        <image src="{{comment.avatarUrl}}"></image>
+                        <view class="name">
+                            <view>{{comment.nickName}}  <text class="icon"></text>  <text> {{item.nickName}}</text></view>
+                            <view class="date">{{comment.createTime}}</view>
+                        </view>
+                    </view>
+                    <view class="content">{{comment.content}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="reply" style="border-radius: {{guidance ? '25px' : 0}};">
+        <view class="input" catchtap="showSession">写个评论吧</view>
+        <view class="like_num">
+            <view catchtap='praise'>
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/thumb_1.png" wx:if="{{praiseBtnStat === 0}}"></image>
+                <!-- 暂时屏蔽动画 <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/thumb_animate.gif" mode="widthFix" style="width: 25px;position: relative; top: -5px;" wx:if="{{praiseBtnStat === 1}}"></image> -->
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/thumb_3.png" wx:if="{{praiseBtnStat !== 0}}"></image>
+                <view>点赞</view>
+            </view>
+            <button wx:if="{{userInfo.mobileNo == ''}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+        </view>
+        <view catchtap='collect'>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/star.png" wx:if="{{starBtnStat === 0}}"></image>
+            <!-- <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/star_animate.gif" mode="widthFix" style="width: 35px;position: relative" wx:if="{{starBtnStat === 1}}"></image> -->
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/star_1.png" wx:if="{{starBtnStat === 2}}"></image>
+            <view>收藏</view>
+        </view>
+        <view catchtap='download'>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/download.png"></image>
+            <view>下载</view>
+        </view>
+        <view catchtap='share'>
+            <button 
+            open-type='share' 
+            class="share-button">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/wechat.png"></image>
+            </button>
+            <view style="margin-top:3px;">分享</view>
+        </view>    
+    </view>
+
+    <view class="session-mask" wx:if="{{sessionStat}}" catchtap='hideSession' catchtouchmove='stop'>
+        <view class="session" catchtap="stop">
+            <view class="fast-comment">
+                <view>快捷评论</view>
+                <scroll-view scroll-x style="width: 260px">
+                    <view class="entrys" style="width: {{entrys.length * 120}}px">
+                        <text wx:for="{{entrys}}" wx:key="*this" data-text="{{item}}" catchtap='submitComment'>{{item}}</text>
+                    </view>
+                </scroll-view>
+            </view>
+            <textarea value="{{commentContent}}" bindinput="bindCommentInput" placeholder='{{placeholder}}' placeholder-style="color: #999;" bindconfirm="submitComment" auto-focus="true" cursor-spacing="130px"></textarea>
+            <view class="btns">
+                <text></text>
+                <form report-submit="{{true}}" bindsubmit="submitComment">
+                    <button class="comfirm" form-type="submit" hover-class="none">发送</button>
+                    <!-- <text class="comfirm" catchtap='submitComment'>发送</text> -->
+                </form>
+            </view>
+        </view>
+    </view>
+
+
+    <view class='tipBox' wx:if="{{commentError}}">
+        <view class='hc-bg'></view>
+        <view class='tipContent'>
+            <view class='hc-topWord'>
+                <view class='hc-cancle' bindtap='cancle'>取消</view>
+                <view class='hc-tip'>提示</view>
+            </view>
+            <view class='hc-word'>内容包含敏感词汇，请修改后重新提交</view>
+            <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+    </view>
+    </view>
+
+    <view class="content-empty" wx:if="{{isEmpty}}">
+        <view>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/empty.png"></image>
+            <view>抱歉，图片已删除</view>
+        </view>
+    </view>
+
+    <view class="home">
+        <form report-submit="{{true}}" bindsubmit="toHome">
+            <button class="comfirm" form-type="submit" hover-class="none">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/home@2x.png"></image>
+            </button>
+        </form>
+    </view>
+
+
+    <view class='tipBox' wx:if="{{deleteComfirm}}">
+        <view class='hc-bg'></view>
+        <view class='tipContent'>
+            <view class='hc-topWord'>
+                <view class='hc-cancle' bindtap='cancleDelete'>取消</view>
+                <view class='hc-tip'>提示</view>
+            </view>
+            <view class='hc-word'>确认要删除吗</view>
+            <view class='hc-tipBtn' bindtap='delete' >确定</view>
+    </view>
+    </view>
+
+    <view class="password-mask" wx:if="{{passwordSession}}">
+        <view>
+            <view class="session-header">
+                <text catchtap='closePasswordSession'>取消</text>
+                <text>请输入密钥</text>
+                <text catchtap='completeChange'>完成</text>
+            </view>
+            <view class="session-body">
+                <input password="{{true}}" focus="{{true}}" maxlength="6" type="text" placeholder="请输入6位（数字或字母）" bindinput="bindKeyInput"/>
+            </view>
+        </view>
+    </view>
+
+    <!-- 新手指导 -->
+    <view class="session-mask guidance-mask" wx:if="{{guidance && !anonymous}}" catchtap="nextStep"></view>
+
+</block>
+<!-- 暂无活动相册 -->
+<view class="new" wx:if="{{anonymous}}">
+    <userInfo 
+        text1="相册是每个人的隐私哦"
+        text2="为了保护主人的隐私" 
+        text3="敢问大侠是何人"
+        icon="1"
+        bind:confirmEvent="userInfoEvent">
+    </userInfo>
+</view>

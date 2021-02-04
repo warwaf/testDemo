@@ -1,0 +1,2 @@
+<!--pages/album/diy/lcgPay/lcg.wxml-->
+<web-view src="{{url}}" bindload="completed" />

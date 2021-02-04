@@ -1,0 +1,31 @@
+<!--pages/album/search/searchresult/searchresult.wxml-->
+
+<view  style='padding-top:20rpx;border-top:1px solid #e8e8e8'>
+    <view class='topBox'>
+        <view style='margin:0 auto'> 
+            <image  class="intercept imgHeught " wx:if="{{imgList.picUrl}}" src="{{imgList.picUrl}}?x-oss-process=image/crop,x_{{imgList.left-45}},y_{{imgList.top-45}},w_{{imgList.width+90}},h_{{imgList.height+90}}"></image>
+             
+        </view>
+        <view class='change' wx:if="{{change}}"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search_bg.png" bindtap='changeImg'></image>重新选择</view>
+        <!-- <view><image mode="widthFix" src="{{mineImg}}"></image></view> -->
+        <text>({{num}}张)</text>
+    </view>
+    <water data="{{photo}}" 
+        water-class="waterfall" 
+        column="3" 
+        scrollTop="{{scrollTop}}"
+        activited="{{puzzling}}" 
+        delActivited="{{deleting}}" 
+        maxSelectableNum="{{maxPuzzleNum}}" 
+        bind:loadEvent="loadPhotos" 
+        bind:clickEvent="showDetail" 
+        bind:scrollEvent="switchBannerStat"
+        bind:cancleEvent="showTool">
+
+        <loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+    </water>
+
+    <view class="diy" catchtap="toDiy">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/diy-icon.png"></image>
+    </view>
+</view>

@@ -1,0 +1,53 @@
+<!--pages/mine/confirmorder/confirmorder.wxml-->
+<view class='hc-orderTop'>
+    <view class='hc-orderTopBox'>
+        <view class='hc-orderLeft'>
+            <view class='hc-ordername'>陈小姐 137***7839</view>
+            <view class='hc-address'>广东省懂事南城区胜和广场B区</view>
+        </view>
+        <view class='hc-orderRight' bindtap='editAddress'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/order-goto.png"></image></view>
+    </view>
+    <view class='hc-go'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/order-blank.png"></image></view>
+</view>
+
+<view class='hc-diyBox' wx:for="{{diylist}}" wx:key="index" wx:item="{{item}}">
+    <view class='hc-diyBoxLeft'>
+        <image src="{{item.img}}" mode='widthFix'></image>
+    </view>
+    <view class='hc-diyBoxRight'>
+        <view class='hc-diyMoney'>
+            <text class='hc-diyUnit '>￥</text>
+            <text class='hc-diyReal'>{{item.real}}</text>
+            <text class='hc-diyAssess'>￥{{item.assess}}</text>
+        </view>
+        <view class='hc-diyName'>{{item.title}}</view>
+        <view class='hc-diySize'>尺寸：{{item.size}}</view>
+        <view class='hc-diyColor'>颜色：{{item.color}}</view>
+        
+    </view>
+</view>
+
+<view class='hc-payfor'>
+    <view class='hc-payforTitle'>付款信息</view>
+    <view class='hc-priceBox'>
+        <text class='hc-priceLeft'>商品价格：</text>
+        <text class='hc-priceRight'>￥5</text>
+    </view>
+    <view class='hc-priceBox'>
+        <text class='hc-priceLeft'>优惠折扣：</text>
+        <text class='hc-priceRight'>￥5</text>
+    </view>
+</view>
+<view class='hc-orderBottom'>
+    <view class='hc-orderMoney'>
+        <text class='hc-orderWord'>实付：</text>
+        <text class='hc-money'>135</text>
+        <text class='hc-zero'>.00</text>
+    </view>
+    <view class='hc-btnBox'>
+        <view class='hc-btn'>
+            <view class='hc-btnSave'>保存</view>
+            <view class='hc-btnPay'>支付</view>
+        </view>
+    </view>
+</view>

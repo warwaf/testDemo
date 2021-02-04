@@ -1,0 +1,58 @@
+<wxs module="util">
+    var isSelected = function(item,selected){
+         if(item == selected) return 'active';
+         return ''
+    }
+    module.exports ={
+        isSelected:isSelected
+    }
+</wxs>
+<view class="v-date">
+    <view class="v-date-top">
+        <view class="v-date-title">已选档期</view>
+        <view class="v-flex">
+            <view class="v-flex-item v-flex-item2">
+                <view class="v-date-date">{{date}}</view>
+                <view class="v-date-time">{{selected}}</view>
+            </view>
+            <view class="v-flex-item" style="text-align:center;">
+                <view class="v-btn-r" bind:tap="changeDate">
+                   <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/change@2x.png"></image> 
+                   换一天
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="v-date-content"> 
+        <view class="v-date-title">
+            上午
+        </view>
+        <view class="v-flex v-flex-wrap" >
+            <view class="v-flex-item" 
+                  wx:for="{{amList}}" 
+                  wx:for-item="item" 
+                  wx:key="index"
+                  data-value="{{item}}"
+                  bind:tap="selectDate"
+            >
+                <view class="v-date-item {{util.isSelected(item,selected)}}">{{item}}</view>
+            </view>
+        </view>
+        
+        <view class="v-date-title">
+            下午
+        </view>
+        <view class="v-flex v-flex-wrap">
+            <view class="v-flex-item" 
+                  wx:for="{{pmList}}" 
+                  wx:for-item="item" 
+                  wx:key="index"
+                  data-value="{{item}}"
+                  bind:tap="selectDate"
+            >
+                <view class="v-date-item {{util.isSelected(item,selected)}}">{{item}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="v-btn-fixed" bind:tap="submit">提交</view>
+</view>

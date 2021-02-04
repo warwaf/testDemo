@@ -1,0 +1,25 @@
+/* components/common/tabbar/tabbar.wxss */
+.tabbar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color:#fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-content: center;
+    width: 100%;
+    transition:all linear .2s;
+    border-top:1rpx solid #e8e8e8;
+}
+.tabbar_item{
+    width: 33.3%;
+    text-align: center;
+}
+.tabbar_img{
+    width: 100%;
+    text-align: center
+}
+.tabbar_img .img{
+    width: 60rpx;
+}

@@ -1,0 +1,65 @@
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url("https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/home-mask.jpg") no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.full-screen .inner {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  /* padding-top: 10vh; */
+}
+
+.full-screen .inner .screen-pic {
+  width: 606rpx;
+  height: 909rpx;
+}
+
+.full-screen .inner .btn-singup {
+  width: 550rpx;
+  height: 88rpx;
+  border-radius: 22px;
+  background: #FFE228;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 16px;
+  color: #231815;
+  margin: 40rpx 0 0;
+  box-shadow: 0 3px 8px 0 rgba(177, 81, 0, 0.3);
+}
+
+.full-screen .inner .screen-close {
+  width: 60rpx;
+  height: 60rpx;
+  margin-top: 60rpx;
+}
+
+.full-screen .parallel {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-screen .parallel .screen-pic {
+  width: 630rpx;
+  height: 472rpx;
+}
+
+.full-screen .parallel .screen-pic:first-child {
+  margin-bottom: 30rpx;
+}
+
+.full-screen .parallel .screen-close {
+  margin-top: 60rpx;
+}

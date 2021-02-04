@@ -1,0 +1,28 @@
+
+<view class="layout">
+    <view class="voucher-container">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/popup_red.png" class="bg" mode="widthFix"></image>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/coin_hc.png" class="coin" mode="widthFix" wx:if="{{!subCoin}}"></image>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/coin_hc.png" class="coin-animate" mode="widthFix" wx:if="{{subCoin}}"></image>
+        <view wx:if="{{subCoin}}">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/coin.png" mode="widthFix" class="coin-1"></image>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/coin.png" mode="widthFix" class="coin-2"></image>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/coin.png" mode="widthFix" class="coin-3"></image>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/coin.png" mode="widthFix" class="coin-4"></image>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/coin.png" mode="widthFix" class="coin-5"></image>
+        </view>
+
+        <view class="title" wx:if="{{amount>0 && !animate && opened}}">恭喜，抽中红包</view>
+        <view class="title" wx:if="{{amount==0 && !animate && opened}}">哎呀呀，红包飞走了</view>
+        <view class="title" wx:if="{{!opened}}">恭喜你抽到</view>
+
+        <view class="value" wx:if="{{amount>0 && !animate && opened}}">{{amount}}元</view>
+        <view class="value1" wx:if="{{!opened}}">现金红包</view>
+        <view class="value" catchtap='backToUpload' wx:if="{{amount==0 && !animate && opened}}">再接再厉</view>
+
+        <view class="btn" catchtap='backToUpload' wx:if="{{!animate && (opened || amount==0)}}">再领一次</view>
+        <view class="btn" catchtap='open' wx:if="{{!opened}}">立即拆红包</view>
+        
+    </view>
+    <view class="close-btn" catchtap='close'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/popup_close.png"></image></view>
+</view>

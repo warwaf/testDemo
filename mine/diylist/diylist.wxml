@@ -1,0 +1,20 @@
+<!--pages/mine/diylist/diylist.wxml-->
+<view wx:for="{{list}}" wx:key="index" wx:item="{{item}}" class='hc-msgBox'>
+    <!-- <view class='hc-time'>{{item.create_date}}</view> -->
+    <view class='hc-img' data-index="{{item.index}}" data-type="{{item.type}}" bindtap="toPreview" data-index="{{index}}">
+        <image class="hc-img-edit" src="{{item.status == 1 ?'https://hcmtq.oss-accelerate.aliyuncs.com/resources/diy-ediy.png': 'https://hcmtq.oss-accelerate.aliyuncs.com/resources/diy-finish.png'}}"></image>
+        <image class="hc-img-real" src="{{item.work_thumb_url}}" mode="widthFix"></image>
+        <view class='hc-detail'>
+            <view class='hc-title'>{{item.work_name}}</view>
+            <view>{{item.create_date}}</view>
+            <!-- <view class='hc-delete' catchtap='deleteMsg' data-index="{{item.index}}"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/diy-delete.png"></image></view> -->
+        </view>
+    </view>
+    
+</view>
+<view class="empty" wx:if="{{!(list.length > 0) && !isLoading}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/fans-empty.png" mode=".empty"/>
+    <view>您当前没有自己的DIY作品</view>
+</view>
+
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>

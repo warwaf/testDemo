@@ -1,0 +1,10 @@
+<view>
+    <view class="item" wx:for="{{list}}" wx:key="index" catchtap='select' data-index="{{index}}">
+        <image src="{{item.activeImg}}"></image>
+        <view class="mask">
+            <view>{{item.activityType}}</view>
+            <view style="text-align:center;"><text>{{item.activityDesc}}</text></view>
+            <!-- <view>100人已创建</view> -->
+        </view>
+    </view>
+</view>

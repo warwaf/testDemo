@@ -1,0 +1,7 @@
+
+<view class="v-action" style="width: {{ config.width ?  config.width : '' }}; height: {{ config.height ?  config.height : '' }}"  catchtap='tapAction'>
+    <image wx:if="{{type == 'img'}}" src="{{config.url}}"></image>
+    <image wx:if="{{type == 'img-radio' && radioType}}" src="{{config.beforeUrl}}"></image>
+    <image wx:if="{{type == 'img-radio' && !radioType}}" src="{{config.afterUrl}}"></image>
+    <text wx:if="{{type == 'text'}}">{{config.text}}</text>
+</view>

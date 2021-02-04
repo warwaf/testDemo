@@ -1,0 +1,66 @@
+<tabBar tabCode="{{tabCode}}" bind:getTabCode="getTabCode"></tabBar>
+<view class="equity">
+  <view class="module" wx:if="{{equity[tabCode].msgList}}">
+    <block>
+      <view class="head">
+        <text class="dot left-dot"></text>
+        <view class="title">权益介绍</view>
+        <text class="dot right-dot"></text>
+      </view>
+      <view class="body">
+        <block wx:for="{{equity[tabCode].msgList}}" wx:key="index">
+          <view class="list">
+            <view class="line-case">
+              <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/lineNo.png" />
+              <text>{{index + 1}}</text>
+            </view>
+            <view class="text">{{item}}</view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+  <view class="module" wx:if="{{equity[tabCode].useRule}}">
+    <block>
+      <view class="head">
+        <text class="dot left-dot"></text>
+        <view class="title">使用规则</view>
+        <text class="dot right-dot"></text>
+      </view>
+      <view class="body">
+        <block wx:for="{{equity[tabCode].useRule}}" wx:key="index">
+          <view class="list list-color1">
+            <!-- <view class="line-case">
+              <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/lineNo.png" />
+              <text>{{index + 1}}</text>
+            </view> -->
+            <view class="text"wx:if="{{equity[tabCode].useRule.length > 1}}">{{index + 1}}. {{item}}</view>
+            <view class="text" wx:else>{{item}}</view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+  <view class="module" wx:if="{{equity[tabCode].charge}}">
+    <block>
+      <view class="head">
+        <text class="dot left-dot"></text>
+        <view class="title">收费标准</view>
+        <text class="dot right-dot"></text>
+      </view>
+      <view class="tip">（超出会员权益范围内）</view>
+      <view class="body">
+        <block wx:for="{{equity[tabCode].charge}}" wx:key="index">
+          <view class="list list-color1">
+            <!-- <view class="line-case">
+              <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/lineNo.png" />
+              <text>{{index + 1}}</text>
+            </view> -->
+            <view class="text"wx:if="{{equity[tabCode].charge.length > 1}}">{{index + 1}}. {{item}}</view>
+            <view class="text" wx:else>{{item}}</view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+</view>

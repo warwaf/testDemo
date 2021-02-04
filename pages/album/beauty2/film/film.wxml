@@ -1,0 +1,93 @@
+<view class="list">
+    <view class="item-case" wx:for="{{list}}" wx:key="picId">
+        <view class="img-case">
+            <!-- <image src="{{item.picUrl + '?x-oss-process=image/resize,w_1000/auto-orient,1'}}" mode="widthFix" bindtap="toDetail" data-index="{{index}}" lazy-load="{{true}}" /> -->
+            <image src="{{item.thumbnailUrl2}}" mode="widthFix" bindtap="toDetail" data-index="{{index}}" lazy-load="{{true}}" />
+        </view>
+        <view style="margin: 0 24rpx;color: #333;font-size: 12px;">{{item.setInfo}}{{item.sortedFileName}}</view>
+        <view class="remark-case" wx:if="{{!fromShare}}" bind:tap="showRemarks" data-item="{{item}}">
+            <image class="btn-remark" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/remark.png" mode="widthFix"></image>
+            <view class="text-case">{{item.remarks ? item.remarks : "如对精修图、设计片不满意，请输入您的修改要求。"}}</view>
+        </view>
+    </view>
+</view>
+<view class="tools" wx:if="{{!fromShare}}">
+    <view class="icon" catchtap="toRecycle" wx:if="{{isNew != 1}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon2.png" />
+    </view>
+    <view class="icon" catchtap="toShare" wx:if="{{isNew != 1}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/share.png"></image>
+    </view>
+    <view class="icon" wx:if="{{isNew == 1 && layoutStatus != 2}}" catch:tap="showPopup" data-code="{{2}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200605/satisfy.png" wx:if="{{layoutStatus != 2}}"></image>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200605/satisfy_act.png" wx:if="{{layoutStatus == 2}}"></image>
+    </view>
+    <view class="icon" wx:if="{{isNew == 1 && layoutStatus != 2}}" catch:tap="showPopup" data-code="{{1}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200605/dislike.png" wx:if="{{layoutStatus != 1}}"></image>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200605/dislike_act.png.png" wx:if="{{layoutStatus == 1}}"></image>
+    </view>
+</view>
+<view class="btn" catchtap="toRoom" wx:if="{{showButton}}">查看照片</view>
+<view class="mask" wx:if="{{showShare}}" catchtap="closeMask">
+    <view class="inner" catchtap="stop">
+        <view class="h" style="color: #240101; font-size: 15px;">请选择分享内容</view>
+        <view class="option" catchtap="changOption" data-index="0">
+            <view class="c {{optionIndex == 0 ? 'active' : ''}}">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" wx:if="{{optionIndex == 0}}" />
+            </view>
+            分享全部照片
+        </view>
+        <view class="option" catchtap="changOption" data-index="1">
+            <view class="c {{optionIndex == 1 ? 'active' : ''}}">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" wx:if="{{optionIndex == 1}}" />
+            </view>
+            只分享设计片
+        </view>
+        <button open-type="share" hover-class="none" class="btn">确定</button>
+    </view>
+</view>
+<view class="empty" wx:if="{{list.length == 0}}">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/exmper@2x.png" />
+    <view>暂时还没有图片</view>
+</view>
+<!-- 控制弹窗 -->
+<view class="mask" catchtouchmove="stop" wx:if="{{showPop}}">
+    <view class="inner state-pop" wx:if="{{stateCode == 2}}">
+        <view class="head">提示</view>
+        <view class="msg">{{tipsMsg}}</view>
+        <view class="btn-case">
+            <button class="pop-btn" catchtap="hidePop">取消</button>
+            <button class="pop-btn" catchtap="updateStatus">确定</button>
+        </view>
+    </view>
+</view>
+<view class="mask" catchtouchmove="stop" wx:if="{{showRemark}}">
+    <view class="inner remark-pop global" wx:if="{{stateCode == 1}}">
+        <view class="head">
+            <text>提示</text>
+            <text>{{tipsMsg}}</text>
+        </view>
+        <view class="msg">
+            <textarea class="msg-textarea" value="{{globalRemark}}" placeholder="如对精修图、设计片不满意，请输入您的修改要求，以便修片师为您服务。" maxlength="100" bindinput="inputRemark" data-type="global" adjust-position="{{false}}" disabled="{{layoutStatus == 1}}"></textarea>
+            <view class="num-case">{{globalRemark.length}}/100</view>
+        </view>
+        <view class="btn-case">
+            <button class="pop-btn" catchtap="closeRemark">取消</button>
+            <button class="pop-btn {{layoutStatus == 1 ? 'dis' : ''}}" catchtap="updateStatus">确定</button>
+        </view>
+    </view>
+    <view class="inner remark-pop" wx:else>
+        <view class="head">
+            备注-给这张设计片添加备注
+            <image class="close-btn" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/close.png" mode="widthFix" bind:tap="closeRemark"></image>
+            <!-- <view class="close-btn">X</view> -->
+        </view>
+        <view class="msg">
+            <textarea class="msg-textarea" value="{{remarkMsg}}" placeholder="请输入内容" maxlength="100" bindinput="inputRemark" adjust-position="{{false}}"></textarea>
+            <view class="num-case">{{remarkMsg.length}}/100</view>
+        </view>
+        <view class="btn-case">
+            <button class="pop-btn" catchtap="confirmRemark">确定</button>
+        </view>
+    </view>
+</view>

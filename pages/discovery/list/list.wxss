@@ -1,0 +1,63 @@
+.waterfall{height:calc(100vh - 40px);width:100vw}.banner{position:relative}.banner .bgImage{width:100vw;height:200px}.banner .v-tips{position:absolute;bottom:25px;left:0;right:0;color:#fff;font-size:12px;text-align:center;margin:0 auto}.banner .v-tips-body{width:228px;height:16px;display:inline-block;background:rgba(0,0,0,.6);border-radius:8px;line-height:16px}.banner .v-tips image{width:10px;height:10px;margin-right:3px}.moveTop{margin-top:-20px}.fixTop{position:fixed!important;top:0;z-index:99;border-radius:0!important}.menu-container{width:100vw;display:flex;justify-content:space-around;border-bottom:1px solid #eee;background-color:#fff;border-radius:15px 15px 0 0;position:sticky;top:0;z-index:1}.menu-container view{width:45%;height:40px;line-height:40px;text-align:center}.activited{color:#222;font-weight:600;height:38px;line-height:38px;border-bottom:2px solid #ffd800}.createImg{position:fixed;bottom:100rpx;right:10rpx}.createImg .text{width:86px;height:27px;position:absolute;top:-20px;left:3px;animation-name:shock;animation-duration:1s;animation-timing-function:linear;animation-delay:0;animation-iteration-count:infinite}.createImg .plus{width:180rpx;height:180rpx}.empty{display:flex;flex-direction:column;justify-content:center;align-items:center;color:#240101;font-size:15px}.empty image{width:106px;height:106px}.empty .text{margin:20px 0}.empty .btn{width:220px;height:44px;line-height:44px;background:linear-gradient(#ffe74f,#ffe227);text-align:center;border-radius:22px;box-shadow:0 0 5px #ffe74f}.appointment{position:fixed;bottom:30px;right:10px}.appointment image{width:107px;height:78px}.completed{height:80px;line-height:80px;width:100%;text-align:center;color:#666;font-size:12px}.authorize-tips{border-radius:10px}.authorize-tips image{width:339px}.v-mask{position:fixed;left:0;right:0;top:0;bottom:0;background:#000;opacity:.3;z-index:1000}.v-coupon{position:fixed;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;z-index:1001}.v-coupon-card{width:60vw;background:#fff;border-radius:15px;text-align:center;padding:25px}.v-coupon-image{width:55px;height:45px;margin:10px 0}.v-coupon-title{color:#240101;font-size:16px;font-family:PingFang-SC;font-weight:400;margin:10px 0}.v-coupon-title-bold{font-size:24px;font-weight:bolder;display:inline-block}.v-coupon-btn{height:41px;background:linear-gradient(104deg,#ffe74f 0,#ffe227 100%);box-shadow:0 0 13px 0 rgba(255,226,39,.71);border-radius:25px;color:#240101;line-height:41px;margin-top:35px}.v-coupon-close{position:absolute;bottom:135px;width:48px;height:48px}.gift .v-coupon-card{position:relative}.gift .v-coupon-image{width:64px;height:59px;margin:10px 0;position:absolute;top:-34px;left:28vw}.gift .v-coupon-title{margin:40px 0 10px 0}.gift .v-coupon-sub{font-size:14px;color:#231815}.gift .v-coupon-title-bold{color:#ff5166;font-size:14px}.v-tools{position:fixed;right:10px;bottom:15px;width:62px;z-index:2;display:flex;flex-direction:column}.v-tools image{width:61px;height:61px;display:inline-block}.v-search-pop{margin:20px 44px}.v-search-pop .v-tabs{text-align:center;font-size:13px;color:#231815}.v-search-pop .v-tabs .v-tab{display:inline-block;border:1px solid #ffe329;border-radius:0 15px 15px 0;height:30px;line-height:30px;width:108px}.v-search-pop .v-tabs .v-tab:first-child{border-radius:15px 0 0 15px}.v-search-pop .v-tabs .v-tab.active{background:#ffe329}.v-search-pop input{border-bottom:1px solid #ffe329;text-align:center;padding:15px;margin-top:35px}.share-mask{width:100vw;height:100vh;background-color:rgba(0,0,0,.5);position:fixed;top:0;left:0;z-index:4}.share-inner{width:276px;height:285px;background-color:#fff;margin:150px auto 0 auto;border-radius:10px;position:relative;z-index:5}.share-inner .header{position:relative;left:-30px;top:-35px;width:320px;height:144px}.share-inner .activityinfo{color:#bdbdbd;font-size:24px;width:calc(100% - 40px);padding:10px 20px}.share-inner .activityinfo view{margin:5px 0}.share-inner .activityinfo view:nth-child(1){color:#240101;font-size:26px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.share-inner .activityinfo view:nth-child(2){font-size:20px}.share-inner .activityinfo view:nth-child(3){font-size:16px}.share-inner .qrcode{width:240px;height:120px;border-radius:8px}.qrcode-text{color:#ffd800;margin-top:15px;font-size:12px}.share-inner .content{display:flex;flex-direction:column;align-items:center;width:100%}.share-inner .content .options{display:flex;justify-content:space-around;width:100%;margin:15px 0}.share-inner .content .options image{width:60px;height:60px}.share-inner .content .options view{text-align:center;font-size:12px}.share-inner .content .btns{width:94%;margin-top:30px;display:flex;justify-content:space-around}.share-inner .content .btn{width:115px;background:linear-gradient(#ffe74f,#ffe227);height:40px;line-height:40px;border-radius:20px;text-align:center;color:#240101;border:none;margin:0;box-shadow:0 0 13px #ffe227;font-size:15px}.share-inner .content .btns .circle-btn{font-size:15px;width:115px;height:40px;border-radius:20px;text-align:center;line-height:20px;background:linear-gradient(#ffe74f,#ffe227);display:flex;justify-content:center;align-items:center;box-shadow:0 0 5px #ffe227}.close-btn{position:absolute;bottom:140px;left:calc(50% - 24px);width:48px;height:48px}.home{width:95px;height:60px;display:flex;align-items:center;justify-content:center;position:fixed;left:0;top:25vh;z-index:1;border-radius:0 17px 17px 0}.home image{width:100%;height:100%}.tipBox{width:100%;height:100%;position:fixed;bottom:0;left:0;z-index:2}.hc-bg{width:100%;height:100%;position:absolute;background-color:#888;opacity:.6;z-index:1}.tipContent{width:100%;height:220px;position:absolute;bottom:0;left:0;z-index:2;display:flex;flex-direction:column;text-align:center;background-color:#fff}.hc-topWord{width:100%;height:40px;line-height:40px;float:left}.hc-cancle{width:20%;height:40px;line-break:40px;float:left;font-size:15px}.hc-tip{width:60%;height:40px;line-break:40px;float:left;text-align:center;font-size:20px;color:#222}.hc-word{font-size:17px;margin:40px 0 30px 0;color:#222}.hc-tipBtn{margin:0 auto;width:220px;height:44px;color:#240101;line-height:44px;background:linear-gradient(104deg,#ffe74f 0,#ffe227 100%);box-shadow:0 0 13px 0 rgba(255,226,39,.71);border-radius:25px}.arrange_info{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;background-color:rgba(0,0,0,.5)}.arrange_info .inner{position:absolute;bottom:0;height:220px;width:calc(100vw - 40px);padding:0 20px 10px 20px;display:flex;flex-direction:column;justify-content:space-around;background:#fff;box-shadow:0 -5px 9px rgba(126,151,168,.24);border-radius:10px 10px 0 0}.arrange_info .inner .header{display:flex;justify-content:space-between;align-items:center;padding:10px 0}.arrange_info .inner .header text{color:#2a211d;font-size:15px;text-align:center}.arrange_info .inner .header image{width:14px;height:14px}.arrange_info .inner .body input{width:90%;height:35px;line-height:35px;padding:0 10px;background-color:#f2f2f2;border-radius:5px;margin:5px 0}.arrange_info .inner .tips{color:#666;font-size:12px}.arrange_info .inner .btn{width:80%;height:35px;line-height:35px;text-align:center;background:linear-gradient(#ffe74f,#ffe227);border-radius:17px;margin:0 auto}
+
+
+
+
+.check-mask{
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0,0,0,.5);
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:4;
+    overflow: hidden;
+}
+.check-inner{
+    width:276px;
+    height:285px;
+    background-color:#fff;
+    margin:150px auto 0 auto;
+    border-radius:10px;
+    position:relative;
+    z-index:5
+}
+.check-inner .check-title{
+    text-align: center;
+    padding: 20px;
+}
+.check-inner .select-type{
+    width: 80%;
+    height: 40px;
+    margin:0 auto;
+    border:1px solid #ffe22b;
+    text-align: center;
+    border-radius: 20px;
+    line-height: 40px;
+    margin-bottom: 20px;
+}
+
+.check-inner .open-sy{
+    width: 80%;
+    height: 40px;
+    margin:0 auto;
+    border:1px solid #fb8578;
+    text-align: center;
+    color: #fff;
+    background-color: #fb8578;
+    border-radius: 20px;
+    line-height: 40px;
+    margin-top: 40px;
+}
+.check-inner .activeype{
+    background-color: #ffe22b;
+}
+
+.check-close-btn{
+    position:absolute;
+    bottom:-50px;
+    left:calc(50% - 24px);
+    width:48px;
+    height:48px
+}
+

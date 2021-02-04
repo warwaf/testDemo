@@ -1,0 +1,103 @@
+/* pages/album/subscribe/index.wxss */
+.v-form {
+    margin: 25px;
+    height: 411px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 155px;
+    background: linear-gradient(104deg, rgba(255, 231, 79, 1) 0%, rgba(255, 226, 39, 1) 100%);
+    box-shadow: 0px 0px 9px 0px rgba(255, 226, 39, 0.71);
+}
+
+.v-form .text {
+    height: 21px;
+    font-size: 15px;
+    font-family: PingFang-SC-Medium;
+    font-weight: 500;
+    color: rgba(42, 33, 29, 1);
+    line-height: 21px;
+    text-align: center;
+    margin: 11px;
+}
+
+.v-form .input-item {
+    width: 285px;
+    height: 45px;
+    line-height: 45px;
+    padding-left: 10px;
+    color: #999999;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 4px;
+    border-radius: 4px;
+    margin: 15px auto;
+    position: relative;
+}
+
+.v-form .input-item text {
+    width: 270px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.v-form .input-item image {
+    width: 14px;
+    height: 16px;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+.v-form .input-item image.addr {
+    height: 20px;
+    top: 12px;
+}
+
+.v-form .btn {
+    width: 204px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 9px 0px rgba(255, 221, 0, 1);
+    border-radius: 20px;
+    margin: 20px auto;
+}
+
+.list-item {
+    height: 56px;
+    width: 92%;
+    margin: 0 2%;
+    padding: 0 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+}
+
+.v-phone {
+    width: 292px;
+    height: 40px;
+    border-bottom: 2px solid #FFDD00;
+    margin: 50px auto;
+}
+
+.v-phone input {
+    text-align: center;
+    height: 40px;
+}
+
+.v-range-item {
+    text-align: center;
+    line-height: 50px;
+}
+
+.row{
+    padding: 10px 20px;
+    color: #240101;
+}

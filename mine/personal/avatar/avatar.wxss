@@ -1,0 +1,71 @@
+/* pages/mine/personal/avatar/avatar.wxss */
+.container{
+    padding-top: 100px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+   
+}
+
+.container image{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.container view .btn{
+    width: 220px;
+    height: 44px;
+    border-radius: 22px;
+    background:linear-gradient(#FFE74F,#FFE227);
+    border: 1px solid #FFE647;
+    text-align: center;
+    line-height: 44px;
+    margin-top: 15px;
+    color: #240101;
+    font-size: 14px;
+}
+
+.layout{
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.layout .box{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 220px;
+    width: 100%;
+    background-color: #fff;
+}
+.layout .box .header{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.layout .box .btns{
+    display: flex;
+    justify-content: space-around;
+}
+.layout .box .btns image{
+    width: 40px;
+}
+.layout .box .btns view{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 106px;
+    height: 140px;
+}
+.cancle{
+    position: absolute;
+    left: 10px;
+    top: 5px;
+}

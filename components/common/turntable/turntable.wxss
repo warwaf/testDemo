@@ -1,0 +1,18 @@
+/* components/common/turntable/turntable.wxss */
+.turntable{
+    overflow: hidden;
+    padding: 5px 0;
+}
+.turntable .img{
+    margin: 0 1px !important;
+    border-radius: 0 !important;
+    transition: transform 1s;
+}
+.symbol{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 17px;
+    color: #231815;
+    font-weight: bold;
+}

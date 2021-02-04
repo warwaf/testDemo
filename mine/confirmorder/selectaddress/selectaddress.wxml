@@ -1,0 +1,14 @@
+<!--pages/mine/confirmorder/selectaddress/selectaddress.wxml-->
+<view class='hc-seelctBox'>
+    <view class='hc-addressBox' wx:for="{{addresslist}}" wx:key="index" wx:item="{{item}}">
+        <view class='hc-select' bindtap='select' data-item="{{item.select}}" data-index="{{index}}"><image src="{{item.select == 'true'? 'https://hcmtq.oss-accelerate.aliyuncs.com/resources/select-address.png':'https://hcmtq.oss-accelerate.aliyuncs.com/resources/noselect-address.png'}}"></image></view>
+        <view class='hc-detail'>
+            <view class='hc-name'>{{item.name}} {{item.phone}}</view>
+            <view class='hc-address'>{{item.address}}</view>
+        </view>
+        <view class='hc-select' bindtap='editAddress'>编辑</view>
+    </view>
+</view>
+<view class='hc-selectBtn'>
+    <view class='hc-btn' bindtap='addAddress'>新增收货地址</view>
+</view>

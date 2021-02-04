@@ -1,0 +1,26 @@
+/* components/common/dial/dial.wxss */
+.dial-bg{
+    position: relative;
+    width: 71px;
+    height: 71px;
+    border-radius: 50%;
+    background-color: #FFE227;
+    border: 5px solid #FFF;
+    overflow: hidden;
+    box-shadow: 0 0 5px #fff;
+}
+.dial-bg .box{
+    width: 76px;
+    height: 76px;
+    clip: rect(0px,38px,76px,0px);
+    background-color: #FFF;
+    position: absolute;
+    transition: transform 1s;
+    border-radius: 50%;
+    left:-1px;
+}
+.dial-bg .dial-r-reverse{
+    background-color: #FFE227;
+    z-index: 1; 
+    transform: rotate(-180deg) !important;
+}

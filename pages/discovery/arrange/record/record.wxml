@@ -1,0 +1,52 @@
+<view class="v-content" wx:if="{{list.length > 0}}">
+    <view class="gray">你曾经在这预约了{{list.length}}次哦</view>
+    <view class="v-message" wx:for="{{list}}" wx:key="index" >
+        <view class="v-message-header">
+           <view class="v-message-date">
+               {{item.productName}}
+               <view class="point"></view>
+               <view class="bottom"></view>
+            </view>
+            <view wx:if="{{item.payState == 'Paid'}}" class="v-message-date-right">已付款</view>
+            <view wx:elif="{{item.payState == 'Created' && item.orderState == 'Cancelled' }}" class="v-message-date-right ">已作废</view>
+            <view wx:else class="v-message-date-right no" bind:tap="tapPay" data-info="{{item}}">待付款</view>
+        </view>
+        <view class="v-message-body">
+            <view class="v-message-title">
+               <view class="v-ver">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon7.png" class="icon"  mode="widthFix"/>
+                    <view>{{item.activityAddress}}</view>
+               </view>
+            </view>
+            <view class="v-message-content">
+                <view class="v-ver">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon9.png" class="icon"  mode="widthFix"/>
+                    <view>{{item.activityTime}}</view>
+                </view>
+            </view>
+            <view class="v-message-content">
+                <view class="v-ver">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon1.png" class="icon"  mode="widthFix"/>
+                    <view>{{item.linkman}}</view>
+                </view>
+            </view>
+            <view class="v-message-content">
+                <view class="v-ver">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon11.png" class="icon"  mode="widthFix"/> 
+                    <view>{{item.linkmanPhone}}</view>
+                </view>
+            </view>
+            <view class="v-message-content">
+                <view class="v-ver">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/money@2x.png" style="width:10px;padding-right:4px;" class="icon"  mode="widthFix"/>
+                    <view> {{item.orderAmount? item.orderAmount :'0.00'}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>     
+<view class="empty" wx:if="{{list.length == 0 && !isLoading}}">
+    <image mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/exmper@2x.png"></image>
+    <view>没有预约记录哦</view>
+</view>

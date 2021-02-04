@@ -1,0 +1,28 @@
+<view class="v-content">
+   <view class="v-message" wx:for="{{news}}" wx:for-item="item" wx:key="index">
+        <view class="v-message-date">{{item.createTime}}</view>
+        <view class="v-message-body">
+            <view class="v-message-title">
+                <!-- 精修图查看通知 -->
+                {{item.first}}
+                <view class="v-message-title-extend" wx:if="{{item.status != '0'}}">已查看</view>
+            </view>
+            <view class="v-message-content">
+                {{item.centre}}
+            </view>
+             <view class="v-message-detail" bind:tap="updataMessage" data-item="{{item}}">
+                详情
+                <view class="v-message-detail-arrow">
+                    <i class="right-arrow1"></i>
+                    <i class="right-arrow2"></i>
+                </view>
+            </view>
+        </view>
+   </view>
+   <loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+</view>
+
+<view wx:if="{{ news.length == 0 }}" class='empty'>
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/photo_collection_none.png" mode='widthFix'></image>
+    <view class='noneWord'>当前没有消息</view>
+</view> 

@@ -1,0 +1,95 @@
+/* components/personMsg/personMsg.wxss */
+.tab1{
+  clear: both;
+  text-align: center;
+  position: absolute;
+  top:60rpx;
+  width: 100%;
+}
+.topBox{
+  width: 90%;
+  box-shadow:0 0 26rpx 0 rgba(0,0,0,0.11);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  margin-left: 5%;
+  /* border:2rpx solid #e8e8e8; */
+  border-radius: 20rpx;
+  background-color: #fff;
+}
+.name{
+  font-size: 34rpx;
+  letter-spacing: 2rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin: 20rpx 0;
+  color: #222;
+  
+}
+.detail{
+  font-size: 26rpx;
+  margin: 10rpx 0  20rpx 0;
+  color: #999999;
+  font-weight:500;
+  letter-spacing: 2rpx;
+}
+.mine{
+    /* box-shadow:0px 0px 13px 0px rgba(0,0,0,0.11); */
+    border-radius:8px;  
+}
+.his-name{
+  font-size: 26rpx;
+  letter-spacing: 2rpx;
+  /* height: 50rpx; */
+  line-height: 38rpx;
+  margin-bottom: 16rpx;
+  color: #999999;
+   padding: 0 15px;
+}
+.his-detail{
+  font-size: 34rpx;
+  margin: 10rpx 0  20rpx 0;
+  color: #222;
+  font-weight:500;
+  letter-spacing: 2rpx;
+}
+.mine image{
+  width: 150rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top:-60rpx;
+  height: 150rpx;
+  background-color: #fff;
+  border: 6rpx solid #fff;
+}
+
+.msgBox{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin:16rpx 0;
+}
+.msgTab{
+  width: 33%;
+  text-align: center;
+  position: relative;
+}
+.msgTabNum{
+  font-size: 40rpx;
+  height: 60rpx;
+}
+.msgTabWord{
+  font-size: 24rpx;
+  color:#888;
+}
+.v-tip{
+  position:absolute;
+  background:red;
+  top:0px;
+  right:40px;
+  border-radius:8px;
+  height:8px;
+  width: 8px;
+  z-index: 100;
+}

@@ -1,0 +1,7 @@
+<view class="container">
+    <image class="img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon2.png" mode="widthFix"></image>
+    <view>OH！这个相册比较特殊</view>
+    <view>需要大侠留下手机号码哦</view>
+    <view>小檬斗胆问下大侠的手机号码Ծ‸Ծ</view>
+    <button class="btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 告诉小檬</button>
+</view>

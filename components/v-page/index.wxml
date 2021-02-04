@@ -1,5 +1,5 @@
-<!--components/v-page/index.wxml-->
+<!--album/components/v-page/index.wxml-->
 <view>
-    <view>parent:</view>
     <slot></slot>
+    <v-popup id="vPopup"></v-popup>
 </view>

@@ -1,0 +1,154 @@
+<view style=" border-top: 1rpx solid #e8e8e8;margin-top:{{navigationHeight}}px">
+    <view class="list-item" bindtap='changeAvatar'>
+        <view>头像</view>
+        <view style="display:flex;align-items: center;">
+            <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png"></image>
+        </view>
+    </view>
+    <view class="list-item" bindtap='editNickname'>
+        <view>昵称</view>
+        <view>
+            <text>{{userInfo.nickName}}</text>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png"></image>
+        </view>
+    </view>
+    <view class="list-item" bindtap='setPageData' data-genderStat="1">
+        <view>性别</view>
+        <view>
+            <text>{{userInfo.gender == '1' ? '男' : '女'}}</text>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png"></image>
+        </view>
+    </view>
+    <picker mode="date" start="1970-01-01" end="2019-01-01" bindchange="bindDateChange">
+        <view class="list-item" bindtap='editConstellation'>
+            <view>星座</view>
+            <view>
+                <text>{{userInfo.remarks2 == null ? '未选择' : userInfo.remarks2}}</text>
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png"></image>
+            </view>
+        </view>
+    </picker>
+</view>
+
+<view class="list-item" bindtap='editPhone'>
+    <view>手机号</view>
+    <view>
+        <text>{{userInfo.mobileNo ? userInfo.mobileNo : '未绑定'}}</text>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png"></image>
+    </view>
+</view>
+<view class="list-item" bindtap='editSignature'>
+    <view>签名</view>
+    <view>
+        <text>{{userInfo.autograph == null ? '未填写' : userInfo.autograph}}</text>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic8.png"></image>
+    </view>
+</view>
+<view class="layout" wx:if="{{nicknameStat}}" catchtap='editNickname'>
+    <view class="edit-view" catchtap="stop">
+        <view class="header">昵称</view>
+        <view class="comfirm" catchtap='saveNickName'>确认</view>
+        <view class="cancle" catchtap='editNickname'>取消</view>
+        <view class="text-body">
+            <input value="{{nickName}}" bindinput='bindNickNameInput' cursor-spacing="100px"></input>
+        </view>
+    </view>
+</view>
+
+<view class="layout" wx:if="{{genderStat}}" catchtap='editGender'>
+    <view class="edit-view" catchtap="stop">
+        <view class="header">性别</view>
+        <view class="cancle" catchtap='editGender'>取消</view>
+        <view class="gender-body">
+            <view catchtap='saveGender' data-gender="1">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/male.png"></image>
+                <view>男</view>
+            </view>
+            <view catchtap='saveGender' data-gender="0">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/female.png"></image>
+                <view>女</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="layout" wx:if="{{signatureStat}}" catchtap='editSignature'>
+    <view class="edit-view" catchtap="stop">
+        <view class="header">签名</view>
+        <view class="comfirm" catchtap='saveSignature'>确认</view>
+        <view class="cancle" catchtap='editSignature'>取消</view>
+        <view class="textarea-body">
+            <textarea value="{{signature}}" bindinput='bindSignatureInput' cursor-spacing="150px"></textarea>
+            <view>{{signature.length}}/30</view>
+        </view>
+    </view>
+</view>
+
+<view class="layout" wx:if="{{phoneStat}}" catchtap='editPhone'>
+    <view class="edit-view" catchtap="stop">
+        <view class="header" wx:if="{{phoneStat === 1}}">手机号</view>
+        <view class="header" wx:if="{{phoneStat === 2}}">验证码</view>
+        <view class="header" wx:if="{{phoneStat === 3}}">绑定手机号</view>
+        <view class="header" wx:if="{{phoneStat === 4}}">手机号</view>
+        <view class="comfirm" catchtap='getVerifyCode' wx:if="{{phoneStat === 1}}">获取验证码</view>
+        <view class="comfirm" catchtap='bindPhone' wx:if="{{phoneStat === 2}}">下一步</view>
+        <view class="comfirm" catchtap='editPhone' wx:if="{{phoneStat === 3}}">完成</view>
+        <view class="cancle" catchtap='editPhone'>取消</view>
+        <view class="text-body" wx:if="{{phoneStat === 1}}">
+            <input type="number" placeholder='请输入手机号' bindinput='bindPhoneInput'></input>
+        </view>
+
+        
+        <view class="digital-body" wx:if="{{phoneStat === 2}}">
+            <view class="tips">已发送验证码到 <text>{{partPhone}}</text></view>
+            <view class='blocks'>
+                <view class="block">
+                    <view wx:if="{{!numList.length}}" class="cursor"></view>
+                    <text wx:if="{{numList.length}}">{{numList[0]}}</text>
+                </view>
+                <view class="block">
+                    <view wx:if="{{numList.length===1}}" class="cursor"></view>
+                    <text wx:if="{{numList.length>=2}}">{{numList[1]}}</text>
+                </view>
+                <view class="block">
+                    <view wx:if="{{numList.length===2}}" class="cursor"></view>
+                    <text wx:if="{{numList.length>=3}}">{{numList[2]}}</text>
+                </view>
+                <view class="block">
+                    <view wx:if="{{numList.length===3}}" class="cursor"></view>
+                    <text wx:if="{{numList.length>=4}}">{{numList[3]}}</text>
+                </view>
+                <!-- <view class="block">
+                    <view wx:if="{{numList.length===4}}" class="cursor"></view>
+                    <text wx:if="{{numList.length>=5}}">{{numList[4]}}</text>
+                </view>
+                <view class="block">
+                    <view wx:if="{{numList.length===5}}" class="cursor"></view>
+                    <text wx:if="{{numList.length>=6}}">{{numList[5]}}</text>
+                </view> -->
+                <input type='number' maxlength='4' focus='true' auto-focus='true' bindinput='bindCodeInput' wx:if="{{!disableInput}}"></input>
+            </view>
+        </view>
+        <view class="result-body" wx:if="{{phoneStat === 3}}">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/hook.png"></image>
+            <view class="tips">已绑定手机号<text>{{partPhone}}</text></view>
+        </view>
+        <view class="btn-body" wx:if="{{phoneStat === 4}}">
+            <view>{{userInfo.mobileNo ? userInfo.mobileNo : ''}}</view>
+            <view class="btn" catchtap='changePhone'>{{userInfo.mobileNo ? '更换手机号' : '立即绑定'}}</view>
+        </view>
+    </view>
+</view>
+
+<view class='tipBox' wx:if="{{commentError}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>内容包含敏感词汇，请修改后重新提交</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>

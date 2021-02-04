@@ -1,0 +1,8 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff",
+    "navigationBarTitleText": "预约摄影师",
+    "usingComponents": {}
+}

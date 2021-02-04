@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+        "waterfall": "/components/album/waterFall/waterFall"
+    }
+}

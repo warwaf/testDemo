@@ -1,0 +1,113 @@
+/* pages/mine/follow/follow.wxss */
+.tab{
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.tab view{
+    width: 44%;
+    height: 50px;
+    text-align: center;
+    font-size: 16px;
+}
+.tab .activity{
+    border-bottom: 4px solid #FFD800;
+    font-weight: 600;
+}
+.tab .activity text{
+    font-weight: normal;
+}
+.item{
+    width: 90%;
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.item .avatar{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    margin-top: 8px;
+}
+.item view image{
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+}
+
+.autograph{
+    color: #999;
+    font-size: 13px;
+    margin-top: 10px;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.btn{
+    width: 56px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 13px;
+    border-radius: 14px;
+    text-align: center;
+    color: #3B0C0C;
+    background-color: #FFD800;
+}
+.btn1{
+    width: 56px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 13px;
+    border-radius: 14px;
+    text-align: center;
+    color: #3B0C0C;
+    border: 1px solid #FFD800;
+}
+.empty-fans{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.empty-fans image{
+    width: 106px;
+    height: 106px;
+}
+.empty-fans view{
+    margin: 20px 0 10px 0;
+    color: #240101;
+    font-size: 15px;
+}
+.empty-fans .btn-big{
+    width: 220px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    border-radius: 22px;
+    background: linear-gradient(#FFE74F,#FFE227);
+    box-shadow: 0 0 13px #FFE227;
+}
+.empty-follow{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.empty-follow>image{
+    width: 106px;
+    height: 106px;  
+}
+.empty-follow>view{
+    margin: 20px 0 10px 0;
+    color: #240101;
+    font-size: 15px;
+}
+.empty-follow .tags{
+    margin: 10px 20px;
+    padding: 0 10px;
+    border-left: 4px solid #FFE227;
+}

@@ -1,0 +1,47 @@
+<swiper 
+    style="height:{{height}};transition: height .5s;"
+    bindchange="intervalChange" 
+    current="{{currentIndex}}" >
+
+    <swiper-item wx:for="{{list}}" class="item" wx:key="index">
+        <image src="{{item.imageUrl}}?x-oss-process=image/resize,w_600" mode="widthFix" />
+    </swiper-item>
+</swiper>
+
+<view class="header" wx:if="{{reason.length}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+    不满意的原因
+</view>
+<view class="reason">
+    <view wx:for="{{reason}}" wx:key="index" wx:if="{{item}}">{{item}}</view>
+</view>
+
+<view class="btns">
+    <!-- 模拟表单 -->
+    <form report-submit="{{true}}" bindsubmit="comment">
+        <button form-type="submit" hover-class="none" class="{{status == 0 ? 'l' : 'm'}}" wx:if="{{status != 2}}" data-status="1">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon21.png" mode="widthFix"></image>
+        </button>
+    </form>
+    <!-- 模拟表单 -->
+    <form report-submit="{{true}}" bindsubmit="comment"  >
+        <button form-type="submit" hover-class="none" class="{{status == 0 ? 'r' : 'm'}}" wx:if="{{status != 1}}" data-status="2">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon22.png" mode="widthFix"></image>
+        </button>
+    </form>
+</view>
+
+<!-- 会话层 -->
+<view class="mask" wx:if="{{sessionStat}}" catchtap="switchSession" catchtouchmove="stop">
+    <view class="session" catchtap="stop">
+        <view>
+            <text>我要吐槽</text>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/xx.png" class="icon" catchtap="switchSession"/>
+        </view>
+        <view>
+            <view class="comment-item-default {{item.selected ? 'selected' : ''}}" wx:for="{{entrys}}" wx:key="*this" catchtap="selectTag" data-index="{{index}}">{{item.commentText}}</view>
+        </view>
+        <textarea catchtouchmove="stop" value="{{content}}" placeholder="嘿，隔屏吐槽一下？" maxlength="15" bindinput="inputEventHandle" show-confirm-bar="{{false}}"></textarea>
+        <view class="btn" catchtap="submitComment">提交</view>
+    </view>
+</view>

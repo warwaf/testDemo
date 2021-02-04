@@ -5,10 +5,11 @@
  * @requires component - Component 
  */
 import Store from './store/store';
-import { createPage } from './page/index';
+import { createPage, event } from './page/index';
 import { reactive, effect } from './reactive/index';
 import { createComponent } from './component/component';
-import { useParent, useChildren, useCustom } from "./relation/index"
+import { useParent, useChildren, useCustom } from "./relation/index";
+import request from './request/index';
 // 导出功能API
 export {
   Store,
@@ -16,5 +17,7 @@ export {
   createComponent,
   reactive,
   effect,
+  event,
+  request,
   useParent, useChildren, useCustom
 }

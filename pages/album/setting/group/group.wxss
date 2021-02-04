@@ -1,0 +1,1 @@
+.row{position:relative;display:flex;justify-content:center;align-items:center;margin:15px 0}.row input{width:280px;height:40px;border:1px solid #ffe329;border-radius:5px;padding:0 12px}.row text{display:block;width:20px;height:20px;margin-left:10px}.row .icon1{width:16px;height:16px;position:absolute;right:60px;top:10px}.row .icon2{width:20px;height:20px;margin-left:10px}

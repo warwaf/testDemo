@@ -1,0 +1,250 @@
+<wxs module="filter" src="../../../utils/util.wxs"></wxs>
+<view  bindtap='hideSession'>
+    <view class="content">
+        <view class="header">
+            <image wx:if="{{authorInfo.avatarUrl}}" src="{{authorInfo.avatarUrl}}" catchtap='toPerson'></image>
+            <image wx:else src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/avatar-default.png"></image>
+            <view class="info">
+                <view style="display: flex;">
+                    <text>{{authorInfo.nickName}}</text>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/male-icon.png" wx:if="{{authorInfo.gender == 1}}"></image>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/female-icon.png" wx:else>
+                </image>
+                </view>
+                <view class="date">{{movementInfo.createTime}}</view>
+            </view>
+<!--
+            <view class="fllow" wx:if="{{deleteDetail}}" bindtap='deleteDetail'>
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/delect@2x.png"></image>
+            </view>
+            <view class="fllow-btn" wx:else catchtap='toFollow' data-id="{{authorInfo.unionId}}">{{btnText}}</view> -->
+        </view>
+        <view class="body">
+            <image wx:for="{{movementInfo.imgUrlsList}}"
+                   mode="widthFix"
+                   wx:key="picUrl"
+                   src="{{item.picUrl + '?x-oss-process=image/resize,w_600'}} ">
+                    <!-- src="{{item.picUrl + '?x-oss-process=image/resize,w_600/watermark,image_' + waterMark + ',t_80,g_se,x_10,y_10'}} "> -->
+            </image>
+        </view>
+        <view class="desc" wx:if="{{movementInfo.content}}">
+            <text>
+                {{movementInfo.content}}
+            </text>
+        </view>
+    </view>
+
+    <view class="tags" wx:if="{{movementInfo.tagsValueList.length > 0}}">
+        <view wx:for="{{movementInfo.tagsValueList}}" fllow:key="{{index}}">{{item}}</view>
+    </view>
+
+    <view class="fllow">
+        <view class="turntable-box">喜欢 <turntable number="{{movementInfo.praiseCount}}" scale="{{0.4}}" style="margin-left: 10px;margin-top:-2px;"></turntable></view>
+        <view class="empty" wx:if="{{movementInfo.praiseCount == 0}}">期待你的点赞哟~</view>
+        <view>
+            <image src="{{item.avatarUrl}}" wx:key="index" wx:for="{{filter.sliceArr(praiseArr,0,7)}}" catchtap='toPersonal' data-id="{{item.unionId}}" wx:if="{{item}}"></image>
+        </view>
+    </view>
+
+    <view class="fans">
+        <image wx:for="{{follow}}" src="{{item.avatar}}" wx:key="index"></image>
+    </view>
+
+    <view class="comment">
+        <view class="title" wx:if="{{commentArr.length == 0}}">暂无评论</view>
+        <!-- <view class="title" wx:else>{{commentArr.length}} 评论</view> -->
+        <view class="title" wx:else>评论 <turntable number="{{commentCount}}" scale="{{0.4}}" style="margin-left: 10px;margin-top:-2px;"></turntable></view>
+        <view class="item" wx:for="{{commentArr}}" wx:key="id">
+            <view>
+                <view class="info">
+                    <image src="{{item.avatarUrl}}" catchtap='toPersonal' data-id="{{item.unionId}}"></image>
+                    <view class="name">
+                        <view>
+                            {{item.nickName}}
+                            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/male-icon.png" wx:if="{{item.gender == 1}}"></image>
+                            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/female-icon.png" wx:else></image>
+                        </view>
+                        <view class="date">{{item.createTime}}</view>
+                    </view>
+                    <view wx:if="{{item.replyTo == 0}}" catchtap='toReply' data-nickName="{{item.nickName}}" data-id="{{item.id}}">
+                        <image class="hc-img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/reply.png"></image>
+                    </view>
+                </view>
+                <view class="content">{{item.content}}</view>
+            </view>
+            <view wx:for="{{item.subComments}}" wx:for-item="comment" wx:key="id" class="sub-comment">
+                <view class="info">
+                    <image src="{{comment.avatarUrl}}" data-id="{{comment.unionId}}"  catchtap='toPersonal'></image>
+                    <view class="name">
+                        <view>{{comment.nickName}}
+                            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/male-icon.png" wx:if="{{comment.gender == 1}}"></image>
+                            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/female-icon.png" wx:else></image>
+                        <text class="icon"></text>  <text> {{item.nickName}}</text></view>
+                        <view class="date">{{comment.createTime}}</view>
+                    </view>
+                </view>
+                <view class="content">{{comment.content}}</view>
+            </view>
+        </view>
+        <loading wx:if="{{isLoading}}"></loading>
+        <view class="empty" wx:if="{{commentArr.length == 0}}">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/sofa.png"></image>
+            <view>快来抢沙发吧～</view>
+        </view>
+        <view class="completed clear" wx:if="{{ !isEmpty && !isLoading }}">已经到底了(╯▽╰)╭ </view>
+    </view>
+
+    <view class="reply">
+        <view class="input" catchtap="showSession">写个评论吧</view>
+        <view class="like_num" catchtap='praise'>
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/thumb_1.png" wx:if="{{praiseBtnStat === 0}}"></image>
+            <!-- 暂时屏蔽动画 <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/thumb_animate.gif" mode="widthFix" style="width: 25px;position: relative; top: -5px;" wx:if="{{praiseBtnStat === 1}}"></image> -->
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/thumb_3.png" wx:if="{{praiseBtnStat !== 0}}"></image>
+            <view>点赞</view>
+        </view>
+        <!-- <view catchtap='collect'>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/star.png" wx:if="{{starBtnStat === 0}}"></image>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/star_1.png" wx:if="{{starBtnStat === 1}}"></image>
+        </view> -->
+        <view catchtap='share'>
+                <button
+                open-type='share'
+                class="share-button">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/wechat.png"></image>
+                </button>
+                <view style="margin-top:3px;">分享</view>
+        </view>
+        <view wx:if="{{movementInfo.codeImg}}" class="like_num" catchtap='compoessFriendsImage'>
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.7/friends.png"></image>
+            <view>朋友圈</view>
+        </view>
+    </view>
+    <canvas class="v-friends" canvas-id="friends" style="width: 375px; height: 1000px;display:block;"></canvas>
+</view>
+
+<view class="content-empty" wx:if="{{isEmpty}}">
+    <view>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/empty.png"></image>
+        <view>抱歉，动态已删除</view>
+    </view>
+</view>
+
+<!-- <view catchtap='toHome' class="home" wx:if="{{fromShare}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/new/home@2x.png"></image>
+</view> -->
+
+
+
+<view class="session-mask" wx:if="{{sessionStat}}" catchtap='hideSession' catchtouchmove='stop' style="z-index: 3;">
+    <view class="session" catchtap="stop">
+
+        <view class="fast-comment">
+            <view>快捷评论</view>
+            <scroll-view scroll-x style="width: 260px">
+                <view class="entrys" style="width: {{entrys.length * 120}}px">
+                    <text wx:for="{{entrys}}" wx:key="*this" data-text="{{item}}" catchtap='submitComment'>{{item}}</text>
+                </view>
+            </scroll-view>
+        </view>
+        <textarea
+            value="{{commentContent}}"
+            bindinput="bindCommentInput"
+            placeholder='{{placeholder}}'
+            placeholder-style="color: #999;"
+            bindconfirm="submitComment"
+            auto-focus="true"
+            cursor-spacing="130px">
+        </textarea>
+        <view class="btns">
+            <text></text>
+            <form report-submit="{{true}}" bindsubmit="submitComment">
+                <button class="comfirm" form-type="submit" hover-class="none">发送</button>
+                <!-- <text class="comfirm" catchtap='submitComment'>发送</text> -->
+            </form>
+        </view>
+    </view>
+</view>
+
+
+<!-- 是否删除动态详情 -->
+<view class="session-mask" wx:if="{{tipBox}}" style="z-index:3;">
+    <view class='hc-tipBox'>
+        <view class='hc-tipTop'>
+            <view class='hc-close' bindtap='closeDynamics'>取消</view>
+            <view class="hc-delete" bindtap='deleteDynamics'>删除</view>
+        </view>
+        <view class='hc-h1'>删除动态</view>
+        <view class='hc-h2'>确认要删除这条动态吗</view>
+    </view>
+</view>
+
+<view class="session-mask" wx:if="{{authorityTips}}" catchtouchmove="stop">
+    <view class="authority-session">
+        <view>温馨提示</view>
+        <view>亲，授权了用户信息才可以操作哦～</view>
+        <view>快来告诉小檬你是谁吧~</view>
+        <view>
+            <button class="userinfo-btn btn" bindgetuserinfo="hideAuthority"> 拒绝</button>
+            <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> 确定</button>
+        </view>
+        <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+    </view>
+</view>
+
+
+<view class='tipBox' wx:if="{{commentError}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>内容包含敏感词汇，请修改后重新提交</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>
+
+
+<!-- <view class="v-tools" wx:if="{{isShowTools && !MXQH_btn}}">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/entry.png" data-info="entry" bind:tap="tapTools"></image>
+</view> -->
+
+<view class="v-tools" wx:if="{{MXQH_btn}}">
+    <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20201113/camera-icon.png" data-info="entry" wx:if="{{isAppointment}}" bind:tap="toActivityHome" style="width: 52px; height: 66px;"></image>
+    <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20201113/camera-icon.png" data-info="entry" wx:if="{{!isAppointment}}" bind:tap="toActivityHome" style="width: 52px; height: 66px;"></image>
+    <!-- <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon15.png" data-info="entry" bind:tap="jumpApp" style="width: 58px; height: 58px; margin-top: 10px;"></image> -->
+</view>
+
+
+<!-- 预约弹窗 -->
+<view class="arrange_info" wx:if="{{showArrangeInfo}}" catchtap="hideArrangeInfo">
+    <view class="inner" catchtap="stop">
+        <view class="header">预约信息</view>
+        <view class="body">
+            <view>
+                <input value="{{userInfo.nickName || ''}}" placeholder="联系人" bindblur="modifyUserInfo" data-type="nickName" />
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon8.png" />
+            </view>
+            <view>
+                <input value="{{userInfo.mobileNo || ''}}" placeholder="手机号" bindblur="modifyUserInfo" data-type="mobileNo" />
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon8.png" />
+            </view>
+        </view>
+        <view class="tips">商家会安排专业顾问给您致电，提供咨询服务，请保持手机畅通</view>
+        <view class="btn" catchtap="confirmArrange">确定</view>
+    </view>
+</view>
+
+<view class="vouchers_info" wx:if="{{showVouches}}" catchtap="hideVouches">
+    <view class="inner">
+        <image class="icon" src="http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/a1507b382ea34e8e95560a6efaf99682.png"></image>
+        <view style="color: #240101; font-size: 17px; font-weight: bold;">恭喜获得</view>
+        <text decode="true">鲜檬儿童定制三件套优惠劵 \n 详情页点击“立即购买” \n “授权登录”后使用优惠券</text>
+        <image style="width: 150px; height: 89px;" src="https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/mtq/20200324/C0530678420200324/origin/f61d2150bc5c4fb1a0e39acf756163d1.png" ></image>
+        <view class="btn" catchtap="jumpApp1">查看详情</view>
+    </view>
+</view>
+
+<view class="appointment" catchtap="toArrange" wx:if="{{!MXQH_btn}}">
+    <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/other/discover-list-1.png" mode="widthFix" />
+</view>

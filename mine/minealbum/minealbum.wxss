@@ -1,0 +1,53 @@
+/* pages/mine/minealbum/minealbum.wxss */
+.box{
+    text-align: center;
+    border-top:1rpx solid #e8e8e8;
+}
+.albumBox{
+    width: 640rpx;
+    margin: 40rpx auto 0;
+    height: 458rpx;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0px 13px 0px rgba(0,0,0,0.11);
+    border-radius:0px 0px 8px 8px;
+    border-top: 4rpx solid rgba(255,226,0,1);
+}
+.albumImg{
+    width: 610rpx;
+    height: 304rpx;
+    overflow: hidden;
+    margin: 15rpx auto 0;
+    position: relative
+}
+.albumImg image{
+    width: 100%;
+    height: 152px;
+}
+.albumTitle{
+    font-size:32rpx;
+    font-weight:400;
+    color:rgba(36,1,1,1);
+    margin: 28rpx 0 10rpx;
+}
+.albumTime{
+    font-size:28rpx;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    margin-bottom: 20rpx;
+}
+.noneBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center
+}
+.noneBoxImg image {
+    margin-top:280rpx;
+    width: 212rpx;
+    height: 212rpx;
+}

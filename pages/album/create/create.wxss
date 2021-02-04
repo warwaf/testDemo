@@ -1,0 +1,42 @@
+.item{
+    width: 320px;
+    height: 166px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #eee;
+    margin: 12px auto;
+    overflow: hidden;
+    position: relative;
+}
+.item image{
+    width: 100%;
+    height: 100%;
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.mask>view:nth-child(1){
+    font-size: 33px;
+    margin: -10px 0 5px 0;
+    color:#FFDF00;
+}
+.mask view text{
+    color:#fff;
+    font-size: 12px;
+    line-height: 14px;
+}
+.mask>view:nth-child(3){
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color:#ccc;
+    font-size: 12px;
+}

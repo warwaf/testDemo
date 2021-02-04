@@ -1,0 +1,85 @@
+<view class="exchange-case">
+  <image class="logo" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200709/xm_log.png"></image>
+  <image class="imgbg" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200709/member_bg.png"></image>
+  <text class="wordart">鲜檬会员兑换</text>
+  <view class="input-case" hover-class="none" hover-stop-propagation="false">
+    <input class="coupon-input" placeholder="请输入卡券号" bindinput="bindCouponInput" value="{{exchangeCode}}" />
+    <input class="captcha-input" maxlength="4" placeholder="请输入验证码" bindinput="bindCaptchaInput" value="{{imgCode}}" />
+    <view class="canvas-case" class="{{showCavans ? '' : 'hide-canvas'}}" style="width:100px;height:44px;position:absolute;right:10px;bottom:6px;text-align: center;z-index: 10;">
+      <canvas style="width:100px;height:44px;text-align: center;z-index: 10;" canvas-id="canvas" catch:tap="refreshImgCode"></canvas>
+    </view>
+  </view>
+  <div class="footer">
+    <button class="mini-btn exchange-btn {{disBtn ? '' : 'can'}}" type="default" disabled="{{disBtn}}" catch:tap="exchangeNow">
+      立即兑换
+    </button>
+    <view class="protocol-case" catchtap="userAgree">
+      <text class="check-box {{isAgree ? 'active' : ''}}"></text>
+      <view style="font-size: 13px;">
+        点击购买立即注册并同意
+        <text catchtap="showProtocol" style="color: #1A1A1A;">《鲜檬会员用户协议》</text>
+      </view>
+    </view>
+  </div>
+</view>
+<!-- 协议弹窗 -->
+<view class="mask" wx:if="{{showProtocolPop}}">
+  <view class="inner protocol">
+    <protocol></protocol>
+    <view class="close" catch:tap="showProtocol">
+      <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/close.png" />
+    </view>
+  </view>
+</view>
+<!-- 状态弹窗 -->
+<view class="mask" wx:if="{{showStatusPop}}">
+  <view class="inner status">
+    <view class="close-btn" catch:tap="closeStatusPop">
+      <image catch:tap="closeStatusPop" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200709/close.png"></image>
+    </view>
+    <view class="icon-case {{statusCode == 2 ? 'icon-case2' : statusCode == 3 ? 'icon-case3' : ''}}">
+      <image wx:if="{{statusCode == 1}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200709/success.png"></image>
+      <image wx:if="{{statusCode == 2}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200709/fail.png"></image>
+      <image wx:if="{{statusCode == 3}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200709/stop.png"></image>
+    </view>
+    <view class="text-case">
+      <text class="top">{{statusText}}</text>
+      <view class="rich-text">
+        <rich-text nodes="{{statusTips}}"></rich-text>
+      </view>
+    </view>
+    <view class="btn" catch:tap="popCick">{{btnName}}</view>
+  </view>
+</view>
+<!-- loading效果 -->
+<view class="session-mask" wx:if="{{isLoading}}">
+  <loading text="{{loadingText}}"></loading>
+</view>
+<!-- loading效果 -->
+<!-- 授权弹窗 -->
+<view class="session-mask" catchtouchmove="stop" wx:if="{{authorityTips}}">
+  <view class="authority-session">
+    <view>温馨提示</view>
+    <view>亲，授权了用户信息才可以操作哦～</view>
+    <view>快来告诉小檬你是谁吧~</view>
+    <view>
+      <button class="userinfo-btn btn" catchtap="hideAuthority">拒绝</button>
+      <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">
+        确定
+      </button>
+    </view>
+    <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+  </view>
+</view>
+<!-- 获取手机号弹窗 -->
+<view class="session-mask" wx:if="{{getPhone}}" catchtap="closeGetPhone">
+  <view class="container">
+    <image class="img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon2.png" mode="widthFix"></image>
+    <view>OH！这个活动比较特殊</view>
+    <view>需要大侠留下手机号码哦</view>
+    <view>小檬斗胆问下大侠的手机号码Ծ‸Ծ</view>
+    <button class="btn" open-type="getPhoneNumber" catchtap="stop" bindgetphonenumber="getPhoneNumber">
+      告诉小檬
+    </button>
+  </view>
+</view>

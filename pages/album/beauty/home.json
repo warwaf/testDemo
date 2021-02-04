@@ -1,0 +1,11 @@
+{
+	"backgroundTextStyle": "dark",
+	"navigationBarBackgroundColor": "#fff",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "为爱执着",
+	"usingComponents": {
+		"beauty": "/components/album/beauty/beauty",
+		"userInfo": "/components/common/userInfo/userInfo",
+		"userPhone": "/components/common/userPhone/userPhone"
+	}
+}

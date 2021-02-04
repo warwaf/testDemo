@@ -1,0 +1,117 @@
+<view class="banner">
+    <image mode="widthFix" src="{{bannerUrl}}"></image>
+</view>
+
+<view class="menu-container {{manuStat ? 'moveTop' : 'fixTop'}}">
+    <view bindtap='toNewest'>最新</view>
+    <view class="activited" bindtap='toHotest'>最热</view>
+</view>
+
+<water data="{{photo}}" 
+    water-class="waterfall" 
+    hot="{{true}}" 
+    bind:loadEvent="loadPhotos" 
+    bind:clickEvent="showDetail" >
+    <loading wx:if="{{isLoading}}"></loading>
+</water>
+
+<view class="empty" wx:if="{{isEmpty}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/empty-movement.png"></image>
+    <view class="text">暂无排行</view>
+</view>
+
+<view class="v-tools" wx:if="{{isShowTools}}">
+    <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20201113/camera-icon.png" wx:if="{{isShowTools == 'DGLG_2020'}}" data-info="DGLG_2020" bind:tap="tapTools" style="width: 52px; height: 66px;"></image>
+    <!-- <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/entry.png" data-info="entry" bind:tap="tapTools"></image> -->
+    <!-- <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/ranking.png" data-info="ranking" bind:tap="tapTools"></image> -->
+    <!-- <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/prize.png" data-info="prize" bind:tap="tapTools" wx:if="{{isShowTools == 'C'}}"></image> -->
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/search.png" data-info="search" bind:tap="tapTools"></image>
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/share.png" data-info="share" bind:tap="tapTools"></image>
+    <image wx:if="{{isSignUP}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/add@2x.png"  bindtap='showChooseDialog'></image>
+</view>
+
+<view class="v-mask" wx:if="{{isCreate}}"></view>
+<!-- 活动参赛 -->
+<view class="v-coupon gift" wx:if="{{isCreate}}">
+    <view class="v-coupon-card">
+        <image class="v-coupon-image" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/gift.png"></image>
+        <view class="v-coupon-title">
+           参加成功啦！
+        </view>
+        <view class="v-coupon-sub">
+           为了感谢亲，小檬准备了<view class="v-coupon-title-bold">礼品</view>
+        </view>
+        <view class="v-coupon-sub">TA已在右下角“奖品”躺着啦</view>
+        <view class="v-coupon-btn" bind:tap="closeCoupon">收入奖品袋</view>
+    </view>
+    <image class="v-coupon-close" bind:tap="closeCoupon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/popup_close@2x.png"></image>
+</view>
+
+
+<pop title="搜索" visibile="{{isSearch}}" bind:comfirm="popComfirm">
+    <view class="v-search-pop">
+        <view class="v-tabs">
+            <view class="v-tab {{ selectTab == 1 ? 'active' : ''}}" data-index="1" bind:tap="tapTabs">参赛者编号</view>
+            <view class="v-tab {{ selectTab == 2 ? 'active' : ''}}" data-index="2" bind:tap="tapTabs">参赛者昵称</view>
+        </view>
+        <input type="text" bindinput="inputConfirm" cursor-spacing="50" value="{{searchInput}}" placeholder="{{ selectTab == 2 ? '请输入参赛者昵称' : '请输入参赛者编号'}}" />
+    </view>
+</pop>
+
+
+<!-- 分享弹层 -->
+<view class="share-mask" catchtap='hideMask' wx:if="{{shareStat}}">
+    <view class="share-inner">
+        <view class="activityinfo">
+            <view>{{discoverInfo.name}}</view>
+            <!-- <view style="font-size: 18px">{{filter.sliceArr(activityInfo.activityId,5)}}</view> -->
+            <!-- <view style="font-size: 18px">({{activityInfo.roomBrowseCount}}人)</view> -->
+        </view>
+        <view class="content">
+            <image src="{{isShowTools == 'DGLG' ? 'https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/333608a25de642959ec4ea9e43a667ce.png' : discoverInfo.banner}}" class="qrcode" mode="aspectFill"></image>
+            <view class="btns">
+                <button open-type="share" class="btn" plain='true'>相册分享</button>
+                <view class="circle-btn" catchtap='downloadQrcode'>二维码下载</view>
+            </view>
+        </view>
+    </view>
+    <image class="close-btn" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png" catchtap='hideMask'></image>
+</view>
+
+<view class="check-mask" wx:if="{{showTypeDialog}}">
+    <view class="check-inner">
+        <view class="check-title">
+           选择作品类型
+        </view>
+        <view class="content">
+            <view class="select-type {{isSelectType == 1 ? 'activeype' : ''}}" data-index="1" bind:tap="chooseType">
+                艺术类
+            </view>
+
+            <view class="select-type {{isSelectType == 2 ? 'activeype' : ''}}" data-index="2" bind:tap="chooseType">
+                纪实类
+            </view>
+
+            <view class="open-sy" bind:tap="openSy">
+                开启摄影大赛之旅
+            </view>
+        </view>
+    <image class="check-close-btn" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png" catchtap='hideChooseType'></image>
+    </view>
+</view>
+
+
+
+
+
+<view class='tipBox' wx:if="{{error}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>{{msgText}}</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>

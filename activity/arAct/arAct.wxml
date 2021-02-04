@@ -1,0 +1,136 @@
+<view class='new-year-bg'>
+    <!-- 集赞赢好礼 -->
+    <view class='padd-item'>
+        <view class='give-like'>
+            <view class='give-like-title'>
+                <image class='title-img' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/activity_win_good_gift.png" mode='widthFix' lazy-load="false"/>
+                
+            </view>
+            <!-- 未发起活动 -->
+            <view class='give-like-btn' wx:if='{{isSendActivity == 0}}'>
+                <image  catchtap='promotiona' class='btn-img' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/thumbs_up_btn.png" mode='widthFix' lazy-load="false"/>
+            </view>  
+
+            <!-- 已发起活动 -->
+            <view class='activity-man' wx:if='{{isSendActivity == 1 || isSendActivity == 2}}'>
+                <view  class='activity-man-item'>
+                    <view>
+                        发起人
+                    </view>
+                    <view class='head-item'>
+                        <image class='title-img' src="{{userActivityInfo.avatarUrl}}" mode='widthFix' lazy-load="false"/>
+                    </view>
+                    <view class='nickname-item'>
+                         {{userActivityInfo.nickName}}
+                    </view>
+                </view>
+                  
+                <view class='activity-man-item'  wx:for-index='index'  wx:for='{{userActivityInfo.thumbVOList}}' wx:key="index">
+                    
+                    <view ><text decode="true">&nbsp;</text></view>
+                    
+                    <!-- 头像 -->
+                    <view class='head-item' wx:if='{{item.avatarUrl}}'>
+                        <image class='title-img' src="{{item.avatarUrl}}" mode='widthFix' lazy-load="false"/>
+                    </view>
+                    <view class='head-item head-item-none' wx:else>
+                        <image class='title-img' catchtap='awaitHelp' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/addzhuli.png" mode='widthFix' lazy-load="false"/>
+                    </view>
+
+                    <!-- 昵称 -->
+                    <view wx:if='{{item.nickName}}' class='nickname-item'>
+                            {{item.nickName}}
+                    </view>
+                    <view wx:else style='color:#CF8083'>
+                        等待助力
+                    </view>
+                </view>
+            </view>
+
+            <!--助力成功 -->
+            <view class='help-success' wx:if='{{isHelpSuccess==1}}'>
+                <view class='check-prize-btn' catchtap='checkPrize'></view>
+            </view>
+        </view>
+        
+        <!-- 温馨提示 -->
+        <view class='warm-tip'>
+            <view class='border-around' wx:for='{{4}}' wx:key="index"></view>
+        <view>
+            温馨提示: 请拿出鲜檬智慧定制产品，使用AR扫描照片体验视频，马上发起集赞活动。
+        </view>
+        </view>
+    </view>
+    
+    <!-- 活动奖品 -->
+    <view class='activity-prize'>
+        <view class='padd-item'>
+            <view class='prize-title'>
+                <image class='prize-img-title' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/activity_prizes_title.png" mode='widthFix' lazy-load="false"/>
+            </view>
+        </view>
+        <view class='prize-list'>
+            <view class='prize-item'>
+                <image class='prize-img-title' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/praise_award_img.png" mode='widthFix' lazy-load="false"/>
+            </view>
+            <view class='prize-item'>
+                <image class='prize-img-title' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/praise_award.png" mode='widthFix' lazy-load="false"/>
+            </view>
+        </view>
+    </view>
+
+    <view class='padd-item'>
+        <view class='prize-title'>
+            <image class='prize-img-title' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/activity_rules.png" mode='widthFix' lazy-load="false"/>
+        </view>
+
+        <view class='activity-rules'>
+            <view>
+                1、鲜檬用户通过AR功能扫描已消费的鲜檬智慧产品（相册/相框/礼品/四件套），并邀请5位新用户点赞视频，邀请人可获得一份礼品水晶玻璃摆台（包邮），在线DIY制作，限量500份，送完即止；
+            </view>
+            <view class='rules-text'>
+                2、参与点赞者可获得鲜檬摄影代金券（婚拍1500元及写真500元），仅限鲜檬摄影线下门店使用；
+            </view>
+            <view class='rules-text'>
+                3、鲜檬用户发起集赞后，邀请人不能为自己点赞，只能转发邀请好友点赞； 
+            </view>
+            <view class='rules-text'>
+                4、所有奖品及代金券均需在有效期内使用且不可兑换成现金或其他福利； 
+            </view>
+            <view class='rules-text'>
+                5、已消费鲜檬智慧产品的用户通过本活动链接才可参与活动领取福利；凡以不正当手段（包括不限于作弊、扰乱系统、实施网络攻击）参与本次活动的用户，鲜檬有权取消相关奖励； 
+            </view>
+            <view class='rules-text'>
+                6、在法律允许其范围内，活动主办方保留需要取消或修改上述相关说明的权利，活动最终解释权归活动主办方所有； 
+            </view>
+            <view class='rules-text'>
+                7、如有疑问可以联系鲜檬在线客服，或拨打官方客服热线400-805-2189。
+            </view>
+        </view>
+    </view>
+
+    <!-- AR扫码按钮 -->
+    <view class='AR-btn' catch:tap="promotiona">
+        <image class='prize-img-title' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/changeARbtn.png" mode='widthFix' lazy-load="false"/>
+    </view>
+
+    <!-- 客服按钮 -->
+    <view class="tool-case" >
+    <button open-type='contact' class='contact_btn' bindcontact='handleContact'>
+        <image class="icon-ar" mode='widthFix' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/kefu.png"></image>
+    </button>
+    </view> 
+    <!-- 助力成功奖品  -->
+    <view class="check-mask" wx:if="{{showTypeDialog}}">
+        <view class='check-inner'>
+            <image class="prize-img-title" src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/prizedialog.png" mode="widthFix" lazy-load="false" />
+            <view class='check-mask-btn' catchtap='readPrize'>
+                立即查看
+            </view>
+            <view class='prize-detail-close'>
+                <image class="prize-img-title" catchtap='closePrizeDetail' src="https://mtqpic.oss-cn-hangzhou.aliyuncs.com/popupclose%403x.png" mode="widthFix" lazy-load="false" />
+            </view>
+              
+        </view>
+    </view>
+</view>

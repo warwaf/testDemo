@@ -1,0 +1,1 @@
+.v-list{margin:4vw}.v-list .underline{padding:10px;font-size:13px;color:#231815;text-align:center;text-decoration:underline}.v-list .none{padding:10px;font-size:13px;color:#666;text-align:center}.v-avatar{width:20vw;height:20vw;padding-left:4vw;padding-top:4vw;display:inline-block}.v-avatar:nth-child(4n+1){padding-left:0}.v-avatar image{width:100%;height:100%;border-radius:25vw}

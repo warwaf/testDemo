@@ -1,0 +1,87 @@
+<wxs module="util">
+    function parseNum(num){
+        return num.toFixed(0)
+    }
+    module.exports = {
+        parseNum:parseNum
+    }
+</wxs>
+<view class="water-fall-outer">
+    <view wx:for="{{imgArr}}" 
+        wx:key="idx" 
+        wx:for-index="idx" 
+        wx:for-item="imgs" 
+        class="water-fall-column" 
+        style="width:{{columnWidth}}px">
+         <block wx:for="{{imgs}}" wx:key="i2" wx:for-item="items">
+            <view class="water-fall-item" wx:for="{{items}}"  wx:for-item="item" wx:key="index">
+                <image
+                    src="{{item.cover}}?x-oss-process=image/resize,w_300"
+                    mode="widthFix" 
+                    style="height:{{util.parseNum(item.picHeight*columnWidth/item.picWidth) + 'px'}}; background-color: #F1F3F5; background-image: url('http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;" 
+                    data-id="{{item.id}}" 
+                    lazy-load="{{true}}"
+                    data-praise="{{item.praiseCount}}"
+                    data-unionId="{{item.unionId}}" 
+                    catchtap='toDetail'>
+                </image>
+                <text wx:if="{{item.competitionNo}}" class="v-tag">{{item.competitionNo}}</text>
+                <text class="quantity">{{item.picCount}}图</text>
+                <view class="fire" wx:if="{{hot}}"> 
+                   <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/fire.png"></image> 
+                   {{item.score == null ? 0 : item.score}}</view>
+                <view style="margin-bottom: 5px;">
+                    <view class="avatar">
+                        <image src="{{item.avatarUrl}}" catchtap='toPersonal' data-id="{{item.unionId}}"></image>
+                        <text>{{item.nickName}}</text>
+                    </view>
+                    <view class="price">
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/thumb_gray.png"></image>
+                        <text>{{item.praiseCount == null ? '0' : item.praiseCount}}</text>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>
+<view class="loading">
+    <slot></slot>
+</view>
+
+
+<!-- <view class="water-fall-outer water-class">
+    <view wx:for="{{imgArr}}" 
+        wx:key="{{idx}}" 
+        wx:for-index="idx" 
+        wx:for-item="imgs" 
+        class="water-fall-column" 
+        style="width:{{columnWidth}}px">
+        <view class="water-fall-item" wx:for="{{imgs}}" wx:key="index">
+            <image
+                class="{{item.isDelete && item.isDelete !== undefined ? 'is-delete' : ''}}" 
+                src="{{item.thumbnailUrl}}?x-oss-process=image/resize,w_400" 
+                style="height:{{item.height + 'px'}}; background-color: #F1F3F5; background-image: url('https://hcmtq.oss-accelerate.aliyuncs.com/resources/placeholder.png'); background-repeat: no-repeat; background-position: center center; background-size:48px 20px;" 
+                catchtap='choseImage' 
+                data-column="{{idx}}" 
+                data-position="{{item.index}}" 
+                data-index="{{index}}"
+                data-url="{{item.thumbnailUrl}}">
+            </image>
+            <view 
+                class="circle" 
+                wx:if="{{activited}}" 
+                catchtap='choseImage' 
+                data-column="{{idx}}" 
+                data-position="{{item.index}}" 
+                data-index="{{index}}">
+                <view wx:if="{{item.check}}"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/hook.png"></image></view>
+            </view>
+            <view class="eye" wx:if="{{item.browseCount || item.browseCount === 0}}">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/eye.png" />  <text> {{item.browseCount > 99 ? '99+' : item.browseCount}}</text>
+            </view>
+            <view wx:if="{{item.score || item.score === 0}}">
+                <view class="rank-praise"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/fire.png"></image> {{item.score == null ? 0 : item.score}}</view>
+            </view>
+        </view>
+    </view>
+</view> -->

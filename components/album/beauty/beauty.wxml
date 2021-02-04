@@ -1,0 +1,29 @@
+<view class="water-fall-outer">
+    <view wx:for="{{imgArr}}" 
+        wx:key="idx" 
+        wx:for-index="idx" 
+        wx:for-item="imgs"
+        class="water-fall-column">
+        <view class="water-fall-item" wx:for="{{imgs}}" wx:key="index">
+            <image 
+                class="img"
+                src="{{item.originPic}}?x-oss-process=image/resize,w_300/auto-orient,1" 
+                mode="widthFix" 
+                catchtap='toDetail' 
+                data-position="{{item.index}}"></image>
+            <view class="sign" wx:if="{{item.type == 2}}">
+                <image class="img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/excellent.png"></image>
+            </view>
+            <view class="sign" wx:if="{{item.type == 1 || item.type == 5}}">
+                <image class="img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/simple.png"></image>
+            </view>
+            <view class="new" wx:if="{{item.alterState == 0}}">
+                <image class="img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon19.png"></image>
+            </view>
+            <view class="praise">
+                <image class="img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/praise-white.png"></image>
+                {{item.praiseCount == null ? 0 : item.praiseCount}}
+            </view>
+        </view>
+    </view>
+</view>

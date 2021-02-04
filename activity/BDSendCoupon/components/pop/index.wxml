@@ -1,0 +1,5 @@
+<view class="mask">
+  <view class="inner" style="{{strStyle}}">
+    <slot></slot>
+  </view>
+</view>

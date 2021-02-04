@@ -1,0 +1,79 @@
+<wxs module="filter" src="../../../utils/util.wxs"></wxs>
+
+<view class="group-container" wx:if="{{groupArr.length > 1}}">
+    <scroll-view scroll-x="true" class="scroll-container">
+        <view style="width: {{groupArr.length * 76}}px;">
+            <view class="group-item {{item.classification == curGroupName ? ('active-' + index % 4) : ''}}"  wx:for="{{groupArr}}" wx:key="classification" bindtap="groupItemClickHandler" data-index="{{index}}">{{item.classification}}</view>
+        </view>
+    </scroll-view>
+    <!-- <view class="icon" bindtap="showGroupListHandler">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon6.png" />
+    </view> -->
+</view>
+
+<view class="menu-container" wx:if="{{!isEmpty}}" style="top: {{groupArr.length > 1 ? '32px' : 0}}">
+    <view>
+        <view bindtap="toHome">
+            最新 
+        </view>
+        <view class="activited" bindtap='toPriseRank'>最热</view>
+    </view>
+    <view class="icons">
+        <!-- <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/refresh@2x.png" bindtap='reflesh'></image>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-menu-1.png" wx:if="{{calendar}}" bindtap="switchStat" />
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-menu-3.png" wx:if="{{!calendar}}" bindtap="switchStat"/> -->
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/home-menu-2.png" wx:if="{{isAuthor}}" bindtap='toSetting'/>
+    </view>
+</view>
+
+<water wx:if="{{!empty}}" 
+    data="{{photo}}" 
+    column="2" 
+    activited="{{puzzling}}" 
+    maxSelectableNum="{{maxPuzzleNum}}" 
+    bind:clickEvent="showDetail" 
+    bind:cancleEvent="showTool">
+    <loading wx:if="{{!finished}}" type="1"></loading>
+</water>
+
+<tool 
+    class="tool-class"
+    wx:if="{{toolStatus && !empty}}" 
+    bind:backTop="backTop" 
+    bind:puzzle="startPuzzle" 
+    bind:share="showShare" 
+    bind:diy="showDiy" 
+    topIcon="{{rocketStat}}" 
+    btnStatus="{{btnStatus}}"
+    activityId = "{{room_no}}">
+</tool>
+
+<view class="empty" wx:if="{{empty}}">
+    <view><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rank-empty.png"></image></view>
+    <view class="text">暂无排行</view>
+    <view>大好时机，一个赞就可助你走向人生巅峰</view>
+</view>
+
+<view class="share-mask" catchtap='hideMask' wx:if="{{shareStat}}">
+    <view class="share-inner">
+        <!-- <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/share-header.png" class="header"></image> -->
+
+        <view class="activityinfo">
+            <view>{{activityInfo.activityName}}</view>
+            <view style="font-size: 18px">{{filter.sliceArr(activityInfo.activityId,5)}}</view>
+            <view style="font-size: 18px">({{activityInfo.amount}}人)</view>
+        </view>
+
+        <view class="content">
+            <image src="{{filter.replaceHost(activityInfo.bannerImg)}}" class="qrcode" mode="aspectFill"></image>
+            <view class="btns">
+                <button open-type="share" class="btn" plain='true'>相册分享</button>
+                <view class="circle-btn" catchtap='downloadQrcode'>二维码下载</view>
+            </view>
+        </view>
+    </view>
+    <image class="close-btn" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png" catchtap='hideMask'></image>
+</view>
+
+<!-- 合成二维码图 -->
+<canvas canvas-id="qrcode" class="canvas" style="width: 750px; height: 1334px;"></canvas>

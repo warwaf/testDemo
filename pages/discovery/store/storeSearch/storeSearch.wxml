@@ -1,0 +1,32 @@
+<wxs module="filter" src="../../../../utils/util.wxs"></wxs>
+<view class='search-store-container'>
+  <view wx:for="{{discoverList}}" wx:key="id" class='search-store-list' catchtap='goStore' data-info="{{item}}">
+    <view class="detail">
+      <view>{{item.name}}</view>
+      <view class="dis">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon7.png" />
+        {{item.distance ? '距离你' + filter.meterTokilometer(item.distance) + 'km' : '世界这么大，你在哪' }}
+      </view>
+      <!-- <view class="views">
+        <view>
+          <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon8.png" />
+          {{item.picsCount}}张
+        </view>
+        <view>
+          <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon9.png" />
+          {{item.viewsCount}}次
+        </view>
+      </view> -->
+    </view>
+    <image src="{{item.banner}}" mode="aspectFill" class="img">
+      <view class="mask"></view>
+    </image>
+  </view>
+  <view class="empty" wx:if="{{discoverList.length == 0 && !isLoading}}" style="margin-top: {{imgUrls.length > 0 ? 0 : '148px'}};">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/exmper@2x.png" />
+    <view>抱歉，当前城市没有搜索到相应门店，</view>
+    <view>请确认后重新搜索</view>
+  </view>
+</view>
+
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>

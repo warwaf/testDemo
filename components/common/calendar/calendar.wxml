@@ -1,0 +1,232 @@
+<wxs module="util">
+  var isDate = function(date) {
+    return date && date.getMonth;
+  };
+
+  var isLeapYear = function(year) {
+    //传入为时间格式需要处理
+    if (isDate(year)) year = year.getFullYear()
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) return true;
+    return false;
+  };
+
+  var getDaysOfMonth = function(date) {
+    var month = date.getMonth(); //注意此处月份要加1，所以我们要减一
+    var year = date.getFullYear();
+    return [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+  }
+
+  var getBeginDayOfMouth = function(date) {
+    var month = date.getMonth();
+    var year = date.getFullYear();
+    var d = getDate(year, month, 1);
+    return d.getDay();
+  }
+
+  var getDisplayInfo = function(date) {
+
+    if (!isDate(date)) {
+      date = getDate(date)
+    }
+    var year = date.getFullYear();
+
+    var month = date.getMonth();
+    var d = getDate(year, month);
+
+
+    //这个月一共多少天
+    var days = getDaysOfMonth(d);
+
+    //这个月是星期几开始的
+    var beginWeek = getBeginDayOfMouth(d);
+
+    return {
+      year: year,
+      month: month,
+      days: days,
+      beginWeek: beginWeek
+    }
+  };
+
+  //分割月之间的展示
+  var monthClapFn = function(year, month) {
+	month = month + 1;
+    return year + '年' + (month) + '月';
+  };
+
+  var dataFormat = function(year, month, day){
+	 month = month + 1;
+	 if(month < 10) month = '0' + month;
+	 if(day < 10 ) day = '0' + day;
+     return year + '-' + (month) + '-' + day;
+  };
+  var  getChangedDate1  = function(date,index){
+	if (!isDate(date)) {
+      date = getDate(date)
+    }
+    var year = date.getFullYear();
+
+    var month = date.getMonth();
+    var changedMonth = month ;
+    var yyy = parseInt(month / 12);
+    if (changedMonth > 11) {
+      changedMonth = changedMonth - 12 * yyy;
+    }
+    changedYear = year + yyy;
+	var day =  getDate(changedYear, changedMonth);
+    return {
+	  str_month: monthClapFn(changedYear, changedMonth),
+	  str_date: dataFormat(changedYear, changedMonth,index + 1 -getDisplayInfo(day).beginWeek),
+      date: day,
+      year: changedYear,
+      month: changedMonth
+    };
+  }
+  var getChangedDate = function(date,index) {
+    if (!isDate(date)) {
+      date = getDate(date)
+    }
+    var year = date.getFullYear();
+
+    var month = date.getMonth();
+    var changedMonth = month ;
+    var yyy = parseInt(month / 12);
+    if (changedMonth > 11) {
+      changedMonth = changedMonth - 12 * yyy;
+    }
+    changedYear = year + yyy;
+	var day =  getDate(changedYear, changedMonth);
+    return {
+	  str_month: monthClapFn(changedYear, changedMonth),
+	  str_date: dataFormat(changedYear, changedMonth,index + 1 - getDisplayInfo(day).beginWeek),
+      date: day,
+      year: changedYear,
+      month: changedMonth
+    };
+  };
+
+  /*var isSelected = function(date, year, month, day) {
+    if (!isDate(date)) {
+      date = getDate(date);
+    }
+
+    if (date.getFullYear() == year && date.getMonth() == month && date.getDate() == day) return 'active';
+    return '';
+
+  };
+  */
+  var isSelected = function(dateList,date, selectedTime,now) {
+    if(date.length> 0){
+		for (var i = 0; i < dateList.length; ++i) {
+			if(dateList[i] == date){
+				return ''
+			}
+		}
+	}
+	if(parseInt(date.replace('-','').replace('-','')) < parseInt(now.replace('-','').replace('-',''))){
+		return ''
+	}
+	if(parseInt(date.replace('-','').replace('-','')) == parseInt(selectedTime.replace('-','').replace('-',''))){
+		return 'active'
+	}
+	return '';
+  };
+
+  var isDisable = function(dateList,date, now){
+    console.log(dateList, 'dateList')
+        if(date.length> 0){
+            for (var i = 0; i < dateList.length; ++i) {
+					if(dateList[i] == date){
+						return 'disable'
+					}
+				}
+		}
+		if(parseInt(date.replace('-','').replace('-','')) < parseInt(now.replace('-','').replace('-',''))){
+			return 'disable'
+		}
+		
+  }
+
+  var formatNum = function(n) {
+    if (n < 10) return '0' + n;
+    return n;
+  };
+
+  var getDayName = function(dayMap, month, day) {
+    if (!dayMap) {
+      dayMap = {
+       /* '0101': '元旦节',
+        '0214': '情人节',
+        '0501': '劳动节',
+        '0601': '儿童节',
+        '0910': '教师节',
+        '1001': '国庆节',
+        '1225': '圣诞节' */
+      };
+    }
+
+    var name = formatNum(parseInt(month) + 1) + formatNum(day);
+
+    return dayMap[name] || day;
+  };
+var getStatus = function(date,type,newDate){
+	for (var i = 0; i < date.length; ++i) {
+		if(date[i] == newDate){
+			return '约满'
+		}
+	}
+	return ''
+}
+  module.exports = {
+	  getChangedDate1:getChangedDate1,
+    getDipalyInfo: getDisplayInfo,
+    getChangedDate: getChangedDate,
+    isSelected: isSelected,
+    isDisable :isDisable,
+    getDayName: getDayName,
+    getStatus: getStatus
+  }
+</wxs>
+<view class="cm-calendar" style="display: {{isShow}};">
+  <view class="cm-month ex-class">
+      {{util.getChangedDate(displayTime).str_month }}
+      <view class="right" bind:tap="next">
+         <image class="img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/arrow-right-1.png"></image>
+      </view>
+      <view class="left" bind:tap="last">
+         <image class="img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/arrow-right-1.png"></image>
+      </view>
+    </view>
+  <view class="cm-calendar-hd ">
+    <block wx:for="{{weekDayArr}}" wx:key="weekDayKey">
+      <view class="item">{{item}}</view>
+    </block>
+  </view>
+
+  <block wx:for="{{displayMonthNum}}" wx:for-index="i" wx:key="t">
+    <view class="cm-calendar-bd ">
+      <view class="cm-day-list">
+        <block wx:key="tt" wx:for="{{util.getDipalyInfo(util.getChangedDate(displayTime,0).date).days + util.getDipalyInfo(util.getChangedDate(displayTime,0).date).beginWeek}}" wx:for-index="index">
+          <view wx:if="{{index < util.getDipalyInfo(util.getChangedDate(displayTime,index).date).beginWeek }}" class="item "></view>
+          <view bindtap="onDayTap" wx:else 
+				        data-date="{{util.getChangedDate1(displayTime,index).str_date}}"
+				        data-disable="{{util.isDisable(dateList,util.getChangedDate1(displayTime,index).str_date,now)}}"
+                class="item {{util.isDisable(dateList,util.getChangedDate1(displayTime,index).str_date,now)}} {{util.isSelected(dateList,util.getChangedDate1(displayTime,index).str_date,selectedDate,now)}}">
+			<view class="view cm-field-top cm-field-top-full" wx:if="{{!util.getStatus(dateList,typeList,util.getChangedDate1(displayTime,index).str_date)}}">预约</view>
+			<view class="view cm-field-top" wx:else>{{util.getStatus(dateList,typeList,util.getChangedDate1(displayTime,index).str_date)}}</view>
+			<view class="view cm-field-title">
+              {{util.getDayName(dayMap, util.getChangedDate(displayTime,index).month, index + 1 - util.getDipalyInfo(util.getChangedDate(displayTime,index).date).beginWeek) }}
+            </view>
+            <view class="cm-field-bottom">
+              <image style="width:14px;" mode="widthFix" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/right@2x.png"></image>
+            </view>
+          </view>
+        </block>
+        <view class="cm-item--clear ">
+        </view>
+      </view>
+    </view>
+
+  </block>
+
+</view>

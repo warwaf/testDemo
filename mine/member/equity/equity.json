@@ -1,0 +1,9 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "会员卡权益",
+  "usingComponents": {
+    "tabBar": "../components/tabBar"
+  }
+}

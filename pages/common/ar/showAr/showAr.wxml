@@ -1,0 +1,18 @@
+<!-- <nav title="虎彩30周年庆典" style="color:#fff"></nav> -->
+<view class="v-detail">
+    <image mode='widthFix' src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/top@2x.png"></image>
+    <video wx:if="{{url}}" class="v-video" id="myVideo" autoplay="{{false}}" src="{{url+'?'+date}}" danmu-btn controls binderror="videoErrorHandler"></video>
+    <image mode='widthFix' src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/bottom@2x.png"></image>
+    <view class="back" bind:tap="goBack">返回</view>
+    <view class="footer">        
+        <view catch:tap="downloadVideo" class="btn-download">
+            <image class="icon-case" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.7.3/download.png"></image>
+            <text>下载</text>
+        </view>
+        <view class="btn-home" catchtap="toHome">云相册之旅</view>
+    </view>
+    <!-- <view class="btn" catchtap="toHome">云相册之旅</view> -->
+    <!-- <button catch:tap="downloadVideo" class="btn-dv">下载</button> -->
+</view>
+
+<loading  text="Yoo-hoo! 奋力下载啦~~" wx:if="{{isLoading}}"></loading>

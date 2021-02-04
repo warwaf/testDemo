@@ -1,0 +1,9 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+      "userInfo": "/components/common/userInfo/userInfo",
+      "userPhone": "/components/common/userPhone/userPhone"
+  }
+}

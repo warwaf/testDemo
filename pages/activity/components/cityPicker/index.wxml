@@ -1,0 +1,22 @@
+<view class="picker-case">
+  <view class="province" catch:tap="handleShowSelect" data-type="province">
+    <text class="address">{{province.address ? province.address : "省"}}</text>
+    <image class="arrow" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/arrow-down.png" mode="aspectFit" lazy-load="true"></image>
+    <view class="select-case {{location == 'top' ? 'select-case-top' : ''}}" wx:if="{{showProvince}}">
+      <view class="gradual"></view>
+      <block wx:for="{{provinceList}}" wx:key="index">
+        <view class="select-item {{province.code == item.code ? 'activity' : ''}}" catch:tap="selectProvince" data-item="{{item}}" data-index="{{index}}">{{item.address}}</view>
+      </block>
+    </view>
+  </view>
+  <view class="city" catch:tap="handleShowSelect" data-type="city">
+    <text class="address">{{city.address ? city.address : "市"}}</text>
+    <image class="arrow" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/arrow-down.png" mode="aspectFit" lazy-load="true"></image>
+    <view class="select-case select-case-city {{location == 'top' ? 'select-case-top' : ''}}" wx:if="{{showCity}}">
+      <view class="gradual"></view>
+      <block wx:for="{{cityList}}" wx:key="index">
+        <view class="select-item {{city.code == item.code ? 'activity' : ''}}" catch:tap="selectCity" data-item="{{item}}">{{item.address}}</view>
+      </block>
+    </view>
+  </view>
+</view>

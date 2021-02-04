@@ -1,0 +1,9 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFE329",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "鲜檬会员兑换",
+  "usingComponents": {
+    "protocol": "../../../components/common/xmProtocol/protocol"
+  }
+}

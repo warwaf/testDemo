@@ -1,0 +1,225 @@
+<wxs module="filter" src="../../../utils/util.wxs"></wxs>
+
+<!-- <view class="banner">
+    <image src="{{activityInfo.bannerImg}}"></image>
+</view> -->
+<view  class="home test" wx:if="{{fromShare}}">
+    <form report-submit="{{true}}" bindsubmit="goback">
+        <button form-type="submit" hover-class="none">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/home@2x.png"/>
+        </button>
+    </form>
+</view>
+
+<!-- <view class="setting" bindtap='toSetting' wx:if="{{isAuthor}}"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/admin.png"></image></view> -->
+
+<!-- <view class="menu-container {{manuStat ? 'moveTop' : 'fixTop'}}" wx:if="{{!isEmpty}}">
+    <view class="activited">美照</view>
+    <view>套版图</view>
+    <view>选片图</view>
+</view> -->
+
+<block wx:if="{{!anonymous && !unregistered}}">
+    <view>
+        <view wx:for="{{data}}" wx:key="index" class="tab-body" style="height:{{item.status ? 'auto' : '50px'}}">
+            <view class="tab-header">
+                <view class="info">
+                    <view class="name">{{item.name}} <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/cube-1.png" /> {{item.pics.length}}</view>
+                    <view class="date">{{item.createTime}}</view>
+                </view>
+                <view class="btns">
+                    <view class="filter-icon" catchtap='switchFilter' data-id="{{1}}" data-item="{{item}}" wx:if="{{item.status}}"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/filter.png"></image></view>
+                    <view class="circle" catchtap='switchStatus' data-index="{{index}}">
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/up-circle.png" wx:if="{{item.status}}"></image>
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/down-circle.png" wx:else></image>
+                    </view>
+                </view>
+            </view>
+            <beauty data="{{item.pics}}" index="{{index}}" bind:clickEvent="toDetail" praiseArr="{{praiseArr}}"></beauty>
+            <!-- <waterfall 
+                data="{{item.pics}}" 
+                column="2" 
+                index="{{index}}" 
+                bind:clickEvent="toDetail" >
+            </waterfall> -->
+        </view>
+    </view>
+
+    <view class="tools">
+        <!-- <form class="test" report-submit="{{true}}" bindsubmit="jumpMessage" wx:if="{{ data.length > 0 && !isLoading }}">
+            <button form-type="submit" hover-class="none">
+                <view class="wechat"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/stroke@2x.png" ></image></view>
+            </button>
+        </form> -->
+
+        <form class="share" report-submit="{{true}}" bindsubmit="toInvitation" wx:if="{{isAuthor}}">
+            <button form-type="submit" hover-class="none">
+                <view class="wechat"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.7/icon1.png" style="width: 46px; height: 44px;" ></image></view>
+            </button>
+        </form>
+        <!-- <view style="width:97px;height:52px;margin-left: -20px;" class="share" catchtap='thirty'>
+            <image style="width:97px;height:52px;" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/30.png"></image>
+        </view> -->
+        <form class="share" report-submit="{{true}}" bindsubmit="toSetting">
+            <button form-type="submit" hover-class="none">
+                <view class="wechat"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon21.png"/></view>
+            </button>
+        </form>
+
+        <form class="share" report-submit="{{true}}" bindsubmit="toAr">
+            <button form-type="submit" hover-class="none">
+                <view class="wechat"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/ar@2x.png" ></image></view>
+            </button>
+        </form>
+
+        <form class="share" report-submit="{{true}}" bindsubmit="showProducts">
+            <button form-type="submit" hover-class="none">
+                <view class="wechat"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon13.png" ></image></view>
+            </button>
+        </form>
+
+        <form class="share" report-submit="{{true}}" bindsubmit="switchShareStat">
+            <button form-type="submit" hover-class="none">
+                <view class="wechat"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/share.png" ></image></view>
+            </button>
+        </form>
+
+
+        <!-- <view class="wechat"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/share.png" catchtap='switchShareStat'></image></view> -->
+        <!-- <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/evaluate.png" catchtap='toEvaluateList'></image> -->
+    </view>
+</block>
+
+<!-- 空状态 -->
+<view class="empty" wx:if="{{ data.length <=0 && !isLoading && !anonymous && !unregistered}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-empty.png" />
+    <view>Ahh！美照还在路上哦</view>
+    <view style="padding-bottom:15px;">好期待看到帅帅美美的你(〃'▽'〃)</view>
+    <!-- <view class="empty-btn" style="margin-top: 20px" catchtap="appointment">预约排期</view> -->
+    <view class="test" bindtap="appointment">
+        <button hover-class="none">
+            <view class="empty-btn" >预约排期</view>
+        </button>
+    </view>
+    <form class="test" report-submit="{{true}}" bindsubmit="jumpMessage">
+        <button form-type="submit" hover-class="none">
+            <view class="empty-btn">行程安排</view>
+        </button>
+    </form>
+    <form class="test" report-submit="{{true}}" bindsubmit="except">
+        <button form-type="submit" hover-class="none">
+            <view class="empty-btn" >场景介绍</view>
+        </button>
+    </form>
+    
+</view>
+
+
+<!-- 过滤窗口 -->
+<view class="mask" wx:if="{{filterStat}}" catchtap='switchFilter'>
+    <view class="filter" catchtap='stop'>
+        <view class="header">
+            <view catchtap='switchFilter'>取消</view>
+            <view>美照筛选</view>
+            <view catchtap='toFilter'>确定</view>
+        </view>
+        <view class="filter-body">
+            <view>
+                <view class="filter-name"><icon></icon> 精修</view>
+                <view class="filter-btns">
+                    <view catchtap='switchSort' data-sort="0" class="{{sort == 0 ? 'activity' : ''}}">全部</view>
+                    <view catchtap='switchSort' data-sort="2" class="{{sort == 2 ? 'activity' : ''}}">只看精修图</view>
+                    <view catchtap='switchSort' data-sort="1" class="{{sort == 1 ? 'activity' : ''}}">只看简修图</view>
+                </view>
+            </view>
+            <view>
+                <view class="filter-name"><icon></icon> 选片</view>
+                <view class="filter-btns">
+                    <view catchtap='switchPick' data-pick="0" class="{{pickState == 0 ? 'activity' : ''}}">全部</view>
+                    <view catchtap='switchPick' data-pick="1" class="{{pickState == 1 ? 'activity' : ''}}">已加入选片</view>
+                    <view catchtap='switchPick' data-pick="2" class="{{pickState == 2 ? 'activity' : ''}}">未加入选片</view>
+                </view>
+            </view>
+            <view>
+                <view class="filter-name"><icon></icon> 点赞</view>
+                <view class="avatars">
+                    <view class="pickAvatar {{ filter.isPickAll(avatars) ? 'filter-mask' :''}}" catchtap='pickAvatar' data-index="{{-1}}">
+                        全部
+                        <!-- <view class="filter-mask" style="width: 42px;height: 42px;" wx:if="{{filter.isPickAll(avatars)}}">
+                            全部
+                        </view> -->
+                    </view>
+                    <view wx:for="{{avatars}}" catchtap='pickAvatar' data-index="{{index}}" wx:key="index">
+                        <image src="{{item.avatarUrl}}"></image>
+                        <view class="filter-mask" wx:if="{{item.picked}}">
+                            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/picked.png" class="pick"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 分享弹层 -->
+<view class="share-mask" catchtap='switchShareStat' wx:if="{{shareStat}}">
+    <view class="share-inner">
+        <!-- <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/share-header.png" class="header"></image> -->
+
+        <view class="activityinfo">
+            <view>{{activityInfo.activityName}}</view>
+            <view style="font-size: 18px">{{filter.sliceArr(activityInfo.activityId,5)}}</view>
+            <view style="font-size: 18px">({{activityInfo.roomBrowseCount}}人)</view>
+        </view>
+
+        <view class="content">
+            <image src="{{filter.replaceHost(activityInfo.bannerImg)}}" class="qrcode"></image>
+            <view class="btns">
+                <button open-type="share" class="btn" plain='true'>相册分享</button>
+                <view class="circle-btn" catchtap='downloadQrcode'>二维码下载</view>
+            </view>
+        </view>
+    </view>
+
+    <image class="close-btn" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/close_btn.png" catchtap='switchShareStat'></image>
+</view>
+
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+
+<view class='tipBox' wx:if="{{isShow}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>你已经预约 {{reservateDate}} 日的排期</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>
+
+<view class="new" wx:if="{{anonymous}}" >
+    <userInfo 
+        text1="相册是每个人的隐私哦"
+        text2="为了保护主人的隐私" 
+        text3="敢问大侠是何人"
+        icon="1"
+        bind:confirmEvent="userInfoEvent">
+    </userInfo>
+</view>
+
+<view class="new" wx:if="{{unregistered}}" >
+    <userPhone bind:confirmEvent="userPhoneEvent"></userPhone>
+</view>
+
+<!-- 订阅通知 -->
+<view class="subscribe" wx:if="{{showSubscribe}}">
+    <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon5.png" /> 新增照片、新朋友进入，相册动态第一时间知晓</view>
+    <view>
+        <button catchtap="hideSubscribe">下次吧</button>
+        <button catchtap="subscribe">订阅</button>
+    </view>
+</view>
+
+<!-- 合成二维码图 -->
+<canvas canvas-id="qrcode" class="canvas" style="width: 750px; height: 1334px;"></canvas>

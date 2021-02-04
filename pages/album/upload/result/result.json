@@ -1,0 +1,10 @@
+{
+    "navigationBarBackgroundColor": "#FFEB4D",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "图片上传",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
+    "usingComponents": {
+        "vouchers": "/components/album/vouchers/vouchers"
+    }
+}

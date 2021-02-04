@@ -1,0 +1,38 @@
+<view class='searchaBox'>
+    <view class='search_box'>
+        <view class='s_b_icon'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/album_search.png" mode="widthFix"></image></view>
+        <view class='s_b_search'>
+            <input placeholder="输入相册编号" bindinput='watchMsg' value="{{inputValue}}" type="text" bindconfirm='result' auto-focus='{{true}}'></input>
+            <view class='close' bindtap='close' wx:if="{{resultChange}}">x</view>
+        </view>
+    </view>
+    <view class='btn'>
+        <view bindtap='result'>搜索</view>
+    </view>
+</view>
+
+<!-- 输入的结果 -->
+<!-- <view class='s_result' bindtap='result' wx:if="{{resultChange}}">
+    点击查看「 {{result}} 」的搜索结果
+</view> -->
+<!-- 查找后的结果 -->
+<view  class="list-container" wx:if="{{resultMsg && !resultNone}}">
+    <view class="room_item"  data-index="{{resultList.activityId}}" data-type="{{resultList.type}}" catchtap='jump'>
+        <wxs module="filter" src="../../../utils/util.wxs"></wxs>
+        <view class="image_container">
+            <image  src="{{resultList.bannerImg}}"></image>
+        </view>
+        <view class="name">{{resultList.activityName}}</view>
+        <view class="date">{{filter.splitActivityId(resultList.activityId)}}</view>
+    </view>
+</view>
+
+<!-- 查找不到搜索对应的结果 -->
+<view wx:if="{{resultNone}}" class='result_none'>
+    <view class='r_n_img'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/album_search_none.png" mode="widthFix"></image></view>
+    <view class='r_n_word'>抱歉，暂时没有找到您的相册</view>
+    <view class='r_n_second' bindtap='secondSearch'>重新查找</view>
+    <view class='r_n_goback' bindtap='goback'>返回首页</view>
+</view>
+
+<loading text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoding}}"></loading>

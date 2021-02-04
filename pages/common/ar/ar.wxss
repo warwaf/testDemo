@@ -1,0 +1,73 @@
+/* 元旦活动按钮 */
+.activity-btn{
+  margin: 50rpx auto;
+  height: 136rpx;
+  width: 85%;
+}
+.activity-img{
+  width: 100%;
+}
+.recognition-area{
+  width:70vw;
+  height:70vw;
+  position:absolute;
+  top:25vh;
+  left:15vw;
+  text-align: center;
+}
+.recognition-area1{
+  width:70vw;
+  /* height:50vw; */
+  position:absolute;
+  bottom:2vh;
+  left:15vw;
+  text-align: center;
+  /* border: 1px dashed rgba(255,255,255,.5) */
+}
+.tip{
+  font-size:14px;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  margin-bottom: 17px;
+}
+.button{
+  background: #FFE329;
+  color: #231815;
+  font-size:15px;
+  height:35px;
+  line-height: 35px;
+  border-radius:18px;
+  width:189px;
+  margin:0 auto;
+}
+.text{
+  font-size:15px;
+  height:35px;
+  line-height: 35px;
+  display: inline-block;
+  margin-right: 15px;
+}
+.xu{
+  font-size: 18px;
+  height:35px;
+  line-height: 35px;
+  font-weight: 600;
+  display: inline-block;
+}
+.ar{
+  width: 29px;
+  height: 21px;
+  margin:0 auto;
+  padding-top:20px;
+  padding-bottom: 10px;
+}
+.ar-text{
+  font-size:16px;
+  font-family:ArialMT;
+  color:rgba(255,255,255,1);
+}
+.decoration{
+  width: 5vw;
+  height: 5vw;
+  position: absolute;
+}

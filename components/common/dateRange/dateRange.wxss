@@ -1,0 +1,6 @@
+/* components/common/dateRange/dateRange.wxss */
+
+.v-range-item {
+    text-align: center;
+    line-height: 50px;
+}

@@ -1,0 +1,17 @@
+<view class="menu-container" wx:if="{{!isEmpty}}" style="top: {{groupArr.length > 1 ? '32px' : 0}}">
+    <view>
+        <view class="activited" bindtap='reflesh'>
+            最新
+            <view wx:if="{{ photoTotal !== 0 }}" class="view"
+                style="font-weight:500;font-size:14px;color:#999;letter-spacing: 1px;">
+                <turntable number="{{currentTotal}}" scale="{{0.3}}"
+                    style="margin-left:5px;position: relative;top: -3px;"></turntable> /{{photoTotal}}
+            </view>
+        </view>
+        <view bindtap='toPriseRank'>最热</view>
+    </view>
+    <view class="icons">
+        <v-action wx:for="{{props.list}}" wx:key="index" type="{{item.type}}" actionType="{{item.actionType}}"
+            actionConfig="{{ item.actionConfig }}" config='{{item.config}}'></v-action>
+    </view>
+</view>

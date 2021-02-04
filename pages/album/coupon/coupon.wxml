@@ -1,0 +1,62 @@
+<view class="bg">
+    <image mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/haibao.jpg"></image>
+    <!-- <image src="https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190403/C0003763920190403/origin/C0003763920190403_0363.png" mode="widthFix"></image> -->
+    <view class="back-btn" bind:tap="goHome">返回首页</view>
+    <view class="coupon">
+        <!-- <view wx:for="{{list}}" class="coupon-item" wx:key="index">
+            <view class="left">
+                <image src="{{item.avatarUrl}}"></image>
+                <view>
+                    <view class="activity-name">{{item.activityName}}</view>
+                    <view class="info" wx:if="{{item.alreadyGot}}">
+                        <text class="amount">5</text>
+                        <text class="amount" style="font-size:28px;">折</text>
+                        <text class="gray" style="margin:-5px 0 0 10px;">优惠券</text>
+                    </view>
+
+                    <view class="code-info" wx:else>
+                        <text class="gray">兑换码:</text>
+                        <text class="code">{{item.code}}</text>
+                        <view class="btn" catchtap='download' data-content="{{item.qrcode}}">下载</view>
+                    </view>
+                </view>
+            </view>
+            <view class="right" wx:if="{{item.alreadyGot}}">
+                <view class="btn" catchtap='acquire' data-id="{{item.id}}">领取</view>
+                <view class="circle top"></view>
+                <view class="circle bottom"></view>
+            </view>
+            <view class="right" wx:else>
+                <view style="color:#999;"><text style="color: #FFCF00;font-size:14px;">5折</text> 优惠劵</view>
+                <view><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/recived.png"></image></view>
+                
+                <view class="circle top"></view>
+                <view class="circle bottom"></view>
+            </view>
+        </view> -->
+
+        <!-- <view wx:for="{{receivedList}}" class="coupon-item">
+            <view class="left"></view>
+            <view class="right"></view>
+            <view class="circle top"></view>
+            <view class="circle bottom"></view>
+        </view> --> 
+<!-- 
+        <view wx:for="{{receivedList}}" class="coupon-item">
+            <view class="left">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/avatar-2.png"></image>
+                <view>
+                    <view class="activity-name">{{item.activityName}}</view>
+                    <view class="code-info"><text class="gray">兑换码:</text> <text class="code">{{item.code}}</text> <view class="btn" catchtap='copyToClip' data-content="{{item.code}}">下载</view> </view>
+                </view>
+            </view>
+            <view class="right">
+                <view style="color:#999;"><text style="color: #FFCF00;font-size:14px;">5折</text> 优惠劵</view>
+                <view><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/recived.png"></image></view>
+                
+                <view class="circle top"></view>
+                <view class="circle bottom"></view>
+            </view>
+        </view> -->
+    </view>
+</view>

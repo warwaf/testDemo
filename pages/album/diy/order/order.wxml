@@ -1,0 +1,103 @@
+<wxs module="filter" src="../../../../utils/util.wxs"></wxs>
+<view class="addr"catchtap="toAddress" wx:if="{{sendByPost}}">
+    <view class="addr-inner" wx:if="{{address}}">
+        <view>
+            <view>{{address.ReceiverName}} {{filter.privacyMobileNumber(address.ReceiverPhone)}}</view>
+            <view>{{address.Province}}{{address.City}}{{address.District}}{{address.Address}}</view>
+        </view>
+        <image class="icon" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/arrow-right-1.png" />
+    </view>
+    <view class="addr-inner address-empty" wx:else >
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/order-plus.png" />
+        添加收货地址
+    </view>
+    <view></view>
+    <view ></view>
+    <image class="stripe" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/stripe.png" />
+</view>
+
+<view class="addr"catchtap="toAddress" wx:if="{{!sendByPost}}">
+    <view class="addr-inner" wx:if="{{address}}">
+        <view>
+            <view>{{address.store_name}}</view>
+            <view>{{address.stare_addressInfo}}{{address.store_address}}</view>
+        </view>
+        <image class="phone-icon" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/phone.png" catchtap="call"/>
+    </view>
+    <view class="addr-inner address-empty" wx:else >
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/order-plus.png" />
+        选择自提门店
+    </view>
+    <view></view>
+    <view ></view>
+    <image class="stripe" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/stripe.png" />
+</view>
+
+<view class="order-item">
+    <image src="{{orderInfo.partUrl}}" mode="aspectFill"/>
+    <view class="r">
+        <view>￥<text style="font-size:15px;">{{orderInfo.listPrice}}</text><text>{{orderInfo.marketPrice}}</text></view>
+        <view style="font-size:14px;">{{orderInfo.partName}}</view>
+        <view>尺寸：{{orderInfo.size}}</view>
+        <view>颜色：{{orderInfo.noteText}}</view>
+        <view>场景：{{orderInfo.partLabel}}</view>
+        <!-- <view class="quantity">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/quantity-edit.png" class="bg" />
+            <text catchtap="changeQuantity" data-symbol="{{false}}"></text>
+            <text>{{quantity}}</text>
+            <text catchtap="changeQuantity" data-symbol="{{true}}"></text>
+        </view> -->
+    </view>
+</view>
+
+<view class="coupon-info" catchtap="showCouponList">
+    <view>可用优惠券</view>
+    <view>{{curCouponIndex == -1  || couponList.length == 0 ? '暂无优惠券' : couponList[curCouponIndex].CouponName}} ></view>
+</view>
+
+<view class="pay-info">
+    <view>付款信息</view>
+    <view><text>商品价格：</text><text>￥{{productPrice}}</text></view>
+    <view ><text>优惠券：</text><text>￥{{couponPrice}}</text></view>
+    <view><text>运费：</text><text>￥{{shippingFee}}</text></view>
+    <view><text>实付款：</text><text style="color:#FF9C00;">￥{{countPrice}}</text></view>
+</view>
+<view class="v-info">
+    <view>说明：</view>
+    <view>* 每张优惠券只能使用一次</view>
+    <!-- <view>* 优惠券不能抵扣运费</view> -->
+    <view>* 优惠券不设找零</view>
+</view>
+<view class="btn-group">
+    <view>实付：
+        <text>{{filter.formatMoney(countPrice)[0] ? filter.formatMoney(countPrice)[0] : '0'}}</text>
+        <text>.{{filter.formatMoney(countPrice)[1] ? filter.formatMoney(countPrice)[1] : '00'}}</text>
+    </view>
+    <view catchtap="toPay">支付</view>
+</view>
+<loading  text="Yoo-hoo! 创建订单中" wx:if="{{isLoading}}"></loading>
+
+<!-- 选择优惠券弹层 -->
+<!-- <view class="layout" style="z-index: 10;" wx:if="{{showCouponList}}">
+    <view class="title">请选择优惠券：</view>
+    <view class="coupon-item" wx:for="{{couponList}}" wx:key="index" catchtap="pickCoupon" data-index="{{index}}" wx:if="{{item.CouponMoney != 0}}">
+        <view class="circle {{curCouponIndex === index ? 'selected' : ''}}"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" wx:if="{{curCouponIndex === index}}"/></view>
+        <view class="content">
+            <view class="l">
+                <view>{{item.CouponName}} <text class="postage-free" wx:if="{{item.OrderContainPostage == 'true'}}">免运费</text> </view>
+                <view>{{item.UseTime}}</view>
+                <view>{{item.Describes}}</view>
+            </view>
+            <view class="r">
+                <view>￥{{item.CouponMoney}}</view>
+                <view>立即使用</view>
+            </view>
+        </view>
+    </view>
+    <view class="coupon-foot" catchtap="pickCoupon" data-index="{{false}}">
+        <view class="circle {{curCouponIndex === false ? 'selected' : ''}}">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" wx:if="{{curCouponIndex === false}}"/>
+        </view>
+        <view>不用优惠券了，有钱任性</view>
+    </view>
+</view> -->

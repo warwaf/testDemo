@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "loading": "/components/common/loading/loading",
+    "pop": "../pop/index"
+  }
+}

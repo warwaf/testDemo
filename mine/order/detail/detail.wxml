@@ -1,0 +1,126 @@
+<wxs module="filter">
+    module.exports = {
+        calcTime: function(str) {
+            var reg = getRegExp('-', "img");
+            var used = Date.now() - Date.parse(str.replace(reg,'/'))
+            var capacity = 15 * 24 * 60 * 60 * 1000
+            var remain = Math.floor((capacity - used) / 1000) <= 0 ? 0 : Math.floor((capacity - used) / 1000)
+            var day = Math.floor(remain / 86400)
+            var hour = Math.floor(remain % 86400 / 3600)
+            if (hour < 10) {
+                min = '0' + hour.toString()
+            }
+            var min = Math.floor(remain % 3600 / 60)
+            if (min < 10) {
+                min = '0' + min.toString()
+            }
+            var second = Math.floor(remain % 60)
+            if (second < 10) {
+                second = '0' + second.toString()
+            }
+            if (day > 0) {
+                return day + ' 天 ' + hour + ' 时'
+            }
+            return hour + ':' + min + ':' + second
+        },
+
+        formatMoney: function(num){
+            if (num) {
+                return num.toString().split('.')
+            }
+        }
+    }
+</wxs>
+
+<view class="header" wx:if="{{orderInfo.OrderType == 1}}">
+    <view>等待您付款</view>
+    <view>{{filter.calcTime(orderInfo.OrderStateInfo.PlaceTime)}} <text>后订单自动关闭</text></view>
+</view>
+<view class="header" wx:if="{{orderInfo.OrderType == 3 || orderInfo.OrderType == 5 || orderInfo.OrderType == 2}}">
+    <view>进行中</view>
+</view>
+<view class="header" wx:if="{{orderInfo.OrderType == 4}}">
+    <view>已完成</view>
+</view>
+<view class="header" wx:if="{{orderInfo.OrderType == 7}}">
+    <view>已取消</view>
+</view>
+<view class="order-info" style="margin-top:{{orderInfo.OrderType == 1 ? '-20px' : '-50px'}}">
+    <view>
+        <view class="stripe"></view>
+        <view>订单号：{{orderInfo.OrderNo}}</view>
+    </view>
+    <view wx:if="{{orderInfo.AddressInfo.userName}}">
+        <text>收货人：</text> 
+        <text>{{orderInfo.AddressInfo.userName}}</text>
+    </view>
+    <view wx:if="{{orderInfo.AddressInfo.userPhone}}">
+        <text>联系电话：</text> 
+        <text>{{orderInfo.AddressInfo.userPhone}}</text>
+    </view>
+    <view wx:if="{{orderInfo.AddressInfo}}">
+        <text>收货地址：</text> 
+        <text>{{orderInfo.AddressInfo.Province}}{{orderInfo.AddressInfo.City}} {{orderInfo.AddressInfo.District}}{{orderInfo.AddressInfo.Address}}
+        </text>
+    </view>
+    <view><text>下单时间：</text> <text>{{orderInfo.OrderStateInfo.PlaceTime}}</text></view>
+    <view><text>物流单号：</text> <text>{{orderInfo.trackingNo ? orderInfo.trackingNo : ""}}</text></view>
+    <view><text>物流名称：</text> <text>{{orderInfo.trackingName ? orderInfo.trackingName : ""}}</text></view>
+</view>
+
+<view class="pro-info" wx:for="{{orderInfo.ProductInfo}}" wx:key="index">
+    <image src="{{item.PartUrl ? item.PartUrl:'https://hcmtq.oss-accelerate.aliyuncs.com/logo.png'}}" mode="aspectFill"/>
+    <view class="info">
+        <view>{{item.ProductName}}</view>
+        <view>{{item.PageNumber ? item.PageNumber : ""}}</view>
+        <view>￥{{item.Prict}}</view>
+    </view>
+</view>
+
+<view class="pay-info">
+    <view>付款信息</view>
+    <view><text>订单金额:</text> <text>￥{{orderInfo.ProductMoney}}</text></view>
+    <view><text>优惠:</text> <text>￥{{orderInfo.CouponPrice}}</text></view>
+    <!-- <view><text>红包抵扣:</text> <text>￥{{orderInfo.coupon}}</text></view> -->
+    <view><text>运费:</text> <text>￥{{orderInfo.ShipPrice}}</text></view>
+    <view><text>实付款:</text> <text class="special">￥{{orderInfo.PaidAmount}}</text></view>
+</view>
+
+<view class="btn-group">
+    <view>待付：
+        <text>{{filter.formatMoney(spareMoney)[0] ? filter.formatMoney(spareMoney)[0] : '0'}}</text>
+        <text>.{{filter.formatMoney(spareMoney)[1] ? filter.formatMoney(spareMoney)[1] : '00'}}</text>
+    </view>
+    <view>
+        <view class="score" wx:if="{{orderInfo.OrderType == 4}}" catchtap="toScore" data-no="{{orderInfo.orderNo}}">评分</view>
+        <view class="contact" style="border-radius: {{orderInfo.OrderType == 1 ? '20px 0 0 20px' : '20px'}}" catchtap="showHelp">联系客服</view>
+        <view catchtap="toPay" wx:if="{{orderInfo.OrderType == 1 || spareMoney > 0}}" class="pay">支付</view>
+    </view>
+</view>
+
+<!-- <navigator url="/pages/album/beauty/home?room_no={{orderInfo.activityId}}" wx:if="{{orderInfo.activityId}}">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon18.png" class="home"/>
+</navigator> -->
+<view catch:tap="toRoom" wx:if="{{orderInfo.activityId}}">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon18.png" class="home"/>
+</view>
+
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+
+<view class="mask" wx:if="{{showSuccess}}" catch:touchmove="stop">
+    <view class="inner">
+        <view class="head">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/success.png" />
+        </view>
+        <view class="body">
+            <text>恭喜您成为鲜檬会员</text>
+            <text>稍后会有3张卡券至您的账号中</text>
+        </view>
+        <view class="foot">
+            <button catchtap="useNow">立即使用</button>
+        </view>
+        <view class="close" catch:tap="closeSucce">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/close.png" />
+        </view>
+    </view>
+</view>

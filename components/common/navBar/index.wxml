@@ -1,0 +1,14 @@
+<view class="navbar custom-class" style='height:{{navHeight}}px;background-color:{{bgColor}}'>
+  <view wx:if="{{showNav}}" class="navbar-action-wrap navbar-action-group row item-center" style='top:{{navTop}}px;background-color:rgba(255,255,255,.6)'>
+    <!-- <view class="navbar-action-item" catch:tap="toHome" wx:if="{{backType == 'home'}}">
+      <image class="back" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/nav_left_jt.png" lazy-load="true"></image>
+    </view>
+    <view class="navbar-action-item" catch:tap="toBack" wx:if="{{backType == 'back'}}">
+      <image class="back" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/nav_left_jt.png" lazy-load="true"></image>
+    </view> -->
+    <view class="navbar-action-item" catch:tap="handleBack">
+      <image class="back" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/nav_left_jt.png" lazy-load="true"></image>
+    </view>
+  </view>
+  <view class='navbar-title' style='top:{{navTop}}px'>{{pageName}}</view>
+</view>

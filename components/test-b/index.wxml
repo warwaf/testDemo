@@ -1,4 +1,0 @@
-<!--components/test-b/index.wxml-->
-<text>test-b: {{_test}}</text>
-<button bindtap="getTestAData">获取数据</button>
-<button style="margin-top: 10px;" bindtap="setTestAData">设置数据</button>

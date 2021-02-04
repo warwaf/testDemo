@@ -1,0 +1,44 @@
+<!-- <view class="header"> -->
+    <!-- <view> -->
+        <!-- <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/avatar-default.png" /> catchtap="goShop"-->
+        <!-- <view>Photo by {{storeName}}</view> -->
+    <!-- </view> -->
+    <!-- <view class="btn" catchtap="goShop">我也想拍</view> -->
+<!-- </view> -->
+<swiper style="height:{{height}};transition: height .5s;" bindchange="intervalChange" current="{{currentIndex}}">
+    <swiper-item wx:for="{{data}}" wx:key="index">
+    <!-- src="{{item.picUrl}}?x-oss-process=image/resize,l_1600" -->
+        <image 
+            catchtap='showBig'
+            data-item="{{item}}"
+            wx:if="{{!fromShare}}"
+            src="{{isFilm || typeId == 11 ? item.thumbnailUrl2 : item.finePic}}" 
+            mode="widthFix"
+            style="height:{{height + 'px'}}; background-color: #F1F3F5; background-image: url('https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;"></image>
+        <image 
+            catchtap='showBig'
+            data-item="{{item}}"
+            wx:else
+            src="{{item.picUrl}}" 
+            mode="widthFix"
+            style="height:{{height + 'px'}}; background-color: #F1F3F5; background-image: url('https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;"></image>
+    </swiper-item>
+</swiper>
+<view style="padding: 30rpx 18rpx;color: #666666;font-size: 12px;">{{data[currentIndex].sortedFileName}}</view>
+
+<view class="btns" wx:if="{{isFilm && !fromShare}}">
+    <view bindtap="complete" class="{{enable ? 'enable' : ''}}">完成</view>
+    <view catchtap="inRecycle" data-action="delete">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon5.png" /> 放入回收站
+    </view>
+</view>
+
+<view class="btns" wx:if="{{isRecycle && !fromShare}}">
+    <view style="background-color: #FFF;"></view>
+    <view bindtap="outRecycle" data-action="add">移出回收站</view>
+</view>
+
+<!-- 1.10.2前 typeId != 11 才展示下载按钮 -->
+<image class="download" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon10.png" catchtap="download"></image>
+
+<customToast id="customToast" iconUrl="{{toastIcon}}" msg="{{toastMsg}}" duration="{{3000}}"></customToast>

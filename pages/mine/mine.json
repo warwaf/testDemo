@@ -1,0 +1,7 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "container": "/components/common/container/index",
+        "turntable": "/components/common/turntable/turntable"
+    }
+}

@@ -1,0 +1,54 @@
+<!--pages/activity/scheduling/schedulingDetail/schedulingDetail.wxml-->
+<view class="schedulingDetail">
+  <navBar page-name="预约信息" class="nav-bar" backType='order' mtaInfo="{{mtaInfo}}"></navBar>
+  <!-- <navBar page-name="鲜檬0元三亚旅拍" class="nav-bar" backType='back' mtaInfo="{{mtaInfo}}"></navBar> -->
+  <view class="detail_content">
+    <!-- <step></step> -->
+    <view class="content_item">
+      <view>预约门店</view>
+      <view>{{storeName}}</view>
+    </view>
+    <view class="content_item">
+      <view>预约拍摄类型</view>
+      <view>婚纱摄影</view>
+    </view>
+    <view class="content_item">
+      <view>姓名</view>
+      <view>{{userName}}</view>
+    </view>
+    <view class="content_item">
+      <view>手机号</view>
+      <view>{{userPhone}}</view>
+    </view>
+    <view class="content_item">
+      <view>拍摄日</view>
+      <view>{{reservationsDate}}</view>
+    </view>
+    <view class="content_item">
+      <view>交通工具</view>
+      <view>{{tool=='0'?'汽车':tool=='1'?'飞机':tool=='2'?'自驾车':tool==3?'高铁':tool==4?'火车':tool==5?'动车':''}}</view>
+    </view>
+    <view class="content_item">
+      <view>航班号/班次</view>
+      <view>{{schedule?schedule:''}}</view>
+    </view>
+    <!-- <view class="content_item">
+      <view>入住日期</view>
+      <view>{{checkInDate}}</view>
+    </view>
+    <view class="content_item">
+      <view>退房日期</view>
+      <view>{{checkOutDate}}</view>
+    </view>
+    <view class="content_item">
+      <view>航班号</view>
+      <view>{{flightNo}}</view>
+    </view> -->
+  </view>
+  <view class="schedulingDetail_button" wx:if="{{canRes=='1'?true:false}}">
+  <!-- catchtap="getCalendarCancel" -->
+    <!-- <button data-item="{{orderNo}}">取消预约</button> -->
+    <button catchtap="getModify">修改预约</button>
+  </view>
+</view>
+<loading  text="{{loadingText}}" wx:if="{{isLoading}}" showMask="{{true}}"></loading>

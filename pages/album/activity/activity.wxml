@@ -1,0 +1,63 @@
+<view class="page-box" style="background-image: url('{{pageConfig.posterImg}}');background-color:{{pageConfig.backgroundColor}}" >
+	<view class="top">
+		<view class="logo">
+			<image src="{{pageConfig.venueIcon}}" mode="widthFix"></image>
+		</view>
+		<button open-type="share" class="share">
+			<image src="../../../resources/btn/share-btn.png" mode="widthFix"></image>
+    </button>
+	
+	</view>
+	<view class="activity-title">
+		{{pageConfig.theme ? pageConfig.theme : ''}}
+	</view>
+	<view class="activity-list">
+		<view class="item {{index % 2 != 0 ? 'right' : ''}} {{pageConfig.venues.length == 1 ? 'center' : ''}}" wx:for="{{pageConfig.venues}}" wx:key="index" data-scenes="{{item}}" bindtap="jump">
+			<view class="li">
+				<view class="img">
+					<image src="{{item.animationImg}}" mode="widthFix"></image>
+				</view>
+				<view class='scenes-title' style="background-image: url('{{pageConfig.backgroundTitleImg}}')">
+					{{item.scenes}}
+				</view>
+				<!-- 
+				<view class="tt" style="height: {{pageConfig.titleHight/2}}rpx;">
+					<image src="{{pageConfig.backgroundTitleImg}}" mode="widthFix"></image>
+					<view class="h5">{{item.scenes}}</view>
+				</view>
+				 -->
+				
+			</view>
+		</view>
+	</view>
+	<view class="activity-info">
+		<view class="li" wx:if='{{pageConfig.activityDate}}'>
+			<view class="lable">日期：</view>
+			<view class="item">{{pageConfig.activityDate ?pageConfig.activityDate :''}}</view>
+		</view>
+		<view class="li" wx:if='{{pageConfig.location}}'>
+			<view class="lable">地点：</view>
+			<view class="item">{{pageConfig.location ?pageConfig.location :''}}</view>
+		</view>
+		<view class="desc">
+			{{pageConfig.remark?pageConfig.remark:''}}
+		</view>
+	</view>
+	<!-- 领券活动 -->
+	<view class="home_coupon" wx:if="{{receiveDialog}}">
+			<view class="home_coupon_model"></view>
+			<view class="home_coupon_content">
+					<image class="home_coupon_content_close" src="https://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/mtq/20201231/C0779467520201231/origin/f0dc9ee6575e489a96dbff2394f2ffbf.png" bindtap="getClose"></image>
+					<view wx:if="{{couponData.fileType==1}}" style="width:100%;height:100%;">
+							<image class="home_coupon_content_image" src="{{couponData.fileUrl}}"></image>
+							<button class="home_coupon_content_button" bindtap="getReceive">领取</button>
+					</view>
+					<view wx:if="{{couponData.fileType==2}}" style="width:100%;height:100%;">
+							<image  class="home_coupon_content_image" src="{{couponData.fileUrl}}"></image>
+					</view>
+					<view wx:if="{{couponData.fileType==3}}" style="width:100%;height:100%;">
+							<image class="home_coupon_content_image" src="{{couponData.fileUrl}}"></image>
+					</view>
+			</view>
+	</view>
+</view>

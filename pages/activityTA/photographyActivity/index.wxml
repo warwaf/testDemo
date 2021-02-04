@@ -1,0 +1,183 @@
+<!-- pages/activity/photographyActivity/index.vue.wxml -->
+<view class="act-page">
+		<navBar page-name="泰安鲜檬0元婚纱摄影" class="nav-bar" mtaInfo="{{mtaInfo}}"></navBar>
+		<view class="act-body" hover-class="none" hover-stop-propagation="false" style="margin-top:{{navTop}}px;">
+				<view class="act-rule" style="top:{{navTop + 24}}px;">
+						<image class="" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/zero-rule.png" catchtap="popupRule" mode="aspectFit" lazy-load="{{true}}"></image>
+				</view>
+				<image class="bg-title" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/seckill_ta/zero-title.jpg" lazy-load="{{true}}" mode="scaleToFill" binderror="" bindload=""></image>
+				<image class="bg" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/seckill_ta/zero-bg.jpg" lazy-load="{{true}}" mode="scaleToFill" binderror="" bindload=""></image>
+				<view class="body-content">
+						<!-- 第一个轮播图 -->
+						<view class="swiper swiper1">
+								<swiper autoplay="{{true}}" interval="{{3000}}" circular="{{true}}" indicator-dots="{{true}}" indicator-color="rgba(0,0,0,0.2)" indicator-active-color="#FFE228" class="swiper" wx:if="{{swiperList1.length > 0}}">
+										<block wx:for="{{swiperList1}}" wx:key="bannerUrl">
+												<swiper-item>
+														<image lazy-load="{{true}}" src="{{item.url}}" catchtap="toH5" data-path="{{item.url}}" />
+												</swiper-item>
+										</block>
+								</swiper>
+						</view>
+				</view>
+				<view class="act-tool">
+						<tool></tool>
+				</view>
+		</view>
+		<view class="act-footer" wx:if="{{endLoading}}">
+				<button class="act-btn" wx:if="{{authorityTips}}" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">
+						马上报名
+				</button>
+		</view>
+		<view class="act-footer" wx:else>
+				<button class="act-btn" wx:if="{{authorityTips}}" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">
+						马上报名
+				</button>
+				<!-- <button class="act-btn" wx:if="{{!authorityTips && getPhone}}" open-type="getPhoneNumber" catchtap="stop" bindgetphonenumber="getPhoneNumber">
+						马上报名
+				</button> -->
+				<button class="act-btn" wx:if="{{isEnd?false:(!isSignup&&!authorityTips)}}" catch:tap="handleSignup" data-type="show">
+						马上报名
+				</button>
+				<view class="act-btn btn-praise" wx:if="{{isSignup && !authorityTips && !isSkilled && !isEnd}}" catch:tap="toSeckill">
+						<text>立即抢购</text>
+				</view>
+				<view class="act-btn btn-praise" wx:if="{{isSignup && !authorityTips && info_data.state == '0' && !isEnd}}" catch:tap="toUserDetail">
+						<text>恭喜您获得0元旅拍名额，请完善资料</text>
+				</view>
+				<view class="act-btn btn-praise" wx:if="{{isSignup && !authorityTips && isSkilled && info_data.state == '1' && !isEnd}}" catch:tap="toUserDetail">
+						<text>查看报名信息</text>
+				</view>
+				<view class="act-btn btn-praise" wx:if="{{isEnd}}" catch:tap="toPraise">
+						<image class="like" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/btn-like.png" mode="aspectFit"></image>
+						<text>集齐1000赞，召唤下次活动</text>
+				</view>
+		</view>
+</view>
+
+<!-- 报名弹窗 -->
+<view class="pop-case signup-pop" wx:if="{{showSignup}}" catch:tap="closeRegionSelect">
+		<pop strStyle="width: 630rpx;height: 810rpx;">
+				<image class="pop-close" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/popup_close.png" mode="aspectFit" lazy-load="{{true}}" catch:tap="handleSignup" data-type="close"></image>
+				<view class="pop-header">请填写报名信息</view>
+				<view class="pop-body">
+						<view class="line-case">
+								<view class="label">所在城市</view>
+								<view class="content-case">
+										<cityPicker id="cityPicker" bind:getRegion="getRegion" isInfoPopup="2"></cityPicker>
+								</view>
+						</view>
+						<view class="line-case">
+								<view class="label">姓名</view>
+								<view class="content-case">
+										<input class="input-name" maxlength="10" value="{{userName}}" bindinput="watchName" type="text" placeholder="请输入姓名"></input>
+								</view>
+						</view>
+						<view class="line-case">
+								<view class="label">身份</view>
+								<view class="content-case">
+										<radio-group bindchange="radioChange" class="identity">
+												<label class="weui-cell weui-check__label" wx:for="{{identityList}}" wx:key="index">
+														<view class="weui-cell__hd">
+																<radio value="{{item.value}}" color="#FFE329" />
+														</view>
+														<view class="weui-cell__bd">{{item.name}}</view>
+												</label>
+										</radio-group>
+								</view>
+						</view>
+						<view class="line-case line-case-phone">
+								<view class="label">手机号</view>
+								<view class="content-case">
+										<input class="input-name" type="number" value="{{phoneNo}}" placeholder="请输入手机号" maxlength="11" bindinput='watchPhoneNo'></input>
+										<view class="tips">*请填写新人真实手机号码，本活动不可代报名</view>
+								</view>
+						</view>
+						<view class="line-case" style="margin-bottom: 0;">
+								<view class="label"></view>
+								<view class="content-case code-case">
+										<input class="input-code" maxlength="4" type="number" value="{{verifyCode}}" placeholder="请输入验证码" bindinput="bindCodeInput"></input>
+										<view class="send" wx:if="{{!isSend}}" catch:tap="getSMSCode">获取验证码</view>
+										<view class="send is-send" wx:else>{{sendTime}}s重发</view>
+								</view>
+						</view>
+				</view>
+				<view class="pop-footer">
+						<view class="btn-submit" catch:tap="submitSignup">提交</view>
+				</view>
+		</pop>
+</view>
+<!-- 授权弹窗 -->
+<view class="session-mask" catchtouchmove="stop" wx:if="{{showLogin}}">
+		<view class="authority-session">
+				<view>温馨提示</view>
+				<view>亲，授权了用户信息才可以操作哦～</view>
+				<view>快来告诉小檬你是谁吧~</view>
+				<view>
+						<button class="userinfo-btn btn" catchtap="hideAuthority">拒绝</button>
+						<button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">
+								确定
+						</button>
+				</view>
+				<image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+		</view>
+</view>
+<!-- 获取手机号弹窗 -->
+<view class="session-mask" wx:if="{{showGetPhone}}" catchtap="closeGetPhone">
+		<view class="container">
+				<image class="img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon2.png" mode="widthFix"></image>
+				<view>OH！这个活动比较特殊</view>
+				<view>需要大侠留下手机号码哦</view>
+				<view>小檬斗胆问下大侠的手机号码Ծ‸Ծ</view>
+				<button class="btn" open-type="getPhoneNumber" catchtap="stop" bindgetphonenumber="getPhoneNumber">
+						告诉小檬
+				</button>
+		</view>
+</view>
+<!-- 活动规则 -->
+<view class="roleStyle" wx:if="{{isRule}}">
+		<view class="roleStyle_content">
+				<image catchtap="getRoleStyleImg" class="roleStyle_content_img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/popup_close.png" lazy-load="{{true}}"></image>
+				<view class="roleStyle_content_title">活动规则</view>
+				<view class="roleStyle_content_text">
+						<view class="text_item">
+								<view>活动时间：</view>
+								<view>鲜檬0元抢购泰安婚纱摄影活动报名时间为2020年10月22日至2020年10月28日；</view>
+						</view>
+						<view class="text_item1">
+								<view>活动说明：</view>
+								<view>1. 本次鲜檬0元抢购泰安婚纱摄影活动名额共500份，从2020年10月24日至2020年10月28日每天下午2点开始抢购，总共5天，每天100份，抢完即止；</view>
+								<view>
+										2. 2020年期间，多次重复报名参与鲜檬0元抢购婚纱摄影活动的用户（无论是泰安、三亚或其他城市），如屡次抢购成功，名额仅可使用一次，只能选择一个城市旅拍，不可叠加或重复使用，需在拍摄截止日期前完成拍摄，且不可延期使用。
+								</view>
+								<view>3. 仅限通过本活动页链接报名活动的用户参与抢购，每个用户每天拥有一次抢购机会；每个用户只能获得一次名额（夫妻均抢到名额，仅可享受一次），同一姓名、手机号码、同一微信id视为同一用户；</view>
+								<view>4. 凡以不正当手段（包括不限于作弊，扰乱系统及实施网络攻击）参与本次活动的用户，活动举办方有权取消其用户抢购资格及名额；</view>
+								<view>5. 抢购成功名额不可以任何理由及方式退换、转让他人、售卖，或兑换成为现金及其他福利；</view>
+								<view>6. 泰安鲜檬婚纱摄影抢购成功用户，拍摄时间截止为2020年12月31日前，过期视为自动放弃，不可延期使用。</view>
+						</view>
+						<view class="text_question">
+								<view>如有其他疑问，可联系鲜檬官方客服热线：</view>
+								<view>活动客服热线：400-805-2189</view>
+								<view>泰安鲜檬门店热线：0538-5888666 / 18562386779 / 18562386775</view>
+						</view>
+						<view class="text_declaration">在法律允许其范围内，活动主办方保留需要取消或修改上述相关说明的权利，活动最终解释权归活动主办方所有。</view>
+				</view>
+		</view>
+		<view class="roleStyle_model"></view>
+</view>
+<!-- 手机号拒绝授权 -->
+<view class="pop-case error-phone" wx:if="{{showErrPhone}}">
+		<pop strStyle="height: 168px;justify-content: space-around;">
+				<image class="pop-close" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/popup_close.png" mode="aspectFit" lazy-load="{{true}}" catch:tap="handlePop" data-type="close"></image>
+				<view class="pop-header">提示</view>
+				<view class="pop-body">
+						需要通过授权才能
+						<text style="color: #FF5906;">报名</text>
+						，请重新点击并授权！
+				</view>
+				<!-- <view class="pop-footer" catch:tap="handlePop" data-type="close">确定</view> -->
+				<button class="btn pop-footer" open-type="getPhoneNumber" catchtap="stop" bindgetphonenumber="getPhoneNumber">
+						确定
+				</button>
+		</pop>
+</view>
+<loading text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}" showMask="{{true}}"></loading>

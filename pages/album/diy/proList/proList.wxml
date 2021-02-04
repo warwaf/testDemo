@@ -1,0 +1,11 @@
+<!--pages/album/diy/proList/proList.wxml-->
+<view class="container">
+    <image mode="widthFix" src="{{banner}}" ></image>
+</view>
+<view class="btn-container">
+    <view wx:if="{{gotVoucher}}" class="voucher"> 
+        <image mode="widthFix" style="width:18px" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/quan@2x.png" ></image>
+        已领取优惠券
+    </view>
+    <view class="btn" catchtap='produce'>立即制作</view>
+</view>

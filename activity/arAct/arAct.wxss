@@ -1,0 +1,231 @@
+.new-year-bg{
+    background: url('https://mtqpic.oss-cn-hangzhou.aliyuncs.com/detail_bg.png') center top no-repeat #F03B5A;
+    background-size: 100%;
+    padding-top: 850rpx;
+    padding-bottom: 180rpx;
+}
+.padd-item{
+    padding-left: 35rpx;
+    padding-right: 35rpx;
+}
+/* 集赞赢好礼view */
+.give-like{
+    background-color: #fff;
+    height: 280rpx;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 24rpx;
+    position: relative;
+    box-shadow: 0rpx 15rpx 20rpx rgba(204, 38, 69, 0.8);
+}
+/* 集赞赢好礼title */
+.give-like-title{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 15rpx;
+    padding-top: 10rpx;
+    height: 65rpx;
+}
+.title-img{
+    width: 100%;
+}
+.give-like-btn{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 25rpx;
+    padding-top: 10rpx;
+    height: 80rpx;
+}
+.help-success{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: url('https://mtqpic.oss-cn-hangzhou.aliyuncs.com/praise_helps_success.png')  top no-repeat;
+    background-size: cover;
+}
+/* 查看奖品按钮 */
+.check-prize-btn{
+    width: 169rpx;
+    height: 57rpx;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+/* 发起活动助力 */
+.activity-man{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.activity-man-item{
+    font-size: 22rpx;
+    color: #F74C51;
+    width: 100rpx;
+    height: 100%;
+    border: 1rpx solid #fff;
+}
+.head-item{
+    width: 75rpx;
+    height: 75rpx;
+    border: 1rpx solid #F74C51;
+    margin: 0 auto;
+    margin-top: 8rpx;
+    margin-bottom: 8rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.head-item-none{
+    border: 1rpx dashed #F74C51;
+}
+.nickname-item{
+    overflow: hidden;
+}
+.btn-img{
+    width: 100%;
+}
+/* 温馨提示 */
+.warm-tip{
+    position: relative;
+    background-color: #CC2645;
+    margin-top: 35rpx;
+    border-radius: 10rpx;
+    color: #FFF2DA;
+    padding: 15rpx 25rpx;
+}
+.border-around{
+    position: absolute;
+    width: 10rpx;
+    height: 10rpx;
+}
+.border-around:first-child{
+    border-left: 3rpx solid #FFF2DA;
+    border-top: 3rpx solid #FFF2DA;
+    left: 0;
+    top: 0;
+}
+.border-around:nth-child(2){
+    top: 0;
+    right: 0;
+    border-top: 3rpx solid #FFF2DA;
+    border-right: 3rpx solid #FFF2DA;
+}
+.border-around:nth-child(3){
+    bottom: 0;
+    left: 0;
+    border-bottom: 3rpx solid #FFF2DA;
+    border-left: 3rpx solid #FFF2DA;
+}
+.border-around:nth-child(4){
+    bottom: 0;
+    right: 0;
+    border-bottom: 3rpx solid #FFF2DA;
+    border-right: 3rpx solid #FFF2DA;
+}
+/* 活动奖品 */
+.activity-prize{
+    margin-top: 60rpx;
+    margin-bottom: 30rpx;
+}
+.prize-title{
+    height: 65rpx;
+}
+.prize-img-title{
+    width: 100%;
+}
+.prize-list{
+    padding-left: 10rpx;
+    padding-right: 10rpx;
+    display: flex;
+    justify-content: space-around;
+}
+.prize-item{
+    width: 50%;
+}
+/* 活动规则 */
+.activity-rules{
+    padding: 25rpx;
+    background-color: #cc2645;
+    color:  #FFF2DA;
+    font-size: 25rpx;
+    border-radius: 20rpx;
+    margin-bottom: 15rpx;
+}
+.rules-text{
+    margin-top: 15rpx;
+}
+.AR-btn{
+    position: fixed;
+    bottom: 10rpx;
+    z-index: 9999;
+    width: 100%;
+}
+.customer{
+    width: 80rpx;
+    height: 80rpx;
+    background-color: #fff;
+    border-radius: 50%;
+
+}
+
+.tool-case {
+    position: fixed;
+    right: 10rpx;
+    width: 80rpx;
+    height: 80rpx;
+    top: 20rpx;
+}
+.contact_btn{
+    width: 100%;
+    border: none;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+}
+.tool-case .icon-ar {
+    width: 100%;
+}
+
+
+
+.check-mask{
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,.5);
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:99999;
+    overflow: hidden;
+}
+.check-inner{
+    width: 70%;
+    margin:200rpx auto 0 auto;
+    position:relative;
+    z-index:5
+}
+.check-mask-btn{
+    width: 71%;
+    height: 88rpx;
+    background-color: #fae0c2;
+    border-radius: 44rpx;
+    box-shadow: 0rpx 15rpx 20rpx rgba(40, 40, 40, 0.5);
+    position: absolute;
+    bottom: 55rpx;
+    left: 35%;
+    margin-left: -21%;
+    color: #732633;
+    line-height: 88rpx;
+    text-align: center;
+    font-weight: bold;
+}
+.prize-detail-close{
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    top: -48rpx;
+    right: -48rpx;
+}

@@ -1,0 +1,72 @@
+<view class="tab">
+    <view class="{{followStat ? '' : 'activity'}}" bindtap='switchTab' data-id="{{false}}">粉丝 <text>({{fans.length}})</text></view>
+    <view class="{{followStat ? 'activity' : ''}}" bindtap='switchTab' data-id="{{true}}">关注 <text>({{follows.length}})</text></view>
+</view>
+
+<view wx:if="{{!followStat}}" class="list mt10">
+    <block wx:if="{{fans.length > 0}}">
+        <view wx:for="{{fans}}" class="item" wx:key="index">
+            <view>
+                <image src="{{item.avatarUrl}}" class="avatar fl" catchtap='toPersonal' data-id="{{item.unionId}}"></image>
+                <view class="fl ml10">
+                    <view>
+                        <text>{{item.nickName}}</text>
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/male-icon.png" wx:if="{{item.gender == 1}}"></image>
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/female-icon.png" wx:else></image>
+                    </view>
+                    <view class="autograph">{{item.autograph == null ? '' : item.autograph}}</view>
+                </view>
+            </view>
+            <view class="{{item.isFollow ? 'btn1' : 'btn'}}" catchtap='toFollow' data-item="{{item}}" data-index="{{index}}">{{item.isFollow ? '已关注' : '关注'}}</view>
+        </view>
+    </block>
+    <view wx:if="{{ fans.length <= 0 && !isLoading }}" class="empty-fans">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/fans-empty.png"></image>
+        <view>发布精彩的照片吸引更多的粉丝</view>
+        <view class="btn-big" catchtap='toCreate'>去发布</view>
+    </view>
+</view>
+
+<view wx:if="{{followStat}}" class="list mt10">
+    <block wx:if="{{follows.length > 0}}">
+        <view wx:for="{{follows}}" class="item" wx:key="index">
+            <view>
+                <image src="{{item.avatarUrl}}" class="avatar fl" catchtap='toPersonal' data-id="{{item.unionId}}"></image>
+                <view class="fl ml10">
+                    <view>
+                        <text>{{item.nickName}}</text>
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/male-icon.png" wx:if="{{item.gender == 1}}"></image>
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/female-icon.png" wx:else></image>
+                    </view>
+                    <view class="autograph">{{item.autograph == null ? '' : item.autograph}}</view>
+                </view>
+            </view>
+            <view class="btn1" catchtap='cancleFollow' data-item="{{item}}" data-index="{{index}}">已关注</view>
+        </view>
+    </block>
+    <view wx:if="{{ follows.length <= 0 && !isLoading }}" class="empty-follow">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/follow-empty.png"></image>
+        <view>关注有趣的人看更多精彩的照片</view>
+        <view style="width: 100vw">
+            <!-- <view class="tags">推荐用户</view> -->
+            <view class="list">
+                <view wx:for="{{recommendation}}" class="item" wx:key="index">
+                <view>
+                    <image src="{{item.avatarUrl}}" class="avatar fl"></image>
+                    <view class="fl ml10">
+                        <view>
+                            <text>{{item.nickName}}</text>
+                            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/male-icon.png" wx:if="{{item.gender == 1}}"></image>
+                            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/female-icon.png" wx:else></image>
+                        </view>
+                        <view class="autograph">{{item.autograph == null ? '' : item.autograph}}</view>
+                    </view>
+                </view>
+                <view class="btn">关注</view>
+            </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>

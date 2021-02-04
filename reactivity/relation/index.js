@@ -1,11 +1,9 @@
-console.log(require.context);
-
 const Custom =  Behavior({
 		data: {
 			_test: "ggggg"
 		},
 		created(){
-			console.log(this.getRelationNodes("../test-a/index"));
+			// console.log(this.getRelationNodes("../test-a/index"));
 			// Object.defineProperty(this, 'children', {
 			// 	get: () => this.getRelationNodes(path) || [],
 			// });

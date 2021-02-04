@@ -1,0 +1,56 @@
+<view class="water-fall-outer water-class">
+    <view wx:for="{{imgArr}}" 
+        wx:key="idx" 
+        wx:for-index="idx" 
+        wx:for-item="imgs" 
+        class="water-fall-column" 
+        style="width:{{columnWidth}}px">
+        <view class="water-fall-item" wx:for="{{imgs}}" wx:key="jobId">
+            <image
+                class="{{item.isDelete && item.isDelete !== undefined ? 'is-delete' : ''}} img" 
+                src="{{item.thumbnailUrl}}?x-oss-process=image/resize,w_400/auto-orient,1&{{date}}"  
+                style="height:{{item.height + 'px'}}; background-color: #F1F3F5; background-image: url('http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;" 
+                catchtap='choseImage' 
+                data-column="{{idx}}" 
+                data-position="{{item.index}}" 
+                data-index="{{index}}"
+                data-url="{{item.thumbnailUrl}}"
+                lazy-load="true">
+            </image>
+            <!-- 选择圆圈 -->
+            <view 
+                class="circle"
+                wx:if="{{activited}}" 
+                catchtap='choseImage' 
+                data-column="{{idx}}" 
+                data-position="{{item.index}}" 
+                data-index="{{index}}">
+                <view wx:if="{{item.check}}" class="view"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/hook.png" class="img"></image></view>
+            </view>
+            <!-- 显示浏览次数 -->
+            <view class="eye" wx:if="{{item.browseCount || item.browseCount === 0}}">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/eye.png" class="img" />  <text> {{item.browseCount > 99 ? '99+' : item.browseCount}}</text>
+            </view>
+            <!-- 显示热度 -->
+            <view wx:if="{{item.score || item.score === 0}}">
+                <view class="rank-praise"><image class="img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/fire.png"></image> {{item.score == null ? 0 : item.score}}</view>
+            </view>
+            <!-- AR标识 -->
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon17.png" class="ar-icon img" wx:if="{{item.arState}}" />
+        </view>
+    </view>
+</view>
+
+<view class="loading">
+    <slot></slot>
+</view>
+
+<view class="btn-group" wx:if="{{activited}}">
+    <view class="cancle view" catchtap='cancle'>
+        取消 已选{{selectedImgs.length}}/{{maxSelectableNum}}
+    </view>
+    <view class="confirm view" catchtap='jump'>确定</view>
+</view>
+
+<!-- 动画 -->
+<!-- <image src="{{bus.url}}" wx:if="{{!bus.hidden}}" mode="widthFix" class="animate" style="left: {{bus.x}}px; top: {{bus.y}}px; width: {{bus.w}}px; height:{{bus.h}}px; opacity: {{bus.opacity}}" /> -->

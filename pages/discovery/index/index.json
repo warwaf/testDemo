@@ -1,0 +1,11 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "门店",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "banner": "/components/common/banner/banner",
+        "container": "/components/common/container/index"
+    }
+}

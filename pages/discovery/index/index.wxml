@@ -1,0 +1,133 @@
+<!--pages/discovery/index.wxml   autoplay="{{autoplay}}"-->
+<wxs module="filter" src="../../../utils/util.wxs"></wxs>
+
+<container selected="1"></container>
+    <banner indicatorDots="{{true}}" autoplay="{{true}}" interval="{{2000}}" circular="{{true}}" duration="{{1000}}" imgUrls="{{imgUrls}}" wx:if="{{imgUrls.length > 0}}" bind:clickEvent="jump"></banner>
+    <view class='tab2Box'></view>
+    <!-- 第三部分（列表） -->
+    <!-- <scroll-view style="height:100vh" class="scroll-view" bindscroll="scroll" scroll-y bindscrolltoupper="refresh" bindscrolltolower="loadMore" > -->
+        <!-- <view wx:if="{{refreshing}}" class='pull_to_refresh'>正在刷新...</view> -->
+        <view class='tab3Box' wx:if="{{showList}}">
+            <view class="authorize-tips" wx:if="{{!authorize}}" catchtap="toAuthorize">
+                <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/other/discover-index-5.png" mode="widthFix" />
+            </view>
+            <view wx:if="{{authorize && city}}" class="city">
+                <view class="left">
+                    <view catchtap="changeCity">{{city}} <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/switch.png" /></view>
+                    <view catchtap="switchStyleListVisiable">{{curStyle || '全部风格'}} <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon10.png" style="width: 11px; height: 7px;"/></view>
+                </view>
+                <view class="right" catchtap="showSearch">
+                    <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/other/album-checkin-1.png" mode="widthFix" style="width: 15px; height: 15px;"/>
+                </view>
+            </view>
+
+            <view wx:for="{{discoverList}}" wx:key="id" class='tab3' bindtap='list' data-info="{{item}}">
+                <view class="detail">
+                    <view>{{item.name}}</view>
+                    <view class="dis"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon7.png" /> {{item.distance ? '距离你' + filter.meterTokilometer(item.distance) + 'km' : '世界这么大，你在哪' }} </view>
+                    <!-- <view class="views">
+                        <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon8.png" /> {{item.picsCount}}张</view>
+                        <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.0/icon9.png" /> {{item.viewsCount}}次</view>
+                    </view> -->
+                </view>
+                <image src="{{item.banner}}" mode="aspectFill" class="img" style="height:72px; background-color: #F1F3F5; background-image: url('http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;">
+                    <!-- <view class="mask"></view> -->
+                </image>
+                <!-- <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/other/discover-index-1.png" class="icon"/> -->
+            </view>
+
+            <view class="empty" wx:if="{{discoverList.length == 0 && !isLoading}}" style="margin-top: {{imgUrls.length > 0 ? 0 : '172px'}};">
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/exmper@2x.png" />
+                <view>该风格没有对应门店哦~</view>
+            </view>
+
+            <view wx:for="{{movementList}}" wx:key="uqine" class='movementBox' bindtap='detail' wx:if="{{item.cover && discoverLoading }}" data-info="{{item}}" >
+                <view class="img-box {{item.type ? 'small' : 'big'}}">
+                    <image wx:if="{{!item.special}}" src="{{item.cover}}" mode="widthFix" style="transform: translateY({{item.scrollDistance}}px);" bindload='imgLoadEvent' data-index="{{index}}"></image>
+                    <image wx:else src="{{item.cover}}" mode="aspectFill" style="transform: translateY({{item.scrollDistance}}px);" bindload='imgLoadEvent' data-index="{{index}}"></image>
+                </view>
+                
+                <view class="hc-Box">
+                    <view class='hc-BoxImg' catchtap='hishomepage' data-id="{{item.unionId}}">
+                        <image src="{{item.avatarUrl}}"></image>
+                    </view>
+                    <view>{{item.nickName}}</view>
+                    <view class='hc-BoxTip'>
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/find_zan.png"  class='hc-Icon'></image>
+                        {{item.praiseCount}}
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/find_msg.png"  class='hc-msg-Icon'></image>
+                        {{item.commentCount == null ? 0 : item.commentCount}}
+                    </view>
+                </view>
+            </view>
+        </view>
+    <!-- </scroll-view> -->
+
+<view class="icon" catchtap='backTop' wx:if="{{btnStat}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/backTop.png"></image>
+</view>
+
+<!-- 发布动态 -->
+<!-- <view class='createImg' style="bottom:{{isIPX? '80': '50'}}px" >
+    <form report-submit="{{true}}" bindsubmit="createDynamics">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/publish.png" class="text" wx:if="{{neverCreate}}"></image>
+        <button form-type="submit">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/add@2x.png" class="plus"></image>
+        </button>
+    </form>
+</view> -->
+
+
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+
+<view class="session-mask" wx:if="{{authorityTips}}" catchtouchmove="stop">
+    <view class="authority-session">
+        <view>温馨提示</view>
+        <view>亲，授权了用户信息才可以操作哦～</view>
+        <view>快来告诉小檬你是谁吧~</view>
+        <view>
+            <button class="userinfo-btn btn" bindgetuserinfo="hideAuthority"> 拒绝</button>
+            <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> 确定</button>
+        </view>
+        <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+    </view>
+</view>
+
+<!-- 风格选择 -->
+<view class="style_list" hidden="{{!showStyleList}}" catchtap="switchStyleListVisiable">
+    <view class="inner" catchtap="stop">
+        <view class="title">请选择风格类型</view>
+        <scroll-view class="content" scroll-y="true">
+            <view class="style_item all" catchtap="styleItemTapHandler" data-item="{{null}}">
+                <view class="t">
+                    全部
+                    <view class="circle {{!curSelectStyle.theKey ? 'active' : ''}}"><image wx:if="{{!curSelectStyle.theKey}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" /></view>
+                </view>
+                <view class="p">全部风格</view>
+            </view>
+            <view class="style_item" wx:for="{{styleList}}" wx:key="img" catchtap="styleItemTapHandler" data-item="{{item}}">
+                <image src="{{item.imgUrl}}" class="t">
+                    <view class="circle {{curSelectStyle.theKey == item.theKey ? 'active' : ''}}"><image wx:if="{{curSelectStyle.theKey == item.theKey}}" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" /></view>
+                </image>
+                <view class="p">{{item.theValue}}</view>
+            </view>
+        </scroll-view>
+        <view class="btn clear" catchtap="confirmStyle">确定</view>
+    </view>
+</view>
+
+<!-- 搜索门店弹窗 -->
+<pop visibile="{{isSearch}}" showTitle="{{false}}">
+    <view class="search-pop">
+        <view class="pop-header">
+            <text>门店搜索</text>
+            <view catchtap="closeShowSearch">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/xx.png"/>
+            </view>
+        </view>
+        <view class="pop-body">
+            <input type="text" placeholder="请输入门店名称" value="{{shopName}}" bindinput="watchInput"/>
+            <button catchtap="confirmSearch" disabled="{{shopName.length == 0}}" class="{{shopName.length == 0 ? 'disable' : ''}}">确定</button>
+        </view>
+    </view>
+</pop>

@@ -1,0 +1,20 @@
+/* pages/activity/scheduling/checkSchedule/checkSchedule.wxss */
+.shop-case {
+  font-size: 15px;
+  color: #666666;
+  padding: 16rpx 20rpx 12rpx;
+  border-bottom: 1px solid #F2F2F2;
+}
+
+.btn {
+  width: 702rpx;
+  height: 88rpx;
+  font-size: 16px;
+  color: #240101;
+  text-align: center;
+  line-height: 88rpx;
+  align-items: center;
+  border-radius: 44rpx;
+  margin: 0 auto;
+  background: #FFE228;
+}

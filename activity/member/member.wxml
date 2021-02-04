@@ -1,0 +1,81 @@
+<view class="bg {{tabCode == 'silver' ? 'silver' : ''}}">
+    <view wx:if="{{tabCode == 'gold'}}" wx:for="{{bgImgList}}" wx:key="index" src="{{item}}" class="bg-case bg-case{{index+1}}" style="background-image: url('{{item}}');"></view>
+    <image wx:if="{{tabCode == 'silver'}}" wx:for="{{bgImgList}}" wx:key="index" src="{{item}}" lazy-load="{{true}}" mode="widthFix" class="bg-img"/>
+    <view class="exchange" catchtap="toExchange" wx:if="{{openingStatus != 3 && tabCode == 'gold'}}">
+      <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200709/exchange.png" mode="widthFix"/>
+    </view>
+    <view class="service" catchtap="showCallPhone">
+      <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/service.png" mode="widthFix"/>
+    </view>
+    <view class="page-fotter {{openingStatus != 3 ? '' : 'ismember'}}  {{tabCode == 'silver' ? 'silver' : ''}}">
+      <view class="btn-case">
+        <button class="btn" catchtap="buyNow">{{openingStatus == 1 && tabCode == 'gold' ? '查看权益' : openingStatus == 2 && tabCode == 'silver' ? '查看权益' : openingStatus == 3 ? '查看权益' : '立即购买'}}</button>
+      </view>
+      <view class="protocol" catchtap="userAgree" wx:if="{{openingStatus != 3}}">
+        <text class="check-box {{isAgree ? 'active' : ''}}"></text>
+        <view style="font-size: 13px;">点击购买立即注册并同意<text catchtap="showProtocol">《鲜檬会员用户协议》</text> </view>
+      </view>
+    </view>
+</view>
+
+<!-- loading效果 -->
+<loading text="Yoo-hoo! 创建订单中" wx:if="{{isLoading}}"></loading>
+
+<loading text="Yoo-hoo! 加载中" wx:if="{{loadingStatus}}"></loading>
+
+<!-- 授权弹窗 -->
+<view class="session-mask" catchtouchmove="stop" wx:if="{{authorityTips}}">
+  <view class="authority-session">
+    <view>温馨提示</view>
+    <view>亲，授权了用户信息才可以操作哦～</view>
+    <view>快来告诉小檬你是谁吧~</view>
+    <view>
+      <button class="userinfo-btn btn" catchtap="hideAuthority"> 拒绝</button>
+      <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> 确定</button>
+    </view>
+    <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+  </view>
+</view>
+
+<!-- 获取手机号弹窗 -->
+<view class="session-mask" wx:if="{{getPhone}}" catchtap="closeGetPhone">
+  <view class="container">
+    <image class="img" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon2.png" mode="widthFix"></image>
+    <view>OH！这个活动比较特殊</view>
+    <view>需要大侠留下手机号码哦</view>
+    <view>小檬斗胆问下大侠的手机号码Ծ‸Ծ</view>
+    <button class="btn" open-type="getPhoneNumber" catchtap="stop" bindgetphonenumber="getPhoneNumber"> 告诉小檬</button>
+  </view>
+</view>
+
+<!-- 拨号弹窗 -->
+<view class="mask" wx:if="{{showCall}}" catch:touchmove="stop">
+  <view class="inner">
+    <view class="header">
+      <text class="dot left-dot"></text>
+      <view class="title">拨打客服电话</view>
+      <text class="dot right-dot"></text>
+    </view>
+    <view class="body">
+      <text>您确认拨打：</text>
+      <text>400-805-2189</text>
+      <text>在线时间：9:30-12:00；13:00-19:30</text>
+    </view>
+    <view class="footer">
+      <button catchtap="callPhone">确定</button>
+    </view>
+    <view class="close" catch:tap="showCallPhone">
+      <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/close.png" />
+    </view>
+  </view>
+</view>
+
+<!-- 协议弹窗 -->
+<view class="mask" wx:if="{{showProtocolPop}}">
+  <view class="inner protocol">
+    <protocol></protocol>
+    <view class="close" catch:tap="showProtocol">
+      <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/close.png" />
+    </view>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+<!-- components/common/customToast/customToast.wxml -->
+<view class="c-toast animate" wx:if="{{isShow}}" style="animation-duration: {{durationT}}s">
+  <image class="tip-icon" src="{{iconUrl}}" mode="aspectFit"></image>
+  <text class="message">{{msg}}</text>
+</view>

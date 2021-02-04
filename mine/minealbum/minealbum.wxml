@@ -1,0 +1,14 @@
+<view class='box' tyle='margin-top:{{navigationHeight}}px' wx:if="{{albumList.length > 0}}">
+    <view class='albumBox' wx:for="{{albumList}}" wx:key="index" bindtap='jump' data-id="{{item.activityId}}"> 
+        <view class='albumImg'><image src="{{item.bannerImg}}"></image></view>
+        <wxs module="filter" src="../../utils/util.wxs"></wxs>
+        <view class='albumTitle'>{{item.activityName}}</view>
+        <view class='albumTime'>{{filter.splitActivityId(item.activityId)}}</view>
+    </view>
+</view>
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+<view wx:if="{{albumList.length <= 0 && !isLoading }}" class='noneBox'>
+    <view class='noneBoxImg'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/photo_collection_none.png" mode='widthFix'></image></view>
+    <view class='noneWord'>您当前没有自己的相册</view>
+    <!-- <view bindtap='uploadBtn' class='uploadBtn'>去看看</view> -->
+</view> 

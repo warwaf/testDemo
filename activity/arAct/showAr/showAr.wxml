@@ -1,0 +1,122 @@
+<!-- <nav title="虎彩30周年庆典" style="color:#fff"></nav> -->
+<view class="v-detail {{isShare||sponsorAward||isThumb?'isDetail':''}}">
+    <!-- <image mode='widthFix' class="v-detail-bg" src="../../resource/arAct/ar_bg.png"></image> -->
+    <video wx:if="{{videoUrl}}" class="v-video" id="myVideo" src="{{videoUrl+'?'+date}}" binderror="videoErrorHandler" autoplay="{{false}}" bindplay="getPlay"></video>
+    <view class="back" bind:tap="toHome">返回</view>
+    <view class="body">
+        <button class="btn-case" bindtap="getButtonPrize">{{isOwn ? "邀请好友点赞 立领奖品" : "点赞视频 立领奖品"}}</button>
+        <!-- <button open-type="share">分享给朋友</button> -->
+        <view wx:if="{{isBindTheUser}}" class="list-case">
+            <view class="boundary">
+                <view class="left">
+                    <view class="line"></view>
+                    <view class="square"></view>
+                </view>
+                <view class="middle">我的助力</view>
+                <view class="right">
+                    <view class="square"></view>
+                    <view class="line"></view>
+                </view>
+            </view>
+            <view class="box">
+                <view class="participant-case">
+                    <view class="list-item" wx:for="{{participantList}}" wx:key="index">
+                        <image class="main_success" wx:if="{{item.isOwn&&isState}}" src="../images/succeed.png"></image>
+                        <view class="left">
+                            <view class="portrait-case" wx:if="{{!item.isEmpty}}">
+                                <image class="portrait" src="{{item.portrait}}"></image>
+                                <view class="tag" wx:if="{{item.isOwn}}">
+                                    <text>发起人</text>
+                                </view>
+                            </view>
+                            <view class="portrait-case" wx:else>
+                                <view class="portrait empty">
+                                    <text class="plus"></text>
+                                </view>
+                            </view>
+                            <view class="info" wx:if="{{!item.isEmpty}}">
+                                <view class="name">{{item.name}}</view>
+                                <view class="date">{{item.date}}</view>
+                                <image class="icon"></image>
+                            </view>
+                            <view class="info empty" wx:else>
+                                <view class="name">等待助力</view>
+                            </view>
+                        </view>
+                        <view class="right {{!item.showPrize ? 'middle' : ''}}">
+                            <text class="msg">{{!item.isEmpty ? (item.isOwn ? '邀请5位好友助力点赞' : '点赞成功') : ""}}</text>
+                            <!-- <text class="msg" wx:if="{{item.showPrize}}">{{!item.isEmpty ? (item.isOwn ? '兑换券' : '9.5折券') : ""}}</text> -->
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="footer">
+        <view catch:tap="downloadVideo" class="btn-download" wx:if="{{dataDetail.isSelf==true||dataDetail.state==0}}">
+            <image class="icon-case" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.7.3/download.png"></image>
+            <text>下载</text>
+        </view>
+        <button wx:if="{{dataDetail.isSelf==false&&dataDetail.state!=0}}" class="cheating" open-type="share">邀请好友来助力</button>
+        <view class="btn-home" catchtap="toHome">云相册之旅</view>
+    </view>
+    <!-- <view class="btn" catchtap="toHome">云相册之旅</view> -->
+    <!-- <button catch:tap="downloadVideo" class="btn-dv">下载</button> -->
+</view>
+<!-- 分享与生成海报 -->
+<view class="share {{isShare?'showShare':'hideShare'}}">
+    <view class="v-model"></view>
+    <view class="share_text">
+        <view class="share_item">
+            <view>
+                <button class="share_item_button" open-type="share">
+                    <image class="share_item_img" src="../images/wechat.png"></image>
+                    <view>分享至微信好友</view>
+                </button>
+            </view>
+            <!-- <view>
+                <image class="share_item_img" src="/resources/circle.png"></image>
+                <view>分享至朋友圈</view>
+            </view> -->
+            <view bindtap="getGenerate">
+                <image class="share_item_img" src="../images/qrCode.png"></image>
+                <view>生成二维码海报</view>
+            </view>
+        </view>
+        <button class="share_button" bindtap="getCancel">取消</button>
+    </view>
+</view>
+<!-- 发起人奖励 -->
+<view class="share {{sponsorAward?'showShare':'hideShare'}}">
+    <view class="v-model"></view>
+    <view class="sponsorAward_content">
+        <image bindtap="getClose" data-type="1" class="sponsorAward_content_close" src="../images/pop_up_close.png"></image>
+        <image class="sponsorAward_content_img" src="../images/initiator_jp.png"></image>
+        <button class="sponsorAward_content_button" bindtap="readPrize">立即查看</button>
+    </view>
+</view>
+<!-- 点赞 -->
+<view class="share {{isThumb?'showShare':'hideShare'}}">
+    <view class="v-model"></view>
+    <view class="sponsorAward_content">
+        <image bindtap="getClose" data-type="2" class="sponsorAward_content_close" src="../images/pop_up_close.png"></image>
+        <image class="sponsorAward_content_img" src="../images/voucher_jp.png"></image>
+        <button class="sponsorAward_content_button" bindtap="readPrize">立即查看</button>
+    </view>
+</view>
+
+<!-- 授权弹窗 -->
+<view class="session-mask" catchtouchmove="stop" wx:if="{{authorityTips}}">
+  <view class="authority-session">
+    <view>温馨提示</view>
+    <view>亲，授权了用户信息才可以操作哦～</view>
+    <view>快来告诉小檬你是谁吧~</view>
+    <view>
+      <button class="userinfo-btn btn" catchtap="hideAuthority"> 拒绝</button>
+      <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> 确定</button>
+    </view>
+    <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+  </view>
+</view>
+
+<loading text="Yoo-hoo! 奋力加载中~~" wx:if="{{isLoading}}"></loading>

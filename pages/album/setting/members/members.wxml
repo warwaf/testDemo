@@ -1,0 +1,19 @@
+<!-- <view class="members owner">
+    <image src="{{owner.avatarUrl}}" data-id="{{owner.unionId}}" catchtap='toPersonal'/> 
+    <text>编辑者</text>
+</view> -->
+<view class="members">
+    <button open-type="share" class="share-btn"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/setting-add.png" /></button>
+    <view class="share-btn" catchtap="toRemove" wx:if="{{isAuthor}}"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-remove.png" mode="widthFix"/></view>
+    
+    <image data-id="{{item.unionId}}" catchtap='toPersonal' src="{{item.avatarUrl}}" wx:for="{{members}}" wx:key="index"/>
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/setting-more.png" wx:if="{{members.length < total}}" catchtap="showMore"/>
+</view>
+
+<view class="btn" bindtap='goback'>
+    返回
+</view>
+
+<view class="btn quit-btn" bindtap="quit">
+    退出
+</view>

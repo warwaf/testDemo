@@ -1,0 +1,27 @@
+
+<!-- <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/SystemImg/red.png" class="banner" mode="widthFix"></image> -->
+
+<view class="content">
+    <view wx:for="{{tmpPaths}}" wx:key="index">
+        <image src="{{item.tempThumbPath}}" mode="aspectFill"></image>
+        <view class="delete-icon" catchtap='remove' data-index="{{index}}">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload-delete.png"></image>
+        </view>
+    </view>
+    <view bindtap='select' wx:if="{{tmpPaths.length < 9}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_add.png"></image>
+    </view>
+</view>
+
+<!-- <view class="footer">
+    <view>
+        <view class="protocol" catchtap='onShowProtocol'>
+            <view class="circle"><text wx:if="{{agreeProtocol}}"></text></view>
+            本人已阅读并同意《用户隐私协议》
+        </view>
+    </view>
+    <view class="btn" bindtap='excute' wx:if="{{agreeProtocol && tmpPaths.length > 0}}">开始上传</view>
+    <view class="btn disable" wx:else>开始上传</view>
+</view> -->
+
+<protocol bind:clickEvent="signProtocol" wx:if="{{showProtocol}}"></protocol>

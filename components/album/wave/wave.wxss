@@ -1,0 +1,35 @@
+.wave {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #FFF;
+  position: relative;
+}
+
+.wave .bg{
+  position: absolute;
+  width: 204px;
+  height: 138px;
+  top: 30px;
+  left: 0px;
+  animation: wave 2s linear infinite;
+  transition: top 2s;
+}
+
+.indicator{
+  position: absolute;
+  top: -14px;
+  left: 15px;
+  font-size: 27px;
+  color: #231815;
+}
+
+@keyframes wave{
+  0%{
+    left: 0;
+  }
+  100%{
+    left: -102px;
+  }
+}

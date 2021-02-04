@@ -1,0 +1,11 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFE300",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "banner": "/components/common/banner/banner",
+        "sticky": "/components/sticky/index",
+        "sticky-item": "/components/sticky/sticky-item/index"
+    }
+}

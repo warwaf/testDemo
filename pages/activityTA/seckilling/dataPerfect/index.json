@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "loading": "/components/common/loading/loading",
+    "cityPicker": "../../components/cityPicker/index",
+    "navBar": "/components/common/navBar/index"
+  }
+}

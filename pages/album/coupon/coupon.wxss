@@ -1,0 +1,117 @@
+/* pages/album/coupon/coupon.wxss */
+.bg{
+    width: 100vw;
+    position: relative;
+    background-color: #7D1D43;
+    padding-bottom: 10px;
+}
+
+.back-btn{
+    width:211px;
+    height:40px;
+    line-height: 40px;
+    background:linear-gradient(104deg,rgba(255,231,79,1) 0%,rgba(255,226,39,1) 100%);
+    border-radius:20px;
+    color: #240101;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.bg image{
+    width: 100%;
+}
+.coupon{
+    width: 100%;
+}
+.coupon-item{
+    width: 340px;
+    height: 87px;
+    margin: 20px auto;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+.coupon-item .left{
+    width: calc(75% - 21px);
+    padding: 5px;
+    margin: 10px 5px;
+    display: flex;
+    float: left;
+    border-right: 1px solid #eee;
+}
+.coupon-item .left image{
+    width: 55px;
+    height: 55px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.coupon-item .right{
+    width: 25%;
+    float: right;
+    position: relative;
+}
+.activity-name{
+    color: #222222;
+    font-weight: bolder;
+    font-size: 13px;
+}
+.info{
+    color: #FFD700;
+}
+.amount{
+    font-size: 32px;
+}
+.gray{
+    color: #999999;
+    font-size: 12px;
+}
+.btn{
+    background: linear-gradient(#FFE74F,#FFE227);
+    width: 69px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 15px;
+    margin: 25px auto;
+    color: #240101;
+    font-size: 13px;
+}
+.code-info .code{
+    color: #666666;
+    font-size: 15px;
+    margin: 0 5px;
+}
+.code-info .btn{
+    width: 35px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 9px;
+    background: linear-gradient(#FFE74F,#FFE227);
+    font-size: 12px;
+    margin: 10px 0 10px 5px;
+}
+.code-info{
+    display: flex;
+    align-items: center;
+}
+.circle{
+    width: 16px;
+    height: 16px;
+    background-color: #FFEF46;
+    position: absolute;
+    border-radius: 8px;
+}
+.right image{
+    width: 70px;
+    height: 62px;
+}
+.right>view:nth-child(1){
+    font-size: 12px;
+}
+.top{
+    left: -15px;
+    top: -9px;
+}
+.bottom{
+    left: -15px;
+    bottom: -16px;
+}

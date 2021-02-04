@@ -1,0 +1,48 @@
+.menu-container {
+    width: calc(100vw - 30px);
+    display: flex;
+    padding: 0 15px;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 15px 15px 0 0;
+    position: sticky;
+    z-index: 1
+  }
+  
+  .menu-container .icons {
+    width: 120px;
+    justify-content: flex-end;
+    position: sticky
+  }
+  
+  .menu-container .icons image {
+    width: 21px;
+    height: 21px;
+    margin-left: 15px
+  }
+  
+  .menu-container>view {
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+  }
+  
+  .menu-container>view:nth-child(1) view {
+    white-space: nowrap;
+    display: flex
+  }
+  
+  .menu-container>view:nth-child(1)>view:nth-child(1) {
+    margin-right: 20px
+  }
+  
+  .menu-container>view:nth-child(1) image {
+    width: 16px;
+    height: 16px;
+    margin-left: 20px;
+    position: relative;
+    top: 3px
+  }

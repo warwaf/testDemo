@@ -1,0 +1,40 @@
+<wxs module="filter" src="../../../utils/util.wxs"></wxs>
+<view wx:for="{{list}}" wx:key="index" class="record">
+    <view class="title">
+        <text class="circle"></text> {{item.eventName}}
+        <text class="rect"></text>
+    </view>
+    <view class="content">
+        <view wx:if="{{item.prizeLevel > 0}}" class="inline"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon7.png"/> {{filter.codeToPrizeLevel(item.prizeLevel)}}  {{item.prizeName}}</view>
+        <view wx:else> <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon7.png"/> Un-oh，和大奖擦身而过</view>
+        <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon9.png"/> {{filter.split(item.createTime, ' ')[0]}}</view>
+        <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon6.png"/> {{item.activityName}}</view>
+        <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon1.png"/> {{item.nickName}}</view>
+        <view class="line"></view>
+        <view class="table" wx:if="{{item.showDetail}}">
+            <view class="row">
+                <text class="item">奖项</text>
+                <text class="item">奖品</text>
+                <text class="item">微信昵称</text>
+            </view>
+            <view class="row" wx:for="{{item.detail}}" wx:for-item="tableItem" wx:for-index="idx" wx:key="id">
+                <view class="item">
+                    <block wx:if="{{tableItem.prizeLevel == 1}}"><image class="icon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon10.png" mode="widthFix"/> 一等奖</block>
+                    <block wx:elif="{{tableItem.prizeLevel == 2}}"><image class="icon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon11.png" mode="widthFix"/> 二等奖</block>
+                    <block wx:elif="{{tableItem.prizeLevel == 3}}"><image class="icon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon12.png" mode="widthFix"/> 三等奖</block>
+                    <block wx:else><image class="icon" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon13.png" mode="widthFix"/> 安慰奖</block>
+                </view>
+                <text class="item">{{tableItem.prizeName}}</text>
+                <text class="item">{{tableItem.nickName}}</text>
+            </view>
+        </view>
+        <view catchtap="switchDetail" data-index="{{index}}" class="btn">{{item.showDetail ? '收起获奖情况' : '查看获奖情况'}}</view>
+    </view>
+</view>
+
+<view class="empty" wx:if="{{!list || list.length == 0}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-empty.png" />
+    <view>亲，还没参加过活动呢</view>
+    <view>嘿，小檬发现活动相册可以搞活动哦</view>
+    <view>快搞个活动相册试试吧(〃'▽'〃)</view>
+</view>

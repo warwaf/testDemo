@@ -1,0 +1,263 @@
+/* pages/activity/scheduling/scheduling.wxss */
+.scheduling,
+.scheduling .con {
+  width: 100vw;
+  background: #F7F7F7;
+}
+
+.scheduling .c999999 {
+  color: #999999;
+}
+
+.scheduling .c231815 {
+  color: #231815;
+}
+
+.scheduling .con {
+  height: 1408rpx;
+  padding: 24rpx 24rpx;
+  box-sizing: border-box;
+}
+
+.scheduling .card {
+  width: 702rpx;
+  height: 1070rpx;
+  background: #FFF;
+  border-radius: 20rpx;
+  box-sizing: border-box;
+  box-shadow: 0px 4rpx 20rpx 0px rgba(51, 51, 51, 0.1);
+}
+
+.scheduling .header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.scheduling .header image {
+  width: 120rpx;
+  height: 24rpx;
+}
+
+.scheduling .header text {
+  width: 110rpx;
+  height: 110rpx;
+  font-size: 14px;
+  color: #666666;
+  border-radius: 50%;
+  background: #F2F2F2;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.scheduling .header text:first-child {
+  color: #231815;
+  background: #FFE228;
+}
+
+.scheduling .body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.scheduling .body .line,
+.scheduling .body .line .photo-date {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.scheduling .body .line {
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+
+.scheduling .body .line .label {
+  width: 164rpx;
+  font-size: 13px;
+  text-align: right;
+  margin-right: 30rpx;
+}
+
+.scheduling .body .line .content,
+.scheduling .body .line .photo-date {
+  width: 456rpx;
+  height: 80rpx;
+  border-radius: 12rpx;
+  background: #F2F2F2;
+}
+
+.scheduling .body .line .photo-date {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  background: #FFF;
+}
+
+.scheduling .body .line .content>text,
+.scheduling .body .line .content input {
+  width: 456rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-left: 16rpx;
+  border-radius: 12rpx;
+  background: #F2F2F2;
+}
+.scheduling .body .line .content input{
+  width: initial;
+}
+
+.scheduling .body .line .photo-date>text {
+  width: 402rpx;
+  margin-right: 16rpx;
+}
+.scheduling .body .line .photo-date .date-case {
+  width: 260rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 16rpx;
+  border-radius: 12rpx;
+  margin-right: 16rpx;
+  box-sizing: border-box;
+  background: #F2F2F2;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.scheduling .body .line .photo-date .arrow {
+  width: 32rpx;
+  height: 32rpx;
+}
+.scheduling .body .line .photo-date .check-case {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 184rpx;
+  height: 80rpx;
+  border-radius: 6px;
+  border: 1px solid #999999;
+}
+.scheduling .body .line .photo-date .check-case text {
+  font-size: 12px;
+  color: #231815;
+}
+.scheduling .body .line .photo-date .check{
+  width: 34rpx;
+  height: 37rpx;
+  margin-right: 12rpx;
+}
+
+.scheduling .footer {
+  width: 100%;
+  margin-top: 40rpx;
+  box-sizing: border-box;
+}
+
+.scheduling .footer .btn-submit {
+  width: 100%;
+  height: 88rpx;
+  font-size: 16px;
+  color: #240101;
+  text-align: center;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  background: #FFE228;
+}
+
+.pop-date .mask {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1999;
+}
+
+.pop-date .mask .inner {
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  min-height: 992rpx;
+  border-radius: 30rpx 30rpx 0 0;
+  background: #FFF;
+}
+.pop-date .mask .inner .head {
+  position: relative;
+  height: 40rpx;
+  font-size: 14px;
+  padding: 24rpx 0 49rpx;
+  color: #1A1A1A;
+  font-weight: bold;
+  line-height: 40rpx;
+  text-align: center;
+}
+.pop-date .mask .inner .head .close {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  padding: 10px;
+}
+
+.pop-date .mask .inner .foot {
+  width: 100vw;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 24rpx 24rpx;
+}
+
+.pop-date .mask .inner .foot .btn {
+  width: 100%;
+  height: 88rpx;
+  font-size: 16px;
+  color: #240101;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 44rpx;
+  background: #FFE228;
+}
+.content_select{
+  position: relative;
+}
+.content_select .content_select_icon{
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.content_select_item{
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.3);
+  position: absolute;
+  width: 100%;
+  z-index: 9999;
+}
+.content_select_item>view{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+}
+.content_select_item>view:hover{
+  background: #f7f7f7;
+}
+.isColor{
+  background: #f7f7f7;
+}

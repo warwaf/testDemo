@@ -1,0 +1,10 @@
+<view class="v-nav" style='padding-top: {{height}}px;'>
+    <view class="v-nav-left">
+        <view wx:if="{{back}}" bind:tap="goBack">
+            <image mode="widthFix" style="width:25px;vertical-align:middle;" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/fanhui.png"></image>
+        </view>
+        <!-- 返回 -->
+    </view>
+    <view class="v-nav-center">{{title}}</view>
+    <view class="v-nav-right"></view>
+</view>

@@ -1,0 +1,71 @@
+<!--pages/discovery/hishomepage/hishomepage.wxml-->
+
+  <view class="bg"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/hishome-top.png" mode="widthFix"></image></view>
+  
+  <!-- 个人信息 -->
+    <view class='tab1' >
+        <view class='topBox'>
+            <view class='mine'>
+                <image src="{{userInfo.avatarUrl}}" ></image>
+                <view class='his-detail'>
+                    {{userInfo.nickName}}
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/male-icon.png" wx:if="{{userInfo.gender == 1}}"></image>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/female-icon.png" wx:else></image>
+                </view>
+                <view class='his-name'>{{userInfo.autograph == null ? '' : userInfo.autograph}}</view>
+            </view>
+            <!-- <view class='msgBox'>
+                <view wx:for="{{msgList}}" class='msgTab' wx:key="unique" >
+                    <view class='msgTabNum'>{{item.value}}</view>
+                    <view class='msgTabWord'>{{item.msg}}</view>
+                </view>
+            </view> -->
+        </view>
+    </view>
+
+    <view class='dynamic'>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/dynamic.png" ></image>
+        TA的动态
+    </view>
+  <!-- 相册列表 -->
+    <sticky scrollTop="{{scrollTop}}">
+        <sticky-item wx:for="{{albumList}}" wx:key="index" wx:for-index="imgIndex">
+            <view slot="title">
+                {{filter.subPreve(item.date,7)}}
+            </view>
+            <view class="content" slot="content">
+              <view class='hhp_box' >
+                <view wx:for="{{item.movements}}" wx:key="imgListKey" wx:for-item="imgList"  wx:for-index="itemIndex" class='aImgBox'>
+                  <view class='dot'><view class='dott'>{{filter.subNext(item.date)}}</view></view>
+                  <view class='imgList'>
+                      <view class='ilTitle'>{{imgList.title}}</view>
+                      <view class='imgList_word'>
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/hhp_zan.png" mode="widthFix"></image>{{imgList.praiseCount}}
+                        <image class="il_img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/hhp_msg.png" mode="widthFix"></image>{{imgList.commentCount}}
+                      </view>
+                      <view class='imgBox'>
+                      <wxs module="filter" src="./getInfoByIndex.wxs"></wxs>
+                      <image src="{{imgList.cover}}"  bindload='imgLoad' style="width:{{filter.infoByIndex(imgSize,imgIndex,itemIndex).width}}rpx;height:{{filter.infoByIndex(imgSize,imgIndex,itemIndex).height}}rpx" mode="scaleToFill" data-index="{{index}}" data-left="{{imgIndex}}" data-right="{{itemIndex}}" data-id="{{imgList.id}}" data-unionid="{{imgList.unionId}}" bindtap='detail' data-url="{{imgList.cover}}"></image>
+                      <view class='imgNum'>{{imgList.picCount}}图</view>
+                      </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+        </sticky-item>
+    </sticky>  
+<!-- </scroll-view> -->
+<view wx:if="{{!isSelf}}" class="follow-btn {{isFollow ? '' : 'activity'}}" catchtap='toFollow'>{{isFollow ? '已关注' : '关注'}}</view>
+
+<view class="session-mask" wx:if="{{authorityTips}}" catchtouchmove="stop">
+    <view class="authority-session">
+        <view>温馨提示</view>
+        <view>亲，授权了用户信息才可以操作哦～</view>
+        <view>快来告诉小檬你是谁吧~</view>
+        <view>
+            <button class="userinfo-btn btn" bindgetuserinfo="hideAuthority"> 拒绝</button>
+            <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> 确定</button>
+        </view>
+        <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+    </view>
+</view>

@@ -1,0 +1,12 @@
+{
+  "backgroundTextStyle": "dark",
+	"navigationBarBackgroundColor": "#fff",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "预约详情",
+  "usingComponents": {
+    "calendar": "../components/calendar/calendar",
+    "loading": "/components/common/loading/loading",
+    "navBar": "/components/common/navBar/index",
+    "pop": "../components/pop/index"
+  }
+}

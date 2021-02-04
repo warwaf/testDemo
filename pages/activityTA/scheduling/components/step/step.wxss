@@ -1,0 +1,48 @@
+/* pages/activity/scheduling/components/step/step.wxss */
+.content_bzt{
+  padding: 60rpx 66rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+.content_bzt>view:nth-child(1){
+  width: 110rpx;
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  background: #ffe228;
+  font-size: 28rpx;
+  font-family: PingFang, PingFang-SC;
+  font-weight: SC;
+  color: #231815;
+  border-radius: 100%;
+}
+.content_bzt>view:nth-child(3){
+  width: 110rpx;
+  height: 110rpx;
+  background: #f2f2f2;
+  text-align: center;
+  font-size: 28rpx;
+  font-family: PingFang, PingFang-SC;
+  font-weight: SC;
+  color: #666666;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content_bzt>view:nth-child(5){
+  width: 110rpx;
+  height: 110rpx;
+  background: #f2f2f2;
+  text-align: center;
+  font-size: 28rpx;
+  font-family: PingFang, PingFang-SC;
+  font-weight: SC;
+  color: #666666;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

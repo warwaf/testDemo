@@ -1,0 +1,104 @@
+<!-- <view class="v-search">
+    <image mode="widthFix" class="v-bg" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/bg@2x.png">
+        <view class="v-flex">
+            <view class="v-flex-item v-avatar">
+                <view class="v-avatar-title" wx:if="{{mineImg.picUrl}}">我</view>
+                <image class="tip" wx:else mode="widthFix" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/bubble@2x.png">
+                    <text>哪个是你呢？</text>
+                </image>
+                <image class="avatar" 
+                       wx:if="{{mineImg.picUrl}}" 
+                       mode="aspectFill" 
+                       catchtap='searchwho'
+                       data-info="{{mineImg}}"
+                       data-from="mine" 
+                       src="{{mineImg.picUrl}}?x-oss-process=image/crop,x_{{mineImg.left-45}},y_{{mineImg.top-45}},w_{{mineImg.width+90}},h_{{mineImg.height+90}}">
+                </image>
+                <image class="avatar-who" bindtap='searchmine' wx:else mode="aspectFill" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/who@2x.png"></image>
+            </view>
+            <view class="v-flex-item v-avatar">
+                <view class="v-avatar-title">万人迷</view>
+                <image class="avatar" 
+                       wx:if="{{remImg.picUrl}}" 
+                       mode="aspectFill" 
+                       catchtap='searchwho'
+                       data-info="{{remImg}}"
+                       src="{{remImg.picUrl}}?x-oss-process=image/crop,x_{{remImg.left-45}},y_{{remImg.top-45}},w_{{remImg.width+90}},h_{{remImg.height+90}}">
+                </image>
+                <image class="avatar" 
+                        mode="aspectFill" 
+                        wx:else
+                        bindtap='noWrm'
+                        src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/who@2x.png">
+                </image>
+            </view>
+        </view>
+      <view class="radius"></view>
+    </image>
+    <view class="v-nav-content">
+         <view class="v-list" wx:for="{{list}}" wx:key="index" wx:if="{{item.child.length>0}}" wx:for-item="item">
+            <image mode="widthFix" style="" class="v-list-title" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/tip.png">
+                <text>{{item.name}}</text>
+            </image>
+            <view class="v-list-left">
+                <image mode="widthFix" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/arrow.png"></image>
+            </view>
+            <view class="v-list-item">
+                    <view class="v-avatar" wx:key="i" wx:for="{{item.child}}" wx:for-item="items">
+                        <view wx:if="{{ items.tag }}" >{{items.tag}}</view>
+                        <image mode="aspectFill" 
+                                bindtap="searchResult"
+                                data-info="{{items}}"
+                                style="margin-top: {{items.tag ? 0 : 25}}px"
+                                src="{{items.picUrl}}?x-oss-process=image/crop,x_{{items.left-45}},y_{{items.top-45}},w_{{items.width+90}},h_{{items.height+90}}">
+                        </image>
+                    </view>
+            </view>
+        </view>
+        <view wx:if="{{ !isLoading }}" class="v-more" bind:tap="jumpAll">
+           <text>没找到？</text>
+           <text class="v-more-btn">查看所有人</text>
+        </view>
+    </view>
+    <loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>
+</view> -->
+
+<!-- <image mode="widthFix" class="v-bg" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/bg@2x.png" >
+    <image class="avatar" 
+            wx:if="{{mineImg.picUrl}}" 
+            mode="aspectFill" 
+            catchtap='searchwho'
+            data-info="{{mineImg}}"
+            data-from="mine" 
+            src="{{mineImg.picUrl}}?x-oss-process=image/crop,x_{{mineImg.left-45}},y_{{mineImg.top-45}},w_{{mineImg.width+90}},h_{{mineImg.height+90}}">
+    </image>
+
+</image> -->
+
+<view class="bg" style="background: url('https://hcmtq.oss-accelerate.aliyuncs.com/resources/search/bg@2x.png')" wx:if="{{mineImg.picUrl}}">
+    <text>自己</text>
+    <image class="avatar" 
+        wx:if="{{mineImg.picUrl}}" 
+        mode="aspectFill" 
+        catchtap='searchwho'
+        data-info="{{mineImg}}"
+        data-from="mine" 
+        src="{{mineImg.picUrl}}?x-oss-process=image/crop,x_{{mineImg.left-45}},y_{{mineImg.top-45}},w_{{mineImg.width+90}},h_{{mineImg.height+90}}">
+    </image>
+    <view class="radius"></view>
+</view>
+
+<!-- <view class="text">找一找，下面哪个是你</view> -->
+<scroll-view class="avatars" style="height: {{ mineImg.picUrl ? 'calc(100vh - 137px)' : 'calc(90vh)' }}" scroll-y="{{true}}" bindscrolltolower="loadData">
+    <view wx:for="{{list}}" wx:key="index">
+        <image  
+            class="avatar"
+            mode="aspectFill" 
+            bindtap="searchResult"
+            data-info="{{item}}"
+            src="{{item.picUrl}}?x-oss-process=image/crop,x_{{item.left-45}},y_{{item.top-45}},w_{{item.width+90}},h_{{item.height+90}}">
+        </image>
+    </view>
+</scroll-view>
+<view class="btn-fixed" bindtap='searchmine' wx:if="{{!mineImg.picUrl}}">找到自己</view>
+

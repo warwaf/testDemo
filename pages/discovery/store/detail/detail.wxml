@@ -1,0 +1,168 @@
+<wxs module="util" src="../../../../utils/util.wxs"></wxs>
+
+<view class="store-detail-container">    
+    <view class="header" wx:if="{{detailInfo.mAlbumBinaryPathList}}" style="background-image: url({{detailInfo.mAlbumBinaryPathList[0]}});">    
+        <view class="pics" style="top: {{isIPX ? '92px' : '75px'}}">
+            <!-- <image wx:for="{{movementInfo.imgUrlsList}}" 
+                    mode="widthFix" 
+                    wx:key="picUrl" 
+                    src="{{item.picUrl + '?x-oss-process=image/resize,w_600'}} ">
+            </image> -->
+            <image wx:if="{{detailInfo.mAlbumBinaryPathList}}" src="{{detailInfo.mAlbumBinaryPathList[0]}}"  style="height:255px; background-color: #F1F3F5; background-image: url('http://hucai-simoo.oss-cn-hangzhou.aliyuncs.com/p1.hucai.com/20190326/C0002928120190326/origin/4e388aec350f4fd78d6751ed5cce24ed.png'); background-repeat: no-repeat; background-position: center center; background-size:105px 21px;"></image>
+        </view>
+        <view class="pure-top">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200518/pure_top.png"></image>
+        </view>
+        <view class="nav-top {{isFixed ? 'nav-fixed': ''}} {{isFixed && isIPX ? 'nav-ipx' : ''}}" style="top: {{statusBarHeight + 10}}px;height: {{isIPX ? statusBarHeight + 10 : statusBarHeight}}px;">
+            <view class="content">
+                <view class="back-icon" catchtap="goBack"></view>
+                <text>{{detailInfo.productName}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="info-box">
+        <view class="text-info">
+            <view class="price" wx:if="{{detailInfo.salesPrice}}">
+                <text>￥</text><text>{{util.formatMoney(detailInfo.salesPrice)[0]}}</text><text>.{{util.formatMoney(detailInfo.salesPrice)[1]}}</text>
+            </view>
+            <view class="name">{{detailInfo.productName}}</view>
+            <view class="dec">{{detailInfo.dimQuality}}</view>
+        </view>
+        <view class="extend-info" wx:if="{{detailInfo.productPartExt}}">
+            <view class="top">
+                <view wx:if="{{detailInfo.productPartExt.costumesNum}}">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/1.6.11/fuzhuang.png"/>
+                    <text>服装</text>
+                    <text>{{detailInfo.productPartExt.costumesNum}}套</text>
+                </view>
+                <view wx:if="{{detailInfo.productPartExt.shootNum}}">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/1.6.11/paishe.png"/>
+                    <text>拍摄</text>
+                    <text>{{detailInfo.productPartExt.shootNum}}张</text>
+                </view>
+                <view wx:if="{{detailInfo.productPartExt.refinedNum}}">
+                    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/1.6.11/jingxiu.png"/>
+                    <text>精修</text>
+                    <text>{{detailInfo.productPartExt.refinedNum}}张</text>
+                </view>
+            </view>
+            <view class="bottom" wx:if="{{detailInfo.productPartExt.shootScene}}">
+                <text>场景：</text>
+                <text>{{detailInfo.productPartExt.shootScene}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="image-list">
+        <!-- <image wx:for="{{movementInfo.imgUrlsList}}" 
+                mode="widthFix" 
+                wx:key="picUrl" 
+                src="{{item.picUrl + '?x-oss-process=image/resize,w_600'}} ">
+        </image> -->
+        <rich-text style="width: 750rpx;" nodes="{{detailInfo.productDetail}}"></rich-text>
+    </view>
+</view>
+
+
+<view class="footer">
+    <button open-type="share" class="btn" plain='true'>分享给好友</button>
+    <view catchtap="toArrange">预约咨询</view>
+</view>
+
+<view catchtap="goHome" class="home">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resources/new/home@2x.png"/>
+</view>
+
+<view class='tipBox' wx:if="{{error}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>{{msgText}}</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>
+
+<!-- 咨询弹窗 -->
+<view class="arrange_info" wx:if="{{showArrangeInfo}}" catchtap="hideArrangeInfo">
+    <view class="inner" catchtap="stop" wx:if="{{newInfo != 0}}">
+        <view class="header">
+            <text>咨询信息</text>
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" catchtap="hideArrangeInfo" />
+        </view>
+        <view class="body">
+            <view>
+                <input value="{{userInfo.nickName || ''}}" placeholder="联系人" bindblur="modifyUserInfo" data-type="nickName" bindinput="watchName"/>
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon8.png" />
+            </view>
+            <view>
+                <input type="number" value="{{userInfo.mobileNo || ''}}" placeholder="手机号" bindblur="modifyUserInfo" data-type="mobileNo" pattern="[0-9]*" maxlength="11" bindinput="watchMobileNo"/>
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v2.1/icon8.png" />
+            </view>
+        </view>
+        <text class="tips">商家会在24小时之内和您取得联系\n请保持手机畅通</text>
+        <view class="btn" catchtap="confirmArrange">确定</view>
+    </view>
+    <view class="inner inner-success" catchtap="stop" wx:else>
+        <view class="header">
+            <text>咨询信息</text>
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" catchtap="hideArrangeInfo" data-code="{{0}}"/>
+        </view>
+        <view class="body">
+            <view>
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/1.6.11/wancheng.png" />
+                <text>提交成功</text>
+            </view>
+            <view>商家会安排专业顾问给您致电，提供咨询服务</view>
+        </view>
+        <view class="btn" catchtap="hideArrangeInfo" data-code="{{0}}">确定</view>
+    </view>
+</view>
+
+<!-- 咨询信息结果弹窗 -->
+<pop visibile="{{waitingTips}}" showTitle="{{false}}">
+    <view class="waiting-pop">
+        <view class="pop-header">
+            <text>温馨提示</text>
+        </view>
+        <view class="pop-body">
+            <text>您已于<text class="time">{{arrangeTime}}</text>提交信息\n请耐心等待</text>
+        </view>
+        <view class="pop-footer">
+            <button catchtap="closeWaiting">确定</button>
+        </view>
+    </view>
+</pop>
+
+<!-- 咨询热线弹窗 -->
+<pop visibile="{{isCall}}" showTitle="{{false}}">
+    <view class="call-pop">
+        <view class="pop-header">
+            <text>咨询热线</text>
+        </view>
+        <view class="pop-body">
+            <text>400-805-2839</text>
+        </view>
+        <view class="pop-footer">
+            <button class="cancel" catchtap="controlCallPop" data-code="0">取消</button>
+            <button class="confirm" catchtap="callPhone">拨打</button>
+        </view>
+    </view>
+</pop>
+
+
+<view class="session-mask" wx:if="{{authorityTips}}" catchtouchmove="stop">
+    <view class="authority-session">
+        <view>温馨提示</view>
+        <view>亲，授权了用户信息才可以操作哦～</view>
+        <view>快来告诉小檬你是谁吧~</view>
+        <view>
+            <button class="userinfo-btn btn" bindgetuserinfo="hideAuthority"> 拒绝</button>
+            <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> 确定</button>
+        </view>
+        <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+    </view>
+</view>
+
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>

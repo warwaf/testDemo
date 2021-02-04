@@ -1,19 +1,25 @@
+
 <!--index.wxml-->
-<!-- <import src="../../templates/test-a/index.wxml"/> -->
-<view class="container">
-  <!-- <template is="test-a"></template> -->
-  <v-page>
-    <test-a id="test-a"></test-a>
-    <test-b id="test-b"></test-b>
-  </v-page>
-  <view class="userinfo">
-    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
-    <!-- <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block> -->
-  </view>
-  <!-- <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
+<view class="container">  
+  <view class="page-body" >
+    <form bindsubmit="formBindsubmit">
+      <view class="page-section" hidden="{{isphone}}">
+        <view class="control_title">电话号码：</view>
+        <view class="control_cell">
+          <input type="text" class="control_input" name="customer_phone" value="{{customer_phone}}" placeholder="请输入手机号码" />
+        </view>
+      </view>
+      <view class="page-section" hidden="{{isjob_id=='0'? false:true }}">
+
+        <view class="control_title">订单编号：</view>
+        <view class="control_cell">
+          <input type="text" class="control_input" name="order_sn" value="{{order_sn}}" placeholder="如果没有订单编号可以输入" maxlength="100"/>
+        </view>    
+      </view>
+    	<view class="control_btn">
+    	 <button type="button" class="" formType="submit">开始上传照片</button>
+      </view>    
+    </form>
+    <modal hidden="{{hiddenModal}}" no-cancel="{{nocancel}}" bindconfirm="bindconfirm" bindcancel="bindcancel">{{promptText}}</modal>
+  </view>  
 </view>

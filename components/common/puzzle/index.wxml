@@ -1,0 +1,17 @@
+<!--components/common/puzzle/index.wxml-->
+<view class='hc-puzzle' style="width:{{width}}px; height: {{height}}px">
+   <!-- 自动绘制图层 首次初始化图像 在显示区域外-->
+   <!-- <canvas canvas-id='automate' class='canvasHide'></canvas> -->
+   <!-- 展示图层-->
+   <canvas canvas-id='main' style="width:{{width}}px; height: {{height}}px"></canvas>
+   <!-- 事件触发在此图层 选中状态-->
+   <canvas canvas-id="edit"  
+         bindtouchstart="startEdit" 
+         bindtouchmove="moveEdit"
+         bindtouchend="endEdit" style="width:{{width}}px; height: {{height}}px">
+      <cover-image wx:if="{{isShowTip}}" 
+                 bindtap = "tapTip"
+                 src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/guide.jpg"></cover-image>
+   </canvas>
+    <loading  type="1" pos="top" wx:if="{{isLoading}}"></loading>
+</view>

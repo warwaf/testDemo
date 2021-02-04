@@ -1,0 +1,124 @@
+<!--pages/activity/seckilling/index.vue.wxml-->
+<view class="seckilling">
+    <navBar page-name="三亚鲜檬0元旅拍" class="nav-bar" backType='back' mtaInfo="{{mtaInfo}}"></navBar>
+    <view wx:if="{{state!=2&&state!=''}}" class="seckilling_content" style="{{isAnnouncement?isMargin:isMargin1}}">
+        <!-- 公告 -->
+        <view class="seckilling_title" wx:if="{{isAnnouncement}}" style="top:{{navTop}}px">
+            <scroll-view class="container">
+                <view class="scrolltxt">
+                    <view class="marquee_box">
+                        <view class="marquee_text" style="transform: translateX(-{{marqueeDistance}}px)">
+                            <text>{{text}}</text>
+                            <text style="margin-right:{{marquee_margin}}px;"></text>
+                            <text style="margin-right:60px;">{{text}}</text>        
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <!-- 抢购 -->
+        <view class="seckilling_img1">
+            <view class="seckilling_countdown">
+                <view class="seckilling_countdown_text1">10月21日-10月30日，每天下午2:00，</view>
+                <view class="seckilling_countdown_text2">每天100个名额，抢完为止。</view>
+                <view wx:if="{{state==4}}">
+                    <view class="seckilling_countdown_text3">— 距离下次抢购 —</view>
+                    <view>
+                        <text class="countdown_sfm">{{timeLeft.day}}</text>
+                        <text class="countdown_M">天</text>
+                        <text class="countdown_sfm">{{timeLeft.hours}}</text>
+                        <text class="countdown_M">:</text>
+                        <text class="countdown_sfm">{{timeLeft.minutes}}</text>
+                        <text class="countdown_M">:</text>
+                        <text class="countdown_sfm">{{timeLeft.seconds}}</text>
+                    </view>
+                </view>
+                <view wx:if="{{state==7||state==6}}" class="seckilling_img1_takeplace">正在抢购中</view>
+                <view wx:if="{{state==5}}" class="seckilling_img1_takeplace">今日已抢完, 明天再来吧!</view>
+                <button class="secondsKillRemind" open-type="openSetting" catchtap="toOpenSet" wx:if="{{openSetting}}">开启抢购提醒
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/remind.png" lazy-load="{{true}}"></image>
+                </button>
+                <button class="secondsKillRemind" catchtap="getSeckillAlert" wx:else>开启抢购提醒
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/remind.png" lazy-load="{{true}}"></image>
+                </button>
+            </view>
+            <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200906/seckilling_bj.png" lazy-load="{{true}}"></image>
+            <!-- disabled="{{true}}" -->
+            <button wx:if="{{isButton}}" class="seckilling_img1_immediatelyKill {{state!=7&&state!=6?'disabledButton':''}}" catchtap="getImmediatelyKill">立即抢购</button>
+            <view style="width: calc(100% - 30px);background: #fff;border-radius: 49px;height: 49px;border: none;margin-top: 10px;" wx:if="{{!isButton}}"></view>
+        </view>
+        <!-- 图片二 -->
+        <view class="seckilling_img3">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/brand_1.png" lazy-load="{{true}}"></image>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/brand_2.png" lazy-load="{{true}}"></image>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/brand_3.png" lazy-load="{{true}}"></image>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/brand_4.png" lazy-load="{{true}}"></image>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/brand_5.png" lazy-load="{{true}}"></image>
+        </view>
+        <!-- 图片三 -->
+        <view class="seckilling_img2 seckilling_img4">
+            <view class="img2_set_meal">样片展示</view>
+            <swiper class="img2_swiper" indicator-dots="true" circular="true" 
+                indicator-color="rgba(0, 0, 0, .2)" indicator-active-color="rgba(255,226,40,1)"
+                autoplay="true" interval="2000" duration="500">
+                <block wx:for="{{animatic1}}" wx:key="*this">
+                <swiper-item class="img2_swiper-item">
+                    <image class="swiper-item" src="{{item}}" lazy-load="{{true}}"></image>
+                </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <!-- 图片一 -->
+        <view class="seckilling_img2">
+            <view class="img2_set_meal">影像定制产品</view>
+            <swiper class="img2_swiper" indicator-dots="true" circular="true"
+                indicator-color="rgba(0, 0, 0, .2)" indicator-active-color="rgba(255,226,40,1)"
+                autoplay="true" interval="2000" duration="500">
+                <block wx:for="{{setMeal}}" wx:key="*this">
+                <swiper-item class="img2_swiper-item">
+                    <image class="swiper-item" src="{{item}}" lazy-load="{{true}}"></image>
+                </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <view class="placeholder"></view>
+        <view wx:if="{{!isButton}}" class="seckilling_position">
+            <button class="seckilling_position_button {{state!=7&&state!=6?'disabledButton':''}}" catchtap="getImmediatelyKill">立即抢购</button>
+        </view>
+        <!-- 排队中 -->
+        <!-- <loading text="正在排队中…" wx:if="{{isLoading}}"></loading> -->
+        <!-- 验证 -->
+        <view class="verification {{isVerification?'':'verificationColor'}}">
+            <view class="verification_info">
+                <image catchtap="getImg" class="info_img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/popup_close.png" lazy-load="{{true}}"></image>
+                <view class="info_text">安全验证</view>
+                <view class="info_graphics">
+                    <input class="info_input" maxlength="4" value="{{imgCode}}" placeholder="请输入验证码" bindinput="bindInput" />
+                    <canvas class="canvas {{isVerification?'':'verificationColor'}}" canvas-id="canvas" bindtap='onTap'></canvas>
+                </view>
+                <view>
+                    <button catchtap="fnvavidate" class="verifyTheSubmit">提交</button>
+                </view>
+            </view>
+            <view class="verification_model"></view>
+        </view>
+        <!-- 排队中的状态 -->
+        <view wx:if="{{stateInQueue}}" class="verification">
+            <view class="verification_info stateInQueue_info">
+                <view>
+                    <image catchtap="stateInQueueImg" class="info_img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/popup_close.png" lazy-load="{{true}}"></image>
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resource2020/activity/20200811/stateInQueue.png" lazy-load="{{true}}"></image>
+                    <view class="info_text">正在排队中…</view>
+                </view>
+            </view>
+            <view class="verification_model"></view>
+        </view>
+        <!-- 关于 - 分享 - 答疑 -->
+        <tool></tool>
+    </view>
+    <view wx:if="{{state==2&&state!=''}}" class="seckilling_success">
+        <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/activity/20200906/seckilling_success.png" lazy-load="{{true}}"></image>
+        <button catchtap="getDataPerfect">完善资料</button>
+    </view>
+</view>
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}" showMask="{{true}}"></loading>

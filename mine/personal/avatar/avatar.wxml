@@ -1,0 +1,27 @@
+
+<view class="container">
+    <image src="{{userInfo.avatarUrl}}"></image>
+    <view>
+        <view class="btn" bindtap='changeAvatar'>更换头像</view>
+        <view class="btn" style="background: #fff;" bindtap='saveAvatar'>保存头像</view>
+    </view>
+</view>
+
+<view class="layout" wx:if="{{activited}}" catchtap='cancle'>
+    <view class="box">
+        <view class="cancle" bindtap='cancle'>取消</view>
+        <view class="header">头像</view>
+        <view class="btns">
+            <view catchtap='selectEvent' data-type="1">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic7.png" mode="widthFix"></image>
+                <text>相机</text>
+            </view>
+            <view catchtap='selectEvent' data-type="0">
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/owner_pic2.png" mode="widthFix"></image>
+                <text>相册</text>
+            </view>
+        </view>
+    </view>
+</view>
+
+<canvas class="v-compress"  canvas-id="compress"></canvas>

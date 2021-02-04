@@ -1,0 +1,75 @@
+<view class="mask-layout" catchtap="hideTips" wx:if="{{tips}}">
+    <view class="tips">
+        <view>温馨提示</view>
+        <view>自定义活动的奖品由亲自备哦</view>
+        <view>大大要记得准备好充足的奖品给小的们哦</view>
+        <view class="btn" catchtap="hideTips">确定</view>
+    </view>
+</view>
+
+<view class="row">
+    <view><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image> 活动名称</view>
+    <input maxlength="20" placeholder="20字以内" class="full-input input" placeholder-style="placeholder" bindinput="eventNameInputHandler"/>
+</view>
+<view class="row">
+    <view><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image> 活动时间</view>
+    <view class="time">
+        <picker mode="date" bindchange="bindBeginDateChange">
+            <view>{{beginDate}}</view>
+        </picker>
+        <text>—</text>
+        <picker mode="date" bindchange="bindEndDateChange">
+            <view >{{endDate}}</view>
+        </picker>
+    </view>
+</view>
+<view class="row">
+    <view><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image> 每人中奖次数</view>
+    <view class="counter">每人最多可中奖 <input disabled value="{{maxTimes}}" type="number" class="short-input input" bindinput="maxTimesInputHandler" placeholder-style="placeholder"/> 次</view>
+</view>
+<view class="row" wx:if="{{!tips}}">
+    <view><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image> 奖项设置</view>
+    <view class="rules">
+        <view wx:for="{{prizeRules}}" wx:key="index">
+            <text>{{item.title}}</text>
+            <input 
+                class="prize-name input {{!consolation && item.title == '安慰奖' ? 'disable-input' : ''}}" 
+                disabled="{{!consolation && item.title == '安慰奖'}}" 
+                value="{{item.prizeNameList}}" 
+                maxlength="20"
+                placeholder="奖品名称" 
+                placeholder-style="placeholder" 
+                bindinput="prizeNameInputHandler" 
+                data-index="{{index}}" 
+            />
+            <input 
+                type="number" 
+                class="prize-total input" 
+                wx:if="{{item.title != '安慰奖'}}" 
+                value="{{item.total}}" 
+                placeholder="数量" 
+                bindinput="prizeTotalInputHandler" 
+                data-index="{{index}}" 
+            />
+            <text wx:else>不限</text>
+        </view>
+        <view class="circle {{consolation ? 'active' : ''}}" catchtap="switchConsolation">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" mode="widthFix" wx:if="{{consolation}}" />
+        </view>
+    </view>
+</view>
+<view class="prompt"><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.5/icon19.png" /> 如需设置安慰奖，点击即可，设置后将会100%中奖哦</view>
+
+<view class='tipBox' wx:if="{{commentError}}">
+    <view class='hc-bg'></view>
+    <view class='tipContent'>
+        <view class='hc-topWord'>
+            <view class='hc-cancle' bindtap='cancle'>取消</view>
+            <view class='hc-tip'>提示</view>
+        </view>
+        <view class='hc-word'>内容包含敏感词汇，请修改后重新提交</view>
+        <view class='hc-tipBtn' bindtap='cancle' >确定</view>
+   </view>
+</view>
+
+<view class="btn" catchtap="save">保存</view>

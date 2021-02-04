@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "loading": "/components/common/loading/loading",
+    "navBar": "/components/common/navBar/index",
+    "tool": "../components/tool/index"
+  }
+}

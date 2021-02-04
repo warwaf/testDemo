@@ -1,0 +1,79 @@
+<wxs module="util">
+    var  filterToBe = function(arr){
+       return arr.reduce(function(pre,cur){
+           if(cur.evaluate != 1) return pre + 1;
+           return pre 
+       },0)
+    }
+    module.exports = {
+        filterToBe: filterToBe
+    }
+</wxs>
+<view wx:if="{{products.toBeComfirm.length > 0}}">
+    <view class="header">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+        待确认（{{products.toBeComfirm.length}}）
+    </view>
+    <view wx:for="{{products.toBeComfirm}}" class="v-card" wx:key="index" bindtap="toProDetail" data-id="{{item.taskId}}">
+        <view class="v-card-header">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon20.png" /> 还有{{util.filterToBe(item.beautyCandidateList)}}张未确认
+        </view>
+        <view  class="item">
+            <view class="cover">
+                <image src="{{item.cover}}" mode="center" />
+                <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon12.png" class="new" mode="widthFix" wx:if="{{item.newState}}" />
+            </view>
+            <view class="content">
+                <view class="title">{{item.catalogName}}</view>
+                <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon27.png" class="icon" mode="widthFix" /> {{item.orderNo}}</view>
+                <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon25.png" class="icon" mode="widthFix" /> {{item.picLastUpdateTime}}</view>
+                <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon26.png" class="icon" mode="widthFix" /> {{item.commentLastUpdateTime || '等待亲的评价哦'}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- <view wx:if="{{products.toBeModify.length > 0}}">
+    <view class="header">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+        待修改（{{products.toBeModify.length}}）
+    </view>
+    <view wx:for="{{products.toBeModify}}" class="item" wx:key="index"  bindtap="toProDetail" data-id="{{item.taskId}}">
+        <view class="cover">
+            <image src="{{item.cover}}" mode="center" />
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon12.png" class="new" mode="widthFix" wx:if="{{item.newState}}"/>
+        </view>
+        <view class="content">
+            <view class="title">{{item.catalogName}}</view>
+            <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon27.png" class="icon" mode="widthFix" /> {{item.orderNo}}</view>
+            <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon25.png" class="icon" mode="widthFix" /> {{item.picLastUpdateTime}}</view>
+            <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon26.png" class="icon" mode="widthFix" /> {{item.commentLastUpdateTime || '等待亲的评价哦'}}</view>
+        </view>
+    </view>
+</view> -->
+<view wx:if="{{products.comfirmed.length > 0}}">
+    <view class="header">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/rect.png"></image>
+        已确认（{{products.comfirmed.length}}）
+    </view>
+    <view wx:for="{{products.comfirmed}}" class="item" wx:key="index"  bindtap="toProDetail" data-id="{{item.taskId}}">
+        <view class="cover">
+            <image src="{{item.cover}}" mode="center" />
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon12.png" class="new" mode="widthFix" wx:if="{{item.newState}}"/>
+        </view>
+        <view class="content">
+            <view class="title">{{item.catalogName}}</view>
+            <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon27.png" class="icon" mode="widthFix" /> {{item.orderNo}}</view>
+            <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon25.png" class="icon" mode="widthFix" /> {{item.picLastUpdateTime}}</view>
+            <view><image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon26.png" class="icon" mode="widthFix" /> {{item.commentLastUpdateTime || '等待亲的评价哦'}}</view>
+        </view>
+    </view>
+</view>
+
+<view class="empty" wx:if="{{isEmpty}}">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-empty.png" mode="widthFix" />
+    <view>空空如也～</view>
+</view>
+
+<view class="back-btn" catchtap="backRoom" wx:if="{{fromShare}}">
+    <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon16.png" mode="widthFix" />
+</view>

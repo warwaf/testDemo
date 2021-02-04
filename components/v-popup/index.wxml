@@ -1,0 +1,3 @@
+<view class="v-popup" wx:if="{{show}}" bindtap="cancelTap">
+
+</view>

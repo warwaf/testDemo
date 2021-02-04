@@ -1,0 +1,9 @@
+{
+  "backgroundTextStyle": "dark",
+	"navigationBarBackgroundColor": "#FFE329",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "预约档期表",
+  "usingComponents": {
+    "calendar": "../../components/calendar/calendar"
+  }
+}

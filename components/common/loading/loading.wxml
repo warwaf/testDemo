@@ -1,0 +1,9 @@
+<view class="spinner {{pos}}">
+	<view class="spinner-body">
+		<image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/loading.gif" mode="widthFix" wx:if="{{type === 0}}" style="width: 80px;height: 80px;padding-top:15px;"></image>
+		<image src="https://img.zcool.cn/community/0113e95ce50201a801208f8b96a2a4.gif" mode="widthFix" wx:if="{{type === 1}}" style="width: 114px;height:104px;padding-top:15px;"></image>
+		<image src="https://img.zcool.cn/community/01cb575ce50063a801208f8bf1e49c.gif" mode="widthFix" wx:if="{{type === 2}}" style="width: 114px;height:114px;padding-top:15px;"></image>
+		<view wx:if="{{text}}" class="text">{{text}}</view>
+	</view>
+</view>
+<view class="mask {{showMask ? 'show' : ''}}"></view>

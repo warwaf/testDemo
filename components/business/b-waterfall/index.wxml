@@ -1,0 +1,26 @@
+<waterfall wx:if="{{showWaterFall}}"  data="{{photoList}}"></waterfall>
+ <!-- 时间轴展示 -->
+ <view hidden="{{!calendar}}">
+    <view wx:for="{{datePhotoArr}}" class="calendar-item" wx:key="date">
+        <view class="date">
+            <view class="t" wx:if="{{filter.split(filter.split(item.date, '-')[2], ' ')[1]}}">{{filter.split(filter.split(item.date, '-')[2], ' ')[1]}} : 00</view>
+            <view class="d" style="color:{{filter.split(filter.split(item.date, '-')[2], ' ')[1] ? '' : '#231815'}}">{{filter.split(item.date, '-')[0]}}-{{filter.split(item.date, '-')[1]}}-{{filter.split(filter.split(item.date, '-')[2], ' ')[0]}}</view>
+        </view>
+        <view class="photos">
+                <!-- bindtap="showDetail"   
+                data-index="{{photo.index}}"  -->
+            <image 
+                bindtap="toCalendar" 
+                data-index="{{index}}" 
+                wx:for="{{item.data}}" 
+                mode="aspectFill" 
+                wx:for-index="idx" 
+                wx:for-item="photo" 
+                wx:key="jobId" 
+                src="{{photo.thumbnailUrl}}?x-oss-process=image/resize,w_400" />
+        </view>
+        <view>
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/arrow-right-1.png" bindtap="toCalendar" data-index="{{index}}" wx:if="{{item.data.length == 3}}"/>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,12 @@
+<!-- pages/activity/scheduling/checkSchedule/checkSchedule.wxml -->
+<view class="check-case">
+  <view>
+    <image mode="widthFix" style="width:100vw;" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/schedule/header_bg.png"></image>
+  </view>
+  <view class="shop-case">
+    <text>门店：</text>
+    <text>{{storeName}}</text>
+  </view>
+  <calendar bind:onDayTap="onCalendarDayTap" storeNo="{{storeNo}}" selectDate="{{selectDate}}"></calendar>
+  <view class="btn" catch:tap="confirmDate">确定</view>
+</view>

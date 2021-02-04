@@ -1,0 +1,38 @@
+<!--pages/mine/dynamic/dynamic.wxml-->
+<wxs module="filter" src="../../pages/discovery/hishomepage/getInfoByIndex.wxs"></wxs>
+
+<view wx:if="{{ albumList.length > 0 }}">
+    <sticky scrollTop="{{scrollTop}}" >
+        <sticky-item wx:for="{{albumList}}" wx:key="index" wx:for-index="imgIndex">
+            <view slot="title"  class="hc-title-top">
+                {{filter.subPreve(item.date,7)}}
+            </view>
+            <view class="content" slot="content">
+              <view class='hhp_box' >
+                <view wx:for="{{item.movements}}" wx:key="imgListKey" wx:for-item="imgList"  wx:for-index="itemIndex" class='aImgBox'>
+                  <view class='dot'><view class='dott'>{{filter.subNext(item.date)}}</view></view>
+                  <view class='imgList'>
+                      <view class='ilTitle'>{{imgList.title}}</view>
+                      <view class='imgList_word'>
+                        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/hhp_zan.png"></image>{{imgList.praiseCount}}
+                        <image class="il_img" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/hhp_msg.png"></image>{{imgList.commentCount}}
+                      </view>
+                      <view class='imgBox'>
+                      <image   src="{{imgList.cover}}"   bindload='imgLoad' style="width:{{filter.infoByIndex(imgSize,imgIndex,itemIndex).width}}rpx;height:{{filter.infoByIndex(imgSize,imgIndex,itemIndex).height}}rpx"  data-index="{{index}}" data-left="{{imgIndex}}" data-right="{{itemIndex}}" data-id="{{imgList.id}}" data-unionid="{{imgList.unionId}}"  bindtap='detail'></image>
+                      <view class='imgNum'>{{imgList.picCount}}图</view>
+                      </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+        </sticky-item>
+    </sticky>  
+</view>
+
+<view wx:if="{{ albumList.length <= 0 && !isLoading }}" class='msgBox'>
+    <view class='hc-img'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/dynamics-none.png"></image></view>
+    <view class='hc-msg'>精彩的照片值得分享</view>
+    <view class='hc-btn' bindtap='goTo'>发布动态</view>
+</view>
+  
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>

@@ -1,0 +1,71 @@
+/* wxss */
+page{
+    background-color: #F9FAFC;
+}
+
+.pay-area{
+    background-color: #fff;
+    margin: 40px 25px;
+    position: relative;
+}
+.pay-area>view:nth-child(1){
+    width: 100%;
+    padding: 25px 0;
+    color:#300202;
+    font-size: 48px;
+    text-align: center;
+}
+.pay-area>view:nth-child(2){
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+}
+.v-coupon-price{
+    text-align: center;
+    font-size:15px;
+    font-family:PingFangSC;
+    font-weight:400;
+    color: #222222;
+    margin-bottom: 20px;
+}
+.v-coupon-price view{
+    display: inline-block;
+    color: #F34E4E;
+}
+
+.btn-container{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px dashed #D1D9E8;
+}
+.btn{
+    width: 88%;
+    height: 40px;
+    background: linear-gradient(#FFE74F,#FFE227);
+    box-shadow: 0 0 9px rgba(255, 226, 39, 0.71);
+    border-radius: 20px;
+    line-height: 40px;
+    text-align: center;
+    color:#240101;
+}
+.ricle-l{
+    width:20px;
+    height:20px;
+    background-color:#F9FAFC;
+    border-radius:50%;
+    position:absolute;
+    left:-12px;
+    bottom:70px;
+}
+.ricle-r{
+    width:20px;
+    height:20px;
+    background-color:#F9FAFC;
+    border-radius:50%;
+    position:absolute;
+    right:-12px;
+    bottom:70px;
+}

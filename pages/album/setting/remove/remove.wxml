@@ -1,0 +1,39 @@
+<view class="header">
+    <view class="input-container">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-search.png" />
+        <input type="text" placeholder="请输入关键字" placeholder-class="placeholder"  bindinput="inputHandler" value="{{inputValue}}"/>
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/icon23.png" bindtap="clearSearch"/>
+    </view>
+    <view catchtap="search">搜索</view>
+</view>
+
+<view class="body">
+    <view class="empty" wx:if="{{isEmpty}}">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/beauty-empty.png" mode="widthFix" />
+        <view>咦？找不到这位大佬呢</view>
+    </view>
+    <view class="item" wx:for="{{members}}" wx:key="index" bindtap="pick" data-index="{{index}}">
+        <view>
+            <image src="{{item.avatarUrl}}" /><text>{{item.nickName}}</text>
+        </view>
+        <view class="circle {{item.picked ? 'picked' : ''}}">
+            <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.4/setting-picked.png" mode="widthFix" wx:if="{{item.picked}}" />
+        </view>
+    </view>
+</view>
+
+<view class="btn active" bindtap="showSession" wx:if="{{selectedArr.length > 0}}">移除（{{selectedArr.length}}）</view>
+<view class="btn inactive" wx:else>移除</view>
+
+<view class="mask" catchtouchmove="none" catchtap="hideSession" wx:if="{{sessionStat}}">
+    <view class="session">
+        <view class="top">
+            <view catchtap="hideSession">取消</view>
+            <view catchtap="excute">确定</view>
+        </view>
+        <view class="bottom">
+            <view>删除成员</view>
+            <view>亲，你确定要移除吗？</view>
+        </view>
+    </view>
+</view>

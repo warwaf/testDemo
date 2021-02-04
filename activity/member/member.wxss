@@ -1,0 +1,337 @@
+.bg {
+  background: linear-gradient(#ffd640, #f8b60c);
+  position: relative;
+  padding-bottom: 245rpx;
+}
+
+.bg.silver {
+  background: #1E1F25;
+}
+
+.bg-case {
+  display: flex;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.bg-case1 {
+  height: 996rpx;
+}
+
+.bg-case2 {
+  height: 679rpx;
+}
+
+.bg-case3 {
+  height: 1451rpx;
+}
+
+.bg-case4 {
+  height: 637rpx;
+}
+
+.bg .bg-img {
+  width: 100%;
+  display: block;
+}
+
+.bg .btn {
+  width: 100%;
+  height: 88rpx;
+  font-size: 16px;
+  color: #231815;
+  font-weight: 500;
+  line-height: 43px;
+  margin-bottom: 4px;
+  border-radius: 100px;
+  word-spacing: 2;
+  background: linear-gradient(to left, #ffdf14, #ffe852)
+}
+
+.bg .protocol {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  flex-flow: row nowrap;
+  color: #fff
+}
+
+.bg .protocol .check-box {
+  width: 13px;
+  height: 13px;
+  margin-right: 7px;
+  border-radius: 2px;
+  background: #fff
+}
+
+.bg .protocol .check-box.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden
+}
+
+.bg .protocol .check-box.active::before {
+  content: "";
+  width: 9px;
+  height: 6px;
+  background: #f7a31c;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 2px
+}
+
+.bg .protocol .check-box.active::after {
+  content: "";
+  width: 7px;
+  height: 5px;
+  background: #fff;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 1px
+}
+
+.bg .btn-case {
+  position: relative;
+  margin-bottom: 20rpx;
+  padding: 0 20px 0 16px
+}
+
+.bg .btn-case image {
+  position: absolute;
+  top: -7px;
+  right: 19px;
+  width: 29px;
+  height: 15px
+}
+
+.bg .exchange,
+.bg .service {
+  width: 76px;
+  height: 76px;
+  position: fixed;
+  right: 0;
+  bottom: 295rpx;
+  z-index: 1
+}
+
+.bg .exchange image,
+.bg .service image {
+  width: 100%
+}
+
+.bg .exchange {
+  bottom: 413rpx
+}
+
+.bg .page-fotter {
+  width: 100vw;
+  height: 245rpx;
+  position: fixed;
+  bottom: 0;
+  background: #f8b60c;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center
+}
+
+.bg .page-fotter.silver {
+  background: #1E1F25;
+}
+
+.bg .page-fotter.ismember {
+  height: 68px
+}
+
+.bg .page-fotter.ismember .btn-case {
+  margin-top: 0
+}
+
+.bg .page-fotter.ismember .btn {
+  margin-bottom: 0
+}
+
+.mask {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 10
+}
+
+.mask .inner {
+  width: 90%;
+  height: 266px;
+  border-radius: 15px;
+  background-color: #fff;
+  color: #240101;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.mask .inner .header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -16px;
+  position: relative
+}
+
+.mask .inner .header .dot {
+  display: flex;
+  border-radius: 50%;
+  background: linear-gradient(#fff1c3, #ffc205)
+}
+
+.mask .inner .header .left-dot {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 0;
+  left: -10px
+}
+
+.mask .inner .header .right-dot {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: -6px;
+  right: -14px
+}
+
+.mask .inner .header .title {
+  width: 130px;
+  height: 32px;
+  margin: 0;
+  font-size: 16px;
+  color: #bc6600;
+  line-height: 32px;
+  text-align: center;
+  border-radius: 100px;
+  background: linear-gradient(to right, #ffeec3, #ffe086)
+}
+
+.mask .inner .body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center
+}
+
+.mask .inner .body text {
+  color: #222;
+  font-size: 12px
+}
+
+.mask .inner .body text:nth-child(2) {
+  font-size: 34px;
+  color: #bc6600;
+  margin-top: 18px;
+  font-weight: 700
+}
+
+.mask .inner .body text:last-child {
+  margin-top: 10px
+}
+
+.mask .inner .footer {
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box
+}
+
+.mask .inner .footer button {
+  width: 100%;
+  height: 43px;
+  font-size: 15px;
+  color: #231815;
+  line-height: 43px;
+  margin-bottom: 20px;
+  border-radius: 100px;
+  background: linear-gradient(to right, #ffe8af, #fad787)
+}
+
+.mask .inner .close {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  bottom: -54px
+}
+
+.mask .inner .close image {
+  width: 100%;
+  height: 100%
+}
+
+.mask .protocol {
+  height: 80%;
+  overflow-y: scroll;
+  margin-top: -5%
+}
+
+.mask .protocol .close {
+  position: fixed;
+  bottom: 5%
+}
+
+.container {
+  width: 100vw;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #240101;
+  font-size: 16px;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0
+}
+
+.container .img {
+  width: 97px;
+  height: 53px;
+  margin-bottom: 10px
+}
+
+.container view:nth-child(1) {
+  color: #240101;
+  font-size: 15px;
+  margin: 10px 0
+}
+
+.container view {
+  color: #999;
+  font-size: 14px;
+  margin: 10px 0
+}
+
+.container .btn {
+  width: 200px;
+  height: 40px;
+  border-radius: 20px;
+  background: linear-gradient(#ffe74f, #ffe227);
+  line-height: 40px;
+  text-align: center;
+  border: none;
+  color: #240101
+}
+
+.container .btn::after {
+  border: none
+}

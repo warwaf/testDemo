@@ -1,0 +1,240 @@
+.bg {
+  /* position: relative; */
+  /* padding-bottom: 200px */
+}
+
+.bg .block {
+  display: block;
+}
+
+.bg .pic-case {
+  position: relative;
+}
+
+.bg image {
+  width: 100%
+}
+
+.bg .shadow {
+  width: 265rpx;
+  height: 5vw;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .5)
+}
+
+.bg .icon_1 {
+  top: -50rpx;
+  left: 97rpx;
+  position: absolute;
+  height: 600rpx;
+}
+
+.bg .icon_1 image {
+  width: 345rpx;
+  height: 374rpx;
+  position: relative;
+  z-index: 1;
+  animation: ghostUpdown 1s infinite alternate
+}
+
+.bg .icon_1 .shadow {
+  position: absolute;
+  top: 264rpx;
+  left: 6rpx;
+  animation: shadow 1s infinite alternate
+}
+
+.bg .icon_2 {
+  top: 0;
+  right: 97rpx;
+  position: absolute;
+  height: 550rpx;   
+}
+
+.bg .icon_2 image {
+  width: 366rpx;
+  height: 307rpx;
+  position: relative;
+  z-index: 1;
+  animation: ghostUpdown 1s .5s infinite alternate
+}
+
+.bg .icon_2 .shadow {
+  position: absolute;
+  top: 240rpx;
+  left: 10rpx;
+  animation: shadow 1s .5s infinite alternate
+}
+
+.bg .icon_3 {
+  top: -10rpx;
+  left: 102rpx;
+  position: absolute;
+  height: 600rpx;
+}
+
+.bg .icon_3 image {
+  width: 359rpx;
+  height: 329rpx;
+  position: relative;
+  z-index: 1;
+  animation: ghostUpdown 1s .8s infinite alternate
+}
+
+.bg .icon_3 .shadow {
+  position: absolute;
+  top: 238rpx;
+  left: 8rpx;
+  animation: shadow 1s .8s infinite alternate
+}
+
+.bg .icon_4 {
+  top: 80rpx;
+  right: 97rpx;
+  position: absolute;
+  height: 550rpx;
+}
+
+.bg .icon_4 image {
+  width: 371rpx;
+  height: 295rpx;
+  position: relative;
+  z-index: 1;
+  animation: ghostUpdown 1s .8s infinite alternate
+}
+
+.bg .icon_4 .shadow {
+  position: absolute;
+  top: 232rpx;
+  left: 10rpx;
+  animation: shadow 1s .8s infinite alternate
+}
+
+/* .bg .icon_5 {
+  top: calc(168vw);
+  left: 14.5vw;
+  position: absolute
+}
+
+.bg .icon_5 image {
+  width: 20vw;
+  height: 28vw;
+  position: relative;
+  z-index: 1;
+  animation: ghostUpdown 1s 1s infinite alternate
+}
+
+.bg .icon_5 .shadow {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  animation: shadow 1s 1s infinite alternate
+}
+
+.bg .icon_6 {
+  top: calc(208vw);
+  left: 64vw;
+  position: absolute
+}
+
+.bg .icon_6 image {
+  width: 22vw;
+  height: 22vw;
+  position: relative;
+  z-index: 1;
+  animation: ghostUpdown 1s .2s infinite alternate
+}
+
+.bg .icon_6 .shadow {
+  position: absolute;
+  top: 85px;
+  left: 3px;
+  animation: shadow 1s .2s infinite alternate
+} */
+
+.btn {
+  background: linear-gradient(270deg, #ff6561, #ffda9c);
+  width: 88vw;
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  position: absolute;
+  bottom: 22px;
+  left: 6vw;
+  border-radius: 21px;
+  box-shadow: 0 5px 0 #d72a25
+}
+
+.active-btn {
+  background: linear-gradient(270deg, #ff443f, #f2b041);
+  bottom: 19px;
+  box-shadow: none
+}
+
+.share-btn {
+  width: 126rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(90deg, #FF7C0A, #FF5002);
+  position: fixed;
+  right: -1px;
+  top: 60rpx;
+  border-radius: 100rpx 0 0 100rpx;
+  font-size: 12px;
+  padding: 0;
+  border: 1px solid #FFF;
+}
+
+.tools {
+  z-index: 3;
+  position: fixed;
+  bottom: 60px;
+  right: 13px;
+  transition: right 1s ease-in-out
+}
+
+.tools view {
+  margin: 10px 0
+}
+
+.tools image {
+  width: 83px
+}
+
+.tools-hide {
+  right: -100px
+}
+
+@keyframes ghostUpdown {
+  from {
+    margin-top: 10px
+  }
+
+  to {
+    margin-top: 0
+  }
+}
+
+@keyframes poke {
+  from {
+    left: 142px
+  }
+
+  to {
+    left: 146px
+  }
+}
+
+@keyframes shadow {
+  from {
+    opacity: .5
+  }
+
+  to {
+    opacity: .1
+  }
+}

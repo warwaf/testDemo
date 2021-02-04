@@ -1,0 +1,354 @@
+.v-coupons {
+    background: #f9fafc;
+    height: 100vh
+}
+
+.v-coupon {
+    display: flex;
+    margin: 15px 15px 6px;
+    box-shadow: 0 0 10px 0 #f1f3f8
+}
+
+.v-coupon .v-left {
+    flex: 5;
+    /* height: 97px; */
+    background: #fff;
+    border-radius: 15px 0 0 15px;
+    margin-right: 1px;
+    padding: 5px 0 5px 10px;
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: flex-start
+}
+
+.v-coupon .v-left .circle {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    right: -10px;
+    background-color: #f9fafc
+}
+
+.v-coupon .v-left .t {
+    top: -10px
+}
+
+.v-coupon .v-left .b {
+    bottom: -10px
+}
+
+.v-coupon .v-left .v-coupon-date,
+.v-coupon .v-left .v-coupon-sub,
+.v-coupon .v-left .v-coupon-title {
+    margin-top: 0
+}
+
+.v-coupon .v-right {
+    flex: 2;
+    /* height: 97px; */
+    background: #fd0;
+    border-radius: 0 15px 15px 0;
+    text-align: center;
+    border-right: 1px dashed #fff;
+    display: flex;
+    align-items: center;
+}
+
+.v-coupon-title {
+    font-size: 15px;
+    color: #222;
+    font-weight: 700;
+    margin-top: 10px
+}
+
+.v-coupon-date {
+    max-width: 210px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #999;
+    margin-top: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.v-coupon-sub {
+    font-size: 14px;
+    color: #222;
+    margin-top: 10px
+}
+
+.v-coupon-money {
+    color: #222;
+    font-size: 20px;
+    font-weight: bolder;
+    display: inline-block;
+    /* margin-top: 15px */
+}
+
+.v-coupon-btn {
+    display: inline-block;
+    box-shadow: 0 0 9px 0 rgba(255, 226, 39, .71);
+    border-radius: 20px;
+    color: #240101;
+    background: #fff;
+    font-size: 13px;
+    padding: 3px 8px;
+    margin-top: 15px
+}
+
+.v-explain {
+    margin: 0 15px;
+    color: #666;
+    font-size: 14px
+}
+
+.used .v-right {
+    background: #fff
+}
+
+.used .v-coupon-money {
+    margin-top: 5px;
+    color: #a7abaf
+}
+
+.v-tabs {
+    display: flex;
+    background: #fff;
+    text-align: center;
+    height: 40px;
+    line-height: 40px
+}
+
+.v-tabs .v-tab {
+    flex: 1
+}
+
+.v-tabs .v-tab view {
+    display: inline-block;
+    height: 35px
+}
+
+.v-tabs .v-tab.active view {
+    border-bottom: 2px solid #fd0
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px
+}
+
+.empty view {
+    margin: 10px 0
+}
+
+.empty image {
+    width: 163px
+}
+
+.empty-btn {
+    color: #240101;
+    font-size: 15px;
+    width: 204px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: linear-gradient(104deg, #ffe74f 0, #ffe227 100%);
+    box-shadow: 0 0 9px 0 rgba(255, 226, 39, .71);
+    border-radius: 20px
+}
+
+.dialog {
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    padding: 20px 0;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center
+}
+
+.dialog text,
+.dialog view {
+    text-align: center
+}
+
+.dialog .btn {
+    background: linear-gradient(#ffe74f, #ffe227);
+    width: 220px;
+    height: 40px;
+    border-radius: 20px;
+    line-height: 40px;
+    text-align: center;
+    color: #240101;
+    font-size: 15px
+}
+
+.check-mask {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    overflow: hidden;
+}
+
+.check-inner {
+    width: 70%;
+    margin: 150rpx auto 0 auto;
+    position: relative;
+    z-index: 5
+}
+
+.get-order-list {
+    height: 650rpx;
+}
+
+.order-swiper-item {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 49px;
+    z-index: 100000;
+    text-align: center;
+}
+
+.prize-detail-close {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    top: -48rpx;
+    right: -48rpx;
+}
+
+.step-user {
+    line-height: 88rpx;
+    font-size: 34rpx;
+    color: #FFE329;
+}
+
+.step-text2 {
+    line-height: 35rpx;
+    font-size: 30rpx;
+    color: #FFFFFF;
+}
+
+.prize-img-title {
+    width: 99%;
+}
+
+.step-circle {
+    position: absolute;
+    bottom: -80rpx;
+    width: 60%;
+    left: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.circle-item {
+    width: 20rpx;
+    height: 20rpx;
+    background-color: #fff;
+    z-index: 9999999;
+    border-radius: 50%;
+}
+
+.active-item {
+    width: 40rpx;
+    height: 40rpx;
+    z-index: 9999999;
+    border-radius: 50%;
+    background-color: #FFE329;
+    text-align: center;
+    line-height: 40rpx;
+    font-weight: bold;
+}
+
+.to-booking-order {
+    position: absolute;
+    bottom: -200rpx;
+    width: 60%;
+    line-height: 75rpx;
+    left: 20%;
+    background-color: #FFE329;
+    border-radius: 50rpx;
+    color: black;
+}
+
+.check-mask-item {
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.item_content {
+    position: absolute;
+    bottom: 0;
+    background: #fff;
+    padding: 0 48px 0 43px;
+    font-size: 14px;
+    font-family: PingFangSC, PingFangSC-Regular;
+    font-weight: 400;
+    text-align: center;
+    color: #333333;
+    z-index: 9999;
+}
+
+.item_content_title {
+    font-size: 14px;
+    font-family: PingFangSC, PingFangSC-Regular;
+    font-weight: 400;
+    text-align: center;
+    color: #333333;
+    padding: 17px 0 20px 0;
+}
+
+.item_content_text {
+    font-size: 14px;
+    font-family: PingFangSC, PingFangSC-Regular;
+    font-weight: 400;
+    text-align: center;
+    color: #240101;
+}
+
+.seeTheStore {
+    width: 220px;
+    height: 44px;
+    background: linear-gradient(103deg, #ffe74f 13%, #ffe227 78%);
+    border-radius: 22px;
+    font-size: 15px;
+    font-family: PingFangSC, PingFangSC-Regular;
+    font-weight: 400;
+    text-align: center;
+    color: #240101;
+    line-height: 44px;
+    margin: 22px 0;
+}
+
+.item_button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.item_button::after {
+    border: none;
+}
+
+.item_model {
+    height: 100%;
+    width: 100%;
+}

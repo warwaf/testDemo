@@ -1,0 +1,44 @@
+<view class="banner">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/smile_1.png"></image>
+    <view>求鼓励一下</view>
+</view>
+<view class="score">
+    <view>
+        服务评分
+        <image wx:for="{{serviceScore}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/smile.png" wx:key="index" catchtap='changeScore' data-value="{{index + 1}}" data-sort="{{'service'}}"></image>
+        <image wx:for="{{5 - serviceScore}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/sad.png" wx:key="index" catchtap='changeScore' data-value="{{serviceScore + index + 1}}" data-sort="{{'service'}}"></image>
+        <text wx:if="{{serviceScore >= 4}}">好</text>
+        <text wx:if="{{serviceScore < 4}}">一般</text>
+    </view>
+    <view>
+        摄影评分
+        <image wx:for="{{photograherScore}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/smile.png" wx:key="index" catchtap='changeScore' data-value="{{index + 1}}" data-sort="{{'photograher'}}"></image>
+        <image wx:for="{{5 - photograherScore}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/sad.png" wx:key="index" catchtap='changeScore' data-value="{{photograherScore + index + 1}}" data-sort="{{'photograher'}}"></image>
+        <text wx:if="{{photograherScore >= 4}}">好</text>
+        <text wx:if="{{photograherScore < 4}}">一般</text>
+    </view>
+    <view>
+        发货评分
+        <image wx:for="{{makerScore}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/smile.png" wx:key="index" catchtap='changeScore' data-value="{{index + 1}}" data-sort="{{'maker'}}"></image>
+        <image wx:for="{{5 - makerScore}}" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/sad.png" wx:key="index" catchtap='changeScore' data-value="{{makerScore + index + 1}}" data-sort="{{'maker'}}"></image>
+        <text wx:if="{{makerScore >= 4}}">好</text>
+        <text wx:if="{{makerScore < 4}}">一般</text>
+    </view>
+</view>
+<view class="input-area">
+    <textarea 
+        placeholder="亲，摄影的质量如何呢？服务满意吗？"
+        bindinput="inputEventhandle"
+        placeholder-class="placeholder"
+        value="{{content}}">
+    </textarea>
+    <view class="prompt">{{content.length}} / 300</view>
+    <view class="image-area">
+        <image wx:for="{{images}}" src="{{item}}?x-oss-process=image/resize,l_320" mode="aspectFill" wx:key="index"></image>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/add.png" catchtap='pickImage'></image>
+    </view>
+</view>
+
+<view class="submit-btn" catchtap='submit'>确定</view>
+
+<loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{isLoading}}"></loading>

@@ -1,0 +1,17 @@
+<view class="title">
+    <text class="line"></text>
+    <text>常见问题</text>
+    <text class="line"></text>
+</view>
+<view>
+    <view wx:for="{{list}}" wx:key="index" class="list-item">
+        <view class="question" catchtap="switchAnswer" data-index="{{index}}">
+            <text style="font-size: 16px; color: #FFDD00;">Q :</text>
+            <text space="nbsp"> {{item.questionName}}</text>
+            <text class="arrow {{index === curIndex ? 'up' : 'down'}}"></text>
+        </view>
+        <view class="{{index === curIndex ? '' : 'hide'}}">
+            <rich-text nodes="{{item.answerValue}}"></rich-text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,32 @@
+<view class="header">
+    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/diy-banner.png" mode="widthFix" class="bg" />
+    <view class="content">
+        <view>
+            <image src="{{owner.avatarUrl}}" data-id="{{owner.unionId}}" /> 
+            <view>前主人</view>
+        </view>
+        <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/other/album-setting-1.png" mode="widthFix"/>
+        <view>
+            <image src="{{newOwner.avatarUrl}}" data-id="{{newOwner.unionId}}" /> 
+            <view>新主人</view>
+        </view>
+    </view>
+</view>
+
+<view class="body">
+    <view class="title">请点击头像选择新主人</view>
+    <view class="title">P.S: 选择新主人才能退出该相册哦</view>
+    <view class="avatar" wx:for="{{members}}" wx:key="index">
+        <image mode="aspectFit" data-id="{{item.unionId}}" data-index="{{index}}" catchtap='choose' src="{{item.avatarUrl}}" />
+        <view class="mask" wx:if="{{item.unionId == newOwner.unionId}}">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/picked.png" mode="widthFix" />
+        </view>
+    </view>
+    <view class="avatar" wx:if="{{members.length < total}}">
+        <image mode="aspectFit" src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/setting-more.png" catchtap="getMembers" />
+    </view>
+</view>
+
+<view class="btn" bindtap='complete'>
+    选好了
+</view>

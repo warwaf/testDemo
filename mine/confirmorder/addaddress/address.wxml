@@ -1,0 +1,64 @@
+<!--pages/mine/confirmorder/addaddress/address.wxml-->
+<view class='hc-seelctBox'>
+    <view class='hc-addBox'>
+        <view class='hc-addSingle'>
+            <label>收货人</label>
+            <input placeholder='请输入姓名' value='{{msg.name}}'></input>
+            <view class='delete-dot' wx:if="{{edit}}" data-index="name" catchtap='deleteMsg'>
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/address-close.png"></image>
+            </view>
+        </view>
+        <view class='hc-addSingle'>
+            <label>联系方式</label>
+            <input placeholder='请输入联系方式' type='number' value='{{msg.phone}}'></input>
+            <view class='delete-dot' wx:if="{{edit}}" data-index="phone" catchtap='deleteMsg'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/address-close.png"></image></view>
+        </view>
+        <view class='hc-addSingle'>
+            <label>所在地区</label>
+            <view class='city' >
+                <text class='cityText'>{{msg.city}}</text>
+                <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/order-goto.png"></image>
+            </view>
+            <picker
+                mode="region"
+                bindchange="bindRegionChange"
+                value="{{region}}"
+                custom-item="{{customItem}}"
+                class='picker'
+            >
+            </picker>
+        </view>
+        <view class='hc-addSingle'> 
+            <label>详细地址</label>
+            <input placeholder='请输入详细地址' value='{{msg.detail}}'></input>
+            <view class='delete-dot' wx:if="{{edit}}" data-index="detail" catchtap='deleteMsg'><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/address-close.png"></image></view>
+        </view>
+    </view>
+</view>
+
+<view class='hc-addBox'>
+    <text>设为默认地址</text>
+    <view class="radioBox {{defaultRadio ? 'activeRadio':''}}" bindtap='default' data-defaultRadio="{{defaultRadio}}">
+        <text ></text>
+    </view>
+</view>
+
+<view class='hc-addBox' wx:if="{{edit}}" catchtap='deleteAll'>
+    <text class='delete'>删除收货地址</text>
+</view>
+
+
+<view class="section">
+  <picker
+    mode="region"
+    bindchange="bindRegionChange"
+    value="{{region}}"
+    custom-item="{{customItem}}"
+  >
+    <view class="picker"></view>
+  </picker>
+</view>
+
+<view class='hc-selectBtn'>
+    <view class='hc-btn' bindtap='addAddress'>确定</view>
+</view>

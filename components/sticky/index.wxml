@@ -1,0 +1,4 @@
+<!--components/sticky/index.wxml-->
+<view class="i-sticky i-class">
+    <slot></slot>
+</view>

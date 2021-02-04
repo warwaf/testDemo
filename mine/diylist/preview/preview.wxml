@@ -1,0 +1,2 @@
+<web-view src="{{url}}" bindload="completed" ></web-view>
+<loading  text="Yoo-hoo! 奋力加载啦"></loading>

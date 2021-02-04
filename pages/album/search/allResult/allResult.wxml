@@ -1,0 +1,10 @@
+<view class="v-list">
+   <view class="v-avatar" wx:for="{{ avatarList }}" wx:key wx:for-item="item" bind:tap="searchwho" data-info="{{item}}">
+        <image src="{{ item.picUrl }}?x-oss-process=image/crop,x_{{item.left-45}},y_{{item.top-45}},w_{{item.width+90}},h_{{item.height+90}}"></image>
+   </view>
+   <loading  text="Yoo-hoo! 奋力加载啦" wx:if="{{ isLoading }}"></loading>
+   <view wx:if="{{pageNo >= pages && !isLoading }}" class="none">Mm……小檬已经把所有人都找出来啦</view>
+   <view class="underline" wx:if="{{pageNo < pages && !isLoading }}"  bind:tap="addPages">
+       还没有找到？
+   </view>
+</view>

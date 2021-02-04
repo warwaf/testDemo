@@ -1,0 +1,61 @@
+<view class="bg">
+    <view class="header">
+        <image style="height: 442rpx;" class="block" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/header.jpg" mode="widthFix" />
+    </view>
+    <view class="pic-case pic1">
+        <image style="height: 676rpx;" class="block" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/pic1.png"></image>
+        <view class="icon_1" catchtap="toRoom" data-id="{{rooms[0]}}">
+            <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/pic1_icon.png" />
+            <!-- <view class="shadow"></view> -->
+        </view>
+    </view>
+    <view class="pic-case pic2">
+        <image style="height: 673rpx;" class="block" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/pic2.png"></image>
+        <view class="icon_2" catchtap="toRoom" data-id="{{rooms[1]}}">
+            <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/pic2_icon.png" />
+            <!-- <view class="shadow"></view> -->
+        </view>
+    </view>
+    <view class="pic-case pic3">
+        <image style="height: 721rpx;" class="block" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/pic3.png"></image>
+        <view class="icon_3" catchtap="toRoom" data-id="{{rooms[2]}}">
+            <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/pic3_icon.png" />
+            <!-- <view class="shadow"></view> -->
+        </view>
+    </view>
+    <view class="pic-case pic4">
+        <image style="height: 760rpx;" class="block" src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/pic4.png"></image>
+        <view class="icon_4" catchtap="toRoom" data-id="{{rooms[3]}}">
+            <image src="https://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9.2/pic4_icon.png" />
+            <!-- <view class="shadow"></view> -->
+        </view>
+    </view>
+    <!-- <view class="icon_5" catchtap="toRoom" data-id="{{rooms[4]}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon9.png" />
+        <view class="shadow"></view>
+    </view>
+    <view class="icon_6" catchtap="toRoom" data-id="{{rooms[5]}}">
+        <image src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon10.png" />
+        <view class="shadow"></view>
+    </view> -->
+    <!-- <button class="btn" hover-class="active-btn" catchtap="showDesc">檬太奇之旅</button> -->
+    <button class="share-btn" open-type="share">分享围观</button>
+</view>
+<!-- <view class="tools {{showTools ? '' : 'tools-hide'}}">
+    <view catchtap="toHome"><image mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon11.png"/></view>
+    <view catchtap="toAr"><image mode="widthFix" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.9/icon12.png"/></view>
+</view> -->
+<view class="session-mask" catchtouchmove="stop" wx:if="{{authorityTips}}">
+    <view class="authority-session">
+        <view>温馨提示</view>
+        <view>亲，授权了用户信息才可以操作哦～</view>
+        <view>快来告诉小檬你是谁吧~</view>
+        <view>
+            <button class="userinfo-btn btn" bindgetuserinfo="hideAuthority">拒绝</button>
+            <button class="userinfo-btn btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">
+                确定
+            </button>
+        </view>
+        <image catchtap="hideAuthority" src="http://hcmtq.oss-cn-hangzhou.aliyuncs.com/resource2020/v1.6/icon3.png" />
+    </view>
+</view>

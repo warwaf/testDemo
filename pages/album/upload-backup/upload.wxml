@@ -1,0 +1,85 @@
+
+
+<view class="wrapper" hidden="{{isload}}"> 
+    <view class='uploadEnd' wx:if="{{isloaded}}">
+        <view class="upload_cemera"><image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_cemera.png"  mode="widthFix"></image></view>
+        <view class="uploadRact"></view>
+        <view class="uploadEndtxt">上传结束</view>
+    </view>
+    <!-- banner -->
+	<view class="banner" wx:if="{{!isloaded}}">
+        <image src="{{bannerSrc}}" mode="widthFix"></image>
+    </view>
+    <view class="uploadBox {{isloaded?'':'loadBefor'}}">
+        <block wx:for="{{list}}" wx:key="index">
+            <view class="weui-uploader__file" bindtap="onItemClick"  data-key="{{index}}" data-item="{{item}}">
+                <!-- 当前图片 -->
+                <view class="{{index==0 && item.src==null?'weui-uploader__input-box':'weui-uploader__item-box'}}">		
+                    <image src="{{item.src}}" mode="aspectFill"></image>									
+                </view>	
+                <!-- 当前图片上传失败-->
+                <!-- <view class="warn" wx:if="{{item.isupload== -1}}">
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_no.png" mode="widthFix"></image>
+                </view> -->
+                <view class="warn" wx:if="{{item.isupload== -1 || item.isupload== -2}}" catchtap='showTip' data-index="{{index}}">
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_no.png" mode="widthFix"></image>
+                </view>
+                <view class="warn-bubble" wx:if="{{item.isupload== -2}}">
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/warning.png"></image>
+                </view>
+                <!-- 删除当前图片 -->
+                <view class="dellete" wx:if="{{item.isupload == 0}}" data-key="{{index}}" data-item="{{item}}"  catchtap="deletePhotos">
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_close.png" mode="widthFix"></image>
+                </view>    
+                <!-- 当前图片上传成功          -->
+                <view class="success" wx:if="{{item.isupload== 1}}" data-key="{{index}}" data-item="{{item}}"> 
+                    <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_right.png" mode="widthFix"></image>        
+                </view>
+            </view>
+        </block>
+        <!-- 添加图片 -->
+        <view class="weui-uploader__input-box" bindtap="onItemClick"  wx:if="{{upload_loading == false}}">
+            <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/upload_add.png" mode="widthFix"></image>   
+        </view>
+    </view>
+</view>
+
+<!-- 走马灯 -->
+<view  wx:if="{{!isloaded}}">
+    <swiper autoplay="true" circular="true" vertical="true" interval="1000" duration="500"  class='box'>
+        <swiper-item class='txt' wx:for="{{barrageFly}}" wx:key="inx">
+            <view style="color:#FFEF85;">{{item.name}}</view> 
+            <view style="color:rgba(250,250,250,.8);">领了</view>
+            <view style="color:#FFF;">{{item.vour}}</view>      
+        </swiper-item>         
+    </swiper>
+</view>
+
+<!-- 加载中 -->
+<view class="loading"  wx:if="{{!isloaded && isgreen && upload_loading}}">
+    <view class="loadingGif">
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/loading.gif" mode="widthFix"  wx:if="{{!isloaded && isgreen && upload_loading && completePrentNum<100}}"></image>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/loadingEnd.gif" mode="widthFix" wx:if="{{!isloaded && isgreen && upload_loading && completePrentNum==100 && loaded<1}}"></image>
+        <image src="https://hcmtq.oss-accelerate.aliyuncs.com/resources/loadAfter.png" mode="widthFix" wx:if="{{!isloaded && isgreen && upload_loading && completePrentNum==100 && loaded ==1}}"></image>
+    </view>
+    <view class="uploadprogress">     
+        <progress  percent="{{completePrentNum}}" backgroundColor="#9a6500" active color='#ffea48' active-mode="forwards"/>
+    </view>
+</view>
+
+<!-- 底部的按钮 -->
+<view class="uploadBtn">
+    <view class="protocol" catchtap='onShowProtocol'>
+        <view class="circle"><text wx:if="{{agreeProtocol}}"></text></view>
+        本人已阅读并同意《用户隐私协议》
+    </view>
+   <view class='hc-box'>
+         <view class="btn {{isgreen !== false && agreeProtocol ? 'upload_yellow' : 'upload_gray'}}"  bindtap="uploadimage"  wx:if="{{isloaded==false}}">{{upload_loading?'正在上传中......':'开始上传'}}</view>
+         <view wx:else class="btn  {{active == true ? 'upload_yellow' : ''}}" bindtap="gotoHome" >返回</view>
+   </view>
+    <!-- <view class="btn"  style="border:1px solid #a0a0a0; color:#000"  bindtap="uploadContinue"  wx:if="{{isloaded}}">继续上传</view> -->
+</view>
+
+<view class="vouchers"><vouchers amount="{{amount}}" wx:if="{{showVouchers}}" bind:closeEvent="closeVouchers"></vouchers></view>
+
+<protocol bind:clickEvent="signProtocol" wx:if="{{showProtocol}}"></protocol>
